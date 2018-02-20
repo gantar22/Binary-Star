@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Rotator.cs" />
+     <Compile Include="Assets\Scripts\Enemy AI\BasicEnemy.cs" />
+     <Compile Include="Assets\Scripts\Enemy AI\ZigZagEnemy.cs" />
+     <Compile Include="Assets\Scripts\Enemy AI\ZipperEnemy.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MoveLaser.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MovePlayer.cs" />
  <Reference Include="UnityEngine.UI">

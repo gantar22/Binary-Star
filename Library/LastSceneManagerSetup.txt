@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/tempScene.unity
+- path: Assets/Scenes/EnemyTesting.unity
   isLoaded: 1
   isActive: 1
