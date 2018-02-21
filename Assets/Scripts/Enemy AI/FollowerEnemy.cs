@@ -10,14 +10,14 @@ public class FollowerEnemy : MonoBehaviour {
 	public float speed = 2f;
 	private int maxHP = 2;
 
-	private float followRadius = 1f;
+	private float followRadius = 1.2f;
+
+	// Other variables
+	private int HP;
 
 	// Object references
 	private Rigidbody2D rb;
 	public GameObject objToFollow;
-
-	// Other variables
-	private int HP;
 
 
 	// Initialize

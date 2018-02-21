@@ -15,15 +15,16 @@ public class ZipperEnemy : MonoBehaviour {
 	private float minZip = 0.5f;
 	private float maxZip = 1f;
 
-	// Object references
-	private Rigidbody2D rb;
-
 	// Other variables
 	private int HP;
 
 	private bool paused;
 	private float delay;
 	private Vector2 fixedDirection;
+
+	// Object references
+	private Rigidbody2D rb;
+
 
 	// Initialize
 	void Start () {
@@ -52,6 +53,16 @@ public class ZipperEnemy : MonoBehaviour {
 		}
 	}
 
+	// Called when damage is taken
+	private void gotHit(int dmg) {
+		HP -= dmg;
+
+		if (HP <= 0) {
+			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
+			Destroy (gameObject);
+		}
+	}
+
 	private void controlDelay(Vector2 newDirection) {
 		if (delay > 0) {
 			delay -= Time.deltaTime;
@@ -62,16 +73,6 @@ public class ZipperEnemy : MonoBehaviour {
 		} else {
 			paused = !paused;
 			delay = Random.Range (minPause, maxPause);
-		}
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
 		}
 	}
 }

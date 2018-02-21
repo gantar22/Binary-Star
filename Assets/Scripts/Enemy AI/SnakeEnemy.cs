@@ -7,17 +7,26 @@ public class SnakeEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[HideInInspector]
-	public float speed = 6f;
+	public float speed = 7f;
+	private float zipMult = 1.7f;
 	private int maxHP = 2;
 
-	private float frequency = 0.5f;
+	private float frequency = 2f;
 	private float amplitudeMult = 1f;
 
-	// Object references
-	private Rigidbody2D rb;
+	private float minCircle = 3f;
+	private float maxCircle = 5f;
+	private float minZip = 1.2f;
+	private float maxZip = 1.8f;
 
 	// Other variables
 	private int HP;
+
+	private bool circling;
+	private float delay;
+
+	// Object references
+	private Rigidbody2D rb;
 
 
 	// Initialize
@@ -25,6 +34,8 @@ public class SnakeEnemy : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 
 		HP = maxHP;
+		circling = true;
+		delay = minCircle;
 	}
 
 	// Called every frame
@@ -41,10 +52,16 @@ public class SnakeEnemy : MonoBehaviour {
 		direction = mousePos - pos;
 		Vector2 perp = new Vector2 (-direction.y, direction.x);
 
-		float scale = Mathf.Abs((Time.time % (2*frequency)) - frequency) / frequency;
+		float period = 1f / frequency;
+		float scale = Mathf.Abs((Time.time % (2*period)) - period) / period;
 		float radians = Mathf.Lerp(-Mathf.PI/2f, Mathf.PI/2f, scale);
-		
-		direction = perp * Mathf.Sin (radians) * amplitudeMult + direction * Mathf.Cos(radians);
+
+		controlDelay ();
+		if (!circling) {
+			direction = perp * Mathf.Sin (radians) * amplitudeMult + direction * Mathf.Cos (radians);
+		} else {
+			direction = perp * Mathf.Cos (radians) * amplitudeMult + direction * Mathf.Sin(radians);
+		}
 
 		// Normalize the velocity and set to desired speed
 		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
@@ -58,6 +75,22 @@ public class SnakeEnemy : MonoBehaviour {
 		if (HP <= 0) {
 			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
 			Destroy (gameObject);
+		}
+	}
+
+	private void controlDelay() {
+		if (delay > 0) {
+			delay -= Time.deltaTime;
+		} else if (circling) {
+			circling = !circling;
+			frequency = frequency * zipMult;
+			speed = speed * zipMult;
+			delay = Random.Range (minZip, maxZip);
+		} else {
+			circling = !circling;
+			frequency = frequency / zipMult;
+			speed = speed / zipMult;
+			delay = Random.Range (minCircle, maxCircle);
 		}
 	}
 }

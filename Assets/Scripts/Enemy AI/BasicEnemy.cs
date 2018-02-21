@@ -10,11 +10,11 @@ public class BasicEnemy : MonoBehaviour {
 	public float speed = 1.2f;
 	private int maxHP = 2;
 
-	// Object references
-	private Rigidbody2D rb;
-
 	// Other variables
 	private int HP;
+
+	// Object references
+	private Rigidbody2D rb;
 
 
 	// Initialize

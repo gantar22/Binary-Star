@@ -13,14 +13,14 @@ public class ZigZagEnemy : MonoBehaviour {
 	private float minZgDelay = 0.5f;
 	private float maxZgDelay = 3f;
 
-	// Object references
-	private Rigidbody2D rb;
-
 	// Other variables
 	private int HP;
 
 	private bool zigOrZag;
 	private float delay;
+
+	// Object references
+	private Rigidbody2D rb;
 
 
 	// Initialize
