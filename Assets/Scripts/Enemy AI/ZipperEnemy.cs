@@ -6,7 +6,8 @@ using UnityEngine;
 public class ZipperEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	private float speed = 3.5f;
+	[HideInInspector]
+	public float speed = 3.5f;
 	private int maxHP = 3;
 
 	private float minPause = 0.8f;
