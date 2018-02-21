@@ -6,7 +6,7 @@ using UnityEngine;
 public class ZigZagEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	private float speed = 1.2f;
+	private float speed = 1.6f;
 	private int maxHP = 3;
 
 	private float minZgDelay = 0.5f;
@@ -35,10 +35,12 @@ public class ZigZagEnemy : MonoBehaviour {
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 
 		// Get player position - TODO
-		Vector2 playerPos = new Vector2 (0f, 0f);
+		//Vector2 playerPos = new Vector2 (0f, 0f);
+		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 mousePos = new Vector2 (mousePos3.x, mousePos3.y);
 
 		// Decide what direction to move in
-		direction = playerPos - pos;
+		direction = mousePos - pos;
 		Vector2 perpHalf = new Vector2 (-direction.y, direction.x) * zigZagRandom();
 		direction = direction + perpHalf;
 
