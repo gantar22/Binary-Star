@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ZigZagEnemy : MonoBehaviour {
+public class SleeperEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[HideInInspector]
-	public float speed = 1.6f;
-	private int maxHP = 3;
+	public float speed = 4.5f;
+	private float chaseSpeed = 7f;
+	private int maxHP = 2;
 
-	private float minZgDelay = 0.5f;
-	private float maxZgDelay = 3f;
+	private float wakeRadius = 5f;
+	private float frequency = 1f;
+	private float inwardBoost = 0.4f;
 
 	// Other variables
 	private int HP;
 
-	private bool zigOrZag;
-	private float delay;
+	private bool chasing;
 
 	// Object references
 	private Rigidbody2D rb;
@@ -28,6 +29,7 @@ public class ZigZagEnemy : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 
 		HP = maxHP;
+		chasing = false;
 	}
 
 	// Called every frame
@@ -42,28 +44,19 @@ public class ZigZagEnemy : MonoBehaviour {
 
 		// Decide what direction to move in
 		direction = targetPos - pos;
-		Vector2 perp = new Vector2 (-direction.y, direction.x) * zigZagRandom();
-		direction = direction + perp;
+		Vector2 perp = new Vector2 (-direction.y, direction.x);
+
+		float period = 1f / frequency;
+		float radians = (Time.time % (period)) / period * 2 * Mathf.PI;
+
+		checkForChase (targetPos, pos);
+		if (!chasing) {
+			direction = perp * Mathf.Cos (radians) + direction * Mathf.Sin (radians) + direction * inwardBoost;
+		}
 
 		// Normalize the velocity and set to desired speed
 		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
 		rb.MovePosition (pos + velocity);
-	}
-
-	// Flips zigOrZag randomly in the range (given in settings), and returns 1 if zig and -1 if zag
-	private float zigZagRandom() {
-		if (delay > 0) {
-			delay -= Time.deltaTime;
-		} else {
-			zigOrZag = !zigOrZag;
-			delay = Random.Range (minZgDelay, maxZgDelay);
-		}
-
-		if (zigOrZag) {
-			return 1f;
-		} else {
-			return -1f;
-		}
 	}
 
 	// Called when damage is taken
@@ -73,6 +66,16 @@ public class ZigZagEnemy : MonoBehaviour {
 		if (HP <= 0) {
 			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
 			Destroy (gameObject);
+		}
+	}
+
+	private void checkForChase(Vector2 targetPos, Vector2 pos) {
+		if (chasing) {
+			return;
+		}
+		if ((targetPos - pos).magnitude <= wakeRadius) {
+			chasing = true;
+			speed = chaseSpeed;
 		}
 	}
 }

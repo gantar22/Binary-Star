@@ -7,7 +7,7 @@ public class SnakeEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[HideInInspector]
-	public float speed = 7f;
+	public float speed = 3.5f;
 	private float zipMult = 1.7f;
 	private int maxHP = 2;
 
@@ -16,8 +16,8 @@ public class SnakeEnemy : MonoBehaviour {
 
 	private float minCircle = 3f;
 	private float maxCircle = 5f;
-	private float minZip = 1.2f;
-	private float maxZip = 1.8f;
+	private float minZip = 0.8f;
+	private float maxZip = 1.2f;
 
 	// Other variables
 	private int HP;

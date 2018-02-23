@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ZigZagEnemy : MonoBehaviour {
+public class SyncCircleEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[HideInInspector]
-	public float speed = 1.6f;
-	private int maxHP = 3;
+	public float speed = 4f;
+	private float zipMult = 1f;
+	private int maxHP = 2;
 
-	private float minZgDelay = 0.5f;
-	private float maxZgDelay = 3f;
+	private float circleTime = 2f;
+	private float zipTime = 0.4f;
 
 	// Other variables
 	private int HP;
 
-	private bool zigOrZag;
+	private bool clockwise;
+	private bool circling;
 	private float delay;
 
 	// Object references
@@ -28,6 +30,9 @@ public class ZigZagEnemy : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 
 		HP = maxHP;
+		clockwise = false;
+		circling = false;
+		delay = zipTime;
 	}
 
 	// Called every frame
@@ -42,28 +47,19 @@ public class ZigZagEnemy : MonoBehaviour {
 
 		// Decide what direction to move in
 		direction = targetPos - pos;
-		Vector2 perp = new Vector2 (-direction.y, direction.x) * zigZagRandom();
-		direction = direction + perp;
+		controlDelay ();
+		if (circling) {
+			Vector2 perp = new Vector2 (-direction.y, direction.x);
+			if (clockwise) {
+				direction = perp;
+			} else {
+				direction = -perp;
+			}
+		}
 
 		// Normalize the velocity and set to desired speed
 		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
 		rb.MovePosition (pos + velocity);
-	}
-
-	// Flips zigOrZag randomly in the range (given in settings), and returns 1 if zig and -1 if zag
-	private float zigZagRandom() {
-		if (delay > 0) {
-			delay -= Time.deltaTime;
-		} else {
-			zigOrZag = !zigOrZag;
-			delay = Random.Range (minZgDelay, maxZgDelay);
-		}
-
-		if (zigOrZag) {
-			return 1f;
-		} else {
-			return -1f;
-		}
 	}
 
 	// Called when damage is taken
@@ -75,4 +71,18 @@ public class ZigZagEnemy : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	private void controlDelay() {
+		if (delay > 0) {
+			delay -= Time.deltaTime;
+		} else if (circling) {
+			circling = !circling;
+			delay = zipTime;
+		} else {
+			circling = !circling;
+			clockwise = !clockwise;
+			delay = circleTime;
+		}
+	}
+
 }

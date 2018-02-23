@@ -10,7 +10,7 @@ public class FollowerEnemy : MonoBehaviour {
 	public float speed = 2f;
 	private int maxHP = 2;
 
-	private float followRadius = 1.2f;
+	private float followRadius = 0.8f;
 
 	// Other variables
 	private int HP;
