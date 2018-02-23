@@ -35,10 +35,12 @@ public class Rotator : MonoBehaviour {
 			} 
 		}
 
-		deltaTheta = mod((targetTheta - transform.eulerAngles.z),360);
-		if(Mathf.Abs(deltaTheta) > 360) print(deltaTheta);
+		//deltaTheta = (targetTheta - transform.eulerAngles.z) % 360;
 
-		transform.Rotate(Vector3.forward * Mathf.Clamp(deltaTheta,-1 * turnRadius,turnRadius));
+		deltaTheta = Mathf.LerpAngle(transform.eulerAngles.z,targetTheta,Time.deltaTime * turnRadius);
+
+		transform.Rotate(Vector3.forward * deltaTheta - transform.eulerAngles);//Mathf.Clamp(deltaTheta,-1 * turnRadius,turnRadius));
+		
 		prevTargetTheta = targetTheta;
 	}
 

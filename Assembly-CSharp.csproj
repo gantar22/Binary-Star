@@ -51,6 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ClampInBox.cs" />
+     <Compile Include="Assets\code\ObjT.cs" />
+     <Compile Include="Assets\code\util\Angle.cs" />
+     <Compile Include="Assets\killIfOOB.cs" />
+     <Compile Include="Assets\linear_travel.cs" />
+     <Compile Include="Assets\Player_Fire.cs" />
+     <Compile Include="Assets\PlayerMove.cs" />
      <Compile Include="Assets\Rotator.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MoveLaser.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MovePlayer.cs" />
