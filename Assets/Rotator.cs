@@ -40,7 +40,7 @@ public class Rotator : MonoBehaviour {
 		deltaTheta = Mathf.LerpAngle(transform.eulerAngles.z,targetTheta,Time.deltaTime * turnRadius);
 
 		transform.Rotate(Vector3.forward * deltaTheta - transform.eulerAngles);//Mathf.Clamp(deltaTheta,-1 * turnRadius,turnRadius));
-		
+		//transform.rotation =  Quaternion.LookRotation(new Vector3(joy.x,joy.y,0),Vector3.back);
 		prevTargetTheta = targetTheta;
 	}
 
