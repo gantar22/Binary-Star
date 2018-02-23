@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour {
 	float _speed = 20;
 	[SerializeField]
 	bool _lockedInCamera;
+	[SerializeField]
+	bool drag;
 
 	private Vector2 joy;
 	private bool stunned;
@@ -31,28 +33,31 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void move(){
-
-		if ((velo.x * joy.x < 0 && velo.y * joy.y < 0) || 
-			((velo.x * joy.x < 0 && velo.y * joy.y == 0) || 
-				(velo.x * joy.x == 0 && velo.y * joy.y < 0)))
-		{
-			stun(.1f);
-			velo = Vector2.zero;
-			print("!");
-		} else if(joy.magnitude < .8f){
-			velo = Vector2.Lerp(velo,joy * _speed,20 * Time.deltaTime);	
+		if(!drag){
+			if ((velo.x * joy.x < 0 && velo.y * joy.y < 0) || 
+				((velo.x * joy.x < 0 && velo.y * joy.y == 0) || 
+					(velo.x * joy.x == 0 && velo.y * joy.y < 0)))
+			{
+				stun(.1f);
+				velo = Vector2.zero;
+				print("!");
+			} else if(joy.magnitude < .8f){
+				velo = Vector2.Lerp(velo,joy * _speed,20 * Time.deltaTime);	
+			} else {
+				velo = Vector2.Lerp(velo,joy * _speed,(velo.magnitude < .8f ? 2 : 8) * Time.deltaTime);	
+			}
 		} else {
-			velo = Vector2.Lerp(velo,joy * _speed,(velo.magnitude < .8f ? 2 : 8) * Time.deltaTime);	
+			velo = joy * _speed;
 		}
 
 
 		if(velo.magnitude < .2f) velo = Vector2.zero;
 
 		transform.root.Translate(velo * Time.deltaTime,Space.World);
-		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).x)){
+		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).x)){
 			transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
 		}
-		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
+		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
 		}
 

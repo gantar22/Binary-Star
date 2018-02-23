@@ -21,6 +21,7 @@ public class Player_Fire : MonoBehaviour {
 
 	private bool cool_down;
 	private int bullets_fired;
+
 	
 	// Update is called once per frame
 	void Update () {
