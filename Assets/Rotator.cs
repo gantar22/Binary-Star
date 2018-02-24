@@ -8,6 +8,8 @@ public class Rotator : MonoBehaviour {
 	float turnRadius;
 	[SerializeField]
 	XboxController ctlr;
+	[SerializeField]
+	GameObject target;
 
 	private float targetTheta;
 	private float deltaTheta;
@@ -20,6 +22,11 @@ public class Rotator : MonoBehaviour {
 		keyboard();
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
+		
+		if(target != null){
+			joy = target.transform.position - transform.position;
+		}
+
 		if (joy.x == 0 && joy.y == 0) return;
 		if(joy.y == 0) targetTheta = 180 * joy.x * -1;
 		targetTheta = joy.x == 0 ? 90 * joy.y : (360 / (2 * Mathf.PI)) * Mathf.Atan(joy.y / joy.x);
@@ -41,6 +48,8 @@ public class Rotator : MonoBehaviour {
 
 		transform.Rotate(Vector3.forward * deltaTheta - transform.eulerAngles);//Mathf.Clamp(deltaTheta,-1 * turnRadius,turnRadius));
 		
+
+
 		prevTargetTheta = targetTheta;
 	}
 
