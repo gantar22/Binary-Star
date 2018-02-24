@@ -12,15 +12,19 @@ public class BulletScript : MonoBehaviour {
 	[SerializeField]
 	
 	void OnTriggerEnter2D(Collider2D col){
-		BulletScript s = col.gameObject.GetComponent<BulletScript>(); //enemyscript
+		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
-			//s.SetHP(_damage);
+			s.gotHit(_damage);
 			die();
 		}
 	}
 
 	void die(){
-
+		switch(_type){
+			case bulletType.basic:
+			Destroy(this,.1f);
+			break;
+		}
 	}
 
 

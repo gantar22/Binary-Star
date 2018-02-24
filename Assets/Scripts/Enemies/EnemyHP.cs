@@ -20,7 +20,7 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	// Called when damage is taken
-	private void gotHit(int dmg) {
+	public void gotHit(int dmg) {
 		HP -= dmg;
 
 		if (HP <= 0) {
