@@ -22,7 +22,7 @@ public class Rotator : MonoBehaviour {
 		keyboard();
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
-		print(joy);
+
 		if(target != null){
 			joy = target.transform.position - transform.position;
 		}
