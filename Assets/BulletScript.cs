@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour {
 	public int _damage;
+
+	public enum bulletType {basic}
+
+	public bulletType _type;
+
+	[SerializeField]
 	
-	
-	// Update is called once per frame
-	void Update () {
+	OnTriggerEnter2D(Collider2D col){
+		s = col.gameObject.GetComponent<EnemyScript>()
+		if(s != null){
+			s.SetHP(int);
+			die();
+		}
+	}
+
+	void die(){
 		
 	}
+
+
+
 }
