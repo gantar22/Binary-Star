@@ -8,15 +8,12 @@ public class SyncCircleEnemy : MonoBehaviour {
 	// Settings/properties:
 	[HideInInspector]
 	public float speed = 4f;
-	private float zipMult = 1f;
-	private int maxHP = 2;
+	//private float zipMult = 1f;
 
 	private float circleTime = 2f;
 	private float zipTime = 0.4f;
 
 	// Other variables
-	private int HP;
-
 	private bool clockwise;
 	private bool circling;
 	private float delay;
@@ -29,7 +26,6 @@ public class SyncCircleEnemy : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 
-		HP = maxHP;
 		clockwise = false;
 		circling = false;
 		delay = zipTime;
@@ -41,9 +37,9 @@ public class SyncCircleEnemy : MonoBehaviour {
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 
 		// Get player position - TODO
-		//Vector2 targetPos = new Vector2 (0f, 0f);
-		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector2 targetPos = new Vector2 (mousePos3.x, mousePos3.y);
+		Vector2 targetPos = new Vector2 (0f, 0f);
+		//Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//Vector2 targetPos = new Vector2 (mousePos3.x, mousePos3.y);
 
 		// Decide what direction to move in
 		direction = targetPos - pos;
@@ -62,16 +58,7 @@ public class SyncCircleEnemy : MonoBehaviour {
 		rb.MovePosition (pos + velocity);
 	}
 
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
-		}
-	}
-
+	// Control the delay between circling and closing in
 	private void controlDelay() {
 		if (delay > 0) {
 			delay -= Time.deltaTime;

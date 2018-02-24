@@ -8,7 +8,6 @@ public class ZipperEnemy : MonoBehaviour {
 	// Settings/properties:
 	[HideInInspector]
 	public float speed = 3.5f;
-	private int maxHP = 3;
 
 	private float minPause = 0.8f;
 	private float maxPause = 2f;
@@ -16,8 +15,6 @@ public class ZipperEnemy : MonoBehaviour {
 	private float maxZip = 1f;
 
 	// Other variables
-	private int HP;
-
 	private bool paused;
 	private float delay;
 	private Vector2 fixedDirection;
@@ -29,8 +26,6 @@ public class ZipperEnemy : MonoBehaviour {
 	// Initialize
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
-		HP = maxHP;
 	}
 
 	// Called every frame
@@ -50,16 +45,6 @@ public class ZipperEnemy : MonoBehaviour {
 			// Normalize the velocity and set to desired speed
 			Vector2 velocity = direction.normalized * speed * Time.deltaTime;
 			rb.MovePosition (pos + velocity);
-		}
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
 		}
 	}
 

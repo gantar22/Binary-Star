@@ -8,14 +8,11 @@ public class ZigZagEnemy : MonoBehaviour {
 	// Settings/properties:
 	[HideInInspector]
 	public float speed = 1.6f;
-	private int maxHP = 3;
 
 	private float minZgDelay = 0.5f;
 	private float maxZgDelay = 3f;
 
 	// Other variables
-	private int HP;
-
 	private bool zigOrZag;
 	private float delay;
 
@@ -26,8 +23,6 @@ public class ZigZagEnemy : MonoBehaviour {
 	// Initialize
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
-		HP = maxHP;
 	}
 
 	// Called every frame
@@ -63,16 +58,6 @@ public class ZigZagEnemy : MonoBehaviour {
 			return 1f;
 		} else {
 			return -1f;
-		}
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
 		}
 	}
 }

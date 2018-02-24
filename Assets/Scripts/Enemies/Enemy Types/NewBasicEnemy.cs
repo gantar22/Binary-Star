@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class BasicEnemy : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody2D), typeof(WeightedEnemyPhysics))]
+public class NewBasicEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[HideInInspector]
-	public float speed = 1.2f;
-	private int maxHP = 2;
+	private float maxSpeed = 3.2f, accelMag = 0.1f;
 
 	// Other variables
-	private int HP;
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
-
-		HP = maxHP;
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 	}
 
 	// Called every frame
@@ -38,17 +35,6 @@ public class BasicEnemy : MonoBehaviour {
 		direction = targetPos - pos;
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
-		}
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 }

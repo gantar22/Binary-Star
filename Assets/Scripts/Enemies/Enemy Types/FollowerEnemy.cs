@@ -8,12 +8,10 @@ public class FollowerEnemy : MonoBehaviour {
 	// Settings/properties:
 	[HideInInspector]
 	public float speed = 2f;
-	private int maxHP = 2;
 
 	private float followRadius = 0.8f;
 
 	// Other variables
-	private int HP;
 
 	// Object references
 	private Rigidbody2D rb;
@@ -23,8 +21,6 @@ public class FollowerEnemy : MonoBehaviour {
 	// Initialize
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
-		HP = maxHP;
 
 		if (!objToFollow) {
 			setAsLeader ();
@@ -55,16 +51,6 @@ public class FollowerEnemy : MonoBehaviour {
 		// Normalize the velocity and set to desired speed
 		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
 		rb.MovePosition (pos + velocity);
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
-		}
 	}
 
 	// ========= TO USE FOLLOWERS FOR A NEW ENEMY TYPE, ADD IT TO THE TWO FUNCTIONS BELOW ========

@@ -9,14 +9,12 @@ public class SleeperEnemy : MonoBehaviour {
 	[HideInInspector]
 	public float speed = 4.5f;
 	private float chaseSpeed = 7f;
-	private int maxHP = 2;
 
 	private float wakeRadius = 5f;
 	private float frequency = 1f;
 	private float inwardBoost = 0.4f;
 
 	// Other variables
-	private int HP;
 
 	private bool chasing;
 
@@ -27,8 +25,7 @@ public class SleeperEnemy : MonoBehaviour {
 	// Initialize
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-
-		HP = maxHP;
+		
 		chasing = false;
 	}
 
@@ -59,16 +56,7 @@ public class SleeperEnemy : MonoBehaviour {
 		rb.MovePosition (pos + velocity);
 	}
 
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
-		}
-	}
-
+	// Check if the player is within the wake radius
 	private void checkForChase(Vector2 targetPos, Vector2 pos) {
 		if (chasing) {
 			return;

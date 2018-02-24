@@ -9,10 +9,10 @@ public class SnakeEnemy : MonoBehaviour {
 	[HideInInspector]
 	public float speed = 3.5f;
 	private float zipMult = 1.7f;
-	private int maxHP = 2;
 
 	private float frequency = 2f;
-	private float amplitudeMult = 1f;
+	//private float amplitudeMult = 1f;
+	private float amplitudeMult = 0f;
 
 	private float minCircle = 3f;
 	private float maxCircle = 5f;
@@ -20,7 +20,6 @@ public class SnakeEnemy : MonoBehaviour {
 	private float maxZip = 1.2f;
 
 	// Other variables
-	private int HP;
 
 	private bool circling;
 	private float delay;
@@ -33,7 +32,6 @@ public class SnakeEnemy : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 
-		HP = maxHP;
 		circling = true;
 		delay = minCircle;
 	}
@@ -60,22 +58,12 @@ public class SnakeEnemy : MonoBehaviour {
 		if (!circling) {
 			direction = perp * Mathf.Sin (radians) * amplitudeMult + direction * Mathf.Cos (radians);
 		} else {
-			direction = perp * Mathf.Cos (radians) * amplitudeMult + direction * Mathf.Sin(radians);
+			direction = perp * Mathf.Cos (radians) + direction * Mathf.Sin(radians) * amplitudeMult;
 		}
 
 		// Normalize the velocity and set to desired speed
 		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
 		rb.MovePosition (pos + velocity);
-	}
-
-	// Called when damage is taken
-	private void gotHit(int dmg) {
-		HP -= dmg;
-
-		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
-			Destroy (gameObject);
-		}
 	}
 
 	private void controlDelay() {
