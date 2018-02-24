@@ -11,16 +11,16 @@ public class BulletScript : MonoBehaviour {
 
 	[SerializeField]
 	
-	OnTriggerEnter2D(Collider2D col){
-		s = col.gameObject.GetComponent<EnemyScript>()
-		if(s != null){
-			s.SetHP(int);
+	void OnTriggerEnter2D(Collider2D col){
+		BulletScript s = col.gameObject.GetComponent<BulletScript>(); //enemyscript
+		if (s != null){
+			//s.SetHP(_damage);
 			die();
 		}
 	}
 
 	void die(){
-		
+
 	}
 
 
