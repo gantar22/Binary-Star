@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
-public class Rotator : MonoBehaviour {
+public class newRotator : MonoBehaviour {
 	[SerializeField]
 	float turnRadius;
 	[SerializeField]

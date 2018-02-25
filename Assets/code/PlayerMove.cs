@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void move(){
-		if(!drag){
+		if(drag){
 			if ((velo.x * joy.x < 0 && velo.y * joy.y < 0) || 
 				((velo.x * joy.x < 0 && velo.y * joy.y == 0) || 
 					(velo.x * joy.x == 0 && velo.y * joy.y < 0)))
