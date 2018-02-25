@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class SleeperEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 4.5f;
+	//[SerializeField]
+	private float circleSpeed = 4.5f, accelMag = 0.1f;
 	private float chaseSpeed = 7f;
 
 	private float wakeRadius = 5f;
@@ -19,13 +19,14 @@ public class SleeperEnemy : MonoBehaviour {
 	private bool chasing;
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
-		
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = circleSpeed;
+
 		chasing = false;
 	}
 
@@ -52,8 +53,7 @@ public class SleeperEnemy : MonoBehaviour {
 		}
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 
 	// Check if the player is within the wake radius
@@ -63,7 +63,7 @@ public class SleeperEnemy : MonoBehaviour {
 		}
 		if ((targetPos - pos).magnitude <= wakeRadius) {
 			chasing = true;
-			speed = chaseSpeed;
+			WEP.maxSpeed = chaseSpeed;
 		}
 	}
 }

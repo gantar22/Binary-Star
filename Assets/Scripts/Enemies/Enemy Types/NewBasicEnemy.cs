@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(WeightedEnemyPhysics))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class NewBasicEnemy : MonoBehaviour {
 
 	// Settings/properties:

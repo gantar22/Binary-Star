@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class FollowerEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 2f;
+	//[SerializeField]
+	private float maxSpeed = 2f, accelMag = 0.1f;
 
 	private float followRadius = 0.8f;
 
 	// Other variables
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 	public GameObject objToFollow;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
-
 		if (!objToFollow) {
 			setAsLeader ();
 		} else {
-			speed = getLeaderSpeed ();
+			maxSpeed = getLeaderSpeed ();
 		}
+
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 	}
 
 	// Called every frame
@@ -49,26 +50,19 @@ public class FollowerEnemy : MonoBehaviour {
 		}
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 
-	// ========= TO USE FOLLOWERS FOR A NEW ENEMY TYPE, ADD IT TO THE TWO FUNCTIONS BELOW ========
+	// ========= TO USE FOLLOWERS FOR A NEW NON-WEIGHTED ENEMY TYPE, ADD IT TO THE TWO FUNCTIONS BELOW ========
 
 	// For now, followers are just really fast, so this is not used
 	public float getLeaderSpeed() {
-		FollowerEnemy followFollower = objToFollow.GetComponent<FollowerEnemy> ();
-		if (followFollower && followFollower.enabled) {
-			return followFollower.getLeaderSpeed ();
-		} else if (objToFollow.GetComponent<BasicEnemy> ()) {
-			return objToFollow.GetComponent<BasicEnemy> ().speed;
-		} else if (objToFollow.GetComponent<ZigZagEnemy> ()) {
-			return objToFollow.GetComponent<ZigZagEnemy> ().speed;
-		} else if (objToFollow.GetComponent<ZipperEnemy> ()) {
-			return objToFollow.GetComponent<ZipperEnemy> ().speed;
-		} else if (objToFollow.GetComponent<SnakeEnemy> ()) {
+		WeightedEnemyPhysics WEPtoFollow = objToFollow.GetComponent<WeightedEnemyPhysics> ();
+		if (WEPtoFollow) {
+			return WEPtoFollow.velocity.magnitude;
+		} /* else if (objToFollow.GetComponent<SnakeEnemy> ()) {
 			return objToFollow.GetComponent<SnakeEnemy> ().speed;
-		} else {
+		} */ else {
 			Debug.LogError ("No leader speed found");
 			return 0f;
 		}

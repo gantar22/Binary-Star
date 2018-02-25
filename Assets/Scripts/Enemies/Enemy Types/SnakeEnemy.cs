@@ -6,8 +6,8 @@ using UnityEngine;
 public class SnakeEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 3.5f;
+	//[SerializeField]
+	private float speed = 3.5f;
 	private float zipMult = 1.7f;
 
 	private float frequency = 2f;

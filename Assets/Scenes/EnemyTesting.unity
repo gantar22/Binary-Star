@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &132764915
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -484,7 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0774838d7685c9f479981a14172c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
 --- !u!58 &221757102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -607,7 +605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &231688191
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -730,7 +727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &264421082
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -835,13 +831,14 @@ GameObject:
   - component: {fileID: 509168784}
   - component: {fileID: 509168783}
   - component: {fileID: 509168782}
+  - component: {fileID: 509168787}
   m_Layer: 0
   m_Name: Zipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &509168782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,7 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434e4e841a4cc1c449d30a7ca65b90aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
 --- !u!58 &509168783
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -946,6 +942,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509168787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509168781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 0
+  velocity: {x: 0, y: 0}
+  acceleration: {x: 0, y: 0}
 --- !u!1 &672778226
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &672778228
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1221,7 +1230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bc99f81a2bdeb44a316694c049b488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
 --- !u!58 &975508724
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1344,7 +1352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8c51d418be7bc44b816267b2412335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
   objToFollow: {fileID: 221757100}
 --- !u!58 &1082613647
 CircleCollider2D:
@@ -1468,7 +1475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &1088179585
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1591,7 +1597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8c51d418be7bc44b816267b2412335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
   objToFollow: {fileID: 1082613645}
 --- !u!58 &1122853979
 CircleCollider2D:
@@ -1715,7 +1720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &1493920394
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1820,6 +1824,7 @@ GameObject:
   - component: {fileID: 1774648295}
   - component: {fileID: 1774648294}
   - component: {fileID: 1774648293}
+  - component: {fileID: 1774648298}
   m_Layer: 0
   m_Name: Zig Zag
   m_TagString: Untagged
@@ -1838,7 +1843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c399d93a9384444b43f655e30f4e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.6
 --- !u!58 &1774648294
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1931,6 +1935,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774648298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1774648292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 0
+  velocity: {x: 0, y: 0}
+  acceleration: {x: 0, y: 0}
 --- !u!1 &1916699420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +1979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8c51d418be7bc44b816267b2412335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
   objToFollow: {fileID: 1122853977}
 --- !u!58 &1916699422
 CircleCollider2D:
@@ -2085,7 +2102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &1932310753
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2281,7 +2297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51558703096d30d4c8984be07bfd0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!58 &2131623434
 CircleCollider2D:
   m_ObjectHideFlags: 0

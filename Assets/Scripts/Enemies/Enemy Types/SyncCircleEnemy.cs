@@ -6,8 +6,8 @@ using UnityEngine;
 public class SyncCircleEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 4f;
+	//[SerializeField]
+	private float speed = 4f;
 	//private float zipMult = 1f;
 
 	private float circleTime = 2f;
