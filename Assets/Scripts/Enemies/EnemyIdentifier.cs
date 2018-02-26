@@ -25,7 +25,7 @@ public class EnemyIdentifier : MonoBehaviour {
 		}
 	}
 
-	public GameObject GetEnemyPrefab(EnemyType type) {
+	public static GameObject GetEnemyPrefab(EnemyType type) {
 		GameObject prefab;
 		if (EnemyTypeDict.TryGetValue (type, out prefab)) {
 			return prefab;

@@ -7,7 +7,7 @@ public enum Trigger {RemainingEnemies, RemainingHealth, Time}
 
 [CreateAssetMenu]
 public class Sequence : ScriptableObject {
-	public List<WaveTuple> waves;
+	public List<WaveTuple> waveTuples;
 }
 
 
