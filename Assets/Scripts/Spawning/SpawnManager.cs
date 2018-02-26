@@ -14,13 +14,14 @@ public class SpawnManager : MonoBehaviour {
 	private int sequenceIndex = 0;
 
 
+	// Initialize
 	void Start () {
 		idle = true;
 		// For testing, start next sequence immediately:
 		nextSequence ();
 	}
 	
-	// Update is called once per frame
+	// Called once per frame
 	void Update () {
 		
 	}
@@ -57,6 +58,7 @@ public class SpawnManager : MonoBehaviour {
 		yield return new WaitWhile (() => 0 > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
 		sequenceIndex++;
 		idle = true;
+		// TODO Sequence is done
 	}
 
 	// Spawn all the enemies in a given wave
