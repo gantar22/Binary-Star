@@ -57,8 +57,6 @@ public class FollowerEnemy : MonoBehaviour {
 
 		// Normalize the velocity and set to desired speed
 		WEP.acceleration = direction.normalized * accelMag;
-		print ("Follower WEP maxSpeed: " + WEP.maxSpeed);
-		print ("Follower WEP acceleration: " + WEP.acceleration.magnitude);
 	}
 
 	public float getLeaderSpeed() {

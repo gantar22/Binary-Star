@@ -65,8 +65,6 @@ public class SnakeEnemy : MonoBehaviour {
 
 		// Normalize the velocity and set to desired speed
 		WEP.acceleration = direction.normalized * accelMag;
-		print ("Snake WEP maxSpeed: " + WEP.maxSpeed);
-		print ("Snake accelMag: " + accelMag);
 	}
 
 	private void controlDelay() {
