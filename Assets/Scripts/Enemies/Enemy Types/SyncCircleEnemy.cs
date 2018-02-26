@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class SyncCircleEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	//[SerializeField]
-	private float speed = 4f;
-	//private float zipMult = 1f;
+	[SerializeField]
+	private float maxSpeed = 4f, accelMag = 5f;
+	//private float diveSpeedMult = 1f;
 
-	private float circleTime = 2f;
-	private float zipTime = 0.4f;
+	[SerializeField]
+	private float circleTime = 2f, diveTime = 0.4f;
 
 	// Other variables
 	private bool clockwise;
@@ -19,16 +19,17 @@ public class SyncCircleEnemy : MonoBehaviour {
 	private float delay;
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 
 		clockwise = false;
 		circling = false;
-		delay = zipTime;
+		delay = diveTime;
 	}
 
 	// Called every frame
@@ -54,8 +55,7 @@ public class SyncCircleEnemy : MonoBehaviour {
 		}
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 
 	// Control the delay between circling and closing in
@@ -64,7 +64,7 @@ public class SyncCircleEnemy : MonoBehaviour {
 			delay -= Time.deltaTime;
 		} else if (circling) {
 			circling = !circling;
-			delay = zipTime;
+			delay = diveTime;
 		} else {
 			circling = !circling;
 			clockwise = !clockwise;

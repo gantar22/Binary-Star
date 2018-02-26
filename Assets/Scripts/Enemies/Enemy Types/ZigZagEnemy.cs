@@ -6,11 +6,11 @@ using UnityEngine;
 public class ZigZagEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	//[SerializeField]
+	[SerializeField]
 	private float maxSpeed = 1.6f, accelMag = 0.15f;
 
-	private float minZgDelay = 1.5f;
-	private float maxZgDelay = 1.5f;
+	[SerializeField]
+	private float minZgDelay = 1.5f, maxZgDelay = 1.5f;
 
 	// Other variables
 	private bool zigOrZag;

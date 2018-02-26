@@ -6,7 +6,7 @@ using UnityEngine;
 public class NewBasicEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
+	[SerializeField]
 	private float maxSpeed = 3.2f, accelMag = 0.1f;
 
 	// Other variables

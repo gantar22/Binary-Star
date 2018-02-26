@@ -6,13 +6,11 @@ using UnityEngine;
 public class SleeperEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	//[SerializeField]
-	private float circleSpeed = 4.5f, accelMag = 0.1f;
-	private float chaseSpeed = 7f;
+	[SerializeField]
+	private float circleSpeed = 4.5f, chaseSpeed = 7f, accelMag = 0.1f;
 
-	private float wakeRadius = 5f;
-	private float frequency = 1f;
-	private float inwardBoost = 0.4f;
+	[SerializeField]
+	private float wakeRadius = 5f, frequency = 1f, inwardBoost = 0.4f;
 
 	// Other variables
 

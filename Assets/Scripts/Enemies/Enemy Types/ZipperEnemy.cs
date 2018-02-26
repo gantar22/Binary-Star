@@ -6,13 +6,13 @@ using UnityEngine;
 public class ZipperEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	//[SerializeField]
+	[SerializeField]
 	private float maxSpeed = 4f, accelMag = 1f;
 
-	private float minPause = 1.2f;
-	private float maxPause = 1.8f;
-	private float minZip = 1f;
-	private float maxZip = 1f;
+	[SerializeField]
+	private float minPause = 1.2f, maxPause = 1.8f;
+	[SerializeField]
+	private float minZip = 1f, maxZip = 1f;
 
 	// Other variables
 	private bool paused;
@@ -47,6 +47,8 @@ public class ZipperEnemy : MonoBehaviour {
 		if (!paused) {
 			// Normalize the velocity and set to desired speed
 			WEP.acceleration = direction.normalized * accelMag;
+		} else {
+			WEP.acceleration = Vector2.zero;
 		}
 	}
 
