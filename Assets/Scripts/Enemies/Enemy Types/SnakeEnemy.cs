@@ -78,7 +78,7 @@ public class SnakeEnemy : MonoBehaviour {
 		} else {
 			circling = !circling;
 			frequency = frequency / diveSpeedMult;
-			WEP.maxSpeed = maxSpeed / diveSpeedMult;
+			WEP.maxSpeed = maxSpeed;
 			delay = Random.Range (minCircleTime, maxCircleTime);
 		}
 	}

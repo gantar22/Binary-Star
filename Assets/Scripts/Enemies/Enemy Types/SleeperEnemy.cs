@@ -56,10 +56,10 @@ public class SleeperEnemy : MonoBehaviour {
 
 	// Check if the player is within the wake radius
 	private void checkForChase(Vector2 targetPos, Vector2 pos) {
-		if (chasing) {
-			return;
-		}
-		if ((targetPos - pos).magnitude <= wakeRadius) {
+		if (chasing && (targetPos - pos).magnitude > wakeRadius) {
+			chasing = false;
+			WEP.maxSpeed = circleSpeed;
+		} else if (!chasing && (targetPos - pos).magnitude <= wakeRadius) {
 			chasing = true;
 			WEP.maxSpeed = chaseSpeed;
 		}

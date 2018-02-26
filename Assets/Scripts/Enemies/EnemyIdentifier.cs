@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType {Basic, Snake, Vulture, Sleeper, Follower, SyncCircle, Zipper}
+public enum EnemyType {Basic, Snake, Vulture, Sleeper, Centipede, SyncCircle, Zipper}
 
 public class EnemyIdentifier : MonoBehaviour {
 
@@ -20,6 +20,7 @@ public class EnemyIdentifier : MonoBehaviour {
 		}
 
 		// Fill enemy type dictionary with array from editor
+		EnemyTypeDict = new Dictionary<EnemyType, GameObject>();
 		for (int i = 0; i < TypePrefabs.Length; i++) {
 			EnemyTypeDict.Add (TypePrefabs [i].Type, TypePrefabs [i].prefab);
 		}

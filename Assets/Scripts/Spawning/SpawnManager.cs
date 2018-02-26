@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour {
 
 
 	void Start () {
+		idle = true;
+		// For testing, start next sequence immediately:
 		nextSequence ();
 	}
 	
@@ -24,18 +26,23 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	private void nextSequence() {
-		if (sequenceIndex >= sequences.Length) {
-			// End 
+		if (!idle) {
 			return;
 		}
 
-		sequenceIndex++;
+		if (sequenceIndex >= sequences.Length) {
+			// All sequences have finished
+			return;
+		}
+		idle = false;
+		StartCoroutine ("playSequence");
 	}
 
-	IEnumerator playSequence(Sequence sequence) {
+	// Play a sequence of waves, pausing at each trigger condition
+	IEnumerator playSequence() {
+		Sequence sequence = sequences[sequenceIndex];
 		for (int x = 0; x < sequence.waveTuples.Count; x++) {
 			WaveTuple tuple = sequence.waveTuples [x];
-
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitWhile(() => 0 > tuple.threshold); // TODO Replace 0 with length of list of enemies, from gameManager
@@ -44,12 +51,11 @@ public class SpawnManager : MonoBehaviour {
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
-
 			spawnWave(tuple.wave);
 		}
 
 		yield return new WaitWhile (() => 0 > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
-
+		sequenceIndex++;
 		idle = true;
 	}
 
@@ -59,29 +65,34 @@ public class SpawnManager : MonoBehaviour {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
 				Instantiate (prefab, TopSpawner, Quaternion.identity);
+				// TODO Call GameManager spawn function so enemy is added to list
 			}
 		}
 		foreach (TypeNumPair pair in wave.BotSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
 				Instantiate (prefab, BotSpawner, Quaternion.identity);
+				// TODO Call GameManager spawn function so enemy is added to list
 			}
 		}
 		foreach (TypeNumPair pair in wave.LeftSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
 				Instantiate (prefab, LeftSpawner, Quaternion.identity);
+				// TODO Call GameManager spawn function so enemy is added to list
 			}
 		}
 		foreach (TypeNumPair pair in wave.RightSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
 				Instantiate (prefab, RightSpawner, Quaternion.identity);
+				// TODO Call GameManager spawn function so enemy is added to list
 			}
 		}
 	}
 }
 
+// Use in coroutines as follows: yield return new WaitWhile(() => /*bool expression here*/);
 public class WaitWhile : CustomYieldInstruction {
 	Func<bool> m_Predicate;
 

@@ -37,7 +37,7 @@ public class FollowerEnemy : MonoBehaviour {
 			setAsLeader ();
 			return;
 		} else {
-			WEP.maxSpeed = getLeaderSpeed ();
+			WEP.maxSpeed = getLeaderSpeed () + 0.1f;
 			accelMag = getLeaderAccelMag ();
 		}
 
