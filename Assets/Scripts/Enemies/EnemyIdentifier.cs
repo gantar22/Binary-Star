@@ -6,19 +6,25 @@ public enum EnemyType {Basic, Snake, Vulture, Sleeper, Centipede, SyncCircle, Zi
 
 public class EnemyIdentifier : MonoBehaviour {
 
-	public static EnemyIdentifier instance;
-
 	public static Dictionary<EnemyType, GameObject> EnemyTypeDict;
-
 	public EnemyTypePrefab[] TypePrefabs;
 
-	void Start() {
-		if (instance) {
-			Debug.LogError ("Multiple EnemyIdentifiers in scene!");
-		} else {
-			instance = this;
-		}
+	private static EnemyIdentifier _instance;
+	public static EnemyIdentifier Instance { get { return _instance; } }
 
+
+	// Static instance setup
+	private void Awake() {
+		if (_instance != null && _instance != this) {
+			Debug.LogError ("Multiple EnemyIdentifiers in scene!");
+			Destroy(this.gameObject);
+		} else {
+			_instance = this;
+		}
+		DontDestroyOnLoad(this);
+	}
+
+	void Start() {
 		// Fill enemy type dictionary with array from editor
 		EnemyTypeDict = new Dictionary<EnemyType, GameObject>();
 		for (int i = 0; i < TypePrefabs.Length; i++) {
@@ -26,6 +32,7 @@ public class EnemyIdentifier : MonoBehaviour {
 		}
 	}
 
+	// Returns the enemy prefab for a given EnemyType
 	public static GameObject GetEnemyPrefab(EnemyType type) {
 		GameObject prefab;
 		if (EnemyTypeDict.TryGetValue (type, out prefab)) {

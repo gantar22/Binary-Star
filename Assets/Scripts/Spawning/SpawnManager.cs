@@ -10,22 +10,32 @@ public class SpawnManager : MonoBehaviour {
 
 	[HideInInspector]
 	public bool idle; // True iff the last sequence has finished and all enemies are dead
+	private int sequenceIndex;
 
-	private int sequenceIndex = 0;
+	private static SpawnManager _instance;
+	public static SpawnManager Instance { get { return _instance; } }
 
+
+	// Static instance setup
+	private void Awake()
+	{
+		if (_instance != null && _instance != this) {
+			Destroy(this.gameObject);
+		} else {
+			_instance = this;
+		}
+		DontDestroyOnLoad(this);
+	}
 
 	// Initialize
 	void Start () {
 		idle = true;
+		sequenceIndex = 0;
 		// For testing, start next sequence immediately:
 		nextSequence ();
 	}
-	
-	// Called once per frame
-	void Update () {
-		
-	}
 
+	// If idle, start the next sequence in the list
 	private void nextSequence() {
 		if (!idle) {
 			return;
@@ -46,7 +56,7 @@ public class SpawnManager : MonoBehaviour {
 			WaveTuple tuple = sequence.waveTuples [x];
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
-				yield return new WaitWhile(() => 0 > tuple.threshold); // TODO Replace 0 with length of list of enemies, from gameManager
+				yield return new WaitWhile(() => GM.Instance.enemies.Count > tuple.threshold);
 			} else if (tuple.condition == Trigger.RemainingHealth) {
 				yield return new WaitWhile(() => 1 > tuple.threshold); // TODO Replace 1 with player health variable
 			} else if (tuple.condition == Trigger.Time) {
@@ -55,10 +65,10 @@ public class SpawnManager : MonoBehaviour {
 			spawnWave(tuple.wave);
 		}
 
-		yield return new WaitWhile (() => 0 > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
+		yield return new WaitWhile (() => GM.Instance.enemies.Count > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
 		sequenceIndex++;
 		idle = true;
-		// TODO Sequence is done
+		// TODO Sequence is done. Tell GM
 	}
 
 	// Spawn all the enemies in a given wave
@@ -66,33 +76,34 @@ public class SpawnManager : MonoBehaviour {
 		foreach (TypeNumPair pair in wave.TopSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
-				Instantiate (prefab, TopSpawner, Quaternion.identity);
-				// TODO Call GameManager spawn function so enemy is added to list
+				GameObject newEnemy = Instantiate (prefab, TopSpawner, Quaternion.identity);
+				GM.Instance.Spawn (newEnemy);
 			}
 		}
 		foreach (TypeNumPair pair in wave.BotSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
-				Instantiate (prefab, BotSpawner, Quaternion.identity);
-				// TODO Call GameManager spawn function so enemy is added to list
+				GameObject newEnemy = Instantiate (prefab, BotSpawner, Quaternion.identity);
+				GM.Instance.Spawn (newEnemy);
 			}
 		}
 		foreach (TypeNumPair pair in wave.LeftSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
-				Instantiate (prefab, LeftSpawner, Quaternion.identity);
-				// TODO Call GameManager spawn function so enemy is added to list
+				GameObject newEnemy = Instantiate (prefab, LeftSpawner, Quaternion.identity);
+				GM.Instance.Spawn (newEnemy);
 			}
 		}
 		foreach (TypeNumPair pair in wave.RightSpawner) {
 			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 			for (int i = 0; i < pair.numEnemies; i++) {
-				Instantiate (prefab, RightSpawner, Quaternion.identity);
-				// TODO Call GameManager spawn function so enemy is added to list
+				GameObject newEnemy = Instantiate (prefab, RightSpawner, Quaternion.identity);
+				GM.Instance.Spawn (newEnemy);
 			}
 		}
 	}
 }
+
 
 // Use in coroutines as follows: yield return new WaitWhile(() => /*bool expression here*/);
 public class WaitWhile : CustomYieldInstruction {
