@@ -7,6 +7,9 @@ public class VultureEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[SerializeField]
+	private int fakeDives = 2;
+
+	[SerializeField]
 	private float maxSpeed = 3.5f, accelMag = 5f;
 
 	[SerializeField]
@@ -21,9 +24,9 @@ public class VultureEnemy : MonoBehaviour {
 	private float minDiveTime = 0.8f, maxDiveTime = 1.2f;
 
 	// Other variables
-
 	private bool circling;
 	private float delay;
+	private int divesSoFar;
 
 	// Object references
 	private WeightedEnemyPhysics WEP;
@@ -36,6 +39,7 @@ public class VultureEnemy : MonoBehaviour {
 
 		circling = true;
 		delay = minCircleTime;
+		divesSoFar = 0;
 	}
 
 	// Called every frame
@@ -62,17 +66,24 @@ public class VultureEnemy : MonoBehaviour {
 	}
 
 	private void controlDelay() {
+		if (divesSoFar > fakeDives) {
+			return;
+		}
+
 		if (delay > 0) {
 			delay -= Time.deltaTime;
 		} else if (circling) {
-			circling = !circling;
+			// Start to dive
+			divesSoFar++;
+			circling = false;
 			frequency = frequency * diveSpeedMult;
 			WEP.maxSpeed = maxSpeed * diveSpeedMult;
 			delay = Random.Range (minDiveTime, maxDiveTime);
 		} else {
-			circling = !circling;
+			// Start circling again
+			circling = true;
 			frequency = frequency / diveSpeedMult;
-			WEP.maxSpeed = maxSpeed / diveSpeedMult;
+			WEP.maxSpeed = maxSpeed;
 			delay = Random.Range (minCircleTime, maxCircleTime);
 		}
 	}
