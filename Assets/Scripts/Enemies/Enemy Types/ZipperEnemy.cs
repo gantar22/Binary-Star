@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class ZipperEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 3.5f;
+	[SerializeField]
+	private float maxSpeed = 4f, accelMag = 1f;
 
-	private float minPause = 0.8f;
-	private float maxPause = 2f;
-	private float minZip = 0.5f;
-	private float maxZip = 1f;
+	[SerializeField]
+	private float minPause = 1.2f, maxPause = 1.8f;
+	[SerializeField]
+	private float minZip = 1f, maxZip = 1f;
 
 	// Other variables
 	private bool paused;
@@ -20,12 +20,13 @@ public class ZipperEnemy : MonoBehaviour {
 	private Vector2 fixedDirection;
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 	}
 
 	// Called every frame
@@ -34,17 +35,20 @@ public class ZipperEnemy : MonoBehaviour {
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 
 		// Get player position - TODO
-		Vector2 playerPos = new Vector2 (0f, 0f);
+		//Vector2 targetPos = new Vector2 (0f, 0f);
+		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 targetPos = new Vector2 (mousePos3.x, mousePos3.y);
 
 		// Decide what direction to move in
-		direction = playerPos - pos;
+		direction = targetPos - pos;
 		controlDelay (direction);
 		direction = fixedDirection;
 
 		if (!paused) {
 			// Normalize the velocity and set to desired speed
-			Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-			rb.MovePosition (pos + velocity);
+			WEP.acceleration = direction.normalized * accelMag;
+		} else {
+			WEP.acceleration = Vector2.zero;
 		}
 	}
 

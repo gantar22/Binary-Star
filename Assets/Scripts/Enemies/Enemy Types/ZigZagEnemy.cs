@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class ZigZagEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 1.6f;
+	[SerializeField]
+	private float maxSpeed = 1.6f, accelMag = 0.15f;
 
-	private float minZgDelay = 0.5f;
-	private float maxZgDelay = 3f;
+	[SerializeField]
+	private float minZgDelay = 1.5f, maxZgDelay = 1.5f;
 
 	// Other variables
 	private bool zigOrZag;
 	private float delay;
 
 	// Object references
-	private Rigidbody2D rb;
+	private WeightedEnemyPhysics WEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 	}
 
 	// Called every frame
@@ -41,8 +42,7 @@ public class ZigZagEnemy : MonoBehaviour {
 		direction = direction + perp;
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 
 	// Flips zigOrZag randomly in the range (given in settings), and returns 1 if zig and -1 if zag
