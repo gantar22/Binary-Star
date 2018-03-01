@@ -8,6 +8,7 @@ public class EnemyIdentifier : MonoBehaviour {
 
 	public static Dictionary<EnemyType, GameObject> EnemyTypeDict;
 	public EnemyTypePrefab[] TypePrefabs;
+	public OffScreenWarning OffScreenWarningPrefab;
 
 	private static EnemyIdentifier _instance;
 	public static EnemyIdentifier Instance { get { return _instance; } }

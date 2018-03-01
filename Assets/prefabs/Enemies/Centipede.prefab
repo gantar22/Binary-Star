@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114119359152343372}
   - component: {fileID: 114736502114743708}
   - component: {fileID: 114035231186176430}
+  - component: {fileID: 114060183871676282}
   m_Layer: 0
   m_Name: Follower (1)
   m_TagString: Untagged
@@ -46,6 +47,7 @@ GameObject:
   - component: {fileID: 114863076235156900}
   - component: {fileID: 114478720544575292}
   - component: {fileID: 114853051375038620}
+  - component: {fileID: 114408901242772462}
   m_Layer: 0
   m_Name: Follower (2)
   m_TagString: Untagged
@@ -66,6 +68,7 @@ GameObject:
   - component: {fileID: 58883590447331940}
   - component: {fileID: 114405218319462510}
   - component: {fileID: 114758274462843962}
+  - component: {fileID: 114909147140488052}
   m_Layer: 0
   m_Name: Head (Snake)
   m_TagString: Untagged
@@ -102,6 +105,7 @@ GameObject:
   - component: {fileID: 114590805687257892}
   - component: {fileID: 114302449799466526}
   - component: {fileID: 114509325531892268}
+  - component: {fileID: 114495275450057028}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -329,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0774838d7685c9f479981a14172c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDives: 2
   maxSpeed: 3.5
   accelMag: 5
   diveSpeedMult: 1.7
@@ -338,6 +343,18 @@ MonoBehaviour:
   maxCircleTime: 5
   minDiveTime: 0.8
   maxDiveTime: 1.2
+--- !u!114 &114060183871676282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184277577727324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e369e9a8f9c4280ff0b40fff4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraScreenRadius: 0.8
 --- !u!114 &114119359152343372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0774838d7685c9f479981a14172c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDives: 2
   maxSpeed: 3.5
   accelMag: 5
   diveSpeedMult: 1.7
@@ -385,6 +403,18 @@ MonoBehaviour:
   maxCircleTime: 5
   minDiveTime: 0.8
   maxDiveTime: 1.2
+--- !u!114 &114408901242772462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189731042451878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e369e9a8f9c4280ff0b40fff4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraScreenRadius: 0.8
 --- !u!114 &114478720544575292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,6 +429,18 @@ MonoBehaviour:
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+--- !u!114 &114495275450057028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383568974687298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e369e9a8f9c4280ff0b40fff4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraScreenRadius: 0.8
 --- !u!114 &114509325531892268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -410,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0774838d7685c9f479981a14172c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDives: 2
   maxSpeed: 3.5
   accelMag: 5
   diveSpeedMult: 1.7
@@ -471,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0774838d7685c9f479981a14172c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeDives: 2
   maxSpeed: 3.5
   accelMag: 5
   diveSpeedMult: 1.7
@@ -493,6 +537,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followRadius: 0.8
   objToFollow: {fileID: 1184277577727324}
+--- !u!114 &114909147140488052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250456414690112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e369e9a8f9c4280ff0b40fff4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraScreenRadius: 0.8
 --- !u!212 &212261667211060212
 SpriteRenderer:
   m_ObjectHideFlags: 1

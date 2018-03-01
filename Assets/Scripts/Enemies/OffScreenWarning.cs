@@ -12,9 +12,13 @@ public class OffScreenWarning : MonoBehaviour {
 	public GameObject enemy;
 	public GameObject arrow;
 
+	void Start () {
+		Update ();
+	}
 
 	// Called once per frame
 	void Update () {
+		// Get references
 		Vector3 pos = transform.position;
 		Vector3 enemyPos = enemy.transform.position;
 		Camera cam = Camera.main;
@@ -27,11 +31,8 @@ public class OffScreenWarning : MonoBehaviour {
 		transform.position = new Vector3 (x, y, transform.position.z);
 
 		// Point the arrow at the enemy
-
-		/* float zRot = Mathf.Rad2Deg * Mathf.Atan2(enemyPos.x - pos.x, enemyPos.y - pos.y);
-
-		arrow.transform.rotation = arrow.transform.rotation */
-
-		// arrow.transform.LookAt (new Vector3 (enemyPos.x, enemyPos.y, 0));
+		Vector3 direction = (enemyPos - pos).normalized;
+		float rot_z = Mathf.Rad2Deg * Mathf.Atan2 (direction.y, direction.x);
+		arrow.transform.rotation = Quaternion.Euler (0f, 0f, rot_z);
 	}
 }
