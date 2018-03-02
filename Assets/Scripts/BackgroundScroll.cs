@@ -22,6 +22,9 @@ public class BackgroundScroll : MonoBehaviour {
 	// Initialize
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+
+		// Testing:
+		//setBgScrollSpeed(direction.up, 2f);
 	}
 	
 	// Called once per frame
