@@ -1,7 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
+
+public enum gear {brake, normal, boost}
 
 public class PlayerMove : MonoBehaviour {
 
@@ -18,7 +20,10 @@ public class PlayerMove : MonoBehaviour {
 	private bool stunned;
 	[HideInInspector]
 	public Vector2 velo;
-
+	private gear _gear = gear.normal; 
+	private float _eSpeed; //effective speed
+	[SerializeField]
+	private float _boostFactor = 2.5f;
 
 
 
@@ -28,26 +33,45 @@ public class PlayerMove : MonoBehaviour {
 		keyboard();
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
+
+		if(XCI.GetAxisRaw(XboxAxis.LeftTrigger ,ctlr) == 1) _gear = gear.brake;
+		else if(XCI.GetAxisRaw(XboxAxis.RightTrigger,ctlr) == 1) _gear = gear.boost;
+		else _gear = gear.normal;
 		if(!stunned) move();
 		
 	}
 
 	void move(){
-		if(drag){
+		switch(_gear){
+			case gear.brake:
+				_eSpeed = 0;
+				print("braking");
+				break;
+			case gear.normal:
+				_eSpeed = _speed;
+				print("normal");
+				break;
+			case gear.boost:
+				_eSpeed = _speed * _boostFactor;
+				print("boosting");
+				break;
+			default:
+				break;
+		}
+		if(drag && _gear != gear.brake){
 			if ((velo.x * joy.x < 0 && velo.y * joy.y < 0) || 
 				((velo.x * joy.x < 0 && velo.y * joy.y == 0) || 
 					(velo.x * joy.x == 0 && velo.y * joy.y < 0)))
 			{
 				stun(.1f);
 				velo = Vector2.zero;
-				print("!");
 			} else if(joy.magnitude < .8f){
-				velo = Vector2.Lerp(velo,joy * _speed,20 * Time.deltaTime);	
+				velo = Vector2.Lerp(velo,joy * _eSpeed,20 * Time.deltaTime);	
 			} else {
-				velo = Vector2.Lerp(velo,joy * _speed,(velo.magnitude < .8f ? 2 : 8) * Time.deltaTime);	
+				velo = Vector2.Lerp(velo,joy * _eSpeed,(velo.magnitude < .8f ? 2 : 8) * Time.deltaTime);	
 			}
 		} else {
-			velo = joy * _speed;
+			velo = joy * _eSpeed;
 		}
 
 
