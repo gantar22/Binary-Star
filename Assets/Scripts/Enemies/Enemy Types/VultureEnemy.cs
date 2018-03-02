@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WeightedEnemyPhysics))]
-public class SnakeEnemy : MonoBehaviour {
+public class VultureEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[SerializeField]
@@ -16,7 +16,7 @@ public class SnakeEnemy : MonoBehaviour {
 	private float diveSpeedMult = 1.7f;
 
 	[SerializeField]
-	private float frequency = 2f, amplitudeMult = 1f;
+	private float frequency = 2f;
 
 	[SerializeField]
 	private float minCircleTime = 3f, maxCircleTime = 5f;
@@ -54,17 +54,11 @@ public class SnakeEnemy : MonoBehaviour {
 
 		// Decide what direction to move in
 		direction = mousePos - pos;
-		Vector2 perp = new Vector2 (-direction.y, direction.x);
-
-		float period = 1f / frequency;
-		float scale = Mathf.Abs((Time.time % (2*period)) - period) / period;
-		float radians = Mathf.Lerp(-Mathf.PI/2f, Mathf.PI/2f, scale);
-
+		
 		controlDelay ();
-		if (!circling) {
-			direction = perp * Mathf.Sin (radians) * amplitudeMult + direction * Mathf.Cos (radians);
-		} else {
-			direction = perp * Mathf.Cos (radians) + direction * Mathf.Sin(radians) * amplitudeMult;
+		if (circling) {
+			Vector2 perp = new Vector2 (-direction.y, direction.x);
+			direction = perp;
 		}
 
 		// Normalize the velocity and set to desired speed
@@ -86,6 +80,7 @@ public class SnakeEnemy : MonoBehaviour {
 			WEP.maxSpeed = maxSpeed * diveSpeedMult;
 			delay = Random.Range (minDiveTime, maxDiveTime);
 		} else {
+			// Start circling again
 			circling = true;
 			frequency = frequency / diveSpeedMult;
 			WEP.maxSpeed = maxSpeed;

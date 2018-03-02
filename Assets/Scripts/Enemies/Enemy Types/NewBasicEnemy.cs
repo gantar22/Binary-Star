@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(WeightedEnemyPhysics))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class NewBasicEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
+	[SerializeField]
 	private float maxSpeed = 3.2f, accelMag = 0.1f;
 
 	// Other variables

@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class FollowerEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[HideInInspector]
-	public float speed = 2f;
-
-	private float followRadius = 0.8f;
+	[SerializeField]
+	private float followRadius = 10f;
 
 	// Other variables
+	private float maxSpeed, accelMag;
 
 	// Object references
-	private Rigidbody2D rb;
 	public GameObject objToFollow;
+	private WeightedEnemyPhysics WEP, leaderWEP;
 
 
 	// Initialize
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
-
 		if (!objToFollow) {
 			setAsLeader ();
+			return;
 		} else {
-			speed = getLeaderSpeed ();
+			maxSpeed = getLeaderSpeed ();
 		}
+
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		leaderWEP = objToFollow.GetComponent<WeightedEnemyPhysics> ();
+		WEP.maxSpeed = maxSpeed;
 	}
 
 	// Called every frame
@@ -34,6 +36,9 @@ public class FollowerEnemy : MonoBehaviour {
 		if (!objToFollow) {
 			setAsLeader ();
 			return;
+		} else {
+			WEP.maxSpeed = getLeaderSpeed () + 0.1f;
+			accelMag = getLeaderAccelMag ();
 		}
 
 		Vector2 direction = new Vector2 ();
@@ -45,39 +50,50 @@ public class FollowerEnemy : MonoBehaviour {
 		// Decide what direction to move in
 		direction = followPos - pos;
 		if (direction.magnitude < followRadius) {
+			WEP.acceleration = Vector2.zero;
+			WEP.velocity = Vector2.zero; // Not weighty...
 			return;
 		}
 
 		// Normalize the velocity and set to desired speed
-		Vector2 velocity = direction.normalized * speed * Time.deltaTime;
-		rb.MovePosition (pos + velocity);
+		WEP.acceleration = direction.normalized * accelMag;
 	}
 
-	// ========= TO USE FOLLOWERS FOR A NEW ENEMY TYPE, ADD IT TO THE TWO FUNCTIONS BELOW ========
-
-	// For now, followers are just really fast, so this is not used
 	public float getLeaderSpeed() {
-		FollowerEnemy followFollower = objToFollow.GetComponent<FollowerEnemy> ();
-		if (followFollower && followFollower.enabled) {
-			return followFollower.getLeaderSpeed ();
-		} else if (objToFollow.GetComponent<BasicEnemy> ()) {
-			return objToFollow.GetComponent<BasicEnemy> ().speed;
-		} else if (objToFollow.GetComponent<ZigZagEnemy> ()) {
-			return objToFollow.GetComponent<ZigZagEnemy> ().speed;
-		} else if (objToFollow.GetComponent<ZipperEnemy> ()) {
-			return objToFollow.GetComponent<ZipperEnemy> ().speed;
-		} else if (objToFollow.GetComponent<SnakeEnemy> ()) {
-			return objToFollow.GetComponent<SnakeEnemy> ().speed;
+		if (!leaderWEP) {
+			leaderWEP = getLeaderWEP ();
+		}
+		return leaderWEP.velocity.magnitude / Time.deltaTime;
+	}
+
+	public float getLeaderAccelMag() {
+		if (!leaderWEP) {
+			leaderWEP = getLeaderWEP ();
+		}
+		return leaderWEP.acceleration.magnitude;
+	}
+
+	public WeightedEnemyPhysics getLeaderWEP() {
+		FollowerEnemy nextInChain = objToFollow.GetComponent<FollowerEnemy> ();
+		if (nextInChain && nextInChain.enabled) {
+			return nextInChain.getLeaderWEP ();
 		} else {
-			Debug.LogError ("No leader speed found");
-			return 0f;
+			WeightedEnemyPhysics newLeadWEP = objToFollow.GetComponent<WeightedEnemyPhysics> ();
+			if (newLeadWEP) {
+				return newLeadWEP;
+			} else {
+				Debug.LogError ("No leader WeightedEnemyPhysics component found");
+				return null;
+			}
 		}
 	}
 
+/* ========= TO USE FOLLOWERS FOR A NEW NON-WEIGHTED ENEMY TYPE, ADD IT TO THE FUNCTION BELOW ======== */
+
 	// When follower is destroyed, enable new leader script
 	private void setAsLeader() {
-		if (GetComponent<BasicEnemy> ()) {
-			GetComponent<BasicEnemy> ().enabled = true;
+		if (GetComponent<NewBasicEnemy> ()) {
+			GetComponent<NewBasicEnemy> ().enabled = true;
 		} else if (GetComponent<ZigZagEnemy> ()) {
 			GetComponent<ZigZagEnemy> ().enabled = true;
 		} else if (GetComponent<ZipperEnemy> ()) {
