@@ -18,6 +18,13 @@ public class OffScreenWarning : MonoBehaviour {
 
 	// Called once per frame
 	void Update () {
+		//deal with enemies beign dead
+		if(enemy == null || arrow == null || gameObject == null){
+			Destroy(gameObject);
+			return;
+		}
+
+
 		// Get references
 		Vector3 pos = transform.position;
 		Vector3 enemyPos = enemy.transform.position;

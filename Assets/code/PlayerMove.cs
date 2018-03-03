@@ -37,6 +37,7 @@ public class PlayerMove : MonoBehaviour {
 		if(XCI.GetAxisRaw(XboxAxis.LeftTrigger ,ctlr) == 1) _gear = gear.brake;
 		else if(XCI.GetAxisRaw(XboxAxis.RightTrigger,ctlr) == 1) _gear = gear.boost;
 		else _gear = gear.normal;
+		
 		if(!stunned) move();
 		
 	}
@@ -45,15 +46,12 @@ public class PlayerMove : MonoBehaviour {
 		switch(_gear){
 			case gear.brake:
 				_eSpeed = 0;
-				print("braking");
 				break;
 			case gear.normal:
 				_eSpeed = _speed;
-				print("normal");
 				break;
 			case gear.boost:
 				_eSpeed = _speed * _boostFactor;
-				print("boosting");
 				break;
 			default:
 				break;
@@ -83,6 +81,9 @@ public class PlayerMove : MonoBehaviour {
 		}
 		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
+		}
+		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
+			transform.position = Vector3.zero;
 		}
 
 		

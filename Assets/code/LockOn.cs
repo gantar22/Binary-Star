@@ -25,18 +25,21 @@ public class LockOn : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(_target == null){
+			Destroy(gameObject);
+		}
 		if(XCI.GetAxis(XboxAxis.LeftStickX,ctlr) != 0 || XCI.GetAxis(XboxAxis.LeftStickY,ctlr) != 0) {
 			_target.transform.parent = null;
 			_target.GetComponent<PlayerMove>().enabled = true;
 		}
 		if(XCI.GetButtonUp(XboxButton.LeftBumper ,ctlr)){
 			hand = 1f;
-			attach();
+			attachOld(step_size);
 		}
 		if(XCI.GetButtonUp(XboxButton.RightBumper,ctlr)){
 			hand = -1f;
-			attach();
-		}
+			attachOld(step_size);
+			}
 		
 	}
 
@@ -72,20 +75,20 @@ public class LockOn : MonoBehaviour {
 
 
 
-	void attachOld(float h){
-		
+	void attachOld(float h){ //TODO parallelize in coroutine
+
 		RaycastHit2D r = new RaycastHit2D();
 		float z = transform.eulerAngles.z;
 		float dis = Camera.main.orthographicSize * 5;
 		Vector2 dir;
 
 		float degToRad = (2 * Mathf.PI) / 360;
-		print(z);
+
 	
 		for(float i = 0; Mathf.Abs(i) < 360 && !r; i += (h * hand))
 		{
 			dir = new Vector2(Mathf.Cos((z + i) * degToRad),Mathf.Sin((z + i) * degToRad));
-			print(dir);
+
 			r = Physics2D.Raycast(transform.position,dir,dis,1 << 8);
 			/*if(r && r.transform == _target.transform.parent) {
 				r = Physics2D.Raycast(r.transform.position,dir,dis,1 << 8);
@@ -96,6 +99,7 @@ public class LockOn : MonoBehaviour {
 				r = new RaycastHit2D();
 			}
 		}
+
 		
 	}
 

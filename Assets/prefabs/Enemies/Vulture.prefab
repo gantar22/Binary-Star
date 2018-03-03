@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114620521724057590}
   - component: {fileID: 114685158883934594}
   - component: {fileID: 114446908507564548}
-  m_Layer: 0
+  - component: {fileID: 114524623244427884}
+  m_Layer: 8
   m_Name: Vulture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -92,6 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 0.8
+--- !u!114 &114524623244427884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664060757087204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
 --- !u!114 &114620521724057590
 MonoBehaviour:
   m_ObjectHideFlags: 1

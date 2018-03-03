@@ -8,7 +8,7 @@ public class killIfOOB : MonoBehaviour {
 
 
 	static bool not_percent(float x){
-		return x < -.2 || x > 1.2;
+		return x < -.0 || x > 1.0;
 	}
 
 

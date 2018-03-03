@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114309201384658104}
   - component: {fileID: 114882204401603928}
   - component: {fileID: 114012446162193552}
-  m_Layer: 0
+  - component: {fileID: 114439666321908454}
+  m_Layer: 8
   m_Name: Snake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,6 +114,18 @@ MonoBehaviour:
   maxCircleTime: 5
   minDiveTime: 0.8
   maxDiveTime: 1.2
+--- !u!114 &114439666321908454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1906004029955396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
 --- !u!114 &114882204401603928
 MonoBehaviour:
   m_ObjectHideFlags: 1

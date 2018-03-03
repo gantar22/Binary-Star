@@ -31,12 +31,11 @@ public class SpawnManager : MonoBehaviour {
 	void Start () {
 		idle = true;
 		sequenceIndex = 0;
-		// For testing, start next sequence immediately:
-		nextSequence ();
+
 	}
 
 	// If idle, start the next sequence in the list
-	private void nextSequence() {
+	public void nextSequence() {
 		if (!idle) {
 			return;
 		}
@@ -64,11 +63,12 @@ public class SpawnManager : MonoBehaviour {
 			}
 			spawnWave(tuple.wave);
 		}
-
+		print("finish them");
 		yield return new WaitWhile (() => GM.Instance.enemies.Count > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
 		sequenceIndex++;
 		idle = true;
-		// TODO Sequence is done. Tell GM
+		GM.Instance.handleWaveOver();
+		print(sequence);
 	}
 
 	// Spawn all the enemies in a given wave

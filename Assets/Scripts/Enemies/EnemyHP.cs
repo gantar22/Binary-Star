@@ -21,10 +21,14 @@ public class EnemyHP : MonoBehaviour {
 
 	// Called when damage is taken
 	public void gotHit(int dmg) {
+		UnParentOnDestroy retScript;
 		HP -= dmg;
-
 		if (HP <= 0) {
-			// DO SOMETHING ELSE WHEN ENEMY IS DESTROYED? - TODO
+			
+			if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
+				retScript.gameObject.transform.parent = null;
+			}
+
 			Destroy (gameObject);
 		}
 	}

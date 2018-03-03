@@ -26,7 +26,8 @@ GameObject:
   - component: {fileID: 114736502114743708}
   - component: {fileID: 114035231186176430}
   - component: {fileID: 114060183871676282}
-  m_Layer: 0
+  - component: {fileID: 114527969579638628}
+  m_Layer: 8
   m_Name: Follower (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +49,8 @@ GameObject:
   - component: {fileID: 114478720544575292}
   - component: {fileID: 114853051375038620}
   - component: {fileID: 114408901242772462}
-  m_Layer: 0
+  - component: {fileID: 114561884694397616}
+  m_Layer: 8
   m_Name: Follower (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +71,8 @@ GameObject:
   - component: {fileID: 114405218319462510}
   - component: {fileID: 114758274462843962}
   - component: {fileID: 114909147140488052}
-  m_Layer: 0
+  - component: {fileID: 114968843252409808}
+  m_Layer: 8
   m_Name: Head (Snake)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4590312020776948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Centipede
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +109,8 @@ GameObject:
   - component: {fileID: 114302449799466526}
   - component: {fileID: 114509325531892268}
   - component: {fileID: 114495275450057028}
-  m_Layer: 0
+  - component: {fileID: 114088412273690342}
+  m_Layer: 8
   m_Name: Follower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +275,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -286,7 +290,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -301,7 +305,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -316,7 +320,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -355,6 +359,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 0.8
+--- !u!114 &114088412273690342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383568974687298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
 --- !u!114 &114119359152343372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,6 +478,30 @@ MonoBehaviour:
   maxCircleTime: 5
   minDiveTime: 0.8
   maxDiveTime: 1.2
+--- !u!114 &114527969579638628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184277577727324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
+--- !u!114 &114561884694397616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189731042451878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
 --- !u!114 &114590805687257892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +589,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 0.8
+--- !u!114 &114968843252409808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250456414690112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1
 --- !u!212 &212261667211060212
 SpriteRenderer:
   m_ObjectHideFlags: 1
