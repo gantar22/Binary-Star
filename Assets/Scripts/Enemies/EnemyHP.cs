@@ -29,6 +29,10 @@ public class EnemyHP : MonoBehaviour {
 				retScript.gameObject.transform.parent = null;
 			}
 
+			if(Camera.main.GetComponent<CameraShakeScript>() != null){
+				Camera.main.GetComponent<CameraShakeScript>().activate(.03f,.03f);
+			}
+
 			Destroy (gameObject);
 		}
 	}
