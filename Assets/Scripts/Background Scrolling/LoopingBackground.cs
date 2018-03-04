@@ -11,8 +11,8 @@ public class LoopingBackground : MonoBehaviour {
 	// Initialization
 	void Start () {
 		BoxCollider2D collider = GetComponent<BoxCollider2D> ();
-		width = collider.size.x;
-		height = collider.size.y;
+		width = collider.size.x * transform.localScale.x;
+		height = collider.size.y * transform.localScale.y;
 	}
 	
 	// Called once per frame
