@@ -5,8 +5,13 @@ using UnityEngine;
 public class GM : MonoBehaviour {
 
 
+    [SerializeField]
+    public GameObject player;
+
     [HideInInspector]
 	public List<GameObject> enemies;
+
+    public int enemyCount = 0;
 
     private static GM _instance;
 
@@ -25,11 +30,15 @@ public class GM : MonoBehaviour {
     }
 
 
+    void Start(){
+        handleWaveOver();
+    }
+
 
 	// Update is called once per frame
 	void Update () {
+                handleWaveOver();
 		//testing purposes
-        handleWaveOver();
 	}
 
 
@@ -38,6 +47,7 @@ public class GM : MonoBehaviour {
     }
 
 	public void Spawn(GameObject enemy){
+        enemyCount++;
 		enemies.Add(enemy);
 	}
 

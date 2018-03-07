@@ -51,9 +51,12 @@ public class SnakeEnemy : MonoBehaviour {
 		//Vector2 playerPos = new Vector2 (0f, 0f);
 		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mousePos = new Vector2 (mousePos3.x, mousePos3.y);
+		if(GM.Instance.player == null) return;
+		Vector2 playerPos = GM.Instance.player.transform.position;
+
 
 		// Decide what direction to move in
-		direction = mousePos - pos;
+		direction = playerPos - pos;
 		Vector2 perp = new Vector2 (-direction.y, direction.x);
 
 		float period = 1f / frequency;

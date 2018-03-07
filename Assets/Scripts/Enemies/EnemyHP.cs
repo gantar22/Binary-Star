@@ -24,7 +24,7 @@ public class EnemyHP : MonoBehaviour {
 		UnParentOnDestroy retScript;
 		HP -= dmg;
 		if (HP <= 0) {
-			
+			GM.Instance.enemyCount--;
 			if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
 				retScript.gameObject.transform.parent = null;
 			}

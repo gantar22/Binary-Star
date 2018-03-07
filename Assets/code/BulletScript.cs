@@ -20,9 +20,9 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void die(){
+		Destroy(gameObject);
 		switch(_type){
 			case bulletType.basic:
-			Destroy(this,.1f);
 			break;
 		}
 	}

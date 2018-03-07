@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,9 +52,11 @@ public class VultureEnemy : MonoBehaviour {
 		//Vector2 playerPos = new Vector2 (0f, 0f);
 		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mousePos = new Vector2 (mousePos3.x, mousePos3.y);
+				if(GM.Instance.player == null) return;
+		Vector2 playerPos = GM.Instance.player.transform.position;
 
 		// Decide what direction to move in
-		direction = mousePos - pos;
+		direction = playerPos - pos;
 		
 		controlDelay ();
 		if (circling) {
