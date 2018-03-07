@@ -6,8 +6,7 @@ using UnityEngine;
 public class FollowerEnemy : MonoBehaviour {
 
 	// Settings/properties:
-	[SerializeField]
-	private float followRadius = 10f;
+	public float followRadius;
 
 	// Other variables
 	private float maxSpeed, accelMag;
