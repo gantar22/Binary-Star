@@ -55,7 +55,7 @@ public class SpawnManager : MonoBehaviour {
 			WaveTuple tuple = sequence.waveTuples [x];
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
-				yield return new WaitWhile(() => GM.Instance.enemies.Count > tuple.threshold);
+				yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
 			} else if (tuple.condition == Trigger.RemainingHealth) {
 				yield return new WaitWhile(() => 1 > tuple.threshold); // TODO Replace 1 with player health variable
 			} else if (tuple.condition == Trigger.Time) {
@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour {
 			spawnWave(tuple.wave);
 		}
 		print("finish them");
-		yield return new WaitWhile (() => GM.Instance.enemies.Count > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
+		yield return new WaitWhile (() => GM.Instance.enemyCount > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
 		sequenceIndex++;
 		idle = true;
 		GM.Instance.handleWaveOver();
