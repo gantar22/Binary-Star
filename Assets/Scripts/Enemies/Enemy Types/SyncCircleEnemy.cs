@@ -37,10 +37,9 @@ public class SyncCircleEnemy : MonoBehaviour {
 		Vector2 direction = new Vector2 ();
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 
-		// Get player position - TODO
-		Vector2 targetPos = new Vector2 (0f, 0f);
-		//Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//Vector2 targetPos = new Vector2 (mousePos3.x, mousePos3.y);
+		// Get player position
+		if (GM.Instance.player == null) return;
+		Vector2 targetPos = GM.Instance.player.transform.position;
 
 		// Decide what direction to move in
 		direction = targetPos - pos;

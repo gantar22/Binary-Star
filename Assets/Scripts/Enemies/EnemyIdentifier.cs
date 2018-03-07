@@ -23,9 +23,7 @@ public class EnemyIdentifier : MonoBehaviour {
 			_instance = this;
 		}
 		DontDestroyOnLoad(this);
-	}
 
-	void Start() {
 		// Fill enemy type dictionary with array from editor
 		EnemyTypeDict = new Dictionary<EnemyType, GameObject>();
 		for (int i = 0; i < TypePrefabs.Length; i++) {

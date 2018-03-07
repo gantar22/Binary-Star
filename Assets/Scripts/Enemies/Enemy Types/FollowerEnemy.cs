@@ -19,9 +19,10 @@ public class FollowerEnemy : MonoBehaviour {
 	// Initialize
 	void Start () {
 		if (!objToFollow) {
-			setAsLeader ();
+			SetControllerScript (true);
 			return;
 		} else {
+			SetControllerScript (false);
 			maxSpeed = getLeaderSpeed ();
 		}
 
@@ -33,7 +34,7 @@ public class FollowerEnemy : MonoBehaviour {
 	// Called every frame
 	void Update () {
 		if (!objToFollow) {
-			setAsLeader ();
+			SetControllerScript (true);
 			return;
 		} else {
 			WEP.maxSpeed = getLeaderSpeed () + 0.1f;
@@ -87,22 +88,22 @@ public class FollowerEnemy : MonoBehaviour {
 		}
 	}
 
-/* ========= TO USE FOLLOWERS FOR A NEW NON-WEIGHTED ENEMY TYPE, ADD IT TO THE FUNCTION BELOW ======== */
+/* ========= TO USE FOLLOWERS FOR A NEW ENEMY TYPE, ADD IT TO THE FUNCTION BELOW ======== */
 
 	// When follower is destroyed, enable new leader script
-	private void setAsLeader() {
+	private void SetControllerScript(bool enabled) {
 		if (GetComponent<NewBasicEnemy> ()) {
-			GetComponent<NewBasicEnemy> ().enabled = true;
+			GetComponent<NewBasicEnemy> ().enabled = enabled;
 		} else if (GetComponent<ZigZagEnemy> ()) {
-			GetComponent<ZigZagEnemy> ().enabled = true;
+			GetComponent<ZigZagEnemy> ().enabled = enabled;
 		} else if (GetComponent<ZipperEnemy> ()) {
-			GetComponent<ZipperEnemy> ().enabled = true;
+			GetComponent<ZipperEnemy> ().enabled = enabled;
 		} else if (GetComponent<SnakeEnemy> ()) {
-			GetComponent<SnakeEnemy> ().enabled = true;
+			GetComponent<SnakeEnemy> ().enabled = enabled;
 		} else {
 			Debug.LogError ("Follower enemy lost leader and itself has no backup script");
 		}
 
-		this.enabled = false;
+		this.enabled = !enabled;
 	}
 }

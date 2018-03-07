@@ -26,14 +26,11 @@ public class NewBasicEnemy : MonoBehaviour {
 		Vector2 direction = new Vector2 ();
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 
-		// Get player position - TODO
-		//Vector2 targetPos = new Vector2 (0f, 0f);
-		Vector3 mousePos3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		if(GM.Instance.player == null) return;
-		Vector2 playerPos = GM.Instance.player.transform.position;
+		if (GM.Instance.player == null) return;
+		Vector2 targetPos = GM.Instance.player.transform.position;
 
 		// Decide what direction to move in
-		direction = playerPos - pos;
+		direction = targetPos - pos;
 
 		// Normalize the velocity and set to desired speed
 		WEP.acceleration = direction.normalized * accelMag;
