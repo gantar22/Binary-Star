@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType {Basic, Snake, Vulture, Sleeper, Centipede, SyncCircle, Zipper}
+public enum EnemyType {Basic, Snake, Vulture, Sleeper, Centipede, Shielded, SyncCircle, Zipper}
 
 public class EnemyIdentifier : MonoBehaviour {
 

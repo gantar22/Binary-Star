@@ -12,6 +12,11 @@ public class Wave : ScriptableObject {
 	public List<TypeNumPair> BotSpawner = new List<TypeNumPair>();
 	public List<TypeNumPair> LeftSpawner = new List<TypeNumPair>();
 	public List<TypeNumPair> RightSpawner = new List<TypeNumPair>();
+
+	public List<TypeNumPair> TopFarLeft = new List<TypeNumPair>();
+	public List<TypeNumPair> TopMidLeft = new List<TypeNumPair>();
+	public List<TypeNumPair> TopMidRight = new List<TypeNumPair>();
+	public List<TypeNumPair> TopFarRight = new List<TypeNumPair>();
 }
 
 

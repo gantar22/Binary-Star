@@ -12,6 +12,13 @@ public class BulletScript : MonoBehaviour {
 	[SerializeField]
 	
 	void OnTriggerEnter2D(Collider2D col){
+		Invulnerable I = col.gameObject.GetComponent<Invulnerable> ();
+		if (I != null && I.enabled) {
+			I.gotHit ();
+			die ();
+			return;
+		}
+
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
 			s.gotHit(_damage);

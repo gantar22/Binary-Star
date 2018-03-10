@@ -6,7 +6,8 @@ using System;
 public class SpawnManager : MonoBehaviour {
 
 	public Sequence[] sequences;
-	public Vector2 TopSpawner, BotSpawner, LeftSpawner, RightSpawner;
+	public Vector2 TopSpawner, BotSpawner, LeftSpawner, RightSpawner, TopFarLeft, TopMidLeft, TopMidRight, TopFarRight;
+	private Vector2[] Spawners;
 
 	[HideInInspector]
 	public bool idle; // True iff the last sequence has finished and all enemies are dead
@@ -25,13 +26,11 @@ public class SpawnManager : MonoBehaviour {
 			_instance = this;
 		}
 		DontDestroyOnLoad(this);
-	}
 
-	// Initialize
-	void Start () {
+		// Initialize
 		idle = true;
 		sequenceIndex = 0;
-
+		initSpawnersArray ();
 	}
 
 	// If idle, start the next sequence in the list
@@ -64,7 +63,7 @@ public class SpawnManager : MonoBehaviour {
 			spawnWave(tuple.wave);
 		}
 		print("finish them");
-		yield return new WaitWhile (() => GM.Instance.enemyCount > 0); // TODO Replace first 0 with length of list of enemies, from gameManager
+		yield return new WaitWhile (() => GM.Instance.enemyCount > 0);
 		sequenceIndex++;
 		idle = true;
 		GM.Instance.handleWaveOver();
@@ -72,35 +71,49 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	// Spawn all the enemies in a given wave
-	private void spawnWave(Wave wave) {
-		foreach (TypeNumPair pair in wave.TopSpawner) {
-			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-			for (int i = 0; i < pair.numEnemies; i++) {
-				GameObject newEnemy = Instantiate (prefab, TopSpawner, Quaternion.identity);
-				GM.Instance.Spawn (newEnemy);
+	private void spawnWave(Wave w) {
+		List<TypeNumPair>[] waveSpawns = {
+			w.TopSpawner,
+			w.BotSpawner,
+			w.LeftSpawner,
+			w.RightSpawner,
+			w.TopFarLeft,
+			w.TopMidLeft,
+			w.TopMidRight,
+			w.TopFarRight
+		};
+
+		for (int i = 0; i < 8; i++) {
+			foreach (TypeNumPair pair in waveSpawns[i]) {
+				GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
+				for (int j = 0; j < pair.numEnemies; j++) {
+					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
+					GM.Instance.Spawn (newEnemy);
+				}
 			}
 		}
-		foreach (TypeNumPair pair in wave.BotSpawner) {
-			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-			for (int i = 0; i < pair.numEnemies; i++) {
-				GameObject newEnemy = Instantiate (prefab, BotSpawner, Quaternion.identity);
-				GM.Instance.Spawn (newEnemy);
-			}
-		}
-		foreach (TypeNumPair pair in wave.LeftSpawner) {
-			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-			for (int i = 0; i < pair.numEnemies; i++) {
-				GameObject newEnemy = Instantiate (prefab, LeftSpawner, Quaternion.identity);
-				GM.Instance.Spawn (newEnemy);
-			}
-		}
-		foreach (TypeNumPair pair in wave.RightSpawner) {
-			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-			for (int i = 0; i < pair.numEnemies; i++) {
-				GameObject newEnemy = Instantiate (prefab, RightSpawner, Quaternion.identity);
-				GM.Instance.Spawn (newEnemy);
-			}
-		}
+
+//		foreach (TypeNumPair pair in wave.TopSpawner) {
+//			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
+//			for (int i = 0; i < pair.numEnemies; i++) {
+//				GameObject newEnemy = Instantiate (prefab, TopSpawner, Quaternion.identity);
+//				GM.Instance.Spawn (newEnemy);
+//			}
+//		}
+//		foreach (TypeNumPair pair in wave.BotSpawner) {
+//			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
+//			for (int i = 0; i < pair.numEnemies; i++) {
+//				GameObject newEnemy = Instantiate (prefab, BotSpawner, Quaternion.identity);
+//				GM.Instance.Spawn (newEnemy);
+//			}
+//		}
+	}
+
+	private void initSpawnersArray () {
+		Spawners = new Vector2[8];
+
+		Spawners [0] = TopSpawner;		Spawners [1] = BotSpawner;		Spawners [2] = LeftSpawner; 	Spawners [3] = RightSpawner;
+		Spawners [4] = TopFarLeft;		Spawners [5] = TopMidLeft;		Spawners [6] = TopMidRight;		Spawners [7] = TopFarRight;
 	}
 }
 
