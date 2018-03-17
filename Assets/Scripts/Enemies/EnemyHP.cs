@@ -21,19 +21,26 @@ public class EnemyHP : MonoBehaviour {
 
 	// Called when damage is taken
 	public void gotHit(int dmg) {
-		UnParentOnDestroy retScript;
 		HP -= dmg;
 		if (HP <= 0) {
-			GM.Instance.enemyCount--;
-			if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
-				retScript.gameObject.transform.parent = null;
-			}
-
-			if(Camera.main.GetComponent<CameraShakeScript>() != null){
-				Camera.main.GetComponent<CameraShakeScript>().activate(.03f,.03f);
-			}
-
-			Destroy (gameObject);
+			die ();
 		}
+	}
+
+	// Called when this enemy should die
+	public void die() {
+		GM.Instance.enemyCount--;
+
+		UnParentOnDestroy retScript;
+		if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
+			retScript.gameObject.transform.parent = null;
+		}
+
+		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
+		if(CSS != null){
+			CSS.activate(.03f,.03f);
+		}
+
+		Destroy (gameObject);
 	}
 }

@@ -50,6 +50,10 @@ public class SpawnManager : MonoBehaviour {
 	// Play a sequence of waves, pausing at each trigger condition
 	IEnumerator playSequence() {
 		Sequence sequence = sequences[sequenceIndex];
+		if (sequence == null) {
+			yield break;
+		}
+
 		for (int x = 0; x < sequence.waveTuples.Count; x++) {
 			WaveTuple tuple = sequence.waveTuples [x];
 			// Wait until condition is met
@@ -62,6 +66,7 @@ public class SpawnManager : MonoBehaviour {
 			}
 			spawnWave(tuple.wave);
 		}
+
 		print("finish them");
 		yield return new WaitWhile (() => GM.Instance.enemyCount > 0);
 		sequenceIndex++;
@@ -92,21 +97,6 @@ public class SpawnManager : MonoBehaviour {
 				}
 			}
 		}
-
-//		foreach (TypeNumPair pair in wave.TopSpawner) {
-//			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-//			for (int i = 0; i < pair.numEnemies; i++) {
-//				GameObject newEnemy = Instantiate (prefab, TopSpawner, Quaternion.identity);
-//				GM.Instance.Spawn (newEnemy);
-//			}
-//		}
-//		foreach (TypeNumPair pair in wave.BotSpawner) {
-//			GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-//			for (int i = 0; i < pair.numEnemies; i++) {
-//				GameObject newEnemy = Instantiate (prefab, BotSpawner, Quaternion.identity);
-//				GM.Instance.Spawn (newEnemy);
-//			}
-//		}
 	}
 
 	private void initSpawnersArray () {

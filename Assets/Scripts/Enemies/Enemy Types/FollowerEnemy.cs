@@ -13,6 +13,7 @@ public class FollowerEnemy : MonoBehaviour {
 
 	// Object references
 	public GameObject objToFollow;
+	public Sprite followerSprite, leaderSprite;
 	private WeightedEnemyPhysics WEP, leaderWEP;
 
 
@@ -50,7 +51,8 @@ public class FollowerEnemy : MonoBehaviour {
 		// Decide what direction to move in
 		direction = followPos - pos;
 		if (direction.magnitude < followRadius) {
-			WEP.acceleration = Vector2.zero;
+			//WEP.acceleration = Vector2.zero;
+			WEP.acceleration = direction.normalized * 0.01f; // This way, it will still turn towards the objToFollow
 			WEP.velocity = Vector2.zero; // Not weighty...
 			return;
 		}
@@ -92,6 +94,12 @@ public class FollowerEnemy : MonoBehaviour {
 
 	// When follower is destroyed, enable new leader script
 	private void SetControllerScript(bool enabled) {
+		if (enabled) {
+			GetComponent<SpriteRenderer> ().sprite = leaderSprite;
+		} else {
+			GetComponent<SpriteRenderer> ().sprite = followerSprite;
+		}
+
 		if (GetComponent<NewBasicEnemy> ()) {
 			GetComponent<NewBasicEnemy> ().enabled = enabled;
 		} else if (GetComponent<ZigZagEnemy> ()) {

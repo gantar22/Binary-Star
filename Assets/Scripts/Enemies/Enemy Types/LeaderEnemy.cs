@@ -7,6 +7,7 @@ public class LeaderEnemy : MonoBehaviour {
 	public EnemyType followerType;
 	public int followerTotal = 3;
 	public float followRadius = 0.5f;
+	public Sprite followerSprite;
 
 	// Spawn followers
 	void Start () {
@@ -15,9 +16,18 @@ public class LeaderEnemy : MonoBehaviour {
 		for (int i = 0; i < followerTotal; i++) {
 			GameObject newFollower = Instantiate (prefab);
 			newFollower.transform.position = transform.position;
+
+			LeaderEnemy LE = newFollower.GetComponent<LeaderEnemy> ();
+			if (LE != null && LE.enabled) {
+				LE.enabled = false;
+			}
+
 			FollowerEnemy FComponent = newFollower.AddComponent<FollowerEnemy> () as FollowerEnemy;
 			FComponent.objToFollow = previous;
 			FComponent.followRadius = followRadius;
+			FComponent.followerSprite = followerSprite;
+			FComponent.leaderSprite = newFollower.GetComponent<SpriteRenderer> ().sprite;
+
 			previous = newFollower;
 		}
 	}

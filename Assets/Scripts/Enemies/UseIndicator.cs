@@ -6,7 +6,7 @@ public class UseIndicator : MonoBehaviour {
 
 	// Settings
 	[SerializeField]
-	private float extraScreenRadius;
+	private float extraScreenRadius = 0.8f;
 
 	// Object references
 	private OffScreenWarning indicator;
