@@ -7,13 +7,15 @@ public class SleeperEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[SerializeField]
-	private float circleSpeed, chaseSpeed, accelMag;
+	private float circleSpeed = 0.1f, chaseSpeed = 11f, accelMag = 1f; 
 
 	[SerializeField]
-	private float wakeRadius, frequency;
+	private float wakeRadius = 15f, frequency = 0.3f;
 
 	[SerializeField]
-	private Sprite AsleepSprite, AwakeSprite;
+	private Sprite AsleepSprite;
+	[SerializeField]
+	private Sprite AwakeSprite;
 
 	// Other variables
 	private bool chasing;
@@ -47,7 +49,6 @@ public class SleeperEnemy : MonoBehaviour {
 
 		// Decide what direction to move in
 		direction = targetPos - pos;
-		Vector2 perp = new Vector2 (-direction.y, direction.x);
 
 		float period = 1f / frequency;
 		float radians = (Time.time % (period)) / period * 2 * Mathf.PI;

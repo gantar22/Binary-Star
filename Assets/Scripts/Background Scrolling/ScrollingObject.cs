@@ -6,7 +6,7 @@ public class ScrollingObject : MonoBehaviour {
 
 	// Settings
 	public bool KillIfVeryOOB = true;
-	private float extraScreenRadius = 4f;
+	private float extraScreenRadius = 3f;
 
 
 	// Called once per frame
@@ -15,19 +15,26 @@ public class ScrollingObject : MonoBehaviour {
 		transform.position += new Vector3(velo.x, velo.y, 0) * Time.deltaTime;
 
 		if (KillIfVeryOOB) {
-			checkForVeryOOB ();
+			checkScrollBounds ();
 		}
 	}
 
 	// Destroy this gameObject if it is OOB in current scroll direction
-	private void checkForVeryOOB() {
-		Vector2 pos = transform.position;
+	private void checkScrollBounds() {
+		Vector3 pos = transform.position;
+		Vector2 SVelo = ScrollManager.scrollVelo;
 
-
+		if (( SVelo.x >= 0 && (Camera.main.WorldToViewportPoint(pos - Vector3.right * extraScreenRadius).x > 1f)	) ||
+			( SVelo.x <= 0 && (Camera.main.WorldToViewportPoint(pos - Vector3.left * extraScreenRadius).x < 0f)		) ||
+			( SVelo.y >= 0 && (Camera.main.WorldToViewportPoint(pos - Vector3.up * extraScreenRadius).y > 1f)		) ||
+			( SVelo.y <= 0 && (Camera.main.WorldToViewportPoint(pos - Vector3.down * extraScreenRadius).y < 0f)		) ) {
+			killThisObj ();
+		}
 
 	}
 
-	private void destroyThisObj() {
+	// Destroy this gameObject
+	private void killThisObj() {
 		EnemyHP EHP = gameObject.GetComponent<EnemyHP> ();
 		if (EHP) {
 			EHP.die ();

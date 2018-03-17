@@ -24,10 +24,17 @@ public class ShootsAtPlayer : MonoBehaviour {
 	void Start () {
 		player = GM.Instance.player;
 		WEP = GetComponent<WeightedEnemyPhysics> ();
+
+		cool_down = true;
+		Invoke ("reload", 1 / _fire_rate);
 	}
 	
 	// Called once per frame
 	void Update () {
+		if (killIfOOB.is_OOB (transform.position)) {
+			return;
+		}
+
 		if (!cool_down) {
 			fire ();
 		}

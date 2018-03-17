@@ -12,6 +12,8 @@ public class ScrollManager : MonoBehaviour {
 	// Settings
 	[SerializeField]
 	private float accelTime = 2f, initSpeed = 0f;
+	[SerializeField]
+	private direction initDirection;
 
 	// Other variables
 	public static Vector2 scrollVelo { get { return _scrollVelo; } }
@@ -33,7 +35,7 @@ public class ScrollManager : MonoBehaviour {
 	}
 
 	void Start() {
-		setScrollVelo (direction.left, initSpeed);
+		setScrollVelo (initDirection, initSpeed);
 	}
 		
 	// Called once per frame after all updates
