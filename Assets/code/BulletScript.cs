@@ -23,13 +23,18 @@ public class BulletScript : MonoBehaviour {
 		if (bs != null) {
 			bs.die ();
 			die ();
-			return;
 		}
 
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
 			s.gotHit(_damage);
 			die();
+		}
+
+		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
+		if (PHP != null) {
+			PHP.gotHit (_damage);
+			die ();
 		}
 	}
 

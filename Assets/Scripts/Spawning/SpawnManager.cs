@@ -60,7 +60,7 @@ public class SpawnManager : MonoBehaviour {
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
 			} else if (tuple.condition == Trigger.RemainingHealth) {
-				yield return new WaitWhile(() => 1 > tuple.threshold); // TODO Replace 1 with player health variable
+				yield return new WaitWhile(() => GM.Instance.playerHP > tuple.threshold);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114779874589900858}
   - component: {fileID: 50068161734694714}
   - component: {fileID: 61020884383479586}
-  - component: {fileID: 114371369568542416}
+  - component: {fileID: 114673298421587070}
   m_Layer: 0
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -199,7 +199,7 @@ MonoBehaviour:
   turnRadius: 60
   ctlr: 2
   target: {fileID: 0}
---- !u!114 &114371369568542416
+--- !u!114 &114673298421587070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -207,10 +207,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187632629434982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31532d8d30531ea4c917f6afeb21391a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c57a886cdd848146a9013c89d423d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 3
 --- !u!114 &114779874589900858
 MonoBehaviour:
   m_ObjectHideFlags: 1

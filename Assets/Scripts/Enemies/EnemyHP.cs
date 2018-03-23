@@ -11,8 +11,6 @@ public class EnemyHP : MonoBehaviour {
 	// Other variables
 	private int HP;
 
-	// Object references
-
 
 	// Initialize
 	void Start () {

@@ -41,6 +41,15 @@ TagManager:
   - name: Background
     uniqueID: 77426981
     locked: 0
+  - name: Drops
+    uniqueID: 1501939127
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2234282225
+    locked: 0
+  - name: UI
+    uniqueID: 2787802199
     locked: 0

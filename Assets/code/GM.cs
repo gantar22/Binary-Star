@@ -17,6 +17,9 @@ public class GM : MonoBehaviour {
 
     public static GM Instance { get { return _instance; } }
 
+	[HideInInspector]
+	public int playerHP;
+
 
     private void Awake()
     {
