@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 15
+  noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 1
+  guaranteeDrop: 0
 --- !u!212 &212133972841596020
 SpriteRenderer:
   m_ObjectHideFlags: 1

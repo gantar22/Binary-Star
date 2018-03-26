@@ -11,6 +11,9 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 	[SerializeField]
 	private float turnRate = 15f;
 	private float angleLeeway = 3f;
+	private float bounceScale = 1f;
+
+	public bool noCollisions = true;
 
 	// Other variables
 	[HideInInspector]
@@ -66,5 +69,25 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 		velocity += acceleration * Time.deltaTime;
 		velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
 		rb.MovePosition (pos + velocity);
+	}
+
+	// Detect collisions with other enemies to prevent stacking
+	void OnTriggerStay2D(Collider2D col){
+		if (!noCollisions) {
+			return;
+		}
+
+		WeightedEnemyPhysics OtherWEP = col.gameObject.GetComponent<WeightedEnemyPhysics>(); 
+		if (OtherWEP != null){
+			Vector2 OtherPos = col.transform.position;
+			Vector2 diff = (OtherPos - (Vector2) transform.position).normalized;
+
+			Vector2 projection = Vector2.Dot (diff, velocity) * diff;
+
+			if ((diff + projection.normalized).magnitude > diff.magnitude) {
+				print ("Adjusting velocity");
+				velocity -= projection * (1f + bounceScale);
+			}
+		}
 	}
 }

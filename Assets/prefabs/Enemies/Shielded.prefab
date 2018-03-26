@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnRate: 15
+  noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
@@ -192,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 1
+  guaranteeDrop: 0
 --- !u!114 &114951360622377668
 MonoBehaviour:
   m_ObjectHideFlags: 1
