@@ -11,7 +11,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 	[SerializeField]
 	private float turnRate = 15f;
 	private float angleLeeway = 3f;
-	private float bounceScale = 1f;
+	private float bounceScale = 0.7f;
 
 	public bool noCollisions = true;
 
