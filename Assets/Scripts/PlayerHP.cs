@@ -12,14 +12,13 @@ public class PlayerHP : MonoBehaviour {
 	// Initialize
 	void Start () {
 		GM.Instance.playerHP = maxHP;
-		//Testing:
-		gotHit();
 	}
 
-	//Testing:
+	/* //Testing:
 	void Update() {
 		print (GM.Instance.playerHP);
-	}
+	} */
+
 
 
 	void OnTriggerEnter2D(Collider2D col){
@@ -61,5 +60,7 @@ public class PlayerHP : MonoBehaviour {
 		if(CSS != null){
 			CSS.activate(.1f,.1f);
 		}
+
+		Destroy (gameObject.transform.parent.gameObject);
 	}
 }

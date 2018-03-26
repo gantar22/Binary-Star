@@ -16,13 +16,11 @@ public class ShootsAtPlayer : MonoBehaviour {
 	private bool cool_down;
 
 	// Object references
-	private GameObject player;
 	private WeightedEnemyPhysics WEP;
 
 
 	// Initialization
 	void Start () {
-		player = GM.Instance.player;
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 
 		cool_down = true;
@@ -40,18 +38,32 @@ public class ShootsAtPlayer : MonoBehaviour {
 		}
 	}
 
+	// Shoot at the player
 	void fire() {
+		if (GM.Instance.player == null) {
+			return;
+		}
+
 		cool_down = true;
 		Invoke("reload",1 / _fire_rate);
 
-		// Use angle towards player instead of actual rotation of enemy
-		// Alternatively, only allow the enemy to shoot if it is actually angled towards the player
-		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
-		GameObject bul = Instantiate(_bullet,transform.position + new Vector3(Mathf.Cos(a),Mathf.Sin(a),0) * _offset,transform.rotation);
-		bul.GetComponentInChildren<linear_travel>().setSpeed(WEP.velocity.magnitude);
+		// For the ship's angle, in degrees:
+		//float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
 
+		// Get the shoot direction and angle for the bullet
+		Vector3 shootDirection = (GM.Instance.player.transform.position - transform.position).normalized;
+		float targetAngle = Mathf.Atan2 (shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+		float currentAngle = transform.eulerAngles.z;
+		float diff = targetAngle - currentAngle;
+
+		// Instantiate the bullet and set to the right direction and speed
+		GameObject bul = Instantiate(_bullet, transform.position + shootDirection * _offset, transform.rotation);
+		bul.transform.Rotate (Vector3.forward * diff);
+
+		bul.GetComponentInChildren<linear_travel>().setSpeed(WEP.velocity.magnitude);
 	}
 
+	// Set the fire cooldown to false
 	void reload() {
 		cool_down = false;
 	}

@@ -17,17 +17,21 @@ public class SpawnManager : MonoBehaviour {
 	public static SpawnManager Instance { get { return _instance; } }
 
 
-	// Static instance setup
+	// Initialization
 	private void Awake()
 	{
+		// Static instance setup
 		if (_instance != null && _instance != this) {
 			Destroy(this.gameObject);
 		} else {
 			_instance = this;
 		}
-		DontDestroyOnLoad(this);
 
-		// Initialize
+		if (transform.parent == null) {
+			DontDestroyOnLoad (this);
+		}
+
+		// Initialize variables
 		idle = true;
 		sequenceIndex = 0;
 		initSpawnersArray ();

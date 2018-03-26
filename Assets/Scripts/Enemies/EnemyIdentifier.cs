@@ -14,15 +14,19 @@ public class EnemyIdentifier : MonoBehaviour {
 	public static EnemyIdentifier Instance { get { return _instance; } }
 
 
-	// Static instance setup
+	// Initialization
 	private void Awake() {
+		// Static instance setup
 		if (_instance != null && _instance != this) {
 			Debug.LogError ("Multiple EnemyIdentifiers in scene!");
 			Destroy(this.gameObject);
 		} else {
 			_instance = this;
 		}
-		DontDestroyOnLoad(this);
+
+		if (transform.parent == null) {
+			DontDestroyOnLoad (this);
+		}
 
 		// Fill enemy type dictionary with array from editor
 		EnemyTypeDict = new Dictionary<EnemyType, GameObject>();

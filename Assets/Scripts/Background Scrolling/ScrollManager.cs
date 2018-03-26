@@ -31,7 +31,10 @@ public class ScrollManager : MonoBehaviour {
 		} else {
 			_instance = this;
 		}
-		DontDestroyOnLoad(this);
+
+		if (transform.parent == null) {
+			DontDestroyOnLoad (this);
+		}
 	}
 
 	void Start() {

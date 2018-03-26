@@ -7,6 +7,8 @@ public class EnemyHP : MonoBehaviour {
 	// Settings/properties:
 	[SerializeField]
 	private int maxHP = 2;
+	[SerializeField]
+	private bool guaranteeDrop = false;
 
 	// Other variables
 	private int HP;
@@ -29,14 +31,23 @@ public class EnemyHP : MonoBehaviour {
 	public void die() {
 		GM.Instance.enemyCount--;
 
+		// Make sure reticle is unparented
 		UnParentOnDestroy retScript;
 		if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
 			retScript.gameObject.transform.parent = null;
 		}
 
+		// Camera shake
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
 			CSS.activate(.03f,.03f);
+		}
+
+		// Spawn drops
+		if (guaranteeDrop) {
+			DropManager.Instance.SpawnDrop (transform.position);
+		} else {
+			DropManager.Instance.MaybeDrop (maxHP, transform.position);
 		}
 
 		Destroy (gameObject);
