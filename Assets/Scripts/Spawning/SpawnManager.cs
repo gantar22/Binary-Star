@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class SpawnManager : MonoBehaviour {
+
+	// Settings/properties
+	private float spawnRadius = 0.8f;
 
 	public Sequence[] sequences;
 	public Vector2 TopSpawner, BotSpawner, LeftSpawner, RightSpawner, TopFarLeft, TopMidLeft, TopMidRight, TopFarRight;
@@ -97,26 +99,34 @@ public class SpawnManager : MonoBehaviour {
 				GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
 				for (int j = 0; j < pair.numEnemies; j++) {
 					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
+					randomizePosition (newEnemy);
 					GM.Instance.Spawn (newEnemy);
 				}
 			}
 		}
 	}
 
+	// Initialize the array of spawner locations
 	private void initSpawnersArray () {
 		Spawners = new Vector2[8];
 
 		Spawners [0] = TopSpawner;		Spawners [1] = BotSpawner;		Spawners [2] = LeftSpawner; 	Spawners [3] = RightSpawner;
 		Spawners [4] = TopFarLeft;		Spawners [5] = TopMidLeft;		Spawners [6] = TopMidRight;		Spawners [7] = TopFarRight;
 	}
+
+	// Set the new enemy to a random location within the spawnRadius of the spawn location
+	private void randomizePosition (GameObject newEnemy) {
+		Vector3 offset = new Vector3 (Random.Range (-spawnRadius, spawnRadius), Random.Range (-spawnRadius, spawnRadius), 0);
+		newEnemy.transform.position += offset;
+	}
 }
 
 
 // Use in coroutines as follows: yield return new WaitWhile(() => /*bool expression here*/);
 public class WaitWhile : CustomYieldInstruction {
-	Func<bool> m_Predicate;
+	System.Func<bool> m_Predicate;
 
 	public override bool keepWaiting { get { return m_Predicate (); } }
 
-	public WaitWhile(Func<bool> predicate) { m_Predicate = predicate; }
+	public WaitWhile(System.Func<bool> predicate) { m_Predicate = predicate; }
 }

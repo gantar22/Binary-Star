@@ -29,8 +29,6 @@ public class EnemyHP : MonoBehaviour {
 
 	// Called when this enemy should die
 	public void die() {
-		GM.Instance.enemyCount--;
-
 		// Make sure reticle is unparented
 		UnParentOnDestroy retScript;
 		if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
@@ -50,6 +48,7 @@ public class EnemyHP : MonoBehaviour {
 			DropManager.Instance.MaybeDrop (maxHP, transform.position);
 		}
 
+		GM.Instance.Died (gameObject);
 		Destroy (gameObject);
 	}
 }

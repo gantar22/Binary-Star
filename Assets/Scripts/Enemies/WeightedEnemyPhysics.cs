@@ -85,7 +85,6 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 			Vector2 projection = Vector2.Dot (diff, velocity) * diff;
 
 			if ((diff + projection.normalized).magnitude > diff.magnitude) {
-				print ("Adjusting velocity");
 				velocity -= projection * (1f + bounceScale);
 			}
 		}

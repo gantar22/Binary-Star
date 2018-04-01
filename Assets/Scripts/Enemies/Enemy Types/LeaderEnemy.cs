@@ -15,6 +15,7 @@ public class LeaderEnemy : MonoBehaviour {
 		GameObject previous = gameObject;
 		for (int i = 0; i < followerTotal; i++) {
 			GameObject newFollower = Instantiate (prefab);
+			GM.Instance.Spawn (newFollower);
 			newFollower.transform.position = transform.position;
 
 			LeaderEnemy LE = newFollower.GetComponent<LeaderEnemy> ();
