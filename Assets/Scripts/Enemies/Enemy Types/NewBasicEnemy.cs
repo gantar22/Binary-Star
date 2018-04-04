@@ -24,7 +24,7 @@ public class NewBasicEnemy : MonoBehaviour {
 	// Called every frame
 	void Update () {
 		Vector2 direction = new Vector2 ();
-		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
+		Vector2 pos = transform.position;
 
 		if (GM.Instance.player == null) return;
 		Vector2 targetPos = GM.Instance.player.transform.position;

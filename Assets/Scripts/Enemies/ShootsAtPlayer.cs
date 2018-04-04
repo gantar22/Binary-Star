@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class ShootsAtPlayer : MonoBehaviour {
 
 	// Settings
 	[SerializeField]
 	private GameObject _bullet;
 	[SerializeField]
-	private float _offset;
+	private float _offset, _kick = 1f;
 	[SerializeField, Range(.01f, 10)]
 	private float _fire_rate;
 
@@ -60,11 +61,26 @@ public class ShootsAtPlayer : MonoBehaviour {
 		GameObject bul = Instantiate(_bullet, transform.position + shootDirection * _offset, transform.rotation);
 		bul.transform.Rotate (Vector3.forward * diff);
 
-		bul.GetComponentInChildren<linear_travel>().setSpeed(WEP.velocity.magnitude);
+		setBulletSpeed (bul, WEP.velocity.magnitude);
+
+		// Enemy should be kicked back a bit after firing
+		WEP.velocity -= (Vector2) shootDirection * _kick;
 	}
 
 	// Set the fire cooldown to false
 	void reload() {
 		cool_down = false;
+	}
+
+	// Set the speed of the bullet that was just shot
+	private void setBulletSpeed(GameObject bullet, float speed) {
+		linear_travel LT = bullet.GetComponentInChildren<linear_travel> ();
+		if (LT != null) {
+			LT.setSpeed (speed);
+			return;
+		}
+
+		// seeking_missile starts with 0 velocity
+		// sin_travel starts with fixed velocity
 	}
 }
