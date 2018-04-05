@@ -9,8 +9,6 @@ public class NewBasicEnemy : MonoBehaviour {
 	[SerializeField]
 	private float maxSpeed = 3.2f, accelMag = 0.1f;
 
-	// Other variables
-
 	// Object references
 	private WeightedEnemyPhysics WEP;
 
@@ -23,14 +21,13 @@ public class NewBasicEnemy : MonoBehaviour {
 
 	// Called every frame
 	void Update () {
-		Vector2 direction = new Vector2 ();
 		Vector2 pos = transform.position;
 
 		if (GM.Instance.player == null) return;
 		Vector2 targetPos = GM.Instance.player.transform.position;
 
 		// Decide what direction to move in
-		direction = targetPos - pos;
+		Vector2 direction = targetPos - pos;
 
 		// Normalize the velocity and set to desired speed
 		WEP.acceleration = direction.normalized * accelMag;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(WeightedEnemyPhysics))]
 public class ShootsAtPlayer : MonoBehaviour {
 
 	// Settings
@@ -15,6 +14,8 @@ public class ShootsAtPlayer : MonoBehaviour {
 
 	// Other variables
 	private bool cool_down;
+	[HideInInspector]
+	public bool shootingEnabled;
 
 	// Object references
 	private WeightedEnemyPhysics WEP;
@@ -41,7 +42,7 @@ public class ShootsAtPlayer : MonoBehaviour {
 
 	// Shoot at the player
 	void fire() {
-		if (GM.Instance.player == null) {
+		if (GM.Instance.player == null || !shootingEnabled) {
 			return;
 		}
 
@@ -61,14 +62,17 @@ public class ShootsAtPlayer : MonoBehaviour {
 		GameObject bul = Instantiate(_bullet, transform.position + shootDirection * _offset, transform.rotation);
 		bul.transform.Rotate (Vector3.forward * diff);
 
-		setBulletSpeed (bul, WEP.velocity.magnitude);
+		if (WEP != null) {
+			setBulletSpeed (bul, WEP.velocity.magnitude);
 
-		// Enemy should be kicked back a bit after firing
-		WEP.velocity -= (Vector2) shootDirection * _kick;
+			// Enemy should be kicked back a bit after firing
+			WEP.velocity -= (Vector2)shootDirection * _kick;
+		}
 	}
 
 	// Set the fire cooldown to false
-	void reload() {
+	public void reload() {
+		CancelInvoke ();
 		cool_down = false;
 	}
 

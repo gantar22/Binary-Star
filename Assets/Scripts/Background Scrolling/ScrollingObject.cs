@@ -6,7 +6,7 @@ public class ScrollingObject : MonoBehaviour {
 
 	// Settings
 	public bool KillIfVeryOOB = true;
-	private float extraScreenRadius = 3f;
+	public float extraScreenRadius = 3f;
 
 
 	// Called once per frame
@@ -35,10 +35,11 @@ public class ScrollingObject : MonoBehaviour {
 
 	// Destroy this gameObject
 	private void killThisObj() {
-		EnemyHP EHP = gameObject.GetComponent<EnemyHP> ();
-		if (EHP) {
+		EnemyHP[] EHPs = gameObject.GetComponentsInChildren<EnemyHP> ();
+		foreach (EnemyHP EHP in EHPs) {
 			EHP.die ();
-		} else {
+		}
+		if (EHPs.Length == 0) {
 			Destroy (gameObject);
 		}
 	}

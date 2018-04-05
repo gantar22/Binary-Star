@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032667659498808}
   m_Layer: 0
-  m_Name: seaking missile
+  m_Name: seeking missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ae72028336db94ea5799c517265d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 8
+  maxSpeed: 14
   accelMag: 0.2
   turnRate: 18
 --- !u!114 &114789955895219080

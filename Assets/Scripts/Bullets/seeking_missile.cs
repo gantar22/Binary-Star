@@ -6,7 +6,7 @@ public class seeking_missile : MonoBehaviour {
 
 	// Settings
 	[SerializeField]
-	private float maxSpeed = 1f, accelMag = 1f, turnRate = 1f;
+	private float maxSpeed = 1f, accelMag = 0.2f, turnRate = 1f;
 
 	// Properties
 	private float angleLeeway = 3f;
