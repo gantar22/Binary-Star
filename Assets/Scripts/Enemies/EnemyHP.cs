@@ -8,7 +8,7 @@ public class EnemyHP : MonoBehaviour {
 	[SerializeField]
 	private int maxHP = 2;
 	[SerializeField]
-	private bool guaranteeDrop = false;
+	private bool guaranteeDrop = false, diesToBomb = true;
 
 	// Other variables
 	private int HP;
@@ -23,6 +23,13 @@ public class EnemyHP : MonoBehaviour {
 	public void gotHit(int dmg) {
 		HP -= dmg;
 		if (HP <= 0) {
+			die ();
+		}
+	}
+
+	// Called when the player bomb explosion collides
+	public void hitByBomb() {
+		if (diesToBomb) {
 			die ();
 		}
 	}
@@ -46,6 +53,12 @@ public class EnemyHP : MonoBehaviour {
 			DropManager.Instance.SpawnDrop (transform.position);
 		} else {
 			DropManager.Instance.MaybeDrop (maxHP, transform.position);
+		}
+
+		// If this is an asteroid (rock), blow up the whole thing
+		Rock rock = GetComponent<Rock>();
+		if (rock != null) {
+			rock.asteroid.killTurrets ();
 		}
 
 		GM.Instance.Died (gameObject);

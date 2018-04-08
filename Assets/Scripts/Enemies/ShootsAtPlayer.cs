@@ -15,7 +15,7 @@ public class ShootsAtPlayer : MonoBehaviour {
 	// Other variables
 	private bool cool_down;
 	[HideInInspector]
-	public bool shootingEnabled;
+	public bool shootingEnabled = true;
 
 	// Object references
 	private WeightedEnemyPhysics WEP;
@@ -25,6 +25,7 @@ public class ShootsAtPlayer : MonoBehaviour {
 	void Start () {
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 
+		shootingEnabled = true;
 		cool_down = true;
 		Invoke ("reload", 1 / _fire_rate);
 	}

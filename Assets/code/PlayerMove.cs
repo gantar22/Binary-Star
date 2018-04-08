@@ -82,9 +82,10 @@ public class PlayerMove : MonoBehaviour {
 		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
 		}
+		/* Causing the player body separation bug:
 		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.position = Vector3.zero;
-		}
+		} */
 
 		
 

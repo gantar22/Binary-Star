@@ -40,7 +40,7 @@ public class BulletScript : MonoBehaviour {
 
 	void die(){
 		//Destroy(gameObject);
-		Destroy(transform.root.gameObject); // THIS CAUSES THE PLAYER DETACHMENT BUG - TODO
+		Destroy(transform.root.gameObject);
 		switch(_type){
 			case bulletType.basic:
 			break;

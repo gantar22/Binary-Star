@@ -30,11 +30,6 @@ public class SwarmEnemy : MonoBehaviour {
 	
 	// Called once per frame
 	void Update () {
-		// Check if the swarm has died
-		if (SwarmerCount == 0) {
-			Destroy (gameObject);
-		}
-
 		// Update movement of swarm
 
 		Vector2 direction = new Vector2 ();
@@ -49,6 +44,14 @@ public class SwarmEnemy : MonoBehaviour {
 		// Normalize the velocity and set to desired speed
 		Vector2 newAccel = direction.normalized * accelMag;
 		RedirectSwarm (newAccel);
+
+		// Check if the swarm has died
+		if (SwarmerCount == 0) {
+			Destroy (gameObject);
+		}
+
+		// Center the hive mind
+		center();
 	}
 
 	// Create the swarm of enemies
@@ -97,13 +100,27 @@ public class SwarmEnemy : MonoBehaviour {
 	private void RedirectSwarm (Vector2 acceleration) {
 		WEP.acceleration = acceleration;
 
+		List<WeightedEnemyPhysics> toRemove = new List<WeightedEnemyPhysics> ();
 		foreach (WeightedEnemyPhysics swarmer in SwarmersWEP) {
 			if (swarmer == null) {
-				SwarmersWEP.Remove (swarmer);
-				SwarmerCount--;
+				toRemove.Add (swarmer);
 			} else {
 				swarmer.acceleration = acceleration;
 			}
 		}
+
+		foreach (WeightedEnemyPhysics swarmer in toRemove) {
+			SwarmersWEP.Remove (swarmer);
+			SwarmerCount--;
+		}
+	}
+
+	// Set the swarm hive mind position centered based on all the swarmers
+	private void center() {
+		Vector3 sumPosition = Vector2.zero;
+		foreach (WeightedEnemyPhysics swarmer in SwarmersWEP) {
+			sumPosition += swarmer.transform.position;
+		}
+		transform.position = sumPosition / SwarmerCount;
 	}
 }

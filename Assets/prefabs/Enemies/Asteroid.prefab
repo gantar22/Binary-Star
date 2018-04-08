@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114626529506370616}
   - component: {fileID: 114063002520291080}
   - component: {fileID: 114420304450006978}
+  - component: {fileID: 114903696495408536}
   m_Layer: 8
   m_Name: Turret
   m_TagString: Untagged
@@ -64,6 +65,7 @@ GameObject:
   - component: {fileID: 114651195286735572}
   - component: {fileID: 114005116843530820}
   - component: {fileID: 58519611517076048}
+  - component: {fileID: 114533037364460480}
   m_Layer: 8
   m_Name: Asteroid
   m_TagString: Untagged
@@ -145,7 +147,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -176,12 +178,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 4.8
 --- !u!70 &70849141663144286
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -226,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 2
   guaranteeDrop: 0
+  diesToBomb: 1
 --- !u!114 &114420304450006978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 1594480154817238, guid: 3cbe86813f3711344a9da93e76ab8adf, type: 2}
-  _offset: 1
+  _offset: 2.5
   _kick: 0
   _fire_rate: 0.3
   shootingEnabled: 0
@@ -254,6 +257,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 3
+--- !u!114 &114533037364460480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492135429117690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52abf09a7b23b243a6073251a19c08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minInitAngularVelo: 10
+  maxInitAngularVelo: 50
 --- !u!114 &114626529506370616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +308,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   guaranteeDrop: 1
+  diesToBomb: 0
+--- !u!114 &114903696495408536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1440575349992844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ab6ca4df87090418122594af7d0d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreesOfFreedom: 90
 --- !u!114 &114937895991402248
 MonoBehaviour:
   m_ObjectHideFlags: 1

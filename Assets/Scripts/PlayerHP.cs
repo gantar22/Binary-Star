@@ -21,11 +21,14 @@ public class PlayerHP : MonoBehaviour {
 
 
 
+	// Check for collisions with enemies
 	void OnTriggerEnter2D(Collider2D col){
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
-			s.die ();
 			gotHit();
+			if (s.gameObject.GetComponent<Asteroid> () == null) {
+				s.die ();
+			}
 		}
 
 		// Bullet and HP drop collisions managed by BulletScript.cs and HPDrop.cs

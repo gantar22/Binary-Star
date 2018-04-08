@@ -14,6 +14,7 @@ public class Turret : MonoBehaviour {
 
 	// References
 	private WeightedEnemyPhysics WEP;
+	private ShootsAtPlayer SAP;
 	private Asteroid asteroid;
 
 
@@ -22,7 +23,9 @@ public class Turret : MonoBehaviour {
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 		WEP.maxSpeed = 0f;
 
+		SAP = GetComponent<ShootsAtPlayer> ();
 		asteroid = GetComponentInParent<Asteroid> ();
+		asteroid.addTurret (this);
 	}
 	
 	// Called once per frame
