@@ -69,9 +69,6 @@ public class SwarmEnemy : MonoBehaviour {
 		float degrees = 0f;
 		float incrBy = 2f * Mathf.PI / enemyCount;
 		for (int i = 0; i < enemyCount; i++) {
-			// float y = Mathf.Sign(Mathf.Cos(degrees));
-			// float x = Mathf.Tan (degrees) * y;
-			// print(Mathf.Tan (Mathf.PI / 2f));
 			float y = Mathf.Cos (degrees);
 			float x = Mathf.Sin (degrees);
 

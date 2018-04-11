@@ -20,7 +20,6 @@ public class Asteroid : MonoBehaviour {
 
 	// Initialization
 	void Awake () {
-		Turrets = new List<Turret> ();
 		rb = GetComponent<Rigidbody2D> ();
 
 		// Pick random initial angular velocity
@@ -46,13 +45,14 @@ public class Asteroid : MonoBehaviour {
 
 	// Add a turret to the Turrets list
 	public void addTurret(Turret newTurret) {
+		Turrets = new List<Turret> ();
 		Turrets.Add (newTurret);
 	}
 
-	// Remove a turret from the Turrets list
+	/* // Remove a turret from the Turrets list
 	public void removeTurret(Turret toRemove) {
 		Turrets.Remove (toRemove);
-	}
+	} */
 
 	// When the rock is destroyed, all the turrets die
 	public void killTurrets() {
