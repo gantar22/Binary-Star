@@ -102,7 +102,7 @@ public class bull2 : MonoBehaviour {
 		    default:
 		        break;
 		}
-		transform.localScale = (left(side) ? new Vector3(1,1,1) : new Vector3(-1,1,1)) * 5;
+		transform.localScale = (left(side) ? new Vector3(1,1,1) : new Vector3(-1,1,1)) * 10;
 		transform.position += (targetpos - transform.position).normalized * speed * Time.deltaTime;
 		transform.position = new Vector3(transform.position.x,transform.position.y,1);
 	}
