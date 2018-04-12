@@ -214,8 +214,8 @@ MonoBehaviour:
   invulnTime: 3
   minFrequency: 1
   maxFrequency: 7
-  minAlpha: 0.2
-  maxAlpha: 1
+  minAlpha: 0.4
+  maxAlpha: 0.9
   PlayerTurret: {fileID: 1950419444662794}
 --- !u!114 &114779874589900858
 MonoBehaviour:

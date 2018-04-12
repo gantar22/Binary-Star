@@ -30,6 +30,7 @@ public class PlayerHP : MonoBehaviour {
 		GM.Instance.playerHP = maxHP;
 		invuln = false;
 		checkColliders = false;
+		setAllColorScale (1);
 	}
 	
 	// Called once per frame. Manages invuln timer and alpha
@@ -44,11 +45,11 @@ public class PlayerHP : MonoBehaviour {
 			invulnTimer -= Time.deltaTime;
 			if (invulnTimer <= 0f) {
 				invuln = false;
-				setBothAlpha (1);
+				setAllColorScale (1);
 				checkColliders = true;
 				Invoke ("stopCheck", 0.2f);
 			} else {
-				setBothAlpha (newAlpha);
+				setAllColorScale (newAlpha);
 			}
 		}
 
@@ -126,13 +127,10 @@ public class PlayerHP : MonoBehaviour {
 	}
 
 	// Set the alpha of both body and pilot sprites
-	private void setBothAlpha(float alpha) {
-		Color prev = thisSR.color;
-		prev.a = alpha;
-		thisSR.color = prev;
+	private void setAllColorScale(float scale) {
+		Color newColor = new Color (scale, scale, scale, scale);
 
-		prev = PlayerTurretSR.color;
-		prev.a = alpha;
-		PlayerTurretSR.color = prev;
+		thisSR.color = newColor;
+		PlayerTurretSR.color = newColor;
 	}
 }
