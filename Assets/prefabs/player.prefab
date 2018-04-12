@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341310760216744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.01, y: -2.81, z: 0}
+  m_LocalPosition: {x: 2.36, y: -9.27, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4407858012068228}
@@ -211,6 +211,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 3
+  invulnTime: 3
+  minFrequency: 1
+  maxFrequency: 7
+  minAlpha: 0.2
+  maxAlpha: 1
+  PlayerTurret: {fileID: 1950419444662794}
 --- !u!114 &114779874589900858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,8 +294,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2060685071
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f7e12c42f29e5cc4ba62f1d34e41ea57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -332,8 +338,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2060685071
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd9f7d83ea0687c4ebe2e7a3dd12ee25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

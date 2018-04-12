@@ -7,12 +7,15 @@ public class Rock : MonoBehaviour {
 	// References
 	[HideInInspector]
 	public Asteroid asteroid;
+	[HideInInspector]
+	public CircleCollider2D circCollider;
 	private EnemyHP EHP;
 
 
 	// Initialize
 	void Awake () {
 		asteroid = GetComponentInParent<Asteroid> ();
+		circCollider = GetComponent<CircleCollider2D> ();
 		EHP = GetComponent<EnemyHP> ();
 	}
 

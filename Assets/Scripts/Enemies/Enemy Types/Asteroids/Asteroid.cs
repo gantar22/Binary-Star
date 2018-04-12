@@ -14,17 +14,24 @@ public class Asteroid : MonoBehaviour {
 
 	// References
 	private Rigidbody2D rb;
-	private GameObject rock;
+	[HideInInspector]
+	public Rock rock;
 	private List<Turret> Turrets;
+
+	public static List<Asteroid> asteroids;
 
 
 	// Initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody2D> ();
+		rock = GetComponentInChildren<Rock> ();
+
+		if (asteroids == null) {
+			asteroids = new List<Asteroid> ();
+		}
+		asteroids.Add (this);
 
 		// Pick random initial angular velocity
-		//minInitAngularVelo *= Mathf.Deg2Rad;
-		//maxInitAngularVelo *= Mathf.Deg2Rad;
 		angularVelocity = RandSign() * Random.Range(minInitAngularVelo, maxInitAngularVelo);
 	}
 
@@ -63,5 +70,8 @@ public class Asteroid : MonoBehaviour {
 				t.gameObject.GetComponent<EnemyHP> ().die ();
 			}
 		}
+
+		asteroids.Remove (this);
+		Destroy (gameObject);
 	}
 }

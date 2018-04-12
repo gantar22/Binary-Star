@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58258676764303556}
   - component: {fileID: 114426186705270574}
   - component: {fileID: 114674220812604240}
+  - component: {fileID: 114124510421053052}
   m_Layer: 8
   m_Name: Rock
   m_TagString: Untagged
@@ -80,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492135429117690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.85, y: 0.96, z: -0.2421875}
+  m_LocalPosition: {x: 9.03, y: 8.03, z: -0.2421875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4655257638381876}
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1440575349992844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.29, y: 3.65, z: -1}
+  m_LocalPosition: {x: 0, y: 4.1, z: -1}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 4234293185144900}
@@ -168,7 +169,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.085
+  m_Radius: 0.08
 --- !u!58 &58519611517076048
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -183,7 +184,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.8
+  m_Radius: 5
 --- !u!70 &70849141663144286
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -215,6 +216,9 @@ MonoBehaviour:
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0
 --- !u!114 &114063002520291080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,6 +233,19 @@ MonoBehaviour:
   maxHP: 2
   guaranteeDrop: 0
   diesToBomb: 1
+--- !u!114 &114124510421053052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096702994701140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7389e8a40cfd34e8a77eb316c29ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroid: {fileID: 0}
+  circCollider: {fileID: 0}
 --- !u!114 &114420304450006978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 1594480154817238, guid: 3cbe86813f3711344a9da93e76ab8adf, type: 2}
-  _offset: 2.5
+  _offset: 3
   _kick: 0
   _fire_rate: 0.3
   shootingEnabled: 0
@@ -270,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitAngularVelo: 10
   maxInitAngularVelo: 50
+  rock: {fileID: 0}
 --- !u!114 &114626529506370616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ab6ca4df87090418122594af7d0d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degreesOfFreedom: 90
+  degreesOfFreedom: 160
 --- !u!114 &114937895991402248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,6 +355,9 @@ MonoBehaviour:
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0
 --- !u!212 &212323092348609470
 SpriteRenderer:
   m_ObjectHideFlags: 1

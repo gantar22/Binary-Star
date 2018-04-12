@@ -67,14 +67,15 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 		rb.MovePosition (pos + velocity);
 	}
 
-	// Detect collisions with other enemies to prevent stacking
+	// Detect collisions with other enemies, or player (while invuln), to prevent stacking
 	void OnTriggerStay2D(Collider2D col){
 		if (!noCollisions) {
 			return;
 		}
 
 		WeightedEnemyPhysics OtherWEP = col.gameObject.GetComponent<WeightedEnemyPhysics>(); 
-		if (OtherWEP != null){
+		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
+		if (OtherWEP != null || PHP != null) {
 			Vector2 OtherPos = col.transform.position;
 			Vector2 diff = (OtherPos - (Vector2) transform.position).normalized;
 
