@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4523427509055052}
   - component: {fileID: 212505641291423400}
   - component: {fileID: 50952379311399448}
-  - component: {fileID: 58962320657650784}
-  - component: {fileID: 114720905801697428}
+  - component: {fileID: 70339653304668806}
   - component: {fileID: 114716556069694750}
   - component: {fileID: 114021873678674236}
   - component: {fileID: 114294323565868198}
   - component: {fileID: 114503458760469350}
+  - component: {fileID: 114723403342666542}
   m_Layer: 8
   m_Name: Missile Shooter
   m_TagString: Untagged
@@ -67,8 +67,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58962320657650784
-CircleCollider2D:
+--- !u!70 &70339653304668806
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -80,8 +80,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.09
+  m_Size: {x: 0.6, y: 0.3}
+  m_Direction: 1
 --- !u!114 &114021873678674236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 2
   guaranteeDrop: 0
+  diesToBomb: 1
 --- !u!114 &114503458760469350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,7 +122,8 @@ MonoBehaviour:
   _bullet: {fileID: 1754065566595806, guid: 492af4e49265bff4eb951e729a3e9aa3, type: 2}
   _offset: 2
   _kick: 1
-  _fire_rate: 0.15
+  _fire_rate: 0.1428
+  shootingEnabled: 1
 --- !u!114 &114716556069694750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +140,10 @@ MonoBehaviour:
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
---- !u!114 &114720905801697428
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0
+--- !u!114 &114723403342666542
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -146,11 +151,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1311236864071248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7d44f0f65020044961f6cea51ab6fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1afbdeb90a8343c408f6723d0f1a8af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  accelMag: 0.15
+  maxSpeed: 6
+  accelMag: 5
+  circleTime: 6
+  diveTime: 2
 --- !u!212 &212505641291423400
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -185,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f49be9352f4ccfa4fa692e256dfc8d6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14098af8e8f952f42b61a737eb135edb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -9,7 +9,7 @@ public class ShootsAtPlayer : MonoBehaviour {
 	private GameObject _bullet;
 	[SerializeField]
 	private float _offset, _kick = 1f;
-	[SerializeField, Range(.01f, 10)]
+	[SerializeField, Range(.01f, 5)]
 	private float _fire_rate;
 
 	// Other variables

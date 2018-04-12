@@ -61,6 +61,12 @@ public class EnemyHP : MonoBehaviour {
 			rock.asteroid.killTurrets ();
 		}
 
+		// If this has fireworks enabled, explode with bullets!
+		Fireworks boom = GetComponent<Fireworks>();
+		if (boom != null && boom.enabled) {
+			boom.Explode ();
+		}
+
 		GM.Instance.Died (gameObject);
 		Destroy (gameObject);
 	}

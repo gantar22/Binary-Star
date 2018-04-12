@@ -60,8 +60,9 @@ public class Turret : MonoBehaviour {
 		Vector2 normal = transform.position - asteroid.transform.position;
 		float theta = Mathf.Rad2Deg * Mathf.Atan2 (normal.x, normal.y);
 
-		float minDegree = (90f - degreesOfFreedom / 2) + theta;
-		float maxDegree = (90f + degreesOfFreedom / 2) + theta;
+		float realDoF = 360f - degreesOfFreedom; // Have to do this to fix something...
+		float minDegree = (90f - realDoF / 2) + theta;
+		float maxDegree = (90f + realDoF / 2) + theta;
 
 		WEP.minDegree = WeightedEnemyPhysics.normalDegrees (minDegree);
 		WEP.maxDegree = WeightedEnemyPhysics.normalDegrees (maxDegree);
