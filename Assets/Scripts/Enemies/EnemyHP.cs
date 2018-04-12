@@ -50,8 +50,7 @@ public class EnemyHP : MonoBehaviour {
 		}
 
 		// Spawn drops
-		bull2 b;
-		if(b = GetComponent<bull2>()){
+		if(GetComponent<bull2>()){
 			for(int i = 0; i < 10;i++){
 				DropManager.Instance.SpawnDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}

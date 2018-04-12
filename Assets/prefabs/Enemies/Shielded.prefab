@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114564895579953248}
   - component: {fileID: 114318557805214520}
   - component: {fileID: 114586291982661918}
+  - component: {fileID: 114771217408085172}
   m_Layer: 8
   m_Name: Shielded
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863058826801298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.38, y: 0, z: 0}
+  m_LocalPosition: {x: 15.35844, y: 2.4923577, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 4659598171244518}
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 5
+  angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
@@ -199,6 +201,20 @@ MonoBehaviour:
   maxHP: 1
   guaranteeDrop: 0
   diesToBomb: 1
+--- !u!114 &114771217408085172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863058826801298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04db1c2e05cdaee478d6b5e3eae6e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ydiff: 0.7
+  xdiff: 0.7
+  speed: 1.1
 --- !u!114 &114951360622377668
 MonoBehaviour:
   m_ObjectHideFlags: 1

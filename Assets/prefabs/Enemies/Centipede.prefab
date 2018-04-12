@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114408166422479572}
   - component: {fileID: 114349799566468102}
   - component: {fileID: 114453740076945062}
+  - component: {fileID: 114534240640690190}
   m_Layer: 8
   m_Name: Centipede
   m_TagString: Untagged
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 1
   guaranteeDrop: 0
+  diesToBomb: 1
 --- !u!114 &114408166422479572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +145,20 @@ MonoBehaviour:
   followerTotal: 3
   followRadius: 2
   followerSprite: {fileID: 21300000, guid: c1cb580294369f74db350539361c009b, type: 3}
+--- !u!114 &114534240640690190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1154488939421936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04db1c2e05cdaee478d6b5e3eae6e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ydiff: 0.3
+  xdiff: 0.4
+  speed: 1
 --- !u!114 &114839286150962648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,10 +171,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 30
+  angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0
 --- !u!212 &212285348073313722
 SpriteRenderer:
   m_ObjectHideFlags: 1

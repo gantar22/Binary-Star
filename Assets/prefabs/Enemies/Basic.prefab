@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114319299179319492}
   - component: {fileID: 114554966033653054}
   - component: {fileID: 114717302405188222}
+  - component: {fileID: 114848258421832136}
   m_Layer: 8
   m_Name: Basic
   m_TagString: Untagged
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1615696593158768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62, y: 3.26, z: 0}
+  m_LocalPosition: {x: 28.172596, y: -13.595536, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,10 +94,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 15
+  angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0
 --- !u!114 &114537317444938156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +140,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 1
   guaranteeDrop: 0
+  diesToBomb: 1
+--- !u!114 &114848258421832136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615696593158768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04db1c2e05cdaee478d6b5e3eae6e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ydiff: 0.2
+  xdiff: 0.2
+  speed: 4
 --- !u!212 &212133972841596020
 SpriteRenderer:
   m_ObjectHideFlags: 1

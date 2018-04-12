@@ -52,6 +52,9 @@ public class bull2 : MonoBehaviour {
 		print(hp);
 		if(!pTrans) return;
 
+		if(_state != state.stunned){
+			shield_holder.gameObject.SetActive(true);
+		}
 		switch(_state) { 
 		    case state.waiting:
 		    	anim.SetBool("stunned",false);
