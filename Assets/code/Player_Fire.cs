@@ -25,7 +25,7 @@ public class Player_Fire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(XCI.GetButton(_button,_ctlr) && !cool_down){
+		if((XCI.GetButton(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down){
 			fire();
 
 		}		

@@ -12,6 +12,12 @@ public class BulletScript : MonoBehaviour {
 	[SerializeField]
 	
 	void OnTriggerEnter2D(Collider2D col){
+
+		bull2 b = col.gameObject.GetComponent<bull2>();
+		if(b){
+			b.hit(transform.position);
+		}
+
 		Invulnerable I = col.gameObject.GetComponent<Invulnerable> ();
 		if (I != null && I.enabled) {
 			I.gotHit ();
@@ -24,6 +30,12 @@ public class BulletScript : MonoBehaviour {
 			s.gotHit(_damage);
 			die();
 		}
+
+		if(col.gameObject.layer == 9){
+			die();
+		}
+
+
 	}
 
 	void die(){

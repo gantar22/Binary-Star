@@ -73,7 +73,7 @@ public class bull : MonoBehaviour {
 		//WEP.acceleration = direction.normalized * accelMag;
 		Debug.DrawRay(transform.position, direction * speed * Time.deltaTime * handedness, Color.red, 5,false);
 		transform.position += (Vector3)direction.normalized * speed * Time.deltaTime * handedness;
-		transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(transform.eulerAngles.z, Vector2.Angle(Vector2.zero,direction), 10 * Time.deltaTime));
+		//transform.eulerAngles = new Vector3(0,0,Mathf.LerpAngle(transform.eulerAngles.z, Vector2.Angle(Vector2.zero,direction), 10 * Time.deltaTime));
 	}
 
 	private void controlDelay() {
@@ -112,6 +112,7 @@ public class bull : MonoBehaviour {
 
 		if(GM.Instance.player == null) return;
 		Vector2 playerPos = GM.Instance.player.transform.position;
+		transform.eulerAngles = new Vector3(0,0,(Mathf.Atan2(GM.Instance.player.transform.position.x,GM.Instance.player.transform.position.y) * Mathf.Rad2Deg));
 
 		Vector2 pos = new Vector2 (transform.position.x, transform.position.y);
 

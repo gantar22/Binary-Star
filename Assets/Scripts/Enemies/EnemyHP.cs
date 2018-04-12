@@ -22,7 +22,7 @@ public class EnemyHP : MonoBehaviour {
 	// Called when damage is taken
 	public void gotHit(int dmg) {
 		UnParentOnDestroy retScript;
-		HP -= dmg;
+		if(special()) HP -= dmg;
 		if (HP <= 0) {
 			GM.Instance.enemyCount--;
 			if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
@@ -35,5 +35,15 @@ public class EnemyHP : MonoBehaviour {
 
 			Destroy (gameObject);
 		}
+	}
+
+	private bool special(){ //special script checks for taking damage
+		bull2 b;
+		if((b = GetComponent<bull2>())){
+			if(b._state != bull2.state.stunned) return false;
+			if(transform.childCount > 0 && transform.GetChild(0).GetComponent<Animator>()) transform.GetChild(0).GetComponent<Animator>().SetTrigger("hit");
+			return (--b.hp == 0);
+		}
+		return true;
 	}
 }
