@@ -9,8 +9,14 @@ public class BulletScript : MonoBehaviour {
 
 	public bulletType _type;
 
-	[SerializeField]
-	
+	private ObjT objT;
+
+
+	void Awake () {
+		objT = GetComponent<ObjT> ();
+	}
+
+
 	void OnTriggerEnter2D(Collider2D col){
 
 		bull2 b = col.gameObject.GetComponent<bull2>();
@@ -42,7 +48,7 @@ public class BulletScript : MonoBehaviour {
 		}
 
 		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
-		if (PHP != null) {
+		if (PHP != null && (objT.typ != ObjT.obj.player_bullet)) {
 			PHP.gotHit (_damage);
 			die ();
 		}
