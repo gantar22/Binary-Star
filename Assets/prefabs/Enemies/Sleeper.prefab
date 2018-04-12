@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114963584954503372}
   - component: {fileID: 114824188991535028}
   - component: {fileID: 114716659583541084}
+  - component: {fileID: 114879323123858054}
   m_Layer: 8
   m_Name: Sleeper
   m_TagString: Untagged
@@ -40,8 +41,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638199509143702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.98, y: 3.26, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalPosition: {x: -9.83, y: 11, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 1
+  guaranteeDrop: 0
 --- !u!114 &114824188991535028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,12 +118,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bc99f81a2bdeb44a316694c049b488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleSpeed: 4.5
-  chaseSpeed: 7
+  circleSpeed: 0.1
+  chaseSpeed: 11
   accelMag: 1
-  wakeRadius: 4
-  frequency: 1
-  inwardBoost: 0.4
+  wakeRadius: 15
+  frequency: 0.3
+  AsleepSprite: {fileID: 21300000, guid: a013936e7f2ba144c9c35bb2eac7d7bf, type: 3}
+  AwakeSprite: {fileID: 21300000, guid: d0048178cde3b5543b15df9d9108e492, type: 3}
+--- !u!114 &114879323123858054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638199509143702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b1081aa3f4d9b49a6f52a7c11f238e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KillIfVeryOOB: 1
 --- !u!114 &114963584954503372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnRate: 30
+  noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
@@ -170,7 +187,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e4bc244d4b9c8e4b94db1f33e59cf60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a013936e7f2ba144c9c35bb2eac7d7bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

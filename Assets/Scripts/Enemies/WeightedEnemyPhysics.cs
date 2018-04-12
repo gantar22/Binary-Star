@@ -12,12 +12,19 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 	private float turnRate = 15f;
 	[SerializeField]
 	private float angleLeeway = 3f;
+	private float bounceScale = 0.7f;
+
+	public bool noCollisions = true;
 
 	// Other variables
 	[HideInInspector]
 	public float maxSpeed;
 	[HideInInspector]
 	public Vector2 velocity, acceleration;
+	[HideInInspector]
+	public bool clampPerp = false;
+	[HideInInspector]
+	public float minDegree, maxDegree;
 
 	// Object references
 	private Rigidbody2D rb;
@@ -35,37 +42,80 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 
 		// Rotate towards direction of acceleration
 		float currentAngle = transform.eulerAngles.z;
-		if (currentAngle > 180f) {
-			currentAngle -= 360f;
-		} else if (currentAngle < -180f) {
-			currentAngle += 360f;
-		}
+		currentAngle = normalDegrees (currentAngle);
 
 		float targetAngle = Mathf.Atan2 (acceleration.y, acceleration.x) * Mathf.Rad2Deg;
-		if (targetAngle > 180f) {
-			targetAngle -= 360f;
-		} else if (targetAngle < -180f) {
-			targetAngle += 360f;
-		}
+		targetAngle = normalDegrees (targetAngle);
 
 		float diff = targetAngle - currentAngle;
-		if (diff > 180f) {
-			diff = diff - 360f;
-		} else if (diff < -180f) {
-			diff = diff + 360f;
-		}
+		diff = normalDegrees (diff);
 
 		if (Mathf.Abs(diff) > Mathf.Abs(angleLeeway)) {
-			//diff = diff / Mathf.Abs (diff);
 			float deltaTheta = Mathf.Pow(Mathf.Abs(diff), 0.6f) * Mathf.Sign(diff) * turnRate * Time.deltaTime;
-			//transform.rotation = Quaternion.Euler (new Vector3 (0f, 0f, newAngle));
 			transform.Rotate(Vector3.forward * deltaTheta);
 		}
 
+		// If clampPerp is enabled, keep the angle within the min/max degrees
+		if (clampPerp) {
+			Vector3 lEA = transform.localEulerAngles;
+			float newZ = angleClamp(lEA.z, minDegree, maxDegree);
+			transform.localEulerAngles = new Vector3 (lEA.x, lEA.y, newZ); 
+		}
 
 		// Calculate new velocity
 		velocity += acceleration * Time.deltaTime;
 		velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
 		rb.MovePosition (pos + velocity);
+	}
+
+	// Detect collisions with other enemies, or player (while invuln), to prevent stacking
+	void OnTriggerStay2D(Collider2D col){
+		if (!noCollisions) {
+			return;
+		}
+
+		WeightedEnemyPhysics OtherWEP = col.gameObject.GetComponent<WeightedEnemyPhysics>(); 
+		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
+		if (OtherWEP != null || PHP != null) {
+			Vector2 OtherPos = col.transform.position;
+			Vector2 diff = (OtherPos - (Vector2) transform.position).normalized;
+
+			Vector2 projection = Vector2.Dot (diff, velocity) * diff;
+
+			if ((diff + projection.normalized).magnitude > diff.magnitude) {
+				velocity -= projection * (1f + bounceScale);
+			}
+		}
+	}
+
+	// Normalize the degrees to the range (-180, 180)
+	public static float normalDegrees (float degrees) {
+		while (degrees > 180f) {
+			degrees -= 360f;
+		} 
+		while (degrees < -180f) {
+			degrees += 360f;
+		}
+		return degrees;
+	}
+
+	// Clamp the degrees between two values, but pick the nearest clamp value
+	public static float angleClamp (float value, float min, float max) {
+		value = normalDegrees (value);
+		min = normalDegrees (min);
+		max = normalDegrees (max);
+
+		if ((value >= min && value <= max) || (value <= min && value >= max)) {
+			return value;
+		}
+
+		float minDiff = normalDegrees(value - min);
+		float maxDiff = normalDegrees(value - max);
+
+		if (Mathf.Abs(minDiff) > Mathf.Abs(maxDiff)) {
+			return max;
+		} else {
+			return min;
+		}
 	}
 }

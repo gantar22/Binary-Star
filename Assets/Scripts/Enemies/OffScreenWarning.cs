@@ -24,7 +24,6 @@ public class OffScreenWarning : MonoBehaviour {
 			return;
 		}
 
-
 		// Get references
 		Vector3 pos = transform.position;
 		Vector3 enemyPos = enemy.transform.position;
@@ -36,6 +35,7 @@ public class OffScreenWarning : MonoBehaviour {
 		float y = Mathf.Clamp (enemyPos.y, -camLimits.y + radius, camLimits.y - radius);
 
 		transform.position = new Vector3 (x, y, transform.position.z);
+		pos = transform.position;
 
 		// Point the arrow at the enemy
 		Vector3 direction = (enemyPos - pos).normalized;

@@ -11,6 +11,11 @@ public class killIfOOB : MonoBehaviour {
 		return x < -.0 || x > 1.0;
 	}
 
+	public static bool is_OOB (Vector3 pos) {
+		Vector3 VPPos = Camera.main.WorldToViewportPoint(pos);
+		return (not_percent (VPPos.x) || not_percent (VPPos.y));
+	}
+
 
 
 	void Update () {

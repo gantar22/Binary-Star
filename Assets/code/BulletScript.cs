@@ -25,6 +25,12 @@ public class BulletScript : MonoBehaviour {
 			return;
 		}
 
+		BulletScript bs = col.gameObject.GetComponent<BulletScript> ();
+		if (bs != null) {
+			bs.die ();
+			die ();
+		}
+
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
 			s.gotHit(_damage);
@@ -35,11 +41,16 @@ public class BulletScript : MonoBehaviour {
 			die();
 		}
 
-
+		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
+		if (PHP != null) {
+			PHP.gotHit (_damage);
+			die ();
+		}
 	}
 
 	void die(){
-		Destroy(gameObject);
+		//Destroy(gameObject);
+		Destroy(transform.root.gameObject);
 		switch(_type){
 			case bulletType.basic:
 			break;

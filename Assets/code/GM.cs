@@ -11,11 +11,15 @@ public class GM : MonoBehaviour {
     [HideInInspector]
 	public List<GameObject> enemies;
 
+	[HideInInspector]
     public int enemyCount = 0;
 
     private static GM _instance;
 
     public static GM Instance { get { return _instance; } }
+
+	[HideInInspector]
+	public int playerHP;
 
 
     private void Awake()
@@ -37,7 +41,7 @@ public class GM : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-                handleWaveOver();
+		handleWaveOver();
 		//testing purposes
 	}
 
@@ -51,6 +55,9 @@ public class GM : MonoBehaviour {
 		enemies.Add(enemy);
 	}
 
-
+	public void Died(GameObject enemy) {
+		enemyCount--;
+		enemies.Remove (enemy);
+	}
 
 }

@@ -7,11 +7,11 @@ public class EnemyHP : MonoBehaviour {
 	// Settings/properties:
 	[SerializeField]
 	private int maxHP = 2;
+	[SerializeField]
+	private bool guaranteeDrop = false, diesToBomb = true;
 
 	// Other variables
 	private int HP;
-
-	// Object references
 
 
 	// Initialize
@@ -24,17 +24,52 @@ public class EnemyHP : MonoBehaviour {
 		UnParentOnDestroy retScript;
 		if(special()) HP -= dmg;
 		if (HP <= 0) {
-			GM.Instance.enemyCount--;
-			if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
-				retScript.gameObject.transform.parent = null;
-			}
-
-			if(Camera.main.GetComponent<CameraShakeScript>() != null){
-				Camera.main.GetComponent<CameraShakeScript>().activate(.03f,.03f);
-			}
-
-			Destroy (gameObject);
+			die ();
 		}
+	}
+
+	// Called when the player bomb explosion collides
+	public void hitByBomb() {
+		if (diesToBomb) {
+			die ();
+		}
+	}
+
+	// Called when this enemy should die
+	public void die() {
+		// Make sure reticle is unparented
+		UnParentOnDestroy retScript;
+		if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
+			retScript.gameObject.transform.parent = null;
+		}
+
+		// Camera shake
+		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
+		if(CSS != null){
+			CSS.activate(.03f,.03f);
+		}
+
+		// Spawn drops
+		if (guaranteeDrop) {
+			DropManager.Instance.SpawnDrop (transform.position);
+		} else {
+			DropManager.Instance.MaybeDrop (maxHP, transform.position);
+		}
+
+		// If this is an asteroid (rock), blow up the whole thing
+		Rock rock = GetComponent<Rock>();
+		if (rock != null) {
+			rock.asteroid.killTurrets ();
+		}
+
+		// If this has fireworks enabled, explode with bullets!
+		Fireworks boom = GetComponent<Fireworks>();
+		if (boom != null && boom.enabled) {
+			boom.Explode ();
+		}
+
+		GM.Instance.Died (gameObject);
+		Destroy (gameObject);
 	}
 
 	private bool special(){ //special script checks for taking damage

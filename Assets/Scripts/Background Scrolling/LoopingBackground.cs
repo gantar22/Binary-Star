@@ -11,8 +11,8 @@ public class LoopingBackground : MonoBehaviour {
 	// Initialization
 	void Start () {
 		BoxCollider2D collider = GetComponent<BoxCollider2D> ();
-		width = collider.size.x * transform.localScale.x;
-		height = collider.size.y * transform.localScale.y;
+		width = collider.size.x * transform.lossyScale.x;
+		height = collider.size.y * transform.lossyScale.y;
 	}
 	
 	// Called once per frame
@@ -22,9 +22,9 @@ public class LoopingBackground : MonoBehaviour {
 		} else if (transform.position.x > width) {
 			transform.position += new Vector3 (-2f * width, 0, 0);
 		} else if (transform.position.y < -height) {
-			transform.position += new Vector3 (2f * height, 0, 0);
+			transform.position += new Vector3 (0, 2f * height, 0);
 		} else if (transform.position.y > height) {
-			transform.position += new Vector3 (-2f * height, 0, 0);
+			transform.position += new Vector3 (0, -2f * height, 0);
 		}
 	}
 }

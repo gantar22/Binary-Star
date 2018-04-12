@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114779874589900858}
   - component: {fileID: 50068161734694714}
   - component: {fileID: 61020884383479586}
-  - component: {fileID: 114371369568542416}
+  - component: {fileID: 114673298421587070}
   m_Layer: 0
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341310760216744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.01, y: -2.81, z: 0}
+  m_LocalPosition: {x: 2.36, y: -9.27, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4407858012068228}
@@ -199,7 +199,7 @@ MonoBehaviour:
   turnRadius: 60
   ctlr: 2
   target: {fileID: 0}
---- !u!114 &114371369568542416
+--- !u!114 &114673298421587070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -207,10 +207,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187632629434982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31532d8d30531ea4c917f6afeb21391a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c57a886cdd848146a9013c89d423d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 3
+  invulnTime: 3
+  minFrequency: 1
+  maxFrequency: 7
+  minAlpha: 0.4
+  maxAlpha: 0.9
+  PlayerTurret: {fileID: 1950419444662794}
 --- !u!114 &114779874589900858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,8 +294,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2060685071
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f7e12c42f29e5cc4ba62f1d34e41ea57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -332,8 +338,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2060685071
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd9f7d83ea0687c4ebe2e7a3dd12ee25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

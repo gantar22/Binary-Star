@@ -82,13 +82,30 @@ public class PlayerMove : MonoBehaviour {
 		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
 		}
+		/* Causing the player body separation bug:
 		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.position = Vector3.zero;
-		}
+		} */
 
 		
-
-
+		// Make sure the player doesn't go on top of asteroids
+		if (Asteroid.asteroids != null) {
+			foreach (Asteroid ast in Asteroid.asteroids) {
+				Vector2 rockPos = ast.rock.transform.position;
+				Vector2 playerPos = transform.root.position;
+				float rockRadius = ast.rock.circCollider.radius * ast.rock.transform.lossyScale.x;
+				// Adjust this to adjust how close the player can get to asteroids:
+				float playerRadius = 2f;
+					
+				Vector2 diff = playerPos - rockPos;
+				if (diff.magnitude < rockRadius + playerRadius) {
+					GetComponent<PlayerHP> ().gotHit ();
+						
+					Vector2 newPos = diff.normalized * (rockRadius + playerRadius) + rockPos;
+					transform.root.Translate ((Vector3)newPos - transform.root.position, Space.World); // Test this
+				}
+			}
+		}
 	}
 
 	static bool not_percent(float x){

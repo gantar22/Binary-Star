@@ -7,23 +7,33 @@ public class SleeperEnemy : MonoBehaviour {
 
 	// Settings/properties:
 	[SerializeField]
-	private float circleSpeed = 4.5f, chaseSpeed = 7f, accelMag = 0.1f;
+	private float circleSpeed = 0.1f, chaseSpeed = 11f, accelMag = 1f; 
 
 	[SerializeField]
-	private float wakeRadius = 5f, frequency = 1f, inwardBoost = 0.4f;
+	private float wakeRadius = 15f, frequency = 0.3f;
+
+	[SerializeField]
+	private Sprite AsleepSprite;
+	[SerializeField]
+	private Sprite AwakeSprite;
 
 	// Other variables
-
 	private bool chasing;
 
 	// Object references
 	private WeightedEnemyPhysics WEP;
+	private SpriteRenderer SR;
+	private ScrollingObject SO;
 
 
 	// Initialize
 	void Start () {
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 		WEP.maxSpeed = circleSpeed;
+		SR = GetComponent<SpriteRenderer> ();
+		SR.sprite = AsleepSprite;
+		SO = GetComponent<ScrollingObject> ();
+		SO.enabled = true;
 
 		chasing = false;
 	}
@@ -39,14 +49,13 @@ public class SleeperEnemy : MonoBehaviour {
 
 		// Decide what direction to move in
 		direction = targetPos - pos;
-		Vector2 perp = new Vector2 (-direction.y, direction.x);
 
 		float period = 1f / frequency;
 		float radians = (Time.time % (period)) / period * 2 * Mathf.PI;
 
 		checkForChase (targetPos, pos);
 		if (!chasing) {
-			direction = perp * Mathf.Cos (radians) + direction * Mathf.Sin (radians) + direction * inwardBoost;
+			direction = Vector2.up * Mathf.Cos (radians) + Vector2.right * Mathf.Sin (radians);
 		}
 
 		// Normalize the velocity and set to desired speed
@@ -57,9 +66,13 @@ public class SleeperEnemy : MonoBehaviour {
 	private void checkForChase(Vector2 targetPos, Vector2 pos) {
 		if (chasing && (targetPos - pos).magnitude > wakeRadius) {
 			chasing = false;
+			SO.enabled = true;
+			SR.sprite = AsleepSprite;
 			WEP.maxSpeed = circleSpeed;
 		} else if (!chasing && (targetPos - pos).magnitude <= wakeRadius) {
 			chasing = true;
+			SO.enabled = false;
+			SR.sprite = AwakeSprite;
 			WEP.maxSpeed = chaseSpeed;
 		}
 	}

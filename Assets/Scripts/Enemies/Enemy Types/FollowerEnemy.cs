@@ -13,11 +13,15 @@ public class FollowerEnemy : MonoBehaviour {
 
 	// Object references
 	public GameObject objToFollow;
+	public Sprite followerSprite, leaderSprite;
 	private WeightedEnemyPhysics WEP, leaderWEP;
 
 
 	// Initialize
 	void Start () {
+		WEP = GetComponent<WeightedEnemyPhysics> ();
+		leaderWEP = objToFollow.GetComponent<WeightedEnemyPhysics> ();
+
 		if (!objToFollow) {
 			SetControllerScript (true);
 			return;
@@ -26,8 +30,6 @@ public class FollowerEnemy : MonoBehaviour {
 			maxSpeed = getLeaderSpeed ();
 		}
 
-		WEP = GetComponent<WeightedEnemyPhysics> ();
-		leaderWEP = objToFollow.GetComponent<WeightedEnemyPhysics> ();
 		WEP.maxSpeed = maxSpeed;
 	}
 
@@ -50,7 +52,8 @@ public class FollowerEnemy : MonoBehaviour {
 		// Decide what direction to move in
 		direction = followPos - pos;
 		if (direction.magnitude < followRadius) {
-			WEP.acceleration = Vector2.zero;
+			//WEP.acceleration = Vector2.zero;
+			WEP.acceleration = direction.normalized * 0.01f; // This way, it will still turn towards the objToFollow
 			WEP.velocity = Vector2.zero; // Not weighty...
 			return;
 		}
@@ -92,6 +95,14 @@ public class FollowerEnemy : MonoBehaviour {
 
 	// When follower is destroyed, enable new leader script
 	private void SetControllerScript(bool enabled) {
+		if (enabled) {
+			GetComponent<SpriteRenderer> ().sprite = leaderSprite;
+			WEP.noCollisions = true;
+		} else {
+			GetComponent<SpriteRenderer> ().sprite = followerSprite;
+			WEP.noCollisions = false;
+		}
+
 		if (GetComponent<NewBasicEnemy> ()) {
 			GetComponent<NewBasicEnemy> ().enabled = enabled;
 		} else if (GetComponent<ZigZagEnemy> ()) {
