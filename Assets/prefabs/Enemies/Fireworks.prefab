@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 15
+  angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851cc313d4836614c86463d78fb9011e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 1594480154817238, guid: 3cbe86813f3711344a9da93e76ab8adf,
+  BulletPrefab: {fileID: 1369428642331334, guid: 29279c8c7f2593c4693ce87938a5d349,
     type: 2}
   offset: 1
   bulletCount: 8

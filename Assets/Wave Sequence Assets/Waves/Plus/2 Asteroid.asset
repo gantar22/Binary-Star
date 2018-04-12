@@ -9,21 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45393247795a54408971ed69b73c3aa, type: 3}
-  m_Name: Centipedes+
+  m_Name: 2 Asteroid
   m_EditorClassIdentifier: 
-  TopSpawner:
-  - type: 0
+  TopSpawner: []
+  BotSpawner: []
+  LeftSpawner: []
+  RightSpawner: []
+  TopFarLeft:
+  - type: 6
     numEnemies: 1
-  BotSpawner:
-  - type: 0
+  TopMidLeft: []
+  TopMidRight:
+  - type: 6
     numEnemies: 1
-  LeftSpawner:
-  - type: 0
-    numEnemies: 1
-  - type: 4
-    numEnemies: 1
-  RightSpawner:
-  - type: 0
-    numEnemies: 1
-  - type: 4
-    numEnemies: 1
+  TopFarRight: []
