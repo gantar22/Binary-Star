@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863058826801298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.35844, y: 2.4923577, z: 0}
+  m_LocalPosition: {x: 4.03, y: 3.68, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 4659598171244518}
@@ -72,13 +72,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1696175944095616}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.289, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4627471163201310}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50725640902272064
 Rigidbody2D:
   serializedVersion: 4
@@ -130,20 +130,18 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.5, y: 0.6}
+    newSize: {x: 0.6, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.013335647, y: 0.3254359}
-      - {x: -0.21282092, y: 0.23620453}
-      - {x: -0.15825671, y: 0.16717915}
-      - {x: -0.0014913084, y: 0.2420434}
-      - {x: 0.15369257, y: 0.17261495}
-      - {x: 0.22097467, y: 0.23912841}
+    - - {x: 0.065613, y: -0.0026235282}
+      - {x: -0.04671493, y: 0.22789928}
+      - {x: -0.017080933, y: 0.0010779798}
+      - {x: -0.049787372, y: -0.23019217}
 --- !u!114 &114318557805214520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,12 +304,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3185e68616b72e47986ef35c2a6b5a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6360840f43f58e24f9ea70ecf26a7692, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.6, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
