@@ -31,11 +31,11 @@ public class BulletScript : MonoBehaviour {
 			return;
 		}
 
-		BulletScript bs = col.gameObject.GetComponent<BulletScript> ();
+		/* BulletScript bs = col.gameObject.GetComponent<BulletScript> ();
 		if (bs != null) {
 			bs.die ();
 			die ();
-		}
+		} */
 
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
