@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class spin : MonoBehaviour {
-	[SerializeField]
+	public
 	float speed = 5;
 
 	// Use this for initialization

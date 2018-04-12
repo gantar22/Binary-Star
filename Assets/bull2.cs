@@ -22,6 +22,8 @@ public class bull2 : MonoBehaviour {
 	public state _state;
 	[HideInInspector]
 	public int hp = 3;
+
+	public spin ring;
 	private ParticleSystem ps;
 
 	private Transform pTrans;

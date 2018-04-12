@@ -50,7 +50,12 @@ public class EnemyHP : MonoBehaviour {
 		}
 
 		// Spawn drops
-		if (guaranteeDrop) {
+		bull2 b;
+		if(b = GetComponent<bull2>()){
+			for(int i = 0; i < 10;i++){
+				DropManager.Instance.SpawnDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
+			}
+		} else if (guaranteeDrop) {
 			DropManager.Instance.SpawnDrop (transform.position);
 		} else {
 			DropManager.Instance.MaybeDrop (maxHP, transform.position);
@@ -77,6 +82,7 @@ public class EnemyHP : MonoBehaviour {
 		if((b = GetComponent<bull2>())){
 			if(b._state != bull2.state.stunned) return false;
 			if(transform.childCount > 0 && transform.GetChild(0).GetComponent<Animator>()) transform.GetChild(0).GetComponent<Animator>().SetTrigger("hit");
+			if(b.ring) b.ring.speed += 7;
 			return (--b.hp == 0);
 		}
 		return true;
