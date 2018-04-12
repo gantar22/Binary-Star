@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Name: 1 Centipede
   m_EditorClassIdentifier: 
   TopSpawner:
-  - type: 4
+  - type: 3
     numEnemies: 1
   BotSpawner: []
   LeftSpawner: []
   RightSpawner: []
+  TopFarLeft: []
+  TopMidLeft: []
+  TopMidRight: []
+  TopFarRight: []

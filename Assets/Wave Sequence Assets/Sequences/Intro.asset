@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732c74c34b77d3841813065acec00a27, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: 
+  waveTuples:
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 494a274bc95c92a41a5c688a70ebdaf2, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: a5da2c8df85f9e44baf1de83c4e2bcd0, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: b785bd8073159ef4ca4fd764a581ae0a, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 494a274bc95c92a41a5c688a70ebdaf2, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: eead53b97d49fbc49ac6bb85352063db, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 137d9dcdc58f64d49a2d2e4ed6b09e02, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 494a274bc95c92a41a5c688a70ebdaf2, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 91d7c7d159e295243bed4a1bead1fb01, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 7c0f70e3ac7ff0b49bc7c78e8b26be98, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: a5da2c8df85f9e44baf1de83c4e2bcd0, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 3a2c07584b3e166479caeffc5059da4a, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: b6d294f66e60c9b48ab9a479386caf33, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 137d9dcdc58f64d49a2d2e4ed6b09e02, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: e3f4d8c7a7f86c54680cc8aca891cc9b, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 3a2c07584b3e166479caeffc5059da4a, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: a5da2c8df85f9e44baf1de83c4e2bcd0, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: bc1b4cea11a5a434fb59a02e5b065714, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 62d28981e7d042041ba0e51d0de66904, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: eead53b97d49fbc49ac6bb85352063db, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 74a48641c2beede47a55869cb1dfea55, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 3781d27f66b9d1b458ffa9d817a97cf7, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: eead53b97d49fbc49ac6bb85352063db, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 3a2c07584b3e166479caeffc5059da4a, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 94fe3d003b95aa646a4ab7574a7a558a, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: ad9e957481e61f9418737442856cf9c8, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 2fa199bcab3584541a76656fda6846cc, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 82495e11e33311d4fa4cea7a4c77eea2, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: 2fa199bcab3584541a76656fda6846cc, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: b6d294f66e60c9b48ab9a479386caf33, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: e3f4d8c7a7f86c54680cc8aca891cc9b, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 3781d27f66b9d1b458ffa9d817a97cf7, type: 2}
+  - condition: 2
+    threshold: 0
+    wave: {fileID: 11400000, guid: 94fe3d003b95aa646a4ab7574a7a558a, type: 2}
+  - condition: 0
+    threshold: 0
+    wave: {fileID: 11400000, guid: b36c265567d2a3440bee5a06ec3c6378, type: 2}

@@ -9,18 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45393247795a54408971ed69b73c3aa, type: 3}
-  m_Name: 3 Basic
+  m_Name: 1 Asteroid
   m_EditorClassIdentifier: 
   TopSpawner:
-  - type: 0
+  - type: 6
     numEnemies: 1
   BotSpawner: []
-  LeftSpawner:
-  - type: 0
-    numEnemies: 1
-  RightSpawner:
-  - type: 0
-    numEnemies: 1
+  LeftSpawner: []
+  RightSpawner: []
   TopFarLeft: []
   TopMidLeft: []
   TopMidRight: []

@@ -16,34 +16,44 @@ MonoBehaviour:
     numEnemies: 1
   - type: 2
     numEnemies: 1
-  - type: 0
+  - type: 9
     numEnemies: 1
   - type: 3
     numEnemies: 1
   BotSpawner:
-  - type: 0
+  - type: 8
     numEnemies: 1
   - type: 4
     numEnemies: 1
-  - type: 2
+  - type: 9
     numEnemies: 1
   - type: 3
     numEnemies: 1
   LeftSpawner:
   - type: 0
     numEnemies: 1
-  - type: 4
+  - type: 8
     numEnemies: 1
-  - type: 2
+  - type: 10
     numEnemies: 1
-  - type: 3
+  - type: 5
     numEnemies: 1
   RightSpawner:
   - type: 0
     numEnemies: 1
   - type: 4
     numEnemies: 1
-  - type: 2
+  - type: 10
     numEnemies: 1
-  - type: 3
+  - type: 1
+    numEnemies: 1
+  TopFarLeft:
+  - type: 7
+    numEnemies: 1
+  TopMidLeft:
+  - type: 0
+    numEnemies: 0
+  TopMidRight: []
+  TopFarRight:
+  - type: 7
     numEnemies: 1
