@@ -84,7 +84,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4845272559669568}
   - component: {fileID: 114424418870944196}
-  - component: {fileID: 114381074977574978}
   m_Layer: 0
   m_Name: Carter's_Super_Awesome_Game_Controller
   m_TagString: Untagged
@@ -161,27 +160,6 @@ Transform:
   m_Father: {fileID: 4845272559669568}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114381074977574978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1900107681847814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51a949359a5a02408f7756d266107cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sequences: []
-  TopSpawner: {x: 0, y: 17}
-  BotSpawner: {x: 0, y: -17}
-  LeftSpawner: {x: -30, y: 0}
-  RightSpawner: {x: 30, y: 0}
-  TopFarLeft: {x: 0, y: 0}
-  TopMidLeft: {x: 0, y: 0}
-  TopMidRight: {x: 0, y: 0}
-  TopFarRight: {x: 0, y: 0}
-  idle: 0
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequences:
-  - {fileID: 11400000, guid: ccb02b81dab9dce4bb9ac0061428077e, type: 2}
-  - {fileID: 11400000, guid: b20af3d112d00164d9fb2a8235f65b37, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 0}
   TopSpawner: {x: 0, y: 17}
   BotSpawner: {x: 0, y: -17}
   LeftSpawner: {x: -30, y: 0}
@@ -231,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317b7ee4510ba7a47a0c6f8cf80d021f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDropInterval: 40
+  maxDropInterval: 50
   TypePrefabs:
   - Type: 0
     prefab: {fileID: 1883236937684282, guid: 4f59ba391d0fc66498ad3f04a973ffe9, type: 2}

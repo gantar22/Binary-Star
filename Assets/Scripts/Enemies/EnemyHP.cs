@@ -17,6 +17,7 @@ public class EnemyHP : MonoBehaviour {
 	// Initialize
 	void Start () {
 		HP = maxHP;
+		GM.Instance.Spawn (gameObject);
 	}
 
 	// Called when damage is taken

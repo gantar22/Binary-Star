@@ -20,7 +20,7 @@ public class SwarmEnemy : MonoBehaviour {
 
 
 	// Initialization
-	void Start () {
+	void Awake () {
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 		WEP.maxSpeed = maxSpeed;
 
@@ -90,7 +90,7 @@ public class SwarmEnemy : MonoBehaviour {
 		WeightedEnemyPhysics newWEP = newSwarmer.GetComponent<WeightedEnemyPhysics> ();
 		newWEP.maxSpeed = maxSpeed;
 		SwarmersWEP.Add (newWEP);
-		GM.Instance.Spawn (newSwarmer);
+		//GM.Instance.Spawn (newSwarmer);
 	}
 
 	// Change the acceleration of the entire swarm

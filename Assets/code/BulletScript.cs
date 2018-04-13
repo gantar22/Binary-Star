@@ -28,7 +28,6 @@ public class BulletScript : MonoBehaviour {
 		if (I != null && I.enabled) {
 			I.gotHit ();
 			die ();
-			return;
 		}
 
 		/* BulletScript bs = col.gameObject.GetComponent<BulletScript> ();
@@ -55,12 +54,11 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void die(){
-		//Destroy(gameObject);
-		Destroy(transform.root.gameObject);
 		switch(_type){
 			case bulletType.basic:
 			break;
 		}
+		Destroy(transform.root.gameObject);
 	}
 
 
