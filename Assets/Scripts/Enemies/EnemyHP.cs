@@ -91,6 +91,12 @@ public class EnemyHP : MonoBehaviour {
 			if(b.ring) b.ring.speed += 7;
 			return (--b.hp == 0);
 		}
+
+		SleeperEnemy se;
+		if(se = GetComponent<SleeperEnemy>()){
+			se.hit();
+			return true;
+		}
 		return true;
 	}
 }

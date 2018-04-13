@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4395501461019732}
   - component: {fileID: 212221862632767726}
   - component: {fileID: 114448029918505146}
+  - component: {fileID: 114254481521617832}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -125,6 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 0.8
+--- !u!114 &114254481521617832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1977863808481594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114309201384658104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 3
   guaranteeDrop: 0
   diesToBomb: 1
 --- !u!114 &114448029918505146

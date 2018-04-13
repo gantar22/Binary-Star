@@ -19,6 +19,7 @@ public class SleeperEnemy : MonoBehaviour {
 
 	// Other variables
 	private bool chasing;
+	private bool permawoke; //permawoke
 
 	// Object references
 	private WeightedEnemyPhysics WEP;
@@ -60,16 +61,21 @@ public class SleeperEnemy : MonoBehaviour {
 
 		// Normalize the velocity and set to desired speed
 		WEP.acceleration = direction.normalized * accelMag;
+
+	}
+
+	public void hit(){
+		permawoke = true;
 	}
 
 	// Check if the player is within the wake radius
 	private void checkForChase(Vector2 targetPos, Vector2 pos) {
-		if (chasing && (targetPos - pos).magnitude > wakeRadius) {
+		if (!permawoke && chasing && (targetPos - pos).magnitude > 1.5f * wakeRadius) {
 			chasing = false;
 			SO.enabled = true;
 			SR.sprite = AsleepSprite;
 			WEP.maxSpeed = circleSpeed;
-		} else if (!chasing && (targetPos - pos).magnitude <= wakeRadius) {
+		} else if (permawoke || (!chasing && (targetPos - pos).magnitude <= wakeRadius)) {
 			chasing = true;
 			SO.enabled = false;
 			SR.sprite = AwakeSprite;

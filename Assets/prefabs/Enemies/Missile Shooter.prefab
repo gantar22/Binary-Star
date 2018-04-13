@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4693141274696580}
   - component: {fileID: 212454778029645626}
   - component: {fileID: 114252958584563722}
+  - component: {fileID: 114151458250198150}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1311236864071248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.3, y: 5.7, z: 0}
+  m_LocalPosition: {x: 12.750341, y: 17.250793, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 4693141274696580}
@@ -125,6 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraScreenRadius: 0.8
+--- !u!114 &114151458250198150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502267292973546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114252958584563722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
-  guaranteeDrop: 0
+  maxHP: 5
+  guaranteeDrop: 1
   diesToBomb: 1
 --- !u!114 &114503458760469350
 MonoBehaviour:
@@ -167,7 +179,7 @@ MonoBehaviour:
   _bullet: {fileID: 1754065566595806, guid: 492af4e49265bff4eb951e729a3e9aa3, type: 2}
   _offset: 2
   _kick: 1
-  _fire_rate: 0.1428
+  _fire_rate: 0.4
   shootingEnabled: 1
 --- !u!114 &114716556069694750
 MonoBehaviour:
@@ -203,7 +215,7 @@ MonoBehaviour:
   maxSpeed: 6
   accelMag: 5
   circleTime: 6
-  diveTime: 2
+  diveTime: 1
 --- !u!212 &212454778029645626
 SpriteRenderer:
   m_ObjectHideFlags: 1

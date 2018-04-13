@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4147287652566598}
   - component: {fileID: 212462573199549254}
   - component: {fileID: 114689958308067696}
+  - component: {fileID: 114831252772155834}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 4
   guaranteeDrop: 0
   diesToBomb: 1
 --- !u!114 &114609849082002472
@@ -202,6 +203,17 @@ MonoBehaviour:
   ydiff: 0.16
   xdiff: 0.1
   speed: 1
+--- !u!114 &114831252772155834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1744612423340424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212190470115182012
 SpriteRenderer:
   m_ObjectHideFlags: 1

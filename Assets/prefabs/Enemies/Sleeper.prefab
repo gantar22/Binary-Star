@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4945437311672676}
   - component: {fileID: 212521836546206624}
   - component: {fileID: 114810667946567696}
+  - component: {fileID: 114080108918483576}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638199509143702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.83, y: 11, z: 0}
+  m_LocalPosition: {x: 12.480553, y: 18.217535, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4945437311672676}
@@ -112,6 +113,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &114080108918483576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840582313758690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114716659583541084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
-  guaranteeDrop: 0
+  maxHP: 5
+  guaranteeDrop: 1
   diesToBomb: 1
 --- !u!114 &114810667946567696
 MonoBehaviour:
@@ -164,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleSpeed: 0.1
-  chaseSpeed: 11
+  chaseSpeed: 15
   accelMag: 1
   wakeRadius: 15
   frequency: 0.3

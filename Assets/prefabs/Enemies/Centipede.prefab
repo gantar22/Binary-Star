@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4465863957258878}
   - component: {fileID: 212654760967791936}
   - component: {fileID: 114356246975879054}
+  - component: {fileID: 114882954721682786}
   m_Layer: 8
   m_Name: New Sprite
   m_TagString: Untagged
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 2
   guaranteeDrop: 0
   diesToBomb: 1
 --- !u!114 &114356246975879054
@@ -223,6 +224,17 @@ MonoBehaviour:
   clampPerp: 0
   minDegree: 0
   maxDegree: 0
+--- !u!114 &114882954721682786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678319857892728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212654760967791936
 SpriteRenderer:
   m_ObjectHideFlags: 1

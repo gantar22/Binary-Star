@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4348811504423066}
   - component: {fileID: 212912471131546022}
   - component: {fileID: 114841032145412034}
+  - component: {fileID: 114395578878615008}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
@@ -112,6 +113,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.01, y: 0}
   m_Size: {x: 0.32, y: 0.43}
   m_Direction: 0
+--- !u!114 &114395578878615008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030742149006752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114446908507564548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 2
   guaranteeDrop: 0
   diesToBomb: 1
 --- !u!114 &114620521724057590
@@ -150,9 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeDives: 2
-  maxSpeed: 4
-  accelMag: 5
-  diveSpeedMult: 2
+  maxSpeed: 6
+  accelMag: 7
+  diveSpeedMult: 3
   frequency: 2
   minCircleTime: 3
   maxCircleTime: 5
