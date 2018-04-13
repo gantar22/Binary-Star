@@ -20,7 +20,6 @@ public class FireworkEnemy : MonoBehaviour {
 	// Object references
 	private WeightedEnemyPhysics WEP;
 	private SpriteRenderer SR;
-	private Fireworks fireworks;
 
 
 	// Initialize
@@ -30,8 +29,6 @@ public class FireworkEnemy : MonoBehaviour {
 
 		SR = GetComponent<SpriteRenderer> ();
 		normalSprite = SR.sprite;
-
-		fireworks = GetComponent<Fireworks> ();
 
 		triggered = false;
 		normalState = true;

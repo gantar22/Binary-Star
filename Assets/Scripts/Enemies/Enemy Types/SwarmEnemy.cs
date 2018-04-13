@@ -48,10 +48,10 @@ public class SwarmEnemy : MonoBehaviour {
 		// Check if the swarm has died
 		if (SwarmerCount == 0) {
 			Destroy (gameObject);
+		} else {
+			// Center the hive mind
+			center();
 		}
-
-		// Center the hive mind
-		center();
 	}
 
 	// Create the swarm of enemies
