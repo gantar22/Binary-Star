@@ -93,7 +93,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 15
+  angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0
   velocity: {x: 0, y: 0}
   acceleration: {x: 0, y: 0}
+  clampPerp: 0
+  minDegree: 0
+  maxDegree: 0

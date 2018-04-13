@@ -25,6 +25,11 @@ public class EnemyHP : MonoBehaviour {
 		if(special()) HP -= dmg;
 		if (HP <= 0) {
 			die ();
+		} else { //hit animation
+			take_hit th;
+			if(th = GetComponentInChildren<take_hit>()){
+				th.hit();
+			}
 		}
 	}
 

@@ -96,10 +96,10 @@ public class FollowerEnemy : MonoBehaviour {
 	// When follower is destroyed, enable new leader script
 	private void SetControllerScript(bool enabled) {
 		if (enabled) {
-			GetComponent<SpriteRenderer> ().sprite = leaderSprite;
+			GetComponentInChildren<SpriteRenderer> ().sprite = leaderSprite;
 			WEP.noCollisions = true;
 		} else {
-			GetComponent<SpriteRenderer> ().sprite = followerSprite;
+			GetComponentInChildren<SpriteRenderer> ().sprite = followerSprite;
 			WEP.noCollisions = false;
 		}
 

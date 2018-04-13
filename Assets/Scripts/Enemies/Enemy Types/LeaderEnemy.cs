@@ -27,7 +27,7 @@ public class LeaderEnemy : MonoBehaviour {
 			FComponent.objToFollow = previous;
 			FComponent.followRadius = followRadius;
 			FComponent.followerSprite = followerSprite;
-			FComponent.leaderSprite = newFollower.GetComponent<SpriteRenderer> ().sprite;
+			FComponent.leaderSprite = newFollower.GetComponentInChildren<SpriteRenderer>().sprite;
 
 			previous = newFollower;
 		}
