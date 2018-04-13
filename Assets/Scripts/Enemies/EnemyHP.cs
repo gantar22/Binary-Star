@@ -31,12 +31,13 @@ public class EnemyHP : MonoBehaviour {
 				th.hit();
 			}
 		}
+
 	}
 
 	// Called when the player bomb explosion collides
 	public void hitByBomb() {
 		if (diesToBomb) {
-			die ();
+			Invoke("die",Random.value * .5f);
 		}
 	}
 

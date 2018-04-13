@@ -17,6 +17,11 @@ public class take_hit : MonoBehaviour {
 
 	public void hit(){
 		StartCoroutine("flash");
+		// Camera shake
+		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
+		if(CSS != null){
+			CSS.activate(.02f,.05f);
+		}
 
 	}
 

@@ -41,6 +41,12 @@ public class Player_Fire : MonoBehaviour {
 			return;
 		}
 
+		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
+		if(CSS != null){
+			//CSS.activate(.2f,.05f); this feels bad
+		}
+
+
 		cool_down = true;
 		Invoke("reload",1 / _fire_rate);
 		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
