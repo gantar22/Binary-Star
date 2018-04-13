@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58421269111283582}
   - component: {fileID: 114869700529532548}
   - component: {fileID: 114800207663079222}
+  - component: {fileID: 114479391885855982}
   m_Layer: 0
   m_Name: HP Drop
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883236937684282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.675034, y: 15.085478, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,6 +59,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!114 &114479391885855982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1883236937684282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf80a1dce334e24b9a75fe73804d12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114800207663079222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KillIfVeryOOB: 1
+  extraScreenRadius: 3
 --- !u!212 &212282660960557474
 SpriteRenderer:
   m_ObjectHideFlags: 1
