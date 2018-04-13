@@ -233,6 +233,11 @@ Prefab:
       propertyPath: maxDropInterval
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 114690320306263346, guid: c7e13d1c6e416b1498a82d4e7f897edf,
+        type: 2}
+      propertyPath: TypePrefabs.Array.data[1].DropWeight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114381074977574978, guid: c7e13d1c6e416b1498a82d4e7f897edf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c7e13d1c6e416b1498a82d4e7f897edf, type: 2}
@@ -308,13 +313,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &506082851 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4453190619821164, guid: 391aed02650d8474e9b6dfdded257658,
-    type: 2}
-  m_PrefabInternal: {fileID: 529643786}
 --- !u!1001 &529643786
 Prefab:
   m_ObjectHideFlags: 0

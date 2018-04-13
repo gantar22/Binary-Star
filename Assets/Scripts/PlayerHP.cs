@@ -110,6 +110,14 @@ public class PlayerHP : MonoBehaviour {
 		}
 	}
 
+	public bool gainBombCharge(int charge){
+		bomb_det bd = GetComponent<bomb_det>();
+		if(bd){
+			return bd.addCharge(charge);
+		}
+		return false;
+	}
+
 	// Called when damage is taken
 	public void gotHit(int dmg = 1) {
 		if (invuln) {

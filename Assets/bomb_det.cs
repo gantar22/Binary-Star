@@ -7,6 +7,7 @@ public class bomb_det : MonoBehaviour {
 
 	float cooldown = 60;
 	bool canfire;
+	float timer;
 
 	void Start(){
 		canfire = true;
@@ -29,8 +30,17 @@ public class bomb_det : MonoBehaviour {
 			if(CSS != null){
 				CSS.activate(.5f,.5f); 
 			}
-			Invoke("act",cooldown);
+			//Invoke("act",cooldown);
+			timer = cooldown;
 		}
+		timer -= Time.deltaTime;
+		if(timer < 0) act();
+	}
+
+	public bool addCharge(int c){
+		bool r = timer > 0;
+		timer -= 10 * c;
+		return r;
 	}
 
 	void act(){

@@ -11,11 +11,11 @@ public class BombChargeDrop : MonoBehaviour {
 		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
 		if (PHP != null && PHP.enabled) {
 
-			/*
+			
 			if (PHP.gainBombCharge (_ChargeGain)) {
 				getPickedUp ();
 			}
-			*/
+			
 		}
 	}
 
