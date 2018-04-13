@@ -62,8 +62,10 @@ public class SpawnManager : MonoBehaviour {
 
 		for (int x = 0; x < sequence.waveTuples.Count; x++) {
 			WaveTuple tuple = sequence.waveTuples [x];
+
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
+				yield return new WaitForEndOfFrame ();
 				yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
 			} else if (tuple.condition == Trigger.RemainingHealth) {
 				yield return new WaitWhile(() => GM.Instance.playerHP > tuple.threshold);
@@ -100,7 +102,7 @@ public class SpawnManager : MonoBehaviour {
 				for (int j = 0; j < pair.numEnemies; j++) {
 					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
 					randomizePosition (newEnemy);
-					GM.Instance.Spawn (newEnemy);
+					//GM.Instance.Spawn (newEnemy);
 				}
 			}
 		}

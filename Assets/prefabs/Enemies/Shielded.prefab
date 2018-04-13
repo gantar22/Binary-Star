@@ -142,7 +142,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
 --- !u!60 &60991220049174816
@@ -169,10 +169,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.065613, y: -0.0026235282}
+    - - {x: 0.062167794, y: -0.0026234984}
       - {x: -0.04671493, y: 0.22789928}
-      - {x: -0.017080933, y: 0.0010779798}
-      - {x: -0.049787372, y: -0.23019217}
+      - {x: -0.04119751, y: -0.0023672283}
+      - {x: -0.049787372, y: -0.23363742}
 --- !u!114 &114318557805214520
 MonoBehaviour:
   m_ObjectHideFlags: 1
