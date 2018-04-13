@@ -91,6 +91,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1962385656158424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4460163373513828}
+  - component: {fileID: 114269414040172894}
+  m_Layer: 0
+  m_Name: Prefab Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4012173902534834
 Transform:
   m_ObjectHideFlags: 1
@@ -116,6 +132,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4845272559669568}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4460163373513828
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962385656158424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4845272559669568}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4618379249905996
 Transform:
@@ -143,6 +172,7 @@ Transform:
   - {fileID: 4618379249905996}
   - {fileID: 4298908011911742}
   - {fileID: 4012173902534834}
+  - {fileID: 4460163373513828}
   - {fileID: 4966637470586750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -158,8 +188,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4845272559669568}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114269414040172894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962385656158424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82887356e159d84ca2c9b12cee3d088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 114034068444982572, guid: 0d11929cfb553f847ae35daf325a9ea2,
+    type: 2}
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,14 +232,6 @@ MonoBehaviour:
   sequences:
   - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
   - {fileID: 0}
-  TopSpawner: {x: 0, y: 17}
-  BotSpawner: {x: 0, y: -17}
-  LeftSpawner: {x: -30, y: 0}
-  RightSpawner: {x: 30, y: 0}
-  TopFarLeft: {x: -17, y: 17}
-  TopMidLeft: {x: -8.5, y: 17}
-  TopMidRight: {x: 8.5, y: 17}
-  TopFarRight: {x: 17, y: 17}
   idle: 0
 --- !u!114 &114690320306263346
 MonoBehaviour:
@@ -209,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317b7ee4510ba7a47a0c6f8cf80d021f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDropInterval: 50
+  maxDropInterval: 60
   TypePrefabs:
   - Type: 0
     prefab: {fileID: 1883236937684282, guid: 4f59ba391d0fc66498ad3f04a973ffe9, type: 2}

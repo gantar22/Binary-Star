@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ExplosionType {None, Small, Medium, Large};
+
 public class EnemyHP : MonoBehaviour {
 
 	// Settings/properties:
@@ -9,6 +11,8 @@ public class EnemyHP : MonoBehaviour {
 	private int maxHP = 2;
 	[SerializeField]
 	private bool guaranteeDrop = false, diesToBomb = true;
+	[SerializeField]
+	private ExplosionType explosionType;
 
 	// Other variables
 	private int HP;
@@ -56,9 +60,11 @@ public class EnemyHP : MonoBehaviour {
 			CSS.activate(.03f,.03f);
 		}
 
+		playExplosion ();
+
 		// Spawn drops
 		if(GetComponent<bull2>()){
-			for(int i = 0; i < 10;i++){
+			for(int i = 0; i < 10;i++) {
 				DropManager.Instance.SpawnDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}
 		} else if (guaranteeDrop) {
@@ -81,6 +87,24 @@ public class EnemyHP : MonoBehaviour {
 
 		GM.Instance.Died (gameObject);
 		Destroy (gameObject);
+	}
+
+	// Spawn an explosion animation
+	private float playExplosion() {
+		if (explosionType == ExplosionType.None) {
+			return 0f;
+		}
+
+		Explosion newExplosion = Instantiate (PrefabManager.Instance.explosion, transform.position, transform.rotation);
+		if (explosionType == ExplosionType.Small) {
+			newExplosion.transform.localScale = new Vector3 (6f, 6f, 1f);
+		} else if (explosionType == ExplosionType.Medium) {
+			newExplosion.transform.localScale = new Vector3 (12f, 12f, 1f);
+		} else if (explosionType == ExplosionType.Large) {
+			newExplosion.transform.localScale = new Vector3 (18f, 18f, 1f);
+		}
+
+		return PrefabManager.Instance.explosion.duration;
 	}
 
 	private bool special(){ //special script checks for taking damage
