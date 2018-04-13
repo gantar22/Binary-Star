@@ -30,7 +30,7 @@ public class SleeperEnemy : MonoBehaviour {
 	void Start () {
 		WEP = GetComponent<WeightedEnemyPhysics> ();
 		WEP.maxSpeed = circleSpeed;
-		SR = GetComponent<SpriteRenderer> ();
+		SR = GetComponentInChildren<SpriteRenderer> ();
 		SR.sprite = AsleepSprite;
 		SO = GetComponent<ScrollingObject> ();
 		SO.enabled = true;

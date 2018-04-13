@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 0
+  angleLeeway: 3
   noCollisions: 0
   maxSpeed: 0
   velocity: {x: 0, y: 0}
@@ -351,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 20
+  angleLeeway: 3
   noCollisions: 0
   maxSpeed: 0
   velocity: {x: 0, y: 0}

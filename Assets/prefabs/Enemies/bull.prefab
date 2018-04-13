@@ -595,6 +595,7 @@ MonoBehaviour:
   tr: {fileID: 0}
   _state: 0
   hp: 3
+  ring: {fileID: 0}
 --- !u!114 &114740748529678816
 MonoBehaviour:
   m_ObjectHideFlags: 1
