@@ -48,6 +48,7 @@ public class EnemyHP : MonoBehaviour {
 
 	// Called when this enemy should die
 	public void die() {
+		music_manager.Instance.die();
 		// Make sure reticle is unparented
 		UnParentOnDestroy retScript;
 		if((retScript = GetComponentInChildren<UnParentOnDestroy>()) != null){
@@ -57,7 +58,7 @@ public class EnemyHP : MonoBehaviour {
 		// Camera shake
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
-			CSS.activate(.03f,.03f);
+			CSS.activate(.3f,.3f);
 		}
 
 		playExplosion ();
