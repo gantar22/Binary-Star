@@ -27,8 +27,10 @@ public class PlayerHP : MonoBehaviour {
 	void Awake(){
 		GM.Instance.player = transform.parent.gameObject;
 		SpawnManager.Instance.sequenceIndex = 0;
-		SpawnManager.Instance.idle = true;
-		SpawnManager.Instance.nextSequence();
+		if(SpawnManager.Instance.idle){
+			SpawnManager.Instance.idle = true;
+			SpawnManager.Instance.nextSequence();
+		}
 	}
 
 	// Initialize

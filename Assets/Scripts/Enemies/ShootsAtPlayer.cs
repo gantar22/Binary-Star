@@ -61,6 +61,7 @@ public class ShootsAtPlayer : MonoBehaviour {
 
 		// Instantiate the bullet and set to the right direction and speed
 		GameObject bul = Instantiate(_bullet, transform.position + shootDirection * _offset, transform.rotation);
+		music_manager.Instance.shot();
 		bul.transform.Rotate (Vector3.forward * diff);
 
 		if (WEP != null) {
