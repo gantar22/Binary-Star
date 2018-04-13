@@ -48,6 +48,18 @@ public class DropManager : MonoBehaviour {
 		return newDrop;
 	}
 
+	// Pseudorandom chance, weighted by HP^2, to spawn a drop at the given position
+	public bool MaybeDrop (int HP, Vector3 pos) {
+		pityCounter += HP * HP;
+		int roll = Random.Range (1, maxDropInterval + 1);
+		if (roll <= pityCounter) {
+			SpawnDrop (pos);
+			pityCounter = 0;
+			return true;
+		}
+		return false;
+	}
+
 	// Return the prefab for a random drop
 	public GameObject RandomDropPrefab() {
 		int remainingProb = totalDropWeight;
@@ -60,18 +72,6 @@ public class DropManager : MonoBehaviour {
 		}
 		print ("That's not how odds should work...");
 		return TypePrefabs [TypePrefabs.Length - 1].prefab;
-	}
-
-	// Pseudorandom chance, weighted by HP^2, to spawn a drop at the given position
-	public bool MaybeDrop (int HP, Vector3 pos) {
-		pityCounter += HP * HP;
-		int roll = Random.Range (1, maxDropInterval + 1);
-		if (roll <= pityCounter) {
-			SpawnDrop (pos);
-			pityCounter = 0;
-			return true;
-		}
-		return false;
 	}
 }
 
