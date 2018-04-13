@@ -150,7 +150,7 @@ public class PlayerHP : MonoBehaviour {
 		Destroy (gameObject.transform.parent.gameObject);
 	}
 
-	// Set the alpha of both body and pilot sprites
+	// Scale the colors of both body and pilot sprites
 	private void setAllColorScale(float scale) {
 		Color newColor = new Color (scale, scale, scale, scale);
 
