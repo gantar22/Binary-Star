@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHP : MonoBehaviour {
 
@@ -22,6 +23,13 @@ public class PlayerHP : MonoBehaviour {
 	private SpriteRenderer PlayerTurretSR;
 	private Player_Fire player_Fire;
 
+
+	void Awake(){
+		GM.Instance.player = transform.parent.gameObject;
+		SpawnManager.Instance.sequenceIndex = 0;
+		SpawnManager.Instance.idle = true;
+		SpawnManager.Instance.nextSequence();
+	}
 
 	// Initialize
 	void Start () {
@@ -141,6 +149,7 @@ public class PlayerHP : MonoBehaviour {
 	// Player runs out of health or dies by other means
 	public void die() {
 		// TODO - What happens when the player dies/loses?
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){

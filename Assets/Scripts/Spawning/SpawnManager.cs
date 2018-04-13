@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour {
 
 	[HideInInspector]
 	public bool idle; // True iff the last sequence has finished and all enemies are dead
-	private int sequenceIndex;
+	public int sequenceIndex;
 
 	private static SpawnManager _instance;
 	public static SpawnManager Instance { get { return _instance; } }

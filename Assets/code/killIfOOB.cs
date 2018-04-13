@@ -21,7 +21,7 @@ public class killIfOOB : MonoBehaviour {
 	void Update () {
 		_location = Camera.main.WorldToViewportPoint(transform.position);
 		if(not_percent(_location.x) || not_percent(_location.y)) {
-			Destroy(transform.root.gameObject,.1f); //Scary Bugs!
+			Destroy(transform.root.gameObject); //Scary Bugs!
 		}
 	}
 }

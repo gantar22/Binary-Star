@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fakeDives: 2
   maxSpeed: 6
-  accelMag: 7
+  accelMag: 12
   diveSpeedMult: 3
   frequency: 2
   minCircleTime: 3
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnRate: 15
+  turnRate: 40
   angleLeeway: 3
   noCollisions: 1
   maxSpeed: 0

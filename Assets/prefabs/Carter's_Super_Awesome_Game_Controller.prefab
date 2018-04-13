@@ -107,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1962385656158424
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +340,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf327af0535a4a4581e8bfa982aab2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calm_music: {fileID: 0}
-  danger_music: {fileID: 0}
+  calm_music: {fileID: 8300000, guid: bc7f762b0b54d3242ac76be2b5e96c17, type: 3}
+  danger_music: {fileID: 8300000, guid: 694598f962f97c440a8ecd8653a20cdc, type: 3}
+  die_sound: {fileID: 8300000, guid: e3039c48e0e386d42950bdb1722548a9, type: 3}
+  shot_sound: {fileID: 8300000, guid: cae0a3ecb1cad1145bbea7c13ffa50ba, type: 3}
   a_s: {fileID: 0}
 --- !u!114 &114616989972401808
 MonoBehaviour:
@@ -356,7 +358,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sequences:
   - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
+  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
   idle: 0
 --- !u!114 &114690320306263346
 MonoBehaviour:

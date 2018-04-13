@@ -155,7 +155,7 @@ MonoBehaviour:
   maxHP: 3
   guaranteeDrop: 0
   diesToBomb: 1
-  explosionType: 2
+  explosionType: 1
 --- !u!114 &114371849325397292
 MonoBehaviour:
   m_ObjectHideFlags: 1

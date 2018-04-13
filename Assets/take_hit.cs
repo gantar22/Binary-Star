@@ -20,7 +20,7 @@ public class take_hit : MonoBehaviour {
 		// Camera shake
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
-			CSS.activate(.02f,.05f);
+			CSS.activate(.045f,.85f);
 		}
 
 	}
