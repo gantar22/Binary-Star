@@ -20,12 +20,14 @@ public class PlayerHP : MonoBehaviour {
 	// References
 	private SpriteRenderer thisSR;
 	private SpriteRenderer PlayerTurretSR;
+	private Player_Fire player_Fire;
 
 
 	// Initialize
 	void Start () {
 		thisSR = GetComponent<SpriteRenderer> ();
 		PlayerTurretSR = PlayerTurret.GetComponent<SpriteRenderer> ();
+		player_Fire = PlayerTurret.GetComponent<Player_Fire> ();
 
 		GM.Instance.playerHP = maxHP;
 		invuln = false;
@@ -44,10 +46,7 @@ public class PlayerHP : MonoBehaviour {
 
 			invulnTimer -= Time.deltaTime;
 			if (invulnTimer <= 0f) {
-				invuln = false;
-				setAllColorScale (1);
-				checkColliders = true;
-				Invoke ("stopCheck", 0.2f);
+				toInvuln (false);
 			} else {
 				setAllColorScale (newAlpha);
 			}
@@ -57,6 +56,23 @@ public class PlayerHP : MonoBehaviour {
 		// print (GM.Instance.playerHP);
 	}
 
+	// Switch to invulnerable, or no longer invulnerable
+	private void toInvuln (bool nowInvuln) {
+		if (invuln == nowInvuln) {
+			return;
+		}
+
+		invuln = nowInvuln;
+		player_Fire.cantFire = nowInvuln;
+
+		if (nowInvuln) {
+			invulnTimer = invulnTime;
+			alphaCounter = Mathf.PI / -2f;
+		} else {
+			setAllColorScale (1);
+			checkColliders = true;
+		}
+	}
 
 	// Check for collisions with enemies, and stay out of asteroids
 	void OnTriggerEnter2D (Collider2D col){
@@ -75,16 +91,12 @@ public class PlayerHP : MonoBehaviour {
 		// Bullet and HP drop collisions managed by BulletScript.cs and HPDrop.cs
 	}
 
-	// When invulnerability is over, check for anything currently in the collider
+	// When invulnerability is over, check once for anything currently in the collider
 	void OnTriggerStay2D (Collider2D col) {
 		if (checkColliders) {
 			OnTriggerEnter2D (col);
+			checkColliders = false;
 		}
-	}
-
-	// Invoke this with a delay to stop checking colliders
-	private void stopCheck () {
-		checkColliders = false;
 	}
 
 	// Regain moreHP more HP, up to max, and return true. If already at max, return false
@@ -108,9 +120,7 @@ public class PlayerHP : MonoBehaviour {
 		if (GM.Instance.playerHP <= 0) {
 			die ();
 		} else {
-			invuln = true;
-			invulnTimer = invulnTime;
-			alphaCounter = Mathf.PI / -2f;
+			toInvuln (true);
 		}
 	}
 

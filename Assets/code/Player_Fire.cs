@@ -22,6 +22,9 @@ public class Player_Fire : MonoBehaviour {
 	private bool cool_down;
 	private int bullets_fired;
 
+	[HideInInspector]
+	public bool cantFire;
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,6 +36,11 @@ public class Player_Fire : MonoBehaviour {
 
 
 	void fire(){
+		if (cantFire) {
+			// Play "click" noise here
+			return;
+		}
+
 		cool_down = true;
 		Invoke("reload",1 / _fire_rate);
 		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;

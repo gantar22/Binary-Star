@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212505080690174294}
   - component: {fileID: 58353867812569672}
   - component: {fileID: 114364772327054222}
+  - component: {fileID: 114609110332585322}
   - component: {fileID: 114171963631230066}
   - component: {fileID: 114087787032293264}
   m_Layer: 0
@@ -95,6 +96,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KillIfVeryOOB: 1
   extraScreenRadius: 3
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423920787262260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a1d43020e73164291daef6e373ddc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212505080690174294
 SpriteRenderer:
   m_ObjectHideFlags: 1
