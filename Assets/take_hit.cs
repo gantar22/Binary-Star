@@ -25,9 +25,10 @@ public class take_hit : MonoBehaviour {
 		if(b = GetComponent<breath>()){
 			b.enabled = false;
 		}
-			float duration = .25f;
+			float duration = .1f;
 			float elapsedTime = 0f;
 			
+			sp.color = Color.white;
 
 			while(elapsedTime < duration){
 
@@ -38,9 +39,9 @@ public class take_hit : MonoBehaviour {
 				yield return null;
 
 			}
-			yield return new WaitForSeconds(.5f);
+			yield return new WaitForSeconds(.1f);
 
-			duration = .25f;
+			duration = .15f;
 			elapsedTime = 0f;
 			
 
