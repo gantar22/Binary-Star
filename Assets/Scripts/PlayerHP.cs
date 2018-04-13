@@ -71,6 +71,7 @@ public class PlayerHP : MonoBehaviour {
 		} else {
 			setAllColorScale (1);
 			checkColliders = true;
+			Invoke ("disableCC", 0.5f);
 		}
 	}
 
@@ -95,9 +96,14 @@ public class PlayerHP : MonoBehaviour {
 	void OnTriggerStay2D (Collider2D col) {
 		if (checkColliders) {
 			OnTriggerEnter2D (col);
-			checkColliders = false;
 		}
 	}
+
+	// Invoke this with a delay to disable checkColliders
+	private void disableCC() {
+		checkColliders = false;
+	}
+
 
 	// Regain moreHP more HP, up to max, and return true. If already at max, return false
 	public bool gainHP(int moreHP) {
