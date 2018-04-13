@@ -228,6 +228,11 @@ Prefab:
       propertyPath: TopFarRight.y
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 114690320306263346, guid: c7e13d1c6e416b1498a82d4e7f897edf,
+        type: 2}
+      propertyPath: maxDropInterval
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114381074977574978, guid: c7e13d1c6e416b1498a82d4e7f897edf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c7e13d1c6e416b1498a82d4e7f897edf, type: 2}

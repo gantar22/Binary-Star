@@ -79,8 +79,8 @@ MonoBehaviour:
   outerRadius: 6
   innerCount: 6
   outerCount: 12
-  maxSpeed: 3.5
-  accelMag: 0.2
+  maxSpeed: 4.5
+  accelMag: 0.25
 --- !u!114 &114463906257979346
 MonoBehaviour:
   m_ObjectHideFlags: 1
