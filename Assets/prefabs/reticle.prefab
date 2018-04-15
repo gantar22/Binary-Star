@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4051307132483564}
   - component: {fileID: 212822924802423374}
   - component: {fileID: 114315767676697582}
+  - component: {fileID: 114867153483908076}
   m_Layer: 0
   m_Name: reticle
   m_TagString: Untagged
@@ -57,6 +58,18 @@ MonoBehaviour:
   _lockedInCamera: 1
   drag: 0
   velo: {x: 0, y: 0}
+  _boostFactor: 2.5
+--- !u!114 &114867153483908076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1591481882613768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0075f509530c84b8df5d3f6f7fe5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212822924802423374
 SpriteRenderer:
   m_ObjectHideFlags: 1
