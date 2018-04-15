@@ -31,6 +31,10 @@ public class music_manager : MonoBehaviour {
 		a_s.Play();
 	}
 
+	void Update(){
+		if(!a_s.isPlaying)	a_s.Play();
+	}
+
 
 	public void shot(){
 		a_s.PlayOneShot(shot_sound,.5f);

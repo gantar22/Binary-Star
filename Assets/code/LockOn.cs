@@ -19,7 +19,7 @@ public class LockOn : MonoBehaviour {
 	void Start(){
 		if(_target.GetComponent<PlayerMove>() == null){
 			print("the reticle doesn't have a movement script");
-			Destroy(this,.1f);
+			//Destroy(this,.1f);
 		}
 	}
 
