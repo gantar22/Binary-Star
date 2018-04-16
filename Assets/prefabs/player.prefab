@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61020884383479586}
   - component: {fileID: 114673298421587070}
   - component: {fileID: 114273791189000352}
+  - component: {fileID: 114361944893546070}
   m_Layer: 0
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -102,8 +103,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341310760216744}
-  m_LocalRotation: {x: 0, y: 0, z: -0.97135556, w: -0.23763102}
-  m_LocalPosition: {x: -24.825, y: 1.9857599, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0.1, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4407858012068228}
@@ -188,6 +189,17 @@ MonoBehaviour:
   ctlr: 2
   target: {fileID: 0}
 --- !u!114 &114273791189000352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187632629434982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f3119600daed94598d364a57c0c66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114361944893546070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -291,6 +303,9 @@ MonoBehaviour:
   _bullet: {fileID: 1202589143859068, guid: 00274e6edbe5b2946873d1449f45ac8a, type: 2}
   _offset: 1.4
   _fire_rate: 4.1
+  max_heat: 6
+  heat_per_shoot: 1
+  heat_decay: 1
   cantFire: 0
 --- !u!212 &212412695228549980
 SpriteRenderer:

@@ -98,11 +98,11 @@ public class EnemyHP : MonoBehaviour {
 
 		Explosion newExplosion = Instantiate (PrefabManager.Instance.explosion, transform.position, transform.rotation);
 		if (explosionType == ExplosionType.Small) {
-			newExplosion.transform.localScale = new Vector3 (6f, 6f, 1f);
-		} else if (explosionType == ExplosionType.Medium) {
 			newExplosion.transform.localScale = new Vector3 (12f, 12f, 1f);
+		} else if (explosionType == ExplosionType.Medium) {
+			newExplosion.transform.localScale = new Vector3 (30f, 30f, 1f);
 		} else if (explosionType == ExplosionType.Large) {
-			newExplosion.transform.localScale = new Vector3 (18f, 18f, 1f);
+			newExplosion.transform.localScale = new Vector3 (50f, 50f, 1f);
 		}
 
 		return PrefabManager.Instance.explosion.duration;

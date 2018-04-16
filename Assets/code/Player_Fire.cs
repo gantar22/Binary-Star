@@ -17,6 +17,15 @@ public class Player_Fire : MonoBehaviour {
 	[SerializeField]
 	[Range(.1f,10)]
 	float _fire_rate; //per second
+	[SerializeField]
+	float max_heat = 5;
+	[SerializeField]
+	float heat_per_shoot = 1;
+	[SerializeField]
+	float heat_decay = 1;
+
+
+	private float heat;
 
 
 	private bool cool_down;
@@ -28,10 +37,21 @@ public class Player_Fire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		heat -= heat_decay * Time.deltaTime;
+		if(cool_down) heat -= heat_decay * Time.deltaTime * 2;
+		if(heat < 0) reload();
 		if((XCI.GetButton(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down){
 			fire();
-
 		}		
+	}
+
+
+	public float GetHeat(){
+		return heat / max_heat;
+	}
+
+	public void heat_refund(){
+		heat -= heat_per_shoot;
 	}
 
 
@@ -49,8 +69,10 @@ public class Player_Fire : MonoBehaviour {
 		}
 
 
-		cool_down = true;
-		Invoke("reload",1 / _fire_rate);
+		
+		heat += heat_per_shoot;
+		if(heat > max_heat) cool_down = true;
+		
 		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
 		GameObject bul = Instantiate(_bullet,transform.position + new Vector3(Mathf.Cos(a),Mathf.Sin(a),0) * _offset,transform.rotation);
 		bul.GetComponentInChildren<ObjT>().id = bullets_fired++;
@@ -59,6 +81,7 @@ public class Player_Fire : MonoBehaviour {
 	}
 
 	void reload(){
+		heat = 0;
 		cool_down = false;
 	}
 }
