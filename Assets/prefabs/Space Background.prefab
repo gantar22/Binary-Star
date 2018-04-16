@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4453190619821164}
   - component: {fileID: 2569400265345385526}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Space Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114112146838009972}
   - component: {fileID: 50330769233447186}
   - component: {fileID: 114297466383526422}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 114171036667295116}
   - component: {fileID: 50009620681796422}
   - component: {fileID: 114609420844609476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Space (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 114392522247032112}
   - component: {fileID: 50063923246081086}
   - component: {fileID: 114050702758723706}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Space (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 114124435260514884}
   - component: {fileID: 50661847458072172}
   - component: {fileID: 114563852280637964}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Space (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021236054024636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 4338236041678752}
   - {fileID: 4900446569199204}
@@ -481,7 +481,7 @@ TilemapRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96dfe05caea329841b2b1c2caa0dca60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -520,7 +520,7 @@ TilemapRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96dfe05caea329841b2b1c2caa0dca60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -559,7 +559,7 @@ TilemapRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96dfe05caea329841b2b1c2caa0dca60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -598,7 +598,7 @@ TilemapRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96dfe05caea329841b2b1c2caa0dca60, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -65,6 +65,11 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 		// Calculate new velocity
 		velocity += acceleration * Time.deltaTime;
 		velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
+		//min speed
+		float minSpeed = 5;
+		if(velocity.magnitude < minSpeed){
+			velocity = velocity.normalized * minSpeed;
+		}
 		rb.MovePosition (pos + velocity);
 	}
 

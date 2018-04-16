@@ -2,14 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct sx {
+	[SerializeField]
+	string name;
+	[SerializeField]
+	public float variation;
+	[SerializeField]
+	public float mid;
+	[SerializeField]
+	public AudioClip clip;
+	[HideInInspector]
+	public AudioSource source;
+
+}
+
 public class music_manager : MonoBehaviour {
 
 	public AudioClip calm_music;
 	public AudioClip danger_music;
-	public AudioClip die_sound;
-	public AudioClip shot_sound;
+	//[SerializeField]
+	//public sx die_sound;
+	//[SerializeField]
+	//public sx shot_sound;
+	[SerializeField]
+	public sx[] sxs;
 	[HideInInspector]
 	public AudioSource a_s;
+	private float pitch;
+	public GameObject source;
+
 
 
 	// Singleton instance setup
@@ -29,6 +51,13 @@ public class music_manager : MonoBehaviour {
 		a_s = GetComponent<AudioSource>();
 		a_s.clip = danger_music;
 		a_s.Play();
+
+
+		for(int i = 0; i < sxs.Length;i++) {
+			GameObject g = Instantiate(source, transform);
+			sxs[i].source = g.GetComponent<AudioSource>();
+		}
+
 	}
 
 	void Update(){
@@ -37,11 +66,16 @@ public class music_manager : MonoBehaviour {
 
 
 	public void shot(){
-		a_s.PlayOneShot(shot_sound,.5f);
+		play_sound(0);
 	}
 
 	public void die(){
-		a_s.PlayOneShot(die_sound,1);
+		play_sound(1);
+	}
+
+	public void play_sound(int id){
+		sxs[id].source.pitch = (Random.value - .5f) * sxs[id].variation + sxs[id].mid;
+		sxs[id].source.PlayOneShot(sxs[id].clip,1);
 	}
 
 		
