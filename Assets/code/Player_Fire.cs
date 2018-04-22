@@ -24,6 +24,7 @@ public class Player_Fire : MonoBehaviour {
 	[SerializeField]
 	float heat_decay = 1;
 
+//TODO heat_per_shoot / (heat_decay * max_heat) * .5f = firerate for hold
 
 	private float heat;
 

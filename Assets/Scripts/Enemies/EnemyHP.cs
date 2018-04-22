@@ -34,9 +34,24 @@ public class EnemyHP : MonoBehaviour {
 			take_hit th;
 			if(th = GetComponentInChildren<take_hit>()){
 				th.hit();
+				Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();
+				if(rb) {
+					rb.isKinematic = false;
+					WeightedEnemyPhysics ws = GetComponentInChildren<WeightedEnemyPhysics>();
+					ws.enabled = false;
+					rb.AddForce((transform.position - GM.Instance.player.transform.position).normalized * 10,ForceMode2D.Impulse);
+					Invoke("unstun",.1f);
+				}
 			}
 		}
 
+	}
+
+	public void unstun(){
+		Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();
+		rb.isKinematic = true;
+		WeightedEnemyPhysics ws = GetComponentInChildren<WeightedEnemyPhysics>();
+		ws.enabled = true;
 	}
 
 	// Called when the player bomb explosion collides

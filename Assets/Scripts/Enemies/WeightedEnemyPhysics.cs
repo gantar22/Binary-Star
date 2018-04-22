@@ -36,7 +36,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 	}
 	
 	// Called once per frame
-	void FixedUpdate () {
+	void Update () {
 		Vector2 pos = transform.position;
 
 
