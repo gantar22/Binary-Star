@@ -37,6 +37,11 @@ public class EnemyHP : MonoBehaviour {
 			}
 		}
 
+		// If sleeper enemy is hit, make him angry
+		SleeperEnemy SE = GetComponent<SleeperEnemy>();
+		if (SE != null) {
+			SE.makeAngry ();
+		}
 	}
 
 	// Called when the player bomb explosion collides

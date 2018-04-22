@@ -69,13 +69,12 @@ public class SpawnManager : MonoBehaviour {
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitForEndOfFrame ();
-				yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
-			} else if (tuple.condition == Trigger.RemainingHealth) {
-				yield return new WaitWhile(() => GM.Instance.playerHP > tuple.threshold);
+				yield return new WaitUntil (() => GM.Instance.enemyCount <= tuple.threshold);
+				//yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
-			spawnWave(tuple.wave);
+			spawnWave(tuple);
 		}
 
 		print("finish them");
@@ -87,7 +86,14 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	// Spawn all the enemies in a given wave
-	private void spawnWave(Wave w) {
+	private void spawnWave(WaveTuple tuple) {
+		Wave w = tuple.wave;
+
+		// Adjust the camera size and scroll speed
+		Camera.main.GetComponent<CameraSmoothZoom>().addToCameraSize(tuple.cameraSizeChange);
+		ScrollManager.setScrollVelo(tuple.scrollDirection, tuple.scrollSpeed);
+
+		// Re-initialize the spawners array and then spawn the wave
 		initSpawnersArray ();
 		List<TypeNumPair>[] waveSpawns = {
 			w.TopSpawner,
@@ -146,12 +152,14 @@ public class SpawnManager : MonoBehaviour {
 	}
 }
 
-
+ 
 // Use in coroutines as follows: yield return new WaitWhile(() => /*bool expression here*/);
-public class WaitWhile : CustomYieldInstruction {
+/*
+ * public class WaitWhile : CustomYieldInstruction {
 	System.Func<bool> m_Predicate;
 
 	public override bool keepWaiting { get { return m_Predicate (); } }
 
 	public WaitWhile(System.Func<bool> predicate) { m_Predicate = predicate; }
 }
+*/
