@@ -71,18 +71,14 @@ public class SleeperEnemy : MonoBehaviour {
 
 	}
 
-	public void hit(){
-		permawoke = true;
-	}
-
 	// Check if the player is within the wake radius
 	private void checkForChase(Vector2 targetPos, Vector2 pos) {
-		if (!permawoke && chasing && (targetPos - pos).magnitude > 1.5f * wakeRadius) {
+		if (chasing && (targetPos - pos).magnitude > 1.5f * wakeRadius) {
 			chasing = false;
 			SO.enabled = true;
 			SR.sprite = AsleepSprite;
 			WEP.maxSpeed = circleSpeed;
-		} else if (permawoke || (!chasing && (targetPos - pos).magnitude <= wakeRadius)) {
+		} else if (!chasing && (targetPos - pos).magnitude <= wakeRadius) {
 			chasing = true;
 			SO.enabled = false;
 			SR.sprite = AwakeSprite;
