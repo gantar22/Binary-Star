@@ -44,7 +44,6 @@ public class EnemyHP : MonoBehaviour {
 				}
 			}
 		}
-
 	}
 
 	public void unstun(){
@@ -132,11 +131,13 @@ public class EnemyHP : MonoBehaviour {
 			return (--b.hp == 0);
 		}
 
-		SleeperEnemy se;
-		if(se = GetComponent<SleeperEnemy>()){
-			se.hit();
+		// If sleeper enemy is hit, make him angry
+		SleeperEnemy SE = GetComponent<SleeperEnemy>();
+		if (SE != null) {
+			SE.makeAngry ();
 			return true;
 		}
+
 		return true;
 	}
 }

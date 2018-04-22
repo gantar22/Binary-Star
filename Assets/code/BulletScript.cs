@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjT))]
 public class BulletScript : MonoBehaviour {
 	public int _damage;
 
@@ -11,46 +12,76 @@ public class BulletScript : MonoBehaviour {
 
 	private ObjT objT;
 
+	// Variables to make sure bullet only hits one thing
+	//private GameObject objToHit;
+	private List<GameObject> objsToHit;
+	private bool hitInvulnerable;
+
 
 	void Awake () {
 		objT = GetComponent<ObjT> ();
+		objsToHit = new List<GameObject> ();
+		hitInvulnerable = false;
 	}
 
+	// Called once per frame, after all physics & collision checks
+	void Update () {
+		// If the bullet has collided with anything, none of which is invulnerable, then destroy one
+		while (objsToHit.Count > 0) {
+			GameObject nextObj = objsToHit [0];
+			if (dealDamage (nextObj, _damage, transform.position, objT.typ)) {
+				die ();
+				objsToHit.Clear ();
+			} else {
+				objsToHit.Remove (nextObj);
+			}
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D col){
-
-		bull2 b = col.gameObject.GetComponent<bull2>();
-		if(b){
-			b.hit(transform.position);
+		if (hitInvulnerable) {
+			return;
 		}
 
 		Invulnerable I = col.gameObject.GetComponent<Invulnerable> ();
 		if (I != null && I.enabled) {
+			hitInvulnerable = true;
 			I.gotHit ();
 			die ();
+		} else {
+			objsToHit.Add (col.gameObject);
+		}
+	}
+
+	// Anything that does damage should call this to damage whatever it hit.
+	// Returns true if it actually deals damage (so that the bullet should die, etc.)
+	public static bool dealDamage (GameObject obj, int damage, Vector3 pos, ObjT.obj type) {
+		if (obj == null) {
+			return false;
 		}
 
-		/* BulletScript bs = col.gameObject.GetComponent<BulletScript> ();
-		if (bs != null) {
-			bs.die ();
-			die ();
-		} */
+		bull2 b = obj.GetComponent<bull2>();
+		if(b){
+			b.hit(pos);
+		}
 
-		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
+		EnemyHP s = obj.GetComponent<EnemyHP>(); 
 		if (s != null){
-			s.gotHit(_damage);
-			die();
+			s.gotHit(damage);
+			return true;
 		}
 
-		if(col.gameObject.layer == 9){
-			die();
+		if(obj.layer == 9){
+			return true;
 		}
 
-		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
-		if (PHP != null && (objT.typ != ObjT.obj.player_bullet)) {
-			PHP.gotHit (_damage);
-			die ();
+		PlayerHP PHP = obj.GetComponent<PlayerHP> ();
+		if (PHP != null && (type != ObjT.obj.player_bullet) && (type != ObjT.obj.player_explosion)) {
+			PHP.gotHit (damage);
+			return true;
 		}
+
+		return false;
 	}
 
 	void die(){

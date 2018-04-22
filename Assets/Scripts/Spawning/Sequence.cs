@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum Trigger {RemainingEnemies, RemainingHealth, Time}
+public enum Trigger {RemainingEnemies, Time}
 
 [CreateAssetMenu]
 public class Sequence : ScriptableObject {
@@ -16,14 +16,10 @@ public class Sequence : ScriptableObject {
 public class WaveTuple {
 	public Trigger condition;
 	public int threshold;
+
+	public float cameraSizeChange;
+	public direction scrollDirection;
+	public float scrollSpeed;
+
 	public Wave wave;
-
-	public WaveTuple() {
-	}
-
-	public WaveTuple(Trigger frst, int scnd, Wave thrd) {
-		this.condition = frst;
-		this.threshold = scnd;
-		this.wave = thrd;
-	}
 }

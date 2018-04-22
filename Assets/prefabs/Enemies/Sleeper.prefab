@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 351e44ea32021de48aa24948e59e684f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &114716659583541084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxHP: 5
   guaranteeDrop: 1
   diesToBomb: 1
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04db1c2e05cdaee478d6b5e3eae6e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   ydiff: 0.1
   xdiff: 0.1
   speed: 1
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae56e369e9a8f9c4280ff0b40fff4cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   extraScreenRadius: 0.8
 --- !u!114 &114835705357878782
 MonoBehaviour:
@@ -174,15 +174,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59bc99f81a2bdeb44a316694c049b488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   circleSpeed: 0.1
   chaseSpeed: 15
-  accelMag: 1
-  wakeRadius: 15
+  accelMag: 1.3
+  angrySpeedMult: 2.5
+  wakeRadius: 20
   frequency: 0.3
   AsleepSprite: {fileID: 21300000, guid: a013936e7f2ba144c9c35bb2eac7d7bf, type: 3}
   AwakeSprite: {fileID: 21300000, guid: d0048178cde3b5543b15df9d9108e492, type: 3}
+  AngrySprite: {fileID: 21300000, guid: 8aa7a00856431af42a5dad64beaca5d7, type: 3}
 --- !u!114 &114879323123858054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,8 +194,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7b1081aa3f4d9b49a6f52a7c11f238e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   KillIfVeryOOB: 1
   extraScreenRadius: 3
 --- !u!114 &114963584954503372
@@ -205,8 +207,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a47ad0b7b820a324e8e019189db3be88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   turnRate: 30
   angleLeeway: 3
   noCollisions: 1
