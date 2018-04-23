@@ -78,6 +78,11 @@ public class GM : MonoBehaviour {
 		resetEnemies ();
 	}
 
+	// Restart at the current sequence
+	public void restartThisSequence() {
+		restartFromSequence (SpawnManager.Instance.sequenceIndex);
+	}
+
 	// Restart a specific sequence
 	public void restartFromSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
