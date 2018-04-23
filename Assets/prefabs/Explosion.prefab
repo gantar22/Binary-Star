@@ -55,7 +55,6 @@ MonoBehaviour:
   duration: 0.7
   sizeMultiplier: 1.8
   sprites:
-  - {fileID: 21300000, guid: 0b96bc65bbd401644b4b4d02cba4282c, type: 3}
   - {fileID: 21300000, guid: 7435dc1991550f349a58bc8e1dd3b427, type: 3}
   - {fileID: 21300000, guid: 9418359808a73af4ab63d23b8584a84e, type: 3}
   - {fileID: 21300000, guid: ca7a6b5532905f241b274bc914d2c3dc, type: 3}

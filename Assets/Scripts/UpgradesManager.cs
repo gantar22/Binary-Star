@@ -26,9 +26,21 @@ public class UpgradesManager : MonoBehaviour {
 			DontDestroyOnLoad (this);
 		}
 
-		// Set up the dictionaries
+		initializeDicts ();
+	}
+
+	// Initialize the upgrade dictionaries
+	private void initializeDicts() {
 		gunnerUpgrades = new Dictionary<gunnerEffect, int> ();
 		pilotUpgrades = new Dictionary<pilotEffect, int> ();
+
+		foreach (gunnerEffect effect in System.Enum.GetValues (typeof(gunnerEffect))) {
+			gunnerUpgrades.Add (effect, 0);
+		}
+
+		foreach (pilotEffect effect in System.Enum.GetValues (typeof(pilotEffect))) {
+			pilotUpgrades.Add (effect, 0);
+		}
 	}
 
 
@@ -40,7 +52,9 @@ public class UpgradesManager : MonoBehaviour {
 
 	// Call this to purchase/enable a gunner upgrade
 	public static void purchaseGunnerUpgrade (gunnerEffect toPurchase) {
-		switch(toPurchase){
+		Instance.gunnerUpgrades [toPurchase] = Instance.gunnerUpgrades [toPurchase] + 1;
+
+		switch(toPurchase) {
 		case gunnerEffect.missile:
 			break;
 		case gunnerEffect.sword:
@@ -50,11 +64,13 @@ public class UpgradesManager : MonoBehaviour {
 
 	// Call this to purchase/enable a pilot upgrade
 	public static void purchasePilotUpgrade (pilotEffect toPurchase) {
-		switch(toPurchase){
-		case pilotEffect.dash:
-			break;
-		case pilotEffect.turtle:
-			break;
+		Instance.pilotUpgrades [toPurchase] = Instance.pilotUpgrades [toPurchase] + 1;
+
+		switch(toPurchase) {
+			case pilotEffect.dash:
+				break;
+			case pilotEffect.turtle:
+				break;
 		}
 	}
 
