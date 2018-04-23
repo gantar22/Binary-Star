@@ -28,4 +28,9 @@ public class AOE_Damage : MonoBehaviour {
 			BulletScript.dealDamage (obj, _damage, transform.position, objT.typ);
 		}
 	}
+
+	// Clears the alreadyHit list so it can hit things again
+	public void reset() {
+		alreadyHit.Clear ();
+	}
 }

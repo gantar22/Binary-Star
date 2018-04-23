@@ -36,6 +36,9 @@ public class GM : MonoBehaviour {
 
     void Start(){
         handleWaveOver();
+
+		// Testing:
+		Invoke("restart", 10f);
     }
 
 
@@ -60,4 +63,24 @@ public class GM : MonoBehaviour {
 		enemies.Remove (enemy);
 	}
 
+	// Destroy all enemies and make sure the enemy count is set back to 0
+	public void resetEnemies() {
+		while (enemies.Count != 0) {
+			enemies [0].GetComponent<EnemyHP> ().die ();
+		}
+		enemyCount = 0;
+		enemies.Clear ();
+	}
+
+	// Restart the game from the start
+	public void restart() {
+		SpawnManager.Instance.resetToSequence (0);
+		resetEnemies ();
+	}
+
+	// Restart a specific sequence
+	public void restartFromSequence (int seqIndex) {
+		SpawnManager.Instance.resetToSequence (seqIndex);
+		resetEnemies ();
+	}
 }

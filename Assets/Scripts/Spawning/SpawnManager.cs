@@ -37,10 +37,21 @@ public class SpawnManager : MonoBehaviour {
 		}
 			
 		// Initialize variables
-		idle = true;
-		sequenceIndex = 0;
-		initSpawnersArray ();
+		reset();
 	}
+
+	// Stop all coroutines and set to idle
+	public void reset() {
+		StopAllCoroutines ();
+		idle = true;
+	}
+
+	// Reset the spawnManager to a certain index
+	public void resetToSequence (int newSeqIndex) {
+		reset ();
+		sequenceIndex = newSeqIndex;
+	}
+
 
 	// If idle, start the next sequence in the list
 	public void nextSequence() {
