@@ -7,16 +7,22 @@ public class SpawnManager : MonoBehaviour {
 	// Settings/properties
 	private float randomizedSpawnRadius = 0.8f;
 	private float extraScreenSize = 7f;
+	private int baseFreeplayWaveNum = 10;
 
 	public Sequence[] sequences;
+	public Wave[] freeplayWaves;
 
 	// Other variables
 	private Vector2 TopSpawner, BotSpawner, LeftSpawner, RightSpawner, TopFarLeft, TopMidLeft, TopMidRight, TopFarRight;
 	private Vector2[] Spawners;
 
 	[HideInInspector]
-	public bool idle; // True iff the last sequence has finished and all enemies are dead
-	public int sequenceIndex;
+	public bool idle, freeplayMode = false;
+	[HideInInspector]
+	public int sequenceIndex, freeplayMult = 1, freeplayCounter = 0;
+
+	private Sequence freeplaySeq;
+
 
 	private static SpawnManager _instance;
 	public static SpawnManager Instance { get { return _instance; } }
@@ -59,17 +65,28 @@ public class SpawnManager : MonoBehaviour {
 			return;
 		}
 
-		if (sequenceIndex >= sequences.Length) {
-			// All sequences have finished
+		if (freeplayMode) {
+			freeplaySeq = newFreeplaySeq ();
+		} else if (sequenceIndex >= sequences.Length) {
+			// All sequences have finished - TODO?
+			freeplayMode = true;
+			nextSequence ();
 			return;
 		}
+
 		idle = false;
 		StartCoroutine ("playSequence");
 	}
 
 	// Play a sequence of waves, pausing at each trigger condition
 	IEnumerator playSequence() {
-		Sequence sequence = sequences[sequenceIndex];
+		Sequence sequence;
+		if (!freeplayMode) {
+			sequence = sequences [sequenceIndex];
+		} else {
+			sequence = freeplaySeq;
+		}
+
 		if (sequence == null) {
 			yield break;
 		}
@@ -81,7 +98,6 @@ public class SpawnManager : MonoBehaviour {
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitForEndOfFrame ();
 				yield return new WaitUntil (() => GM.Instance.enemyCount <= tuple.threshold);
-				//yield return new WaitWhile(() => GM.Instance.enemyCount > tuple.threshold);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
@@ -90,11 +106,41 @@ public class SpawnManager : MonoBehaviour {
 
 		print("finish them");
 		yield return new WaitWhile (() => GM.Instance.enemyCount > 0);
-		sequenceIndex++;
+
+		if (!freeplayMode) {
+			sequenceIndex++;
+		} else {
+			freeplayCounter++;
+			if (freeplayCounter % 3 == 0) {
+				freeplayMult++;
+			}
+		}
+
 		idle = true;
 		GM.Instance.handleWaveOver();
-		print(sequence);
 	}
+
+	// Construct a new sequence out of the freeplay waves, based on the multiplier
+	private Sequence newFreeplaySeq () {
+		Sequence newSeq = new Sequence ();
+		int waveNum = baseFreeplayWaveNum + freeplayCounter;
+
+		for (int i = 0; i < waveNum; i++) {
+			int randIndex = Random.Range (0, freeplayWaves.Length);
+			int randThresh = Random.Range (1, 5) + freeplayMult;
+			WaveTuple newWaveTuple = new WaveTuple (Trigger.RemainingEnemies, randThresh, freeplayWaves [randIndex]);
+			newSeq.waveTuples.Add (newWaveTuple);
+
+			for (int j = 1; j < freeplayMult; j++) {
+				randIndex = Random.Range (0, freeplayWaves.Length);
+				newWaveTuple = new WaveTuple (Trigger.Time, 1, freeplayWaves [randIndex]);
+				newSeq.waveTuples.Add (newWaveTuple);
+			}
+		}
+
+		return newSeq;
+	}
+
 
 	// Spawn all the enemies in a given wave
 	private void spawnWave(WaveTuple tuple) {
@@ -123,7 +169,6 @@ public class SpawnManager : MonoBehaviour {
 				for (int j = 0; j < pair.numEnemies; j++) {
 					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
 					randomizePosition (newEnemy);
-					//GM.Instance.Spawn (newEnemy);
 				}
 			}
 		}
@@ -162,15 +207,3 @@ public class SpawnManager : MonoBehaviour {
 		newEnemy.transform.position += offset;
 	}
 }
-
- 
-// Use in coroutines as follows: yield return new WaitWhile(() => /*bool expression here*/);
-/*
- * public class WaitWhile : CustomYieldInstruction {
-	System.Func<bool> m_Predicate;
-
-	public override bool keepWaiting { get { return m_Predicate (); } }
-
-	public WaitWhile(System.Func<bool> predicate) { m_Predicate = predicate; }
-}
-*/
