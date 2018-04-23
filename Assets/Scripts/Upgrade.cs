@@ -14,5 +14,6 @@ public class Upgrade : ScriptableObject {
 
 	[TextArea(10,20)]
 	public string description;
-	public Sprite icon;
+	public Sprite iconGunner;
+	public Sprite iconPilot;
 }
