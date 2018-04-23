@@ -36,9 +36,6 @@ public class GM : MonoBehaviour {
 
     void Start(){
         handleWaveOver();
-
-		// Testing:
-		Invoke("restart", 10f);
     }
 
 
