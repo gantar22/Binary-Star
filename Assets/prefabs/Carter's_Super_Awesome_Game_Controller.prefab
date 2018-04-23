@@ -345,6 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 114034068444982572, guid: 0d11929cfb553f847ae35daf325a9ea2,
     type: 2}
+  OffScreenWarningPrefab: {fileID: 114441734673426340, guid: cdf826b22835fb04d92a900bfbe5304c,
+    type: 2}
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,5 +503,3 @@ MonoBehaviour:
     prefab: {fileID: 1311236864071248, guid: 9cc515ddfc16e5e4aaf6c5f9a36aa4b0, type: 2}
   - Type: 10
     prefab: {fileID: 1858037347836540, guid: e52286e189a5f334f9d21285da3d7a89, type: 2}
-  OffScreenWarningPrefab: {fileID: 114441734673426340, guid: cdf826b22835fb04d92a900bfbe5304c,
-    type: 2}

@@ -20,7 +20,7 @@ public class UseIndicator : MonoBehaviour {
 
 
 	void Start () {
-		indicatorPrefab = EnemyIdentifier.Instance.OffScreenWarningPrefab;
+		indicatorPrefab = PrefabManager.Instance.OffScreenWarningPrefab;
 
 		// Finding screen limits
 		Camera cam = Camera.main;
