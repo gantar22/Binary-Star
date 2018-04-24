@@ -98,7 +98,7 @@ public class PlayerHP : MonoBehaviour {
 		if (s != null){
 			gotHit();
 			if (s.gameObject.GetComponent<Rock> () == null) {
-				s.gotHit (1);
+				s.gotHit (4, true);
 			}
 		}
 
