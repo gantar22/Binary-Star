@@ -2,6 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum gunnerEffect {	sword, missile, 
+							A_splitShot,			A_ricochet,			A_range,			A_wideBullets,		A_fireRate,
+							laser_duration,			laser_destroyProj,	laser_range,		laser_spin,
+							missile_explosions,		missile_cooldown,	missile_trackinng,	missile_splitShot,
+							Y_slowMo,				Y_starMode			};
+
+public enum pilotEffect {	turtle,					dash, 
+							health,					bombDR,				healthDR,			sprintEvasion,		sprintCooldown,
+							turtle_move,			turtle_reflect,		turtle_decoy,		turtle_duration,
+							dash_wider,				dash_longer,		dash_cooldown,		dash_damage,
+							Y_rapidFire,			Y_turretMode		};
+
+public enum X_Ability {		None, 					Turtle_Sword, 		Dash_Missile};
+
+
 public class UpgradesManager : MonoBehaviour {
 
 	// Upgrades
@@ -44,36 +59,6 @@ public class UpgradesManager : MonoBehaviour {
 	}
 
 
-	// Call this to purchase/enable an upgrade pair
-	public static void purchaseUpgrades (gunnerEffect ge, pilotEffect pe) {
-		purchaseGunnerUpgrade (ge);
-		purchasePilotUpgrade (pe);
-	}
-
-	// Call this to purchase/enable a gunner upgrade
-	public static void purchaseGunnerUpgrade (gunnerEffect toPurchase) {
-		Instance.gunnerUpgrades [toPurchase] = Instance.gunnerUpgrades [toPurchase] + 1;
-
-		switch(toPurchase) {
-		case gunnerEffect.missile:
-			break;
-		case gunnerEffect.sword:
-			break;
-		}
-	}
-
-	// Call this to purchase/enable a pilot upgrade
-	public static void purchasePilotUpgrade (pilotEffect toPurchase) {
-		Instance.pilotUpgrades [toPurchase] = Instance.pilotUpgrades [toPurchase] + 1;
-
-		switch(toPurchase) {
-			case pilotEffect.dash:
-				break;
-			case pilotEffect.turtle:
-				break;
-		}
-	}
-
 	// Checks if an upgrade has been purchased at all
 	public static bool isPurchasedGunner(gunnerEffect ge) {
 		int num = 0;
@@ -85,6 +70,17 @@ public class UpgradesManager : MonoBehaviour {
 		int num = 0;
 		Instance.pilotUpgrades.TryGetValue (pe, out num);
 		return (num > 0);
+	}
+
+	// Check if an X_Ability prereq is met
+	public static bool XPrereqMet (X_Ability prereq) {
+		if (prereq == X_Ability.Dash_Missile) {
+			return (getDash ());
+		} else if (prereq == X_Ability.Turtle_Sword) {
+			return (getTurtle ());
+		}
+
+		return true;
 	}
 
 	// Access wrappers for the X/Y button abilities
@@ -102,5 +98,45 @@ public class UpgradesManager : MonoBehaviour {
 
 	public static bool getDash() {
 		return isPurchasedPilot (pilotEffect.dash);
+	}
+
+	// ====== INDIVIDUAL UPGRADE IMPLEMENTATIONS HERE ======
+
+	// Call this to purchase/enable an upgrade pair
+	public static void purchaseUpgrades (gunnerEffect ge, pilotEffect pe) {
+		purchaseGunnerUpgrade (ge);
+		purchasePilotUpgrade (pe);
+	}
+
+	// Call this to purchase/enable a gunner upgrade
+	public static void purchaseGunnerUpgrade (gunnerEffect toPurchase) {
+		Instance.gunnerUpgrades [toPurchase] = Instance.gunnerUpgrades [toPurchase] + 1;
+
+		switch(toPurchase) {
+		case gunnerEffect.missile:
+			break;
+		case gunnerEffect.sword:
+			break;
+		}
+
+		// --- OR ---
+
+		if (toPurchase == gunnerEffect.missile) {
+
+		} else if (toPurchase == gunnerEffect.sword) {
+
+		}
+	}
+
+	// Call this to purchase/enable a pilot upgrade
+	public static void purchasePilotUpgrade (pilotEffect toPurchase) {
+		Instance.pilotUpgrades [toPurchase] = Instance.pilotUpgrades [toPurchase] + 1;
+
+		switch(toPurchase) {
+			case pilotEffect.dash:
+				break;
+			case pilotEffect.turtle:
+				break;
+		}
 	}
 }

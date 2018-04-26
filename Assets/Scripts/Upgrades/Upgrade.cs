@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum gunnerEffect {sword, missile};
-public enum pilotEffect {turtle, dash};
-public enum X_Ability {None, Turtle_Sword, Dash_Missile};
-
 public class Upgrade : ScriptableObject {
 
 	public gunnerEffect gunEffect;
