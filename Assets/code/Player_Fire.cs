@@ -63,6 +63,7 @@ public class Player_Fire : MonoBehaviour {
 		}
 
 		music_manager.Instance.shot();
+		GetComponentInChildren<ParticleSystem>().Play();
 
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
