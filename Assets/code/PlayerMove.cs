@@ -25,6 +25,8 @@ public class PlayerMove : MonoBehaviour {
 	[SerializeField]
 	private float _boostFactor = 2.5f;
 
+	private Bounds colliding_bounds = new Bounds(Vector3.zero,Vector3.zero);
+
 
 
 
@@ -84,9 +86,50 @@ public class PlayerMove : MonoBehaviour {
 		}
 		/* Causing the player body separation bug:
 		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
-			transform.position = Vector3.zero;
+			transform.root.position = Vector3.zero;
 		} */
 
+		/*********************************************/
+
+
+		if(colliding_bounds.size.x > 0){
+
+
+			float bottom = colliding_bounds.min.y;
+			float top    = colliding_bounds.max.y;
+			float left   = colliding_bounds.min.x;
+			float right  = colliding_bounds.max.x;
+
+			Vector3 player_pos = transform.position;
+			Transform pt = GM.Instance.player.transform;
+			float dif_bottom = player_pos.y - bottom;
+			float dif_top    = top - player_pos.y;
+			float dif_left   = player_pos.x - left;
+			float dif_right  = right - player_pos.x;
+
+			float min_dis = Mathf.Min(new float[] {dif_bottom,dif_top,dif_left,dif_right});
+			
+			if(min_dis == dif_bottom){
+				transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
+			}
+			if(min_dis == dif_top){
+				transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
+			}
+			if(min_dis == dif_left){
+				transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
+			}
+			if(min_dis == dif_right){
+				transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
+			}
+
+
+			colliding_bounds = new Bounds(Vector3.zero,Vector3.zero);
+		}
+
+
+
+
+		/*******************************************/
 		
 		// Make sure the player doesn't go on top of asteroids
 		if (Asteroid.asteroids != null) {
@@ -129,6 +172,13 @@ public class PlayerMove : MonoBehaviour {
 		} else {
 			joy.x = (Input.GetKey(KeyCode.RightArrow) ? 1 : 0) + (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0);
 			joy.y = (Input.GetKey(KeyCode.UpArrow) ? 1 : 0)    + (Input.GetKey(KeyCode.DownArrow) ? -1 : 0);
+		}
+	}
+
+
+	void OnTriggerStay2D(Collider2D other){
+		if(other.gameObject.GetComponent<no_collide_with_player>()){
+			colliding_bounds = other.bounds;
 		}
 	}
 }

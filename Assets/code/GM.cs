@@ -60,4 +60,8 @@ public class GM : MonoBehaviour {
 		enemies.Remove (enemy);
 	}
 
+    public Vector2 player_screen_loc(){
+        return Camera.main.WorldToViewportPoint(player.transform.position);
+    }
+
 }

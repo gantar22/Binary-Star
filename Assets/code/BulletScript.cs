@@ -81,6 +81,12 @@ public class BulletScript : MonoBehaviour {
 			return true;
 		}
 
+		upgrade_button ub;
+		if(ub = obj.GetComponentInParent<upgrade_button>()){
+			ub.put_description();
+			return true; // I beleive this will destroy the bullet
+		}
+
 		return false;
 	}
 

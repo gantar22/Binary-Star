@@ -34,17 +34,16 @@ public class EnemyHP : MonoBehaviour {
 			take_hit th;
 			if(th = GetComponentInChildren<take_hit>()){
 				th.hit();
-				Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();
-				if(rb) {
-					rb.isKinematic = false;
-					WeightedEnemyPhysics ws = GetComponentInChildren<WeightedEnemyPhysics>();
-					ws.enabled = false;
-					rb.AddForce((transform.position - GM.Instance.player.transform.position).normalized * 10,ForceMode2D.Impulse);
-					Invoke("unstun",.1f);
+				WeightedEnemyPhysics ws = GetComponentInChildren<WeightedEnemyPhysics>();
+				if(ws) {
+					ws.KnockBack((transform.position - GM.Instance.player.transform.position));
 				}
 			}
 		}
 	}
+
+
+
 
 	public void unstun(){
 		Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();

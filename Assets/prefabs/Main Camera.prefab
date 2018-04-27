@@ -98,7 +98,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 25
-  m_Depth: -2
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 32
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomTime: 2
+  UICam: {fileID: 20042237263193020}
 --- !u!114 &114520552843359870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0181d3f69b352f64ead845f1e53f986f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 5
 --- !u!114 &114525738504501396
 MonoBehaviour:
   m_ObjectHideFlags: 1

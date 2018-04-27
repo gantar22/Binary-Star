@@ -13,6 +13,8 @@ public class CameraSmoothZoom : MonoBehaviour {
 
 	// References
 	private Camera cam;
+	[SerializeField]
+	private Camera UICam;
 
 
 	// Initialization
@@ -27,6 +29,7 @@ public class CameraSmoothZoom : MonoBehaviour {
 	void Update () {
 		float newSize = Mathf.SmoothDamp (cam.orthographicSize, targetSize, ref currentZoomVelo, zoomTime);
 		cam.orthographicSize = newSize;
+		UICam.orthographicSize = newSize;
 	}
 		
 	// Update the target camera size

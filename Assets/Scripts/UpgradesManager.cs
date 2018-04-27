@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradesManager : MonoBehaviour {
 
 	// Upgrades
 	public Dictionary<gunnerEffect, int> gunnerUpgrades;
 	public Dictionary<pilotEffect, int> pilotUpgrades;
+	public Text description_ui;
 
 
 	// Singleton

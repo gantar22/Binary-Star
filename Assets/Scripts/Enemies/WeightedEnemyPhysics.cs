@@ -66,7 +66,23 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 		velocity += acceleration * Time.deltaTime;
 		velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
 
-		rb.MovePosition (pos + velocity);
+		rb.MovePosition (pos + velocity); 
+	}
+
+
+	public void KnockBack(Vector2 dir){
+		StartCoroutine(knock_force(dir.normalized));
+	}
+
+	IEnumerator knock_force(Vector2 dir){
+		float dur = .1f;
+		float elapsed_time = 0;
+		float mag = 40f;
+		while(elapsed_time < dur){
+			elapsed_time += Time.deltaTime;
+			rb.MovePosition(dir * mag * Time.deltaTime + (Vector2)transform.position);
+			yield return null;
+		}
 	}
 
 	// Detect collisions with other enemies, or player (while invuln), to prevent stacking
