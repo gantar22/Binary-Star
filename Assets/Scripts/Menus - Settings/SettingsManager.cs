@@ -26,9 +26,14 @@ public class SettingsManager : MonoBehaviour {
 		if (transform.parent == null) {
 			DontDestroyOnLoad (this);
 		}
-			
+
+		// Load the settings file. If there is none, initialize the settings and save them
 		if (!LoadSettings ()) {
 			gameSettings = new GameSettings ();
+
+			gameSettings.fullscreen = Screen.fullScreen;
+			gameSettings.cameraShake = true;
+
 			gameSettings.masterVolume = 1.0f;
 			gameSettings.localMusicVolume = 1.0f;
 			gameSettings.localSFXVolume = 1.0f;
