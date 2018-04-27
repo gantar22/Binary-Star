@@ -7,7 +7,9 @@ public class PauseManager : MonoBehaviour {
 
 	public GameObject PausePanel;
 	public GameObject OptionsPanel;
+
 	private bool pressed;
+	private float previousTimeScale;
 
 	[HideInInspector]
 	public static bool paused = false;
@@ -28,6 +30,8 @@ public class PauseManager : MonoBehaviour {
 		if (transform.parent == null) {
 			DontDestroyOnLoad (this);
 		}
+
+		previousTimeScale = 1.0f;
 	}
 
 	void Update () {
@@ -36,7 +40,7 @@ public class PauseManager : MonoBehaviour {
 			if (paused && !pressed) {
 				pressed = true;
 				resume ();
-			} else if (!pressed) {
+			} else if (!paused && !pressed) {
 				pressed = true;
 				pause ();
 			} 
@@ -47,13 +51,14 @@ public class PauseManager : MonoBehaviour {
 
 	public void pause() {
 		paused = true;
+		previousTimeScale = Time.timeScale;
 		Time.timeScale = 0f;
 		PausePanel.SetActive (true);
 	}
 
 	public void resume() {
 		paused = false;
-		Time.timeScale = 1.0f;
+		Time.timeScale = previousTimeScale;
 		PausePanel.SetActive (false);
 		OptionsPanel.SetActive (false);
 	}

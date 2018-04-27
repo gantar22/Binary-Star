@@ -519,6 +519,16 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 244436190}
+    - target: {fileID: 114690320306263346, guid: c7e13d1c6e416b1498a82d4e7f897edf,
+        type: 2}
+      propertyPath: TypePrefabs.Array.data[0].maxDropInterval
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114690320306263346, guid: c7e13d1c6e416b1498a82d4e7f897edf,
+        type: 2}
+      propertyPath: TypePrefabs.Array.data[1].maxDropInterval
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7e13d1c6e416b1498a82d4e7f897edf, type: 2}
   m_IsPrefabParent: 0

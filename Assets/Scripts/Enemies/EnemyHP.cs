@@ -80,10 +80,10 @@ public class EnemyHP : MonoBehaviour {
 		// Spawn drops
 		if(GetComponent<bull2>()){
 			for(int i = 0; i < 10;i++) {
-				DropManager.Instance.SpawnDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
+				DropManager.Instance.SpawnRandDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}
 		} else if (guaranteeDrop) {
-			DropManager.Instance.SpawnDrop (transform.position);
+			DropManager.Instance.SpawnRandDrop (transform.position);
 		} else if (!noDrop) {
 			DropManager.Instance.MaybeDrop (maxHP, transform.position);
 		}

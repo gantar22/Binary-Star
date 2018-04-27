@@ -20,8 +20,8 @@ public enum X_Ability {		None, 					Turtle_Sword, 		Dash_Missile};
 public class UpgradesManager : MonoBehaviour {
 
 	// Upgrades
-	public Dictionary<gunnerEffect, int> gunnerUpgrades;
-	public Dictionary<pilotEffect, int> pilotUpgrades;
+	public static Dictionary<gunnerEffect, int> gunnerUpgrades;
+	public static Dictionary<pilotEffect, int> pilotUpgrades;
 
 
 	// Singleton
@@ -41,11 +41,11 @@ public class UpgradesManager : MonoBehaviour {
 			DontDestroyOnLoad (this);
 		}
 
-		initializeDicts ();
+		resetUpgrades ();
 	}
 
-	// Initialize the upgrade dictionaries
-	private void initializeDicts() {
+	// Initialize the upgrade dictionaries so that every upgrade is at 0
+	public static void resetUpgrades() {
 		gunnerUpgrades = new Dictionary<gunnerEffect, int> ();
 		pilotUpgrades = new Dictionary<pilotEffect, int> ();
 
@@ -62,13 +62,13 @@ public class UpgradesManager : MonoBehaviour {
 	// Checks if an upgrade has been purchased at all
 	public static bool isPurchasedGunner(gunnerEffect ge) {
 		int num = 0;
-		Instance.gunnerUpgrades.TryGetValue (ge, out num);
+		gunnerUpgrades.TryGetValue (ge, out num);
 		return (num > 0);
 	}
 
 	public static bool isPurchasedPilot(pilotEffect pe) {
 		int num = 0;
-		Instance.pilotUpgrades.TryGetValue (pe, out num);
+		pilotUpgrades.TryGetValue (pe, out num);
 		return (num > 0);
 	}
 
@@ -110,7 +110,8 @@ public class UpgradesManager : MonoBehaviour {
 
 	// Call this to purchase/enable a gunner upgrade
 	public static void purchaseGunnerUpgrade (gunnerEffect toPurchase) {
-		Instance.gunnerUpgrades [toPurchase] = Instance.gunnerUpgrades [toPurchase] + 1;
+		int total = gunnerUpgrades [toPurchase] + 1;
+		gunnerUpgrades [toPurchase] = total;
 
 		switch(toPurchase) {
 		case gunnerEffect.missile:
@@ -130,7 +131,8 @@ public class UpgradesManager : MonoBehaviour {
 
 	// Call this to purchase/enable a pilot upgrade
 	public static void purchasePilotUpgrade (pilotEffect toPurchase) {
-		Instance.pilotUpgrades [toPurchase] = Instance.pilotUpgrades [toPurchase] + 1;
+		int total = pilotUpgrades [toPurchase] + 1;
+		pilotUpgrades [toPurchase] = total;
 
 		switch(toPurchase) {
 			case pilotEffect.dash:
