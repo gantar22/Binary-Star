@@ -23,6 +23,9 @@ public class CameraSmoothZoom : MonoBehaviour {
 
 		targetSize = cam.orthographicSize;
 		currentZoomVelo = 0f;
+
+		// Testing --- Right now, smooth zoom does not affect UI camera, but this has a really cool effect...
+		//addToCameraSize(5f);
 	}
 	
 	// Called once per frame

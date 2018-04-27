@@ -18,9 +18,6 @@ public class GM : MonoBehaviour {
 
     public static GM Instance { get { return _instance; } }
 
-	[HideInInspector]
-	public int playerHP;
-
 
     private void Awake()
     {
@@ -74,12 +71,6 @@ public class GM : MonoBehaviour {
 		enemies.Clear ();
 	}
 
-	// Restart the game from the start
-	public void restart() {
-		SpawnManager.Instance.resetToSequence (0);
-		resetEnemies ();
-	}
-
 	// Restart at the current sequence
 	public void restartThisSequence() {
 		restartFromSequence (SpawnManager.Instance.sequenceIndex);
@@ -89,5 +80,11 @@ public class GM : MonoBehaviour {
 	public void restartFromSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
 		resetEnemies ();
+	}
+
+	// Restart from the first sequence and reset all upgrades
+	public void restartGame() {
+		restartFromSequence (0);
+		UpgradesManager.resetUpgrades ();
 	}
 }

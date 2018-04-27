@@ -8,6 +8,10 @@ public enum Trigger {RemainingEnemies, Time}
 [CreateAssetMenu]
 public class Sequence : ScriptableObject {
 	public List<WaveTuple> waveTuples;
+
+	public Sequence () {
+		waveTuples = new List<WaveTuple> ();
+	}
 }
 
 
@@ -22,4 +26,28 @@ public class WaveTuple {
 	public float scrollSpeed;
 
 	public Wave wave;
+
+
+	// Constructor with default camera size change and scroll settings
+	public WaveTuple (Trigger cond, int thresh, Wave w) {
+		condition = cond;
+		threshold = thresh;
+		wave = w;
+
+		cameraSizeChange = 0f;
+		scrollDirection = direction.down;
+		scrollSpeed = 5f;
+	}
+
+	// Full constructor
+	public WaveTuple (Trigger cond, int thresh, float camSizeChange, direction scrollDir, float speed, Wave w) {
+		condition = cond;
+		threshold = thresh;
+
+		cameraSizeChange = camSizeChange;
+		scrollDirection = scrollDir;
+		scrollSpeed = speed;
+
+		wave = w;
+	}
 }

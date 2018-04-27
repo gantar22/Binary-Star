@@ -23,6 +23,10 @@ public class PlayerHP : MonoBehaviour {
 	private SpriteRenderer PlayerTurretSR;
 	private Player_Fire player_Fire;
 
+	// THE PLAYER's HP
+	[HideInInspector]
+	public static int HP;
+
 
 	void Awake(){
 		if(GM.Instance && SpawnManager.Instance){
@@ -42,7 +46,7 @@ public class PlayerHP : MonoBehaviour {
 		PlayerTurretSR = PlayerTurret.GetComponent<SpriteRenderer> ();
 		player_Fire = PlayerTurret.GetComponent<Player_Fire> ();
 
-		GM.Instance.playerHP = maxHP;
+		HP = maxHP;
 		invuln = false;
 		checkColliders = false;
 		setAllColorScale (1);
@@ -64,9 +68,6 @@ public class PlayerHP : MonoBehaviour {
 				setAllColorScale (newAlpha);
 			}
 		}
-
-		// Testing:
-		// print (GM.Instance.playerHP);
 	}
 
 	// Switch to invulnerable, or no longer invulnerable
@@ -98,7 +99,7 @@ public class PlayerHP : MonoBehaviour {
 		if (s != null){
 			gotHit();
 			if (s.gameObject.GetComponent<Rock> () == null) {
-				s.gotHit (1);
+				s.gotHit (4, true);
 			}
 		}
 
@@ -120,11 +121,10 @@ public class PlayerHP : MonoBehaviour {
 
 	// Regain moreHP more HP, up to max, and return true. If already at max, return false
 	public bool gainHP(int moreHP) {
-		int currentHP = GM.Instance.playerHP;
-		if (currentHP >= maxHP) {
+		if (HP >= maxHP) {
 			return false;
 		} else {
-			GM.Instance.playerHP = Mathf.Min (maxHP, currentHP + moreHP);
+			HP = Mathf.Min (maxHP, HP + moreHP);
 			return true;
 		}
 	}
@@ -143,8 +143,8 @@ public class PlayerHP : MonoBehaviour {
 			return;
 		}
 
-		GM.Instance.playerHP -= dmg;
-		if (GM.Instance.playerHP <= 0) {
+		HP -= dmg;
+		if (HP <= 0) {
 			die ();
 		} else {
 			toInvuln (true);

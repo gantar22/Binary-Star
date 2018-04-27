@@ -25,11 +25,11 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	// Called when damage is taken
-	public void gotHit(int dmg) {
+	public void gotHit(int dmg = 1, bool noDrop = false) {
 		UnParentOnDestroy retScript;
 		if(special()) HP -= dmg;
 		if (HP <= 0) {
-			die ();
+			die (noDrop);
 		} else { //hit animation
 			take_hit th;
 			if(th = GetComponentInChildren<take_hit>()){
@@ -60,7 +60,7 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	// Called when this enemy should die
-	public void die() {
+	public void die(bool noDrop = false) {
 		music_manager.Instance.die();
 		// Make sure reticle is unparented
 		UnParentOnDestroy retScript;
@@ -79,11 +79,11 @@ public class EnemyHP : MonoBehaviour {
 		// Spawn drops
 		if(GetComponent<bull2>()){
 			for(int i = 0; i < 10;i++) {
-				DropManager.Instance.SpawnDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
+				DropManager.Instance.SpawnRandDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}
 		} else if (guaranteeDrop) {
-			DropManager.Instance.SpawnDrop (transform.position);
-		} else {
+			DropManager.Instance.SpawnRandDrop (transform.position);
+		} else if (!noDrop) {
 			DropManager.Instance.MaybeDrop (maxHP, transform.position);
 		}
 
