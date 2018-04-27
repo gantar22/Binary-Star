@@ -60,8 +60,34 @@ public class GM : MonoBehaviour {
 		enemies.Remove (enemy);
 	}
 
+
     public Vector2 player_screen_loc(){
         return Camera.main.WorldToViewportPoint(player.transform.position);
     }
 
+	// Destroy all enemies and make sure the enemy count is set back to 0
+	public void resetEnemies() {
+		while (enemies.Count != 0) {
+			enemies [0].GetComponent<EnemyHP> ().die ();
+		}
+		enemyCount = 0;
+		enemies.Clear ();
+	}
+
+	// Restart the game from the start
+	public void restart() {
+		SpawnManager.Instance.resetToSequence (0);
+		resetEnemies ();
+	}
+
+	// Restart at the current sequence
+	public void restartThisSequence() {
+		restartFromSequence (SpawnManager.Instance.sequenceIndex);
+	}
+
+	// Restart a specific sequence
+	public void restartFromSequence (int seqIndex) {
+		SpawnManager.Instance.resetToSequence (seqIndex);
+		resetEnemies ();
+	}
 }
