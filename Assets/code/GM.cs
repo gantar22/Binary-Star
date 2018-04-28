@@ -10,9 +10,12 @@ public class GM : MonoBehaviour {
 
     [HideInInspector]
 	public List<GameObject> enemies;
-
 	[HideInInspector]
     public int enemyCount = 0;
+
+	public static int sceneAfterStart = 1; // 1 for MainMenu, 2 for game
+
+	public static bool inGameScene = false;
 
     private static GM _instance;
 
@@ -31,22 +34,34 @@ public class GM : MonoBehaviour {
     }
 
 
-    void Start(){
-        handleWaveOver();
-    }
-
-
-	// Update is called once per frame
+	// Called once per frame
 	void Update () {
-		handleWaveOver();
-		//testing purposes
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().buildIndex > 1) {
+			inGameScene = true;
+		} else {
+			inGameScene = false;
+		}
+
+		//testing purposes - should manage this better:
+		if (inGameScene) {
+			handleWaveOver ();
+		}
 	}
 
 
     public void handleWaveOver(){
-        SpawnManager.Instance.nextSequence();
-    }
+		if (inGameScene) {
+			SpawnManager.Instance.nextSequence();
+		}
+	}
 
+	// What to do if you just loaded the game scene
+	public void onLoadGame() {
+		inGameScene = true;
+		// More TODO here?
+	}
+
+	// Enemy list and enemyCount management
 	public void Spawn(GameObject enemy){
         enemyCount++;
 		enemies.Add(enemy);
@@ -86,5 +101,12 @@ public class GM : MonoBehaviour {
 	public void restartGame() {
 		restartFromSequence (0);
 		UpgradesManager.resetUpgrades ();
+	}
+
+	// Reset all progress and restart game from the main menu
+	public static void ResetProgressThenPlay() {
+		Destroy (GM.Instance.gameObject);
+		sceneAfterStart = 2;
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("start");
 	}
 }

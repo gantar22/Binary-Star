@@ -8,9 +8,16 @@ public class SpawnManager : MonoBehaviour {
 	private float randomizedSpawnRadius = 0.8f;
 	private float extraScreenSize = 7f;
 	private int baseFreeplayWaveNum = 10;
+	private int tierInterval = 5;
 
 	public Sequence[] sequences;
-	public Wave[] freeplayWaves;
+	public Wave[] freeplayWavesTier1;
+	public Wave[] freeplayWavesTier2;
+	public Wave[] freeplayWavesTier3;
+	public Wave[] freeplayWavesTier4;
+	public Wave[] freeplayWavesTier5;
+
+	private Wave[] freeplayWaves;
 
 	// Other variables
 	private Vector2 TopSpawner, BotSpawner, LeftSpawner, RightSpawner, TopFarLeft, TopMidLeft, TopMidRight, TopFarRight;
@@ -43,7 +50,7 @@ public class SpawnManager : MonoBehaviour {
 		}
 			
 		// Initialize variables
-		reset();
+		resetToSequence(0);
 	}
 
 	// Stop all coroutines and set to idle
@@ -122,8 +129,10 @@ public class SpawnManager : MonoBehaviour {
 
 	// Construct a new sequence out of the freeplay waves, based on the multiplier
 	private Sequence newFreeplaySeq () {
+		setFreeplayWaves ();
+
 		Sequence newSeq = new Sequence ();
-		int waveNum = baseFreeplayWaveNum + freeplayCounter;
+		int waveNum = baseFreeplayWaveNum + freeplayMult;
 
 		for (int i = 0; i < waveNum; i++) {
 			int randIndex = Random.Range (0, freeplayWaves.Length);
@@ -141,14 +150,41 @@ public class SpawnManager : MonoBehaviour {
 		return newSeq;
 	}
 
+	// Set the freeplayWaves array depending on the freeplayCounter
+	private void setFreeplayWaves() {
+		if (freeplayWaves == null) {
+			freeplayWaves = freeplayWavesTier1;
+		} else if (freeplayCounter == 1 * tierInterval) {
+			addFPWaves (freeplayWavesTier2);
+		} else if (freeplayCounter == 2 * tierInterval) {
+			addFPWaves (freeplayWavesTier3);
+		} else if (freeplayCounter == 3 * tierInterval) {
+			addFPWaves (freeplayWavesTier4);
+		} else if (freeplayCounter == 4 * tierInterval) {
+			addFPWaves (freeplayWavesTier5);
+		}
+	}
+
+	// Adds newWaves to freeplayWave
+	private void addFPWaves (Wave[] toAdd) {
+		Wave[] newWaves = new Wave[freeplayWaves.Length + toAdd.Length];
+		freeplayWaves.CopyTo(newWaves, 0);
+		toAdd.CopyTo (newWaves, freeplayWaves.Length);
+		freeplayWaves = newWaves;
+	}
+
 
 	// Spawn all the enemies in a given wave
 	private void spawnWave(WaveTuple tuple) {
 		Wave w = tuple.wave;
 
 		// Adjust the camera size and scroll speed
-		Camera.main.GetComponent<CameraSmoothZoom>().addToCameraSize(tuple.cameraSizeChange);
-		ScrollManager.setScrollVelo(tuple.scrollDirection, tuple.scrollSpeed);
+		if (!freeplayMode) {
+			Camera.main.GetComponent<CameraSmoothZoom> ().addToCameraSize (tuple.cameraSizeChange);
+			ScrollManager.setScrollVelo (tuple.scrollDirection, tuple.scrollSpeed);
+		} else {
+			ScrollManager.setScrollVelo (direction.down, 5);
+		}
 
 		// Re-initialize the spawners array and then spawn the wave
 		initSpawnersArray ();
