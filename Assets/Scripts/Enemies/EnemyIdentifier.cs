@@ -17,7 +17,6 @@ public class EnemyIdentifier : MonoBehaviour {
 	private void Awake() {
 		// Static instance setup
 		if (_instance != null && _instance != this) {
-			Debug.LogError ("Multiple EnemyIdentifiers in scene!");
 			Destroy(this.gameObject);
 		} else {
 			_instance = this;

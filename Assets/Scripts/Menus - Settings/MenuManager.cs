@@ -112,9 +112,15 @@ public class MenuManager : MonoBehaviour {
 		buttonSelected = false;
 	}
 
-	public void StartGame() {
-		// TEMPORARY:
-		SceneManager.LoadScene ("EnemyTesting"); 
+
+	// Functions for buttons to call
+
+	public void ContinueGame() {
+		SceneManager.LoadScene (2); 
+	}
+
+	public void NewGame() {
+		GM.ResetProgressThenPlay ();
 	}
 
 	public void LoadMainMenu() {
