@@ -153,12 +153,16 @@ public class PlayerHP : MonoBehaviour {
 
 	// Player runs out of health or dies by other means
 	public void die() {
-		// TODO - What happens when the player dies/loses?
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
 			CSS.activate(.1f,.1f);
+		}
+
+		// TODO - Death screen as transition
+		if (!SpawnManager.Instance.freeplayMode) {
+			GM.Instance.restartThisSequence ();
+		} else {
+			GM.ResetProgressThenMainMenu ();
 		}
 
 		Destroy (gameObject.transform.parent.gameObject);

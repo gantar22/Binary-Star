@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour {
 
@@ -103,10 +104,17 @@ public class GM : MonoBehaviour {
 		UpgradesManager.resetUpgrades ();
 	}
 
-	// Reset all progress and restart game from the main menu
+	// Reset all progress and go straight into game
 	public static void ResetProgressThenPlay() {
 		Destroy (GM.Instance.gameObject);
 		sceneAfterStart = 2;
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("start");
+		SceneManager.LoadScene ("start");
+	}
+
+	// Reset all progress then return to main menu
+	public static void ResetProgressThenMainMenu() {
+		Destroy (GM.Instance.gameObject);
+		sceneAfterStart = 1;
+		SceneManager.LoadScene ("start");
 	}
 }
