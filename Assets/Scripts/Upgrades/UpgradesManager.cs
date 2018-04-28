@@ -17,11 +17,7 @@ public enum X_Ability {		None, 			Dash_Missile,			Turtle_Sword, 		};
 
 
 
-[System.Serializable]
-public struct upgrade_choice {
-	public Upgrade[] choices;
 
-}
 
 
 public class UpgradesManager : MonoBehaviour {
@@ -30,8 +26,12 @@ public class UpgradesManager : MonoBehaviour {
 	public static Dictionary<gunnerEffect, int> gunnerUpgrades;
 	public static Dictionary<pilotEffect, int> pilotUpgrades;
 	public Text description_ui;
-	public GameObject upgrade_holder;
-	public upgrade_choice[] upgrade_sequence;
+	private GameObject upgrade_holder_X;
+	private GameObject upgrade_holder_A;
+	public GameObject upgrade_holder_A_prefab;
+	public GameObject upgrade_holder_X_prefab;
+	public Upgrade[][] upgrade_sequence;
+	private int upgrade_index = 0;
 
 
 	// Singleton
@@ -96,17 +96,43 @@ public class UpgradesManager : MonoBehaviour {
 	// Starts the upgrade scene
 
 	public static void Start_Upgrade_Scene(){
+		if(UpgradesManager.Instance.upgrade_holder_A) Destroy(UpgradesManager.Instance.upgrade_holder_A);
+		if(UpgradesManager.Instance.upgrade_holder_X) Destroy(UpgradesManager.Instance.upgrade_holder_X);
+		UpgradesManager.Instance.upgrade_holder_X = Instantiate(UpgradesManager.Instance.upgrade_holder_X_prefab);
+		UpgradesManager.Instance.upgrade_holder_A = Instantiate(UpgradesManager.Instance.upgrade_holder_A_prefab);
+		//assign the upgrades from the sequence
+		UpgradesManager.Instance.upgrade_index++;
+		if(UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].Length == 2){
+			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_X.GetComponentsInChildren<upgrade_button>();
+			for(int i = 0; i < ubs.Length;i++){
+				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index][i];
+			}
+			UpgradesManager.Instance.upgrade_holder_X.SetActive(true);
+		} else {
+			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_A.GetComponentsInChildren<upgrade_button>();
+			for(int i = 0; i < ubs.Length;i++){
+				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index][i];
+			}
+			UpgradesManager.Instance.upgrade_holder_A.SetActive(true);
+		}
+
+
+
 		UpgradesManager.Instance.description_ui.gameObject.SetActive(true);
-		UpgradesManager.Instance.upgrade_holder.SetActive(true);
 	}
 
 	public static void End_Upgrade_Scene(){
 		//the buttons are children of the holder and "shut_down" deactivates them
-		Transform t = UpgradesManager.Instance.upgrade_holder.transform;
+		Transform t = UpgradesManager.Instance.upgrade_holder_X.transform;
+		for(int i = 0;i < t.childCount;i++){
+			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
+		}
+		t = UpgradesManager.Instance.upgrade_holder_A.transform;
 		for(int i = 0;i < t.childCount;i++){
 			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
 		}
 		UpgradesManager.Instance.description_ui.transform.parent.gameObject.SetActive(false);
+		SpawnManager.Instance.nextSequence();
 	}
 
 	// Access wrappers for the X/Y button abilities

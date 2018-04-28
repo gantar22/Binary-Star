@@ -51,7 +51,7 @@ public class GM : MonoBehaviour {
 
     public void handleWaveOver(){
 		if (inGameScene) {
-			SpawnManager.Instance.nextSequence();
+			UpgradesManager.Start_Upgrade_Scene();
 		}
 	}
 
