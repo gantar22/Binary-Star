@@ -16,12 +16,22 @@ public enum pilotEffect {	health,			bombDR,					healthDR,			sprint_cooldown,	spr
 public enum X_Ability {		None, 			Dash_Missile,			Turtle_Sword, 		};
 
 
+
+[System.Serializable]
+public struct upgrade_choice {
+	public Upgrade[] choices;
+
+}
+
+
 public class UpgradesManager : MonoBehaviour {
 
 	// Upgrades
 	public static Dictionary<gunnerEffect, int> gunnerUpgrades;
 	public static Dictionary<pilotEffect, int> pilotUpgrades;
 	public Text description_ui;
+	public GameObject upgrade_holder;
+	public upgrade_choice[] upgrade_sequence;
 
 
 	// Singleton
@@ -81,6 +91,22 @@ public class UpgradesManager : MonoBehaviour {
 		}
 
 		return true;
+	}
+
+	// Starts the upgrade scene
+
+	public static void Start_Upgrade_Scene(){
+		UpgradesManager.Instance.description_ui.gameObject.SetActive(true);
+		UpgradesManager.Instance.upgrade_holder.SetActive(true);
+	}
+
+	public static void End_Upgrade_Scene(){
+		//the buttons are children of the holder and "shut_down" deactivates them
+		Transform t = UpgradesManager.Instance.upgrade_holder.transform;
+		for(int i = 0;i < t.childCount;i++){
+			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
+		}
+		UpgradesManager.Instance.description_ui.transform.parent.gameObject.SetActive(false);
 	}
 
 	// Access wrappers for the X/Y button abilities

@@ -24,7 +24,7 @@ public class Rock : MonoBehaviour {
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null && col.gameObject.GetComponent<Turret>() == null){
 			s.die ();
-			EHP.gotHit (1);
+			EHP.gotHit (Vector3.zero,1);
 		}
 	}
 }

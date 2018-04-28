@@ -25,7 +25,7 @@ public class AOE_Damage : MonoBehaviour {
 
 		if (!alreadyHit.Contains (obj)) {
 			alreadyHit.Add (obj);
-			BulletScript.dealDamage (obj, _damage, transform.position, objT.typ);
+			BulletScript.dealDamage (obj, _damage, transform.position, objT.typ,Vector3.zero);
 		}
 	}
 

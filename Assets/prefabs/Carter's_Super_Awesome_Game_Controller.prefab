@@ -403,6 +403,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description_ui: {fileID: 0}
+  upgrade_holder: {fileID: 0}
+  upgrade_sequence:
+  - choices:
+    - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
+    - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
 --- !u!114 &114512715681625976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,7 +492,7 @@ MonoBehaviour:
     maxDropInterval: 60
   - Type: 1
     prefab: {fileID: 1423920787262260, guid: 150e81d0c72b06544942015141d18ea8, type: 2}
-    maxDropInterval: 80
+    maxDropInterval: 40
 --- !u!114 &114696690039428444
 MonoBehaviour:
   m_ObjectHideFlags: 1
