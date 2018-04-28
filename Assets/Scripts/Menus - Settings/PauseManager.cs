@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour {
 
-	public GameObject PausePanel;
-	public GameObject OptionsPanel;
+	public GameObject HUD;
+	public GameObject PauseMenu;
+	public GameObject OptionsMenu;
 
 	private bool pressed;
 	private float previousTimeScale;
@@ -27,16 +28,17 @@ public class PauseManager : MonoBehaviour {
 			_instance = this;
 		}
 
-		if (transform.parent == null) {
+		/* if (transform.parent == null) {
 			DontDestroyOnLoad (this);
-		}
+		} */
 
 		previousTimeScale = 1.0f;
+		resume ();
 	}
 
 	void Update () {
 		// Pause keys
-		if (Input.GetAxisRaw("Cancel") > 0) {
+		if (Input.GetAxisRaw("Pause") > 0) {
 			if (paused && !pressed) {
 				pressed = true;
 				resume ();
@@ -53,13 +55,18 @@ public class PauseManager : MonoBehaviour {
 		paused = true;
 		previousTimeScale = Time.timeScale;
 		Time.timeScale = 0f;
-		PausePanel.SetActive (true);
+
+		HUD.SetActive (false);
+		PauseMenu.SetActive (true);
+		OptionsMenu.SetActive (false);
 	}
 
 	public void resume() {
 		paused = false;
 		Time.timeScale = previousTimeScale;
-		PausePanel.SetActive (false);
-		OptionsPanel.SetActive (false);
+
+		HUD.SetActive (true);
+		PauseMenu.SetActive (false);
+		OptionsMenu.SetActive (false);
 	}
 }

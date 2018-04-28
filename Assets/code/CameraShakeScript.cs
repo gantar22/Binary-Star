@@ -9,6 +9,7 @@ public class CameraShakeScript : MonoBehaviour {
 	[SerializeField]
 	private float maxSpeed = 5;
 
+
 	// Use this for initialization
 	void Start () {
 	running = false;
@@ -64,8 +65,10 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	public void activate(float mag,float dur){
-		StartCoroutine(shake(mag * 20,dur * .6f));
 
+		if (SettingsManager.gameSettings.cameraShake) {
+			StartCoroutine(shake(mag * 20,dur * .6f));
+		}
 	}
 
 

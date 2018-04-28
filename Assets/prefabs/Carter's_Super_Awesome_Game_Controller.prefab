@@ -487,7 +487,11 @@ MonoBehaviour:
     maxDropInterval: 60
   - Type: 1
     prefab: {fileID: 1423920787262260, guid: 150e81d0c72b06544942015141d18ea8, type: 2}
+<<<<<<< HEAD
     maxDropInterval: 40
+=======
+    maxDropInterval: 80
+>>>>>>> 0b6bff25f44bf5fcd4bb0d099b54d8bb4f672dae
 --- !u!114 &114696690039428444
 MonoBehaviour:
   m_ObjectHideFlags: 1

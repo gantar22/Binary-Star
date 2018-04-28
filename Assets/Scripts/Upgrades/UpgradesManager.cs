@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum gunnerEffect {	sword, missile, 
-							A_splitShot,			A_ricochet,			A_range,			A_wideBullets,		A_fireRate,
-							laser_duration,			laser_destroyProj,	laser_range,		laser_spin,
-							missile_explosions,		missile_cooldown,	missile_trackinng,	missile_splitShot,
-							Y_slowMo,				Y_starMode			};
+public enum gunnerEffect {	A_splitShot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
+							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_splitShot,
+							sword,			sword_duration,			sword_destroyProj,	sword_range,		sword_spin,
+							Y_slowMo,		Y_starMode				};
 
-public enum pilotEffect {	turtle,					dash, 
-							health,					bombDR,				healthDR,			sprintEvasion,		sprintCooldown,
-							turtle_move,			turtle_reflect,		turtle_decoy,		turtle_duration,
-							dash_wider,				dash_longer,		dash_cooldown,		dash_damage,
-							Y_rapidFire,			Y_turretMode		};
+public enum pilotEffect {	health,			bombDR,					healthDR,			sprint_cooldown,	sprint_evasion,
+							dash,			dash_wider,				dash_longer,		dash_cooldown,		dash_damage,
+							turtle,			turtle_move,			turtle_reflect,		turtle_decoy,		turtle_duration,
+							Y_rapidFire,	Y_turretMode			};
 
-public enum X_Ability {		None, 					Turtle_Sword, 		Dash_Missile};
+public enum X_Ability {		None, 			Dash_Missile,			Turtle_Sword, 		};
 
 
 public class UpgradesManager : MonoBehaviour {
@@ -115,18 +113,39 @@ public class UpgradesManager : MonoBehaviour {
 		int total = gunnerUpgrades [toPurchase] + 1;
 		gunnerUpgrades [toPurchase] = total;
 
-		switch(toPurchase) {
-		case gunnerEffect.missile:
-			break;
-		case gunnerEffect.sword:
-			break;
-		}
+		if (toPurchase == gunnerEffect.A_fireRate) {
 
-		// --- OR ---
+		} else if (toPurchase == gunnerEffect.A_range) {
 
-		if (toPurchase == gunnerEffect.missile) {
+		} else if (toPurchase == gunnerEffect.A_ricochet) {
+
+		} else if (toPurchase == gunnerEffect.A_splitShot) {
+
+		} else if (toPurchase == gunnerEffect.A_wideBullets) {
+
+		} else if (toPurchase == gunnerEffect.missile) {
+
+		} else if (toPurchase == gunnerEffect.missile_cooldown) {
+
+		} else if (toPurchase == gunnerEffect.missile_explosions) {
+
+		} else if (toPurchase == gunnerEffect.missile_splitShot) {
+
+		} else if (toPurchase == gunnerEffect.missile_tracking) {
 
 		} else if (toPurchase == gunnerEffect.sword) {
+
+		} else if (toPurchase == gunnerEffect.sword_destroyProj) {
+
+		} else if (toPurchase == gunnerEffect.sword_duration) {
+
+		} else if (toPurchase == gunnerEffect.sword_range) {
+
+		} else if (toPurchase == gunnerEffect.sword_spin) {
+
+		} else if (toPurchase == gunnerEffect.Y_slowMo) {
+
+		} else if (toPurchase == gunnerEffect.Y_starMode) {
 
 		}
 	}
@@ -136,11 +155,40 @@ public class UpgradesManager : MonoBehaviour {
 		int total = pilotUpgrades [toPurchase] + 1;
 		pilotUpgrades [toPurchase] = total;
 
-		switch(toPurchase) {
-			case pilotEffect.dash:
-				break;
-			case pilotEffect.turtle:
-				break;
+		if (toPurchase == pilotEffect.health) {
+
+		} else if (toPurchase == pilotEffect.bombDR) {
+
+		} else if (toPurchase == pilotEffect.healthDR) {
+
+		} else if (toPurchase == pilotEffect.sprint_cooldown) {
+
+		} else if (toPurchase == pilotEffect.sprint_evasion) {
+
+		} else if (toPurchase == pilotEffect.dash) {
+
+		} else if (toPurchase == pilotEffect.dash_cooldown) {
+
+		} else if (toPurchase == pilotEffect.dash_damage) {
+
+		} else if (toPurchase == pilotEffect.dash_longer) {
+
+		} else if (toPurchase == pilotEffect.dash_wider) {
+
+		} else if (toPurchase == pilotEffect.turtle) {
+
+		} else if (toPurchase == pilotEffect.turtle_decoy) {
+
+		} else if (toPurchase == pilotEffect.turtle_duration) {
+
+		} else if (toPurchase == pilotEffect.turtle_move) {
+
+		} else if (toPurchase == pilotEffect.turtle_reflect) {
+
+		} else if (toPurchase == pilotEffect.Y_rapidFire) {
+
+		} else if (toPurchase == pilotEffect.Y_turretMode) {
+
 		}
 	}
 }
