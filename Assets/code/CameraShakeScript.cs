@@ -64,7 +64,7 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	public void activate(float mag,float dur){
-		StartCoroutine(shake(mag * 10,dur * .5f));
+		StartCoroutine(shake(mag * 20,dur * .6f));
 
 	}
 

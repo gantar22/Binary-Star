@@ -71,7 +71,10 @@ public class EnemyHP : MonoBehaviour {
 		// Camera shake
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
-			CSS.activate(.3f,.3f);
+			if(noDrop)
+				CSS.activate(2,.5f);
+			else
+				CSS.activate(.6f,.3f); //.3
 		}
 
 		playExplosion ();

@@ -23,6 +23,7 @@ public class Player_Fire : MonoBehaviour {
 	float heat_per_shoot = 1;
 	[SerializeField]
 	float heat_decay = 1;
+	private float last_fire;
 
 //TODO heat_per_shoot / (heat_decay * max_heat) * .5f = firerate for hold
 
@@ -35,15 +36,22 @@ public class Player_Fire : MonoBehaviour {
 	[HideInInspector]
 	public bool cantFire;
 
+
+	void Start(){
+		last_fire = Time.time;
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		heat -= heat_decay * Time.deltaTime;
 		if(cool_down) heat -= heat_decay * Time.deltaTime * 2;
 		if(heat < 0) reload();
-		if((XCI.GetButton(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down){
+		if((XCI.GetButtonDown(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down){
 			fire();
-		}		
+		}	
+		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down){
+			if(Time.time - last_fire > (heat_decay * max_heat * .1f)) fire();
+		}
 	}
 
 
@@ -61,13 +69,13 @@ public class Player_Fire : MonoBehaviour {
 			// Play "click" noise here
 			return;
 		}
-
+		last_fire = Time.time;
 		music_manager.Instance.shot();
 		GetComponentInChildren<ParticleSystem>().Play();
 
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
-			//CSS.activate(.2f,.05f); this feels bad
+			CSS.activate(.01f,.05f); //this feels bad
 		}
 
 

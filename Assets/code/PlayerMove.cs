@@ -15,6 +15,15 @@ public class PlayerMove : MonoBehaviour {
 	bool _lockedInCamera;
 	[SerializeField]
 	bool drag;
+	[SerializeField]
+	float max_heat = 5;
+	[SerializeField]
+	float heat_per_sec = 1;
+	[SerializeField]
+	float heat_decay = 1;
+
+	private float heat;
+	private bool cooldown;
 
 	private Vector2 joy;
 	private bool stunned;
@@ -36,8 +45,8 @@ public class PlayerMove : MonoBehaviour {
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
 
-		if(XCI.GetAxisRaw(XboxAxis.LeftTrigger ,ctlr) == 1) _gear = gear.brake;
-		else if(XCI.GetAxisRaw(XboxAxis.RightTrigger,ctlr) == 1) _gear = gear.boost;
+		
+		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift))) _gear = gear.boost;
 		else _gear = gear.normal;
 		
 		if(!stunned) move();
@@ -45,6 +54,9 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void move(){
+		heat -= heat_decay * Time.deltaTime;
+		if(cooldown) heat -= heat_decay * Time.deltaTime * 2;
+		if(heat < 0) reload();
 		switch(_gear){
 			case gear.brake:
 				_eSpeed = 0;
@@ -53,11 +65,16 @@ public class PlayerMove : MonoBehaviour {
 				_eSpeed = _speed;
 				break;
 			case gear.boost:
-				_eSpeed = _speed * _boostFactor;
+				if(!cooldown){
+					heat += heat_per_sec * Time.deltaTime;
+					_eSpeed = _speed * _boostFactor;				
+				}
+
 				break;
 			default:
 				break;
 		}
+		if(heat > max_heat) cooldown = true;
 		if(drag && _gear != gear.brake){
 			if ((velo.x * joy.x < 0 && velo.y * joy.y < 0) || 
 				((velo.x * joy.x < 0 && velo.y * joy.y == 0) || 
@@ -162,6 +179,19 @@ public class PlayerMove : MonoBehaviour {
 
 	void unstun(){
 		stunned = false;
+	}
+
+	void reload(){
+		heat = 0;
+		cooldown = false;
+	}
+
+	public float GetHeat(){
+		return heat / max_heat;
+	}
+
+	public void heat_refund(){
+		heat -= heat_per_sec;
 	}
 
 

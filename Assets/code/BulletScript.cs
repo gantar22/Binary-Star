@@ -93,6 +93,9 @@ public class BulletScript : MonoBehaviour {
 	void die(){
 		switch(_type){
 			case bulletType.basic:
+			ParticleSystem ps = transform.GetComponentInChildren<ParticleSystem>();
+			ps.transform.parent = null;
+			ps.Play();
 			break;
 		}
 		Destroy(transform.root.gameObject);

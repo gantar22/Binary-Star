@@ -12,6 +12,7 @@ public class upgrade_button : MonoBehaviour {
 	[SerializeField]
 	private SpriteRenderer gunner_icon;
 
+
 	// Use this for initialization
 	void Start () {
 		if(!u) return;
