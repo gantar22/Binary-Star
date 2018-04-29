@@ -25,7 +25,7 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	// Called when damage is taken
-	public void gotHit(int dmg = 1, bool noDrop = false) {
+	public void gotHit(Vector3 knock_back, int dmg = 1, bool noDrop = false) {
 		UnParentOnDestroy retScript;
 		if(special()) HP -= dmg;
 		if (HP <= 0) {
@@ -36,7 +36,7 @@ public class EnemyHP : MonoBehaviour {
 				th.hit();
 				WeightedEnemyPhysics ws = GetComponentInChildren<WeightedEnemyPhysics>();
 				if(ws) {
-					ws.KnockBack((transform.position - GM.Instance.player.transform.position));
+					ws.KnockBack(knock_back);
 				}
 			}
 		}

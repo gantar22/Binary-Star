@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour {
 			if (I != null && I.enabled) {
 				invulnToHit = I;
 				objsToHit.Remove (nextObj);
-			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ)) {
+			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ, transform.right)) {
 				die ();
 				objsToHit.Clear ();
 				damagedSomething = true;
@@ -72,7 +72,7 @@ public class BulletScript : MonoBehaviour {
 
 	// Anything that does damage should call this to damage whatever it hit.
 	// Returns true if it actually deals damage (so that the bullet should die, etc.)
-	public static bool dealDamage (GameObject obj, int damage, Vector3 pos, ObjT.obj type) {
+	public static bool dealDamage (GameObject obj, int damage, Vector3 pos, ObjT.obj type,Vector3 bullet) {
 		if (obj == null) {
 			return false;
 		}
@@ -84,7 +84,7 @@ public class BulletScript : MonoBehaviour {
 
 		EnemyHP s = obj.GetComponent<EnemyHP>(); 
 		if (s != null){
-			s.gotHit(damage);
+			s.gotHit(bullet,damage);
 			return true;
 		}
 
