@@ -18,7 +18,10 @@ public enum X_Ability {		None, 			Dash_Missile,			Turtle_Sword, 		};
 
 
 
-
+[System.Serializable]
+public struct Upgrade_Option{
+	public Upgrade[] choices;
+}
 
 public class UpgradesManager : MonoBehaviour {
 
@@ -30,7 +33,7 @@ public class UpgradesManager : MonoBehaviour {
 	private GameObject upgrade_holder_A;
 	public GameObject upgrade_holder_A_prefab;
 	public GameObject upgrade_holder_X_prefab;
-	public Upgrade[][] upgrade_sequence;
+	public Upgrade_Option[] upgrade_sequence;
 	private int upgrade_index = 0;
 
 
@@ -101,17 +104,16 @@ public class UpgradesManager : MonoBehaviour {
 		UpgradesManager.Instance.upgrade_holder_X = Instantiate(UpgradesManager.Instance.upgrade_holder_X_prefab);
 		UpgradesManager.Instance.upgrade_holder_A = Instantiate(UpgradesManager.Instance.upgrade_holder_A_prefab);
 		//assign the upgrades from the sequence
-		UpgradesManager.Instance.upgrade_index++;
-		if(UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].Length == 2){
+		if(UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices.Length == 2){
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_X.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
-				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index][i];
+				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
 			}
 			UpgradesManager.Instance.upgrade_holder_X.SetActive(true);
 		} else {
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_A.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
-				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index][i];
+				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
 			}
 			UpgradesManager.Instance.upgrade_holder_A.SetActive(true);
 		}
@@ -119,6 +121,8 @@ public class UpgradesManager : MonoBehaviour {
 
 
 		UpgradesManager.Instance.description_ui.gameObject.SetActive(true);
+
+		UpgradesManager.Instance.upgrade_index++;
 	}
 
 	public static void End_Upgrade_Scene(){
@@ -132,7 +136,7 @@ public class UpgradesManager : MonoBehaviour {
 			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
 		}
 		UpgradesManager.Instance.description_ui.transform.parent.gameObject.SetActive(false);
-		SpawnManager.Instance.nextSequence();
+		GM.Instance.handleWaveOver();
 	}
 
 	// Access wrappers for the X/Y button abilities

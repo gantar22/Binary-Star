@@ -403,11 +403,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description_ui: {fileID: 0}
-  upgrade_holder: {fileID: 0}
+  upgrade_holder_A_prefab: {fileID: 1018769077845748, guid: b3fb0d2dfb63c0844b43e093b6342d2b,
+    type: 2}
+  upgrade_holder_X_prefab: {fileID: 1809261260713048, guid: 6a06b18ed40081b4cb549035bee298c8,
+    type: 2}
   upgrade_sequence:
   - choices:
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
     - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
+    - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
 --- !u!114 &114512715681625976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,17 +463,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequences:
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  - {fileID: 11400000, guid: fb633939022319e4a9424362ce6de111, type: 2}
-  freeplayWaves: []
+  - {fileID: 11400000, guid: 88bc379393ea85a4695b970594d8f4c7, type: 2}
+  freeplayWavesTier1: []
+  freeplayWavesTier2: []
+  freeplayWavesTier3: []
+  freeplayWavesTier4: []
+  freeplayWavesTier5: []
   idle: 0
   freeplayMode: 0
   sequenceIndex: 0

@@ -5,9 +5,9 @@ using XboxCtrlrInput;
 
 public class bomb_det : MonoBehaviour {
 
-	float cooldown = 60;
+	public float cooldown = 60;
 	bool canfire;
-	float timer;
+	public float timer;
 
 	void Start(){
 		canfire = true;
