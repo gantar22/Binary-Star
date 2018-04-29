@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour {
 	// Settings/properties
 	private float randomizedSpawnRadius = 0.8f;
 	private float extraScreenSize = 7f;
+	private float delayBeforeSeq = 3f;
 	private int baseFreeplayWaveNum = 10;
 	private int tierInterval = 5;
 
@@ -97,6 +98,9 @@ public class SpawnManager : MonoBehaviour {
 		if (sequence == null) {
 			yield break;
 		}
+
+		// Fixed delay before every sequence
+		yield return new WaitForSeconds (delayBeforeSeq);
 
 		for (int x = 0; x < sequence.waveTuples.Count; x++) {
 			WaveTuple tuple = sequence.waveTuples [x];

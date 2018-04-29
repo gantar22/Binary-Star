@@ -63,11 +63,13 @@ public class UpgradesManager : MonoBehaviour {
 		pilotUpgrades = new Dictionary<pilotEffect, int> ();
 
 		foreach (gunnerEffect effect in System.Enum.GetValues (typeof(gunnerEffect))) {
-			gunnerUpgrades.Add (effect, 0);
+			gunnerUpgrades.Add (effect, -1);
+			purchaseGunnerUpgrade (effect);
 		}
 
 		foreach (pilotEffect effect in System.Enum.GetValues (typeof(pilotEffect))) {
-			pilotUpgrades.Add (effect, 0);
+			pilotUpgrades.Add (effect, -1);
+			purchaseGunnerUpgrade (effect);
 		}
 	}
 
