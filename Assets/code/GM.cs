@@ -44,9 +44,9 @@ public class GM : MonoBehaviour {
 		}
 
 		//testing purposes - should manage this better:
-		if (inGameScene) {
+		/* if (inGameScene) {
 			handleWaveOver ();
-		}
+		} */
 	}
 
 
