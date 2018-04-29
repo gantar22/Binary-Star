@@ -37,6 +37,7 @@ public class BulletScript : MonoBehaviour {
 			Invulnerable I = nextObj.GetComponent<Invulnerable> ();
 			if (I != null && I.enabled) {
 				invulnToHit = I;
+				objsToHit.Remove (nextObj);
 			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ)) {
 				die ();
 				objsToHit.Clear ();
