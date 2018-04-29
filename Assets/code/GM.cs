@@ -95,12 +95,14 @@ public class GM : MonoBehaviour {
 	// Restart a specific sequence
 	public void restartFromSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
-		resetEnemies ();
+		GM.Instance.resetEnemies ();
 	}
 
 	// Set the sequence index to 0 and reset all upgrades
-	public void restartGame() {
-		restartFromSequence (0);
+	public static void restartGame() {
+		if (GM.Instance) {
+			GM.Instance.restartFromSequence (0);
+		}
 		UpgradesManager.resetUpgrades ();
 	}
 

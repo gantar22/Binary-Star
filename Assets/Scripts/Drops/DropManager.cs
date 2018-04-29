@@ -13,6 +13,8 @@ public class DropManager : MonoBehaviour {
 	private Dictionary<DropType, DropTypePrefab> DropTypeDict;
 	private Dictionary<DropType, int> pityCounters;
 
+	private static Dictionary<DropType, float> droprateBoost;
+
 	private static DropManager _instance;
 	public static DropManager Instance { get { return _instance; } }
 
@@ -40,6 +42,32 @@ public class DropManager : MonoBehaviour {
 		foreach (DropType type in System.Enum.GetValues(typeof(DropType))) {
 			pityCounters.Add(type, 0);
 		}
+
+		if (droprateBoost == null) {
+			droprateBoost = new Dictionary<DropType, float> ();
+			foreach (DropType dropType in System.Enum.GetValues(typeof(DropType))) {
+				droprateBoost.Add(dropType, 0f);
+			}
+		}
+	}
+
+	// Upgrade the droprate boost of a certain type
+	public static void upgradeDR (DropType type, int total) {
+		if (droprateBoost == null || total == 0) {
+			droprateBoost = new Dictionary<DropType, float> ();
+			foreach (DropType dropType in System.Enum.GetValues(typeof(DropType))) {
+				droprateBoost.Add(dropType, 0f);
+			}
+		} else {
+			droprateBoost [type] += 5f + droprateBoost[type] * 0.05f;
+		}
+	}
+
+	// Get the maxDropInterval of a certain type
+	private float maxDropInterv (DropType type) {
+		int baseMDI = DropTypeDict [type].maxDropInterval;
+		float multiplier = 100f / (100f + droprateBoost [type]);
+		return ((float) baseMDI) * multiplier;
 	}
 
 	// Add incr to each pity counter
@@ -61,8 +89,8 @@ public class DropManager : MonoBehaviour {
 		incrPityCounters (HP * HP);
 
 		foreach (DropType type in System.Enum.GetValues(typeof(DropType))) {
-			int roll = Random.Range (1, DropTypeDict[type].maxDropInterval + 1);
-			if (roll <= pityCounters [type]) {
+			float roll = Random.Range (0f, maxDropInterv(type));
+			if (roll < pityCounters [type]) {
 				SpawnDrop (type, pos);
 				pityCounters [type] = 0;
 				return;
@@ -94,7 +122,7 @@ public class DropManager : MonoBehaviour {
 
 	// Compute the drop weight of a certain type
 	private float dropWeight (DropType type) {
-		return 1f / DropTypeDict [type].maxDropInterval;
+		return 1f / maxDropInterv(type);
 	}
 }
 
