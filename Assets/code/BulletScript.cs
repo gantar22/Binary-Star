@@ -26,20 +26,36 @@ public class BulletScript : MonoBehaviour {
 
 	// Called once per frame, after all physics & collision checks
 	void Update () {
-		// If the bullet has collided with anything, none of which is invulnerable, then destroy one
+		// If the bullet has collided with anything, then damage one.
+		// If it only hits something invulnerable, then hit it. Otherwise damage something else
+		bool damagedSomething = false;
+		Invulnerable invulnToHit = null;
+
 		while (objsToHit.Count > 0) {
 			GameObject nextObj = objsToHit [0];
-			if (dealDamage (nextObj, _damage, transform.position, objT.typ)) {
+
+			Invulnerable I = nextObj.GetComponent<Invulnerable> ();
+			if (I != null && I.enabled) {
+				invulnToHit = I;
+			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ)) {
 				die ();
 				objsToHit.Clear ();
+				damagedSomething = true;
 			} else {
 				objsToHit.Remove (nextObj);
 			}
 		}
+
+		if (!damagedSomething && invulnToHit != null) {
+			invulnToHit.gotHit ();
+			die ();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		if (hitInvulnerable) {
+		objsToHit.Add (col.gameObject);
+
+		/* if (hitInvulnerable) {
 			return;
 		}
 
@@ -50,7 +66,7 @@ public class BulletScript : MonoBehaviour {
 			die ();
 		} else {
 			objsToHit.Add (col.gameObject);
-		}
+		} */
 	}
 
 	// Anything that does damage should call this to damage whatever it hit.
