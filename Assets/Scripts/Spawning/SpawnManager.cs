@@ -124,7 +124,7 @@ public class SpawnManager : MonoBehaviour {
 		}
 
 		idle = true;
-		UpgradesManager.Start_Upgrade_Scene();
+		GM.Instance.handleWaveOver();
 	}
 
 	// Construct a new sequence out of the freeplay waves, based on the multiplier

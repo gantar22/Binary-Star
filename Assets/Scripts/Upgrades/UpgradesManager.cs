@@ -136,7 +136,7 @@ public class UpgradesManager : MonoBehaviour {
 			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
 		}
 		UpgradesManager.Instance.description_ui.transform.parent.gameObject.SetActive(false);
-		GM.Instance.handleWaveOver();
+		SpawnManager.Instance.nextSequence();
 	}
 
 	// Access wrappers for the X/Y button abilities
