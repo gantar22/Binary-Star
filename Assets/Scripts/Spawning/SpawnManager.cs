@@ -113,10 +113,11 @@ public class SpawnManager : MonoBehaviour {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
 			spawnWave(tuple);
+			yield return new WaitForEndOfFrame ();
 		}
 
 		print("finish them");
-		yield return new WaitWhile (() => GM.Instance.enemyCount > 0);
+		yield return new WaitUntil (() => GM.Instance.enemyCount <= 0);
 
 		if (!freeplayMode) {
 			sequenceIndex++;

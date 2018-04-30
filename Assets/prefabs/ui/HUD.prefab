@@ -302,6 +302,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224704174328156960}
+  - component: {fileID: 114724743241047902}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -555,7 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   top_border: 0.6
   bottom_border: 0
-  right_border: 1
+  right_border: 0
   left_border: 0
 --- !u!114 &114331644502983024
 MonoBehaviour:
@@ -782,6 +783,20 @@ MonoBehaviour:
   bottom_border: 0
   right_border: 0
   left_border: 0
+--- !u!114 &114724743241047902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775859806950246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addcee4884d8e7c49b5249f0a5ea04a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: {fileID: 114865103566056932}
+  health: {fileID: 1386405480916222}
+  bomb: {fileID: 1571258919767848}
 --- !u!114 &114737485171587152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1166,7 +1181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 49.99994, y: 174.2809}
+  m_AnchoredPosition: {x: 400, y: 369.74}
   m_SizeDelta: {x: 746.4, y: 159.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224081420640341444

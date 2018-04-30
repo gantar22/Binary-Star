@@ -133,34 +133,8 @@ public class PlayerMove : MonoBehaviour {
 
 
 		if(colliding_bounds.size.x > 0){
+				uncollide();
 
-
-			float bottom = colliding_bounds.min.y;
-			float top    = colliding_bounds.max.y;
-			float left   = colliding_bounds.min.x;
-			float right  = colliding_bounds.max.x;
-
-			Vector3 player_pos = transform.position;
-			Transform pt = GM.Instance.player.transform;
-			float dif_bottom = player_pos.y - bottom;
-			float dif_top    = top - player_pos.y;
-			float dif_left   = player_pos.x - left;
-			float dif_right  = right - player_pos.x;
-
-			float min_dis = Mathf.Min(new float[] {dif_bottom,dif_top,dif_left,dif_right});
-			
-			if(min_dis == dif_bottom){
-				transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
-			}
-			if(min_dis == dif_top){
-				transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
-			}
-			if(min_dis == dif_left){
-				transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
-			}
-			if(min_dis == dif_right){
-				transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
-			}
 
 
 			colliding_bounds = new Bounds(Vector3.zero,Vector3.zero);
@@ -228,6 +202,50 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
+
+	void uncollide(){
+
+			BoxCollider2D col = GetComponent<BoxCollider2D>();
+			float bottom = colliding_bounds.min.y;
+			float top    = colliding_bounds.max.y;
+			float left   = colliding_bounds.min.x;
+			float right  = colliding_bounds.max.x;
+
+			Vector3 player_pos = transform.position;
+			Transform pt = GM.Instance.player.transform;
+			float dif_bottom = player_pos.y - bottom;
+			float dif_top    = top - player_pos.y;
+			float dif_left   = player_pos.x - left;
+			float dif_right  = right - player_pos.x;
+
+			float min_dis = Mathf.Min(new float[] {dif_bottom,dif_top,dif_left,dif_right});
+			
+			if(min_dis == dif_bottom){
+				//transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
+				//if(colliding_bounds.Intersects(col.bounds)){
+					transform.root.position = new Vector3(transform.root.position.x,bottom - col.size.y * .51f * transform.lossyScale.y,0);
+				//}
+			}
+			if(min_dis == dif_top){
+				//transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
+				//if(colliding_bounds.Intersects(col.bounds)){
+					transform.root.position = new Vector3(transform.root.position.x,top + col.size.y * .51f * transform.lossyScale.y,0);
+				//}
+			}
+			if(min_dis == dif_left){
+				//transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
+				//if(colliding_bounds.Intersects(col.bounds)){
+					transform.root.position = new Vector3(left - col.size.x * .51f * transform.lossyScale.x,transform.root.position.y,0);
+				//}
+			}
+			if(min_dis == dif_right){
+				//transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
+				//if(colliding_bounds.Intersects(col.bounds)){
+					transform.root.position = new Vector3(right + col.size.x * .51f * transform.lossyScale.x,transform.root.position.y,0);
+				//}
+			}
+			if(colliding_bounds.Intersects(col.bounds)) uncollide();
+	}
 
 	void OnTriggerStay2D(Collider2D other){
 		if(other.gameObject.GetComponent<no_collide_with_player>()){
