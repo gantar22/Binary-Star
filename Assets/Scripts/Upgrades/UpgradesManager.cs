@@ -108,8 +108,6 @@ public class UpgradesManager : MonoBehaviour {
 		UpgradesManager.Instance.upgrade_holder_X = Instantiate(UpgradesManager.Instance.upgrade_holder_X_prefab);
 		UpgradesManager.Instance.upgrade_holder_A = Instantiate(UpgradesManager.Instance.upgrade_holder_A_prefab);
 		//assign the upgrades from the sequence
-		print(UpgradesManager.Instance.upgrade_sequence.Length);
-		print(UpgradesManager.Instance.upgrade_index);
 		if(UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices.Length == 2){
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_X.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){

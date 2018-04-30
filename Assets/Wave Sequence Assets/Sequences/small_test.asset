@@ -18,3 +18,9 @@ MonoBehaviour:
     scrollDirection: 0
     scrollSpeed: 0
     wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
