@@ -16,7 +16,9 @@ public class cursor : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		transform.position = vectorUtil.ChangeZ(transform.position,-1);
+		#if UNITY_EDITOR
+			transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			transform.position = vectorUtil.ChangeZ(transform.position,-1);
+		#endif
 	}
 }
