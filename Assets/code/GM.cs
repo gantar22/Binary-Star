@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour {
 
@@ -43,9 +44,10 @@ public class GM : MonoBehaviour {
 		}
 
 		//testing purposes - should manage this better:
-		if (inGameScene) {
-			//handleWaveOver ();
-		}
+
+		/* if (inGameScene) {
+			handleWaveOver ();
+		} */
 	}
 
 
@@ -57,7 +59,7 @@ public class GM : MonoBehaviour {
 
 	// What to do if you just loaded the game scene
 	public void onLoadGame() {
-		inGameScene = true;
+		inGameScene = true; // redundant
 		// More TODO here?
 	}
 
@@ -94,19 +96,30 @@ public class GM : MonoBehaviour {
 	// Restart a specific sequence
 	public void restartFromSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
-		resetEnemies ();
+		GM.Instance.resetEnemies ();
 	}
 
-	// Restart from the first sequence and reset all upgrades
-	public void restartGame() {
-		restartFromSequence (0);
+	// Set the sequence index to 0 and reset all upgrades
+	public static void restartGame() {
+		if (GM.Instance) {
+			GM.Instance.restartFromSequence (0);
+		}
 		UpgradesManager.resetUpgrades ();
 	}
 
-	// Reset all progress and restart game from the main menu
+	// Reset all progress and go straight into game
 	public static void ResetProgressThenPlay() {
 		Destroy (GM.Instance.gameObject);
+		restartGame ();
 		sceneAfterStart = 2;
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("start");
+		SceneManager.LoadScene ("start");
+	}
+
+	// Reset all progress then return to main menu
+	public static void ResetProgressThenMainMenu() {
+		Destroy (GM.Instance.gameObject);
+		restartGame ();
+		sceneAfterStart = 1;
+		SceneManager.LoadScene ("start");
 	}
 }

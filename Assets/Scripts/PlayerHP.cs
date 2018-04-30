@@ -7,8 +7,6 @@ public class PlayerHP : MonoBehaviour {
 
 	// Settings/properties:
 	[SerializeField]
-	private int maxHP = 3;
-	[SerializeField]
 	private float invulnTime = 3f, minFrequency = 2f, maxFrequency = 6f, minAlpha = 0.3f, maxAlpha = 0.9f;
 	[SerializeField]
 	private GameObject PlayerTurret;
@@ -23,9 +21,13 @@ public class PlayerHP : MonoBehaviour {
 	private SpriteRenderer PlayerTurretSR;
 	private Player_Fire player_Fire;
 
+	// Sprint chance
+	private static float stillHitOdds = 1f;
+
 	// THE PLAYER's HP
+	private static int startingMaxHP = 3;
 	[HideInInspector]
-	public static int HP;
+	public static int HP, currentMaxHP;
 
 
 	void Awake(){
@@ -46,7 +48,7 @@ public class PlayerHP : MonoBehaviour {
 		PlayerTurretSR = PlayerTurret.GetComponent<SpriteRenderer> ();
 		player_Fire = PlayerTurret.GetComponent<Player_Fire> ();
 
-		HP = maxHP;
+		HP = startingMaxHP;
 		invuln = false;
 		checkColliders = false;
 		setAllColorScale (1);
@@ -69,6 +71,28 @@ public class PlayerHP : MonoBehaviour {
 			}
 		}
 	}
+
+	// Upgrade player maximum HP
+	public static void UpgradePlayerHP (int total) {
+		if (total == 0) {
+			currentMaxHP = startingMaxHP;
+		} else {
+			currentMaxHP++;
+			if (GM.Instance && GM.Instance.player && GM.Instance.player.GetComponent<PlayerHP>()) {
+				GM.Instance.player.GetComponent<PlayerHP> ().gainHP (1);
+			}
+		}
+	}
+
+	// Upgrade sprint evasion chance
+	public static void UpgradeEvasionOdds (int total) {
+		if (total == 0) {
+			stillHitOdds = 1f;
+		} else {
+			stillHitOdds *= 0.8f;
+		}
+	}
+
 
 	// Switch to invulnerable, or no longer invulnerable
 	private void toInvuln (bool nowInvuln) {
@@ -124,10 +148,10 @@ public class PlayerHP : MonoBehaviour {
 
 	// Regain moreHP more HP, up to max, and return true. If already at max, return false
 	public bool gainHP(int moreHP) {
-		if (HP >= maxHP) {
+		if (HP >= currentMaxHP) {
 			return false;
 		} else {
-			HP = Mathf.Min (maxHP, HP + moreHP);
+			HP = Mathf.Min (currentMaxHP, HP + moreHP);
 			return true;
 		}
 	}
@@ -146,6 +170,13 @@ public class PlayerHP : MonoBehaviour {
 			return;
 		}
 
+		// Chance to dodge damage:
+		float roll = Random.Range(0f, 1f);
+		if (roll >= stillHitOdds) {
+			// EVASION/DODGE HERE (if you want an animation/sound effect)
+			return;
+		}
+
 		HP -= dmg;
 		if (HP <= 0) {
 			die ();
@@ -156,12 +187,16 @@ public class PlayerHP : MonoBehaviour {
 
 	// Player runs out of health or dies by other means
 	public void die() {
-		// TODO - What happens when the player dies/loses?
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
 			CSS.activate(.1f,.1f);
+		}
+
+		// TODO - Death screen as transition
+		if (!SpawnManager.Instance.freeplayMode) {
+			GM.Instance.restartThisSequence ();
+		} else {
+			GM.ResetProgressThenMainMenu ();
 		}
 
 		Destroy (gameObject.transform.parent.gameObject);

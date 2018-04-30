@@ -63,11 +63,13 @@ public class UpgradesManager : MonoBehaviour {
 		pilotUpgrades = new Dictionary<pilotEffect, int> ();
 
 		foreach (gunnerEffect effect in System.Enum.GetValues (typeof(gunnerEffect))) {
-			gunnerUpgrades.Add (effect, 0);
+			gunnerUpgrades.Add (effect, -1);
+			purchaseGunnerUpgrade (effect);
 		}
 
 		foreach (pilotEffect effect in System.Enum.GetValues (typeof(pilotEffect))) {
-			pilotUpgrades.Add (effect, 0);
+			pilotUpgrades.Add (effect, -1);
+			purchasePilotUpgrade (effect);
 		}
 	}
 
@@ -172,7 +174,7 @@ public class UpgradesManager : MonoBehaviour {
 		gunnerUpgrades [toPurchase] = total;
 
 		if (toPurchase == gunnerEffect.A_fireRate) {
-
+			
 		} else if (toPurchase == gunnerEffect.A_range) {
 
 		} else if (toPurchase == gunnerEffect.A_ricochet) {
@@ -214,15 +216,15 @@ public class UpgradesManager : MonoBehaviour {
 		pilotUpgrades [toPurchase] = total;
 
 		if (toPurchase == pilotEffect.health) {
-
+			PlayerHP.UpgradePlayerHP (total);
 		} else if (toPurchase == pilotEffect.bombDR) {
-
+			DropManager.upgradeDR (DropType.BombCharge, total);
 		} else if (toPurchase == pilotEffect.healthDR) {
-
+			DropManager.upgradeDR (DropType.Health, total);
 		} else if (toPurchase == pilotEffect.sprint_cooldown) {
-
+			PlayerMove.UpgradeSprintCooldown (total);
 		} else if (toPurchase == pilotEffect.sprint_evasion) {
-
+			PlayerHP.UpgradeEvasionOdds (total);
 		} else if (toPurchase == pilotEffect.dash) {
 
 		} else if (toPurchase == pilotEffect.dash_cooldown) {

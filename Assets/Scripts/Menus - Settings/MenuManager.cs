@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-	public EventSystem EventSystem;
 	public GameObject defaultSelect;
 	public GameObject defaultUpSelect;
 
@@ -27,13 +26,17 @@ public class MenuManager : MonoBehaviour {
 	private float fastDelay = 0.14f;
 	private float currentDelay;
 
+	private EventSystem eventSystem;
+
+
 	void OnEnable() {
 		resetDelay ();
 	}
 
 	void Update() {
-		if (EventSystem == null)
-			Debug.LogError("Missing event system in MenuManager script");
+		if (eventSystem == null) {
+			eventSystem = EventSystem.current;
+		}
 
 		// Press 'b' on joystick or backspace on keyboard to go back
 		backTimer += Time.deltaTime;
@@ -43,23 +46,23 @@ public class MenuManager : MonoBehaviour {
 		}
 
 		// Default select the top or bottom of the menu
-		if (EventSystem.currentSelectedGameObject == null) {
+		if (eventSystem.currentSelectedGameObject == null) {
 			buttonSelected = false;
 		}
 
 		float vertical = Input.GetAxisRaw ("Vertical");
 		if ((vertical == -1 || vertical == 1) && !buttonSelected) {
 			if (vertical == -1) {
-				EventSystem.SetSelectedGameObject (defaultSelect);
+				eventSystem.SetSelectedGameObject (defaultSelect);
 			} else if (vertical == 1) {
-				EventSystem.SetSelectedGameObject (defaultUpSelect);
+				eventSystem.SetSelectedGameObject (defaultUpSelect);
 			}
 
 			buttonSelected = true;
 		}
 
 		// Wrapping top-to-bottom and bottom-to-top
-		if (prevSelected != EventSystem.currentSelectedGameObject) {
+		if (prevSelected != eventSystem.currentSelectedGameObject) {
 			delayed = true;
 			delayTimer = 0;
 		}
@@ -68,7 +71,7 @@ public class MenuManager : MonoBehaviour {
 		}
 
 		if ((vertical == -1 || vertical == 1) && buttonSelected) {
-			if (prevSelected != EventSystem.currentSelectedGameObject) {
+			if (prevSelected != eventSystem.currentSelectedGameObject) {
 				delayed = true;
 				delayTimer = 0;
 			}
@@ -86,11 +89,11 @@ public class MenuManager : MonoBehaviour {
 				currentDelay = slowDelay;
 			}
 
-			if (EventSystem.currentSelectedGameObject == defaultSelect && vertical == 1 && (!delayed || (delayTimer >= currentDelay)) ) {
-				EventSystem.SetSelectedGameObject (defaultUpSelect);
+			if (eventSystem.currentSelectedGameObject == defaultSelect && vertical == 1 && (!delayed || (delayTimer >= currentDelay)) ) {
+				eventSystem.SetSelectedGameObject (defaultUpSelect);
 				delayTimer = 0;
-			} else if (EventSystem.currentSelectedGameObject == defaultUpSelect && vertical == -1 && (!delayed || (delayTimer >= currentDelay)) ) {
-				EventSystem.SetSelectedGameObject (defaultSelect);
+			} else if (eventSystem.currentSelectedGameObject == defaultUpSelect && vertical == -1 && (!delayed || (delayTimer >= currentDelay)) ) {
+				eventSystem.SetSelectedGameObject (defaultSelect);
 				delayTimer = 0;
 			}
 
@@ -98,7 +101,7 @@ public class MenuManager : MonoBehaviour {
 			resetDelay ();
 		}
 
-		prevSelected = EventSystem.currentSelectedGameObject;
+		prevSelected = eventSystem.currentSelectedGameObject;
 	}
 
 	private void resetDelay() {

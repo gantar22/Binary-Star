@@ -17,10 +17,13 @@ public class PlayerMove : MonoBehaviour {
 	bool drag;
 	[SerializeField]
 	float max_heat = 5;
-	[SerializeField]
-	float heat_per_sec = 1;
-	[SerializeField]
-	float heat_decay = 1;
+
+	// Base sprint heat values
+	private static float baseHeat_per_sec = 1;
+	private static float baseHeat_decay = 1;
+	// Real, current values
+	private static float heat_per_sec;
+	private static float heat_decay;
 
 	private float heat;
 	private bool cooldown;
@@ -38,6 +41,13 @@ public class PlayerMove : MonoBehaviour {
 
 
 
+	// Initialization
+	void Start () {
+		if (heat_per_sec == 0f || heat_decay == 0f) {
+			heat_per_sec = baseHeat_per_sec;
+			heat_decay = baseHeat_decay;
+		}
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -52,6 +62,19 @@ public class PlayerMove : MonoBehaviour {
 		if(!stunned) move();
 		
 	}
+
+	// Upgrade sprint cooldown
+	public static void UpgradeSprintCooldown (int total) {
+		if (total == 0) {
+			heat_per_sec = baseHeat_per_sec;
+			heat_decay = baseHeat_decay;
+		} else {
+			heat_per_sec *= 0.9f;
+			heat_decay *= 1.1f;
+		}
+	}
+
+	// 
 
 	void move(){
 		heat -= heat_decay * Time.deltaTime;

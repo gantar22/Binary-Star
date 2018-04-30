@@ -93,7 +93,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 
 		WeightedEnemyPhysics OtherWEP = col.gameObject.GetComponent<WeightedEnemyPhysics>(); 
 		PlayerHP PHP = col.gameObject.GetComponent<PlayerHP> ();
-		if (OtherWEP != null || PHP != null) {
+		if (OtherWEP != null || (PHP != null && PlayerHP.invuln)) {
 			Vector2 OtherPos = col.transform.position;
 			Vector2 diff = (OtherPos - (Vector2) transform.position).normalized;
 

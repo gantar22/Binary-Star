@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97400b84d0b654f4c9935802bb532477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PausePanel: {fileID: 0}
-  OptionsPanel: {fileID: 0}
+  HUD: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  OptionsMenu: {fileID: 0}
