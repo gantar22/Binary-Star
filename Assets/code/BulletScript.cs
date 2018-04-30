@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 	public int _damage;
 
-	public enum bulletType {basic}
+	public enum bulletType {basic, sin}
 
 	public bulletType _type;
 
@@ -96,6 +96,9 @@ public class BulletScript : MonoBehaviour {
 			ParticleSystem ps = transform.GetComponentInChildren<ParticleSystem>();
 			ps.transform.parent = null;
 			ps.Play();
+			break;
+
+			default:
 			break;
 		}
 		Destroy(transform.root.gameObject);

@@ -118,6 +118,9 @@ public class PlayerHP : MonoBehaviour {
 		checkColliders = false;
 	}
 
+	public int getHP(){
+		return HP;
+	}
 
 	// Regain moreHP more HP, up to max, and return true. If already at max, return false
 	public bool gainHP(int moreHP) {
