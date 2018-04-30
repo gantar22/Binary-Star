@@ -28,7 +28,7 @@ public class UpgradesManager : MonoBehaviour {
 	// Upgrades
 	public static Dictionary<gunnerEffect, int> gunnerUpgrades;
 	public static Dictionary<pilotEffect, int> pilotUpgrades;
-	public Text description_ui;
+
 	private GameObject upgrade_holder_X;
 	private GameObject upgrade_holder_A;
 	public GameObject upgrade_holder_A_prefab;
@@ -99,8 +99,10 @@ public class UpgradesManager : MonoBehaviour {
 	}
 
 	// Starts the upgrade scene
-
 	public static void Start_Upgrade_Scene(){
+		Text description_ui	 = hudManager.Instance.description;
+		hudManager.Instance.health.SetActive(false);
+		hudManager.Instance.bomb.SetActive(false);
 		if(UpgradesManager.Instance.upgrade_holder_A) Destroy(UpgradesManager.Instance.upgrade_holder_A);
 		if(UpgradesManager.Instance.upgrade_holder_X) Destroy(UpgradesManager.Instance.upgrade_holder_X);
 		UpgradesManager.Instance.upgrade_holder_X = Instantiate(UpgradesManager.Instance.upgrade_holder_X_prefab);
@@ -124,12 +126,18 @@ public class UpgradesManager : MonoBehaviour {
 
 
 
-		UpgradesManager.Instance.description_ui.gameObject.transform.parent.gameObject.SetActive(true);
+		description_ui.gameObject.transform.parent.gameObject.SetActive(true);
 
 		UpgradesManager.Instance.upgrade_index++;
+
+		PlayerHP.HP = PlayerHP.currentMaxHP;
 	}
 
 	public static void End_Upgrade_Scene(){
+
+		Text description_ui = hudManager.Instance.description;
+		hudManager.Instance.health.SetActive(true);
+		hudManager.Instance.bomb.SetActive(true);
 		//the buttons are children of the holder and "shut_down" deactivates them
 		Transform t = UpgradesManager.Instance.upgrade_holder_X.transform;
 		for(int i = 0;i < t.childCount;i++){
@@ -139,7 +147,7 @@ public class UpgradesManager : MonoBehaviour {
 		for(int i = 0;i < t.childCount;i++){
 			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
 		}
-		UpgradesManager.Instance.description_ui.transform.parent.gameObject.SetActive(false);
+		description_ui.transform.parent.gameObject.SetActive(false);
 		SpawnManager.Instance.nextSequence();
 	}
 

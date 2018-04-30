@@ -27,6 +27,6 @@ public class upgrade_button : MonoBehaviour {
 
 
 	public void put_description(){
-		UpgradesManager.Instance.description_ui.text = u.description;
+		hudManager.Instance.description.text = u.description;
 	}
 }

@@ -18,7 +18,7 @@ public class pick_upgrade : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.GetComponent<BulletScript>()){
+		if(other.gameObject.GetComponent<BulletScript>() && other.gameObject.GetComponent<ObjT>() && other.gameObject.GetComponent<ObjT>().typ == ObjT.obj.player_bullet){
 			GetComponentInParent<Animator>().SetTrigger("shut_down");
 			UpgradesManager.purchaseUpgrades(u.gunEffect,u.pilEffect);
 			Invoke("end",.4f);
