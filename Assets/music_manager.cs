@@ -31,7 +31,8 @@ public class music_manager : MonoBehaviour {
 	public AudioSource a_s;
 	private float pitch;
 	public GameObject source;
-	public float max_volume;
+	public float max_music_volume;
+	public float max_effects_volume;
 
 
 	// Singleton instance setup
@@ -50,7 +51,7 @@ public class music_manager : MonoBehaviour {
 		}
 		a_s = GetComponent<AudioSource>();
 		a_s.clip = danger_music;
-		a_s.volume = max_volume;
+		a_s.volume = max_music_volume;
 		a_s.Play();
 
 
@@ -62,6 +63,8 @@ public class music_manager : MonoBehaviour {
 	}
 
 	void Update(){
+
+		a_s.volume = max_music_volume;
 		if(!a_s.isPlaying)	a_s.Play();
 	}
 
@@ -76,7 +79,7 @@ public class music_manager : MonoBehaviour {
 
 	public void play_sound(int id){
 		sxs[id].source.pitch = (Random.value - .5f) * sxs[id].variation + sxs[id].mid;
-		sxs[id].source.PlayOneShot(sxs[id].clip,max_volume);
+		sxs[id].source.PlayOneShot(sxs[id].clip,max_effects_volume);
 	}
 
 		

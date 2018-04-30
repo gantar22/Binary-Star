@@ -31,7 +31,10 @@ public class health_ui : MonoBehaviour {
 			hp_objs = new GameObject[hp];
 			for(int i = 0; i < hp; i++){
 				hp_objs[i] = Instantiate(hp_prefab,transform);
-				hp_objs[i].transform.position += Vector3.right * 18 * i;
+				hp_objs[i].transform.position = init_pos + Vector3.left * hp_objs[0].GetComponent<RectTransform>().rect.width * .6f;
+				hp_objs[i].transform.position += Vector3.right * hp_objs[0].GetComponent<RectTransform>().rect.width * .6f * i;
+
+
 			}
 		}
 

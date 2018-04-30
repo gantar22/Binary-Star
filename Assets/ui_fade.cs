@@ -11,6 +11,8 @@ public class ui_fade : MonoBehaviour {
 	private Canvas canvas;
 	public float top_border = 1;
 	public float bottom_border = 0;
+	public float right_border = 1;
+	public float left_border = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +25,9 @@ public class ui_fade : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(GM.Instance.player_screen_loc().y > top_border || GM.Instance.player_screen_loc().y < bottom_border) {
+		Vector2 pos = GM.Instance.player_screen_loc();
+		if(((pos.y > top_border && pos.x > right_border) || (pos.y > top_border && pos.x < left_border))
+			|| ((pos.y < bottom_border && pos.x > right_border) || (pos.y < bottom_border && pos.x < left_border)) ) {
 			foreach(Transform t in transform){
 				Text tex;
 				if(tex = t.GetComponent<Text>())
