@@ -10,10 +10,12 @@ public class BulletScript : MonoBehaviour {
 
 	public bulletType _type;
 
+	private float exploRadiusMult = 0f;
+	private int exploDamage = 0;
+
 	private ObjT objT;
 
 	// Variables to make sure bullet only hits one thing
-	//private GameObject objToHit;
 	private List<GameObject> objsToHit;
 	private bool hitInvulnerable;
 
@@ -109,18 +111,39 @@ public class BulletScript : MonoBehaviour {
 
 	void die(){
 		switch(_type){
-			case bulletType.basic:
+		case bulletType.basic:
 			ParticleSystem ps = transform.GetComponentInChildren<ParticleSystem>();
 			ps.transform.parent = null;
 			ps.Play();
 			break;
 
-			default:
+		case bulletType.missile:
+			if (exploRadiusMult > 0f && exploRadiusMult > 0f) {
+				BoxCollider2D boxCol = GetComponentInChildren<BoxCollider2D> ();
+				Vector3 exploPos;
+				if (boxCol) {
+					Vector3 offset = boxCol.size.x * transform.lossyScale.x * 0.5f * (transform.rotation * Vector3.right);
+					exploPos = transform.position + offset;
+				} else {
+					exploPos = transform.position;
+				}
+				
+				AOE_Damage aoe_damage = Instantiate (PrefabManager.Instance.aoe_damage, exploPos, transform.rotation);
+
+				aoe_damage.scaleExplosion (exploRadiusMult);
+				aoe_damage._damage = exploDamage;
+			}
+			break;
+
+		default:
 			break;
 		}
 		Destroy(transform.root.gameObject);
 	}
 
-
-
+	// Set the explosion settings for this bullet (ie. missile)
+	public void setExploSettings (float radiusMult, int damage) {
+		exploDamage = damage;
+		exploRadiusMult = radiusMult;
+	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjT))]
+[RequireComponent(typeof(ObjT), typeof(disableifoob))]
 public class seeking_missile : MonoBehaviour {
 
 	// Settings
@@ -19,6 +19,7 @@ public class seeking_missile : MonoBehaviour {
 
 	// References
 	private Rigidbody2D rb;
+	private disableifoob DifOOB;
 
 
 	// Check which missile type (player vs enemy)
@@ -32,6 +33,8 @@ public class seeking_missile : MonoBehaviour {
 		} else {
 			Debug.LogError ("seeking missile ObjT identifier has wrong type assigned");
 		}
+
+		DifOOB = GetComponent<disableifoob> ();
 	}
 
 
@@ -49,6 +52,8 @@ public class seeking_missile : MonoBehaviour {
 		Vector2 pos = transform.position;
 
 		if (targetObj != null) {
+			DifOOB.enabled = false;
+
 			// Calculate acceleration (i.e. NewBasicEnemy Update)
 			Vector2 targetPos = targetObj.transform.position;
 		
@@ -88,12 +93,15 @@ public class seeking_missile : MonoBehaviour {
 			// Calculate new velocity
 			velocity += acceleration * Time.deltaTime;
 			velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
+		} else {
+			DifOOB.enabled = true;
 		}
 
 		// Move the rigidbody according to velocity
 		rb.MovePosition (pos + velocity);
 	}
 
+	// Find the nearest enemy and start seeking it
 	private void findEnemyTarget() {
 		GameObject newTarget = null;
 		float minDist = int.MaxValue;
@@ -106,5 +114,11 @@ public class seeking_missile : MonoBehaviour {
 		}
 
 		targetObj = newTarget;
+	}
+
+	// Public method to set the velocity
+	public void setVelo (Vector2 direction) {
+		velocity = direction;
+		Vector2.ClampMagnitude (velocity, maxSpeed * 0.5f * Time.deltaTime);
 	}
 }

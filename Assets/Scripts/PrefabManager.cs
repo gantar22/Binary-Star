@@ -7,6 +7,7 @@ public class PrefabManager : MonoBehaviour {
 	// Prefabs go here
 	public Explosion explosion;
 	public OffScreenWarning OffScreenWarningPrefab;
+	public AOE_Damage aoe_damage;
 
 	// Singleton instance setup
 	private static PrefabManager _instance;

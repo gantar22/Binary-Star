@@ -190,15 +190,15 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == gunnerEffect.A_wideBullets) {
 
 		} else if (toPurchase == gunnerEffect.missile) {
-
+			Player_Missile_Fire.UnlockMissiles (total);
 		} else if (toPurchase == gunnerEffect.missile_cooldown) {
-
+			Player_Missile_Fire.UpgradeCooldown (total);
 		} else if (toPurchase == gunnerEffect.missile_explosions) {
-
+			Player_Missile_Fire.UpgradeExplosionRadius (total);
 		} else if (toPurchase == gunnerEffect.missile_tripleShot) {
-
+			Player_Missile_Fire.EnableTripleShot (total);
 		} else if (toPurchase == gunnerEffect.missile_tracking) {
-
+			Player_Missile_Fire.EnableTracking (total);
 		} else if (toPurchase == gunnerEffect.sword) {
 
 		} else if (toPurchase == gunnerEffect.sword_destroyProj) {

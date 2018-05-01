@@ -15,16 +15,19 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	[SerializeField]
 	float _offset;
+	[SerializeField]
+	int _explosionDamage;
 
 	// Other variables
 	private float cooldown;
 
 	// Upgrade properties
-	private static float lvl1Radius, lvl2Radius;
+	private static float lvl1ExploRadiusMult = 1.8f, lvl2ExploRadiusMult =  3.6f;
 	private static float lvl1Cooldown = 8f, lvl2Cooldown = 3f;
+	private static float angleDiffDegrees = 35;
 
 	private static bool missilesEnabled;
-	private static float explosionRadius;
+	private static float exploRadiusMult;
 	private static float maxCooldown;
 	private static bool tracking;
 	private static bool tripleShot;
@@ -32,15 +35,17 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	// Initialize the upgrade settings to lvl1 if not already set
 	void Start () {
-		if (explosionRadius == 0f) {
-			explosionRadius = lvl1Radius;
+		if (exploRadiusMult == 0f) {
+			exploRadiusMult = lvl1ExploRadiusMult;
 			maxCooldown = lvl1Cooldown;
 		}
 
 		// Testing:
-		UnlockMissiles(1);
-		EnableTracking (1);
+		/* UnlockMissiles(1);
+		//EnableTracking (1);
+		EnableTripleShot(1);
 		UpgradeCooldown (1);
+		UpgradeExplosionRadius (1); */
 	}
 
 	// Called once per frame
@@ -72,32 +77,51 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 		// Shoot the missile(s)
 		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
-		spawnMissile (transform.position + new Vector3 (Mathf.Cos (a), Mathf.Sin (a), 0) * _offset);
+		Vector3 offset = new Vector3 (Mathf.Cos (a), Mathf.Sin (a), 0) * _offset;
+		spawnMissile (transform.position + offset, 0f);
 
 		if (tripleShot) {
-			float angleDiff = Mathf.PI / 4;
-			float aLeft = a - angleDiff;
-			float aRight = a + angleDiff;
+			float angleDiffRad = angleDiffDegrees * Mathf.Deg2Rad;
+			float aLeft = a - angleDiffRad;
+			float aRight = a + angleDiffRad;
 
-			spawnMissile (transform.position + new Vector3 (Mathf.Cos (aLeft), Mathf.Sin (aLeft), 0) * _offset);
-			spawnMissile (transform.position + new Vector3 (Mathf.Cos (aRight), Mathf.Sin (aRight), 0) * _offset);
+			Vector3 leftOffset = new Vector3 (Mathf.Cos (aLeft), Mathf.Sin (aLeft), 0) * _offset;
+			Vector3 rightOffset = new Vector3 (Mathf.Cos (aRight), Mathf.Sin (aRight), 0) * _offset;
+
+			spawnMissile (transform.position + leftOffset, -1f * angleDiffDegrees);
+			spawnMissile (transform.position + rightOffset, angleDiffDegrees);
 		}
 
 		cooldown = maxCooldown;
 	}
 
-	private void spawnMissile (Vector3 pos) {
+	private void spawnMissile (Vector3 pos, float angleDiffDegrees) {
 		GameObject missile = Instantiate(_missile, pos, transform.rotation);
 		linear_travel linTrav = missile.GetComponentInChildren<linear_travel> ();
 		seeking_missile seeking = missile.GetComponentInChildren<seeking_missile> ();
 
+		//Vector2 playerVelo = transform.root.gameObject.GetComponentInChildren<PlayerMove> ().velo;
+
 		if (tracking) {
 			linTrav.enabled = false;
 			seeking.enabled = true;
+		
+			//seeking.setVelo (playerVelo);
+			Vector2 direction = pos - transform.position;
+			seeking.setVelo (direction);
 		} else {
 			linTrav.enabled = true;
 			seeking.enabled = false;
+
+			//linTrav.setSpeed(playerVelo.magnitude);
 		}
+
+		// Set the correct rotation
+		missile.transform.Rotate(new Vector3(0, 0, angleDiffDegrees));
+
+		// Set its explosion settings
+		BulletScript BS = missile.GetComponentInChildren<BulletScript>();
+		BS.setExploSettings(exploRadiusMult, _explosionDamage);
 	}
 
 
@@ -115,9 +139,9 @@ public class Player_Missile_Fire : MonoBehaviour {
 	// Upgrade explosions
 	public static void UpgradeExplosionRadius (int total) {
 		if (total == 0) {
-			explosionRadius = lvl1Radius;
+			exploRadiusMult = lvl1ExploRadiusMult;
 		} else {
-			explosionRadius = lvl2Radius;
+			exploRadiusMult = lvl2ExploRadiusMult;
 		}
 	}
 
