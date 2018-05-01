@@ -12,7 +12,7 @@ public class PlayerHP : MonoBehaviour {
 	private GameObject PlayerTurret;
 
 	// Other variables
-	public static bool invuln, checkColliders;
+	public static bool invuln, checkColliders, dashing;
 	private float invulnTimer;
 	private float alphaCounter;
 
@@ -51,6 +51,7 @@ public class PlayerHP : MonoBehaviour {
 		HP = startingMaxHP;
 		invuln = false;
 		checkColliders = false;
+		dashing = false;
 		setAllColorScale (1);
 	}
 	
@@ -78,8 +79,8 @@ public class PlayerHP : MonoBehaviour {
 			currentMaxHP = startingMaxHP;
 		} else {
 			currentMaxHP++;
-			if (GM.Instance && GM.Instance.player && GM.Instance.player.GetComponent<PlayerHP>()) {
-				GM.Instance.player.GetComponent<PlayerHP> ().gainHP (1);
+			if (GM.Instance && GM.Instance.player && GM.Instance.player.GetComponentInChildren<PlayerHP>()) {
+				GM.Instance.player.GetComponentInChildren<PlayerHP> ().gainHP (1);
 			}
 		}
 	}
@@ -121,9 +122,9 @@ public class PlayerHP : MonoBehaviour {
 
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
 		if (s != null){
-			gotHit();
+			if(!dashing) gotHit();
 			if (s.gameObject.GetComponent<Rock> () == null) {
-				s.gotHit (col.transform.position - transform.position,4, true);
+				s.gotHit (col.transform.position - transform.position,4, !dashing);
 			}
 		}
 

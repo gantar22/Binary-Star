@@ -172,6 +172,7 @@ public class UpgradesManager : MonoBehaviour {
 	public static void purchaseUpgrades (gunnerEffect ge, pilotEffect pe) {
 		purchaseGunnerUpgrade (ge);
 		purchasePilotUpgrade (pe);
+		print(">");
 	}
 
 	// Call this to purchase/enable a gunner upgrade

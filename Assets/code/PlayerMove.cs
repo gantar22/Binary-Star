@@ -25,6 +25,9 @@ public class PlayerMove : MonoBehaviour {
 	private static float heat_per_sec;
 	private static float heat_decay;
 
+	private static float dash_length;
+	private static float dash_width;
+
 	private float heat;
 	private bool cooldown;
 
@@ -37,6 +40,8 @@ public class PlayerMove : MonoBehaviour {
 	[SerializeField]
 	private float _boostFactor = 2.5f;
 
+	private Rigidbody2D rb;
+
 	private Bounds colliding_bounds = new Bounds(Vector3.zero,Vector3.zero);
 
 
@@ -47,6 +52,7 @@ public class PlayerMove : MonoBehaviour {
 			heat_per_sec = baseHeat_per_sec;
 			heat_decay = baseHeat_decay;
 		}
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	// Update is called once per frame
@@ -55,10 +61,15 @@ public class PlayerMove : MonoBehaviour {
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
 
-		
+			//only apply to player
 		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift))) _gear = gear.boost;
 		else _gear = gear.normal;
 		
+		if(GetComponent<PlayerHP>() && Input.GetKeyDown(KeyCode.F)){
+			StartCoroutine(dash(20,3));
+		}
+
+
 		if(!stunned) move();
 		
 	}
@@ -183,6 +194,7 @@ public class PlayerMove : MonoBehaviour {
 		cooldown = false;
 	}
 
+
 	public float GetHeat(){
 		return heat / max_heat;
 	}
@@ -200,6 +212,43 @@ public class PlayerMove : MonoBehaviour {
 			joy.x = (Input.GetKey(KeyCode.RightArrow) ? 1 : 0) + (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0);
 			joy.y = (Input.GetKey(KeyCode.UpArrow) ? 1 : 0)    + (Input.GetKey(KeyCode.DownArrow) ? -1 : 0);
 		}
+	}
+
+
+
+
+
+
+	IEnumerator dash(float dash_length,float dash_width){
+			float dur = .1f;
+			float timer = dur;
+			float step_size = dash_length / dur;
+			GetComponentInParent<squeeze>().enabled = false;
+			PlayerHP.dashing = true;
+			BoxCollider2D col = GetComponent<BoxCollider2D>();
+			Vector2 old_size = col.size;
+			col.size = new Vector2(dash_width,old_size.y);
+			TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
+			float old_time = trail.time;
+			float old_width = trail.startWidth;
+			trail.time = 1;
+			trail.startWidth = dash_width;
+			while(timer > 0){
+
+				timer -= Time.deltaTime;
+				transform.root.position	+= transform.root.right * step_size * Time.deltaTime;
+				if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).x)
+					|| not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
+					transform.root.position	+= transform.root.right * step_size * -Time.deltaTime;
+				}
+				yield return null;
+			}
+			trail.time = old_time;
+			trail.startWidth = old_width;
+			col.size = old_size;
+			PlayerHP.dashing = false;
+			GetComponentInParent<squeeze>().enabled = false;
+			yield return null;
 	}
 
 

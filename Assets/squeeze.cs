@@ -19,6 +19,7 @@ public class squeeze : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(PauseManager.paused) return;
 		float delta = Mathf.Pow((prev_position - transform.position).magnitude,1.5f);
 		speed = delta / Time.deltaTime;
 		//if(Mathf.Abs(prev_delta - delta) > .01f) overshoot = extra;

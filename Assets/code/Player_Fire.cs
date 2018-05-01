@@ -46,10 +46,10 @@ public class Player_Fire : MonoBehaviour {
 		heat -= heat_decay * Time.deltaTime;
 		if(cool_down) heat -= heat_decay * Time.deltaTime * 2;
 		if(heat < 0) reload();
-		if((XCI.GetButtonDown(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down){
+		if((XCI.GetButtonDown(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down && !PauseManager.paused){
 			fire();
 		}	
-		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down){
+		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down && !PauseManager.paused){
 			if(Time.time - last_fire > (heat_decay * max_heat * .1f)) fire();
 		}
 	}
