@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 	public int _damage;
 
-	public enum bulletType {basic, sin}
+	public enum bulletType {basic, sin, missile}
 
 	public bulletType _type;
 
