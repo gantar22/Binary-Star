@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum gunnerEffect {	A_splitShot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
-							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_splitShot,
+							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_tripleShot,
 							sword,			sword_duration,			sword_destroyProj,	sword_range,		sword_spin,
 							Y_slowMo,		Y_starMode				};
 
@@ -196,7 +196,7 @@ public class UpgradesManager : MonoBehaviour {
 
 		} else if (toPurchase == gunnerEffect.missile_explosions) {
 
-		} else if (toPurchase == gunnerEffect.missile_splitShot) {
+		} else if (toPurchase == gunnerEffect.missile_tripleShot) {
 
 		} else if (toPurchase == gunnerEffect.missile_tracking) {
 
