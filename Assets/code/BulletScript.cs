@@ -17,13 +17,17 @@ public class BulletScript : MonoBehaviour {
 
 	// Variables to make sure bullet only hits one thing
 	private List<GameObject> objsToHit;
-	private bool hitInvulnerable;
+	//private bool hitInvulnerable;
+
+	// Ricochet counter
+	[HideInInspector]
+	public int ricochetsLeft = 0;
 
 
 	void Awake () {
 		objT = GetComponent<ObjT> ();
 		objsToHit = new List<GameObject> ();
-		hitInvulnerable = false;
+		//hitInvulnerable = false;
 	}
 
 	// Called once per frame, after all physics & collision checks
@@ -41,7 +45,12 @@ public class BulletScript : MonoBehaviour {
 				invulnToHit = I;
 				objsToHit.Remove (nextObj);
 			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ, transform.right)) {
-				die ();
+				if (ricochetsLeft > 0) {
+					ricochet (nextObj);
+				} else {
+					die ();
+				}
+
 				objsToHit.Clear ();
 				damagedSomething = true;
 			} else {
@@ -51,7 +60,11 @@ public class BulletScript : MonoBehaviour {
 
 		if (!damagedSomething && invulnToHit != null) {
 			invulnToHit.gotHit ();
-			die ();
+			if (ricochetsLeft > 0) {
+				ricochet (invulnToHit.gameObject);
+			} else {
+				die ();
+			}
 		}
 	}
 
@@ -139,6 +152,20 @@ public class BulletScript : MonoBehaviour {
 			break;
 		}
 		Destroy(transform.root.gameObject);
+	}
+
+	// Ricochet off the object that was just hit
+	private void ricochet(GameObject justHit) {
+		/* Vector3 normal = transform.position - justHit.transform.position;
+		Vector3 newDirection = Vector3.Reflect (transform.right, normal);
+
+		//Vector3 newDirection = transform.right.normalized * -1f;
+		newDirection += Vector3.right * Random.Range (-0.1f, 0.1f) + Vector3.up * Random.Range (-0.1f, 0.1f); */
+
+
+
+		transform.right = newDirection;
+		ricochetsLeft--;
 	}
 
 	// Set the explosion settings for this bullet (ie. missile)

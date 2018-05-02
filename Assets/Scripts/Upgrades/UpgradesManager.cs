@@ -180,15 +180,15 @@ public class UpgradesManager : MonoBehaviour {
 		gunnerUpgrades [toPurchase] = total;
 
 		if (toPurchase == gunnerEffect.A_fireRate) {
-			
+			Player_Fire.UpgradeFireRate (total);
 		} else if (toPurchase == gunnerEffect.A_range) {
 			bullet_range.upgradeRange (total);
 		} else if (toPurchase == gunnerEffect.A_ricochet) {
-
+			Player_Fire.UpgradeRicochet (total);
 		} else if (toPurchase == gunnerEffect.A_multishot) {
-
+			Player_Fire.UpgradeMultishot (total);
 		} else if (toPurchase == gunnerEffect.A_wideBullets) {
-
+			Player_Fire.UpgradeBulletWidth (total);
 		} else if (toPurchase == gunnerEffect.missile) {
 			Player_Missile_Fire.UnlockMissiles (total);
 		} else if (toPurchase == gunnerEffect.missile_cooldown) {

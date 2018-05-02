@@ -6,7 +6,7 @@ public class bullet_range : MonoBehaviour {
 	private Vector3 startPos;
 	public float range = 5;
 
-	private static float rangeBoostPerLvl = 2f;
+	private static float rangeBoostPerLvl = 3.5f;
 	private static float extraRange;
 
 	// Use this for initialization
