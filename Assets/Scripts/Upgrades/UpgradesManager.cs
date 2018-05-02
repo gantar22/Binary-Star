@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum gunnerEffect {	A_splitShot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
+public enum gunnerEffect {	A_multishot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
 							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_tripleShot,
 							sword,			sword_duration,			sword_destroyProj,	sword_range,		sword_spin,
 							Y_slowMo,		Y_starMode				};
@@ -181,25 +181,25 @@ public class UpgradesManager : MonoBehaviour {
 		gunnerUpgrades [toPurchase] = total;
 
 		if (toPurchase == gunnerEffect.A_fireRate) {
-			
+			Player_Fire.UpgradeFireRate (total);
 		} else if (toPurchase == gunnerEffect.A_range) {
-
+			bullet_range.upgradeRange (total);
 		} else if (toPurchase == gunnerEffect.A_ricochet) {
-
-		} else if (toPurchase == gunnerEffect.A_splitShot) {
-
+			Player_Fire.UpgradeRicochet (total);
+		} else if (toPurchase == gunnerEffect.A_multishot) {
+			Player_Fire.UpgradeMultishot (total);
 		} else if (toPurchase == gunnerEffect.A_wideBullets) {
-
+			Player_Fire.UpgradeBulletWidth (total);
 		} else if (toPurchase == gunnerEffect.missile) {
-
+			Player_Missile_Fire.UnlockMissiles (total);
 		} else if (toPurchase == gunnerEffect.missile_cooldown) {
-
+			Player_Missile_Fire.UpgradeCooldown (total);
 		} else if (toPurchase == gunnerEffect.missile_explosions) {
-
+			Player_Missile_Fire.UpgradeExplosionRadius (total);
 		} else if (toPurchase == gunnerEffect.missile_tripleShot) {
-
+			Player_Missile_Fire.EnableTripleShot (total);
 		} else if (toPurchase == gunnerEffect.missile_tracking) {
-
+			Player_Missile_Fire.EnableTracking (total);
 		} else if (toPurchase == gunnerEffect.sword) {
 
 		} else if (toPurchase == gunnerEffect.sword_destroyProj) {
