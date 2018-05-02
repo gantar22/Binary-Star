@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(ObjT))]
 public class BulletScript : MonoBehaviour {
@@ -22,12 +23,14 @@ public class BulletScript : MonoBehaviour {
 	// Ricochet counter
 	[HideInInspector]
 	public int ricochetsLeft = 0;
+	private List<Collider2D> lastHit;
 
 
 	void Awake () {
 		objT = GetComponent<ObjT> ();
 		objsToHit = new List<GameObject> ();
 		//hitInvulnerable = false;
+		lastHit = new List<Collider2D> ();
 	}
 
 	// Called once per frame, after all physics & collision checks
@@ -62,6 +65,7 @@ public class BulletScript : MonoBehaviour {
 			invulnToHit.gotHit ();
 			if (ricochetsLeft > 0) {
 				ricochet (invulnToHit.gameObject);
+				lastHit = invulnToHit.transform.root.GetComponentsInChildren<Collider2D>().ToList();
 			} else {
 				die ();
 			}
@@ -69,7 +73,9 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		objsToHit.Add (col.gameObject);
+		if (lastHit.IndexOf (col) < 0) {
+			objsToHit.Add (col.gameObject);
+		}
 
 		/* if (hitInvulnerable) {
 			return;
@@ -160,11 +166,22 @@ public class BulletScript : MonoBehaviour {
 		Vector3 newDirection = Vector3.Reflect (transform.right, normal);
 
 		//Vector3 newDirection = transform.right.normalized * -1f;
-		newDirection += Vector3.right * Random.Range (-0.1f, 0.1f) + Vector3.up * Random.Range (-0.1f, 0.1f); */
+		newDirection += Vector3.right * Random.Range (-0.1f, 0.1f) + Vector3.up * Random.Range (-0.1f, 0.1f);
+		transform.right = newDirection; */
 
+		Vector3 leftBounce = ((Vector2)transform.right).Rotate (180f + 75f);
+		Vector3 rightBounce = ((Vector2)transform.right).Rotate (180f - 75f);
 
+		Vector3 normal = transform.position - justHit.transform.position;
+		float leftDot = Vector3.Dot (leftBounce, normal);
+		float rightDot = Vector3.Dot (rightBounce, normal);
 
-		transform.right = newDirection;
+		if (leftDot > rightDot) {
+			transform.right = leftBounce;
+		} else {
+			transform.right = rightBounce;
+		}
+
 		ricochetsLeft--;
 	}
 
