@@ -6,9 +6,10 @@ public class pick_upgrade : MonoBehaviour {
 
 
 	private Upgrade u;
-
+	private bool got;
 	// Use this for initialization
 	void Start () {
+		got = false;
 		u = GetComponentInParent<upgrade_button>().u;
 	}
 	
@@ -18,9 +19,10 @@ public class pick_upgrade : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.GetComponent<BulletScript>() && other.gameObject.GetComponent<ObjT>() && other.gameObject.GetComponent<ObjT>().typ == ObjT.obj.player_bullet){
+		if(other.gameObject.GetComponent<BulletScript>() && other.gameObject.GetComponent<ObjT>() && other.gameObject.GetComponent<ObjT>().typ == ObjT.obj.player_bullet && !got){
 			GetComponentInParent<Animator>().SetTrigger("shut_down");
 			UpgradesManager.purchaseUpgrades(u.gunEffect,u.pilEffect);
+			got = true;
 			Invoke("end",.4f);
 		}
 	}

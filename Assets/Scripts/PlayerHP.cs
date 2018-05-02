@@ -21,6 +21,9 @@ public class PlayerHP : MonoBehaviour {
 	private SpriteRenderer PlayerTurretSR;
 	private Player_Fire player_Fire;
 
+	// whether we have already dashed through an enemy
+	private bool dash_powered = true;
+
 	// Sprint chance
 	private static float stillHitOdds = 1f;
 
@@ -71,6 +74,8 @@ public class PlayerHP : MonoBehaviour {
 				setAllColorScale (newAlpha);
 			}
 		}
+
+		if(!dashing) dash_powered = true; //bad style
 	}
 
 	// Upgrade player maximum HP
@@ -124,7 +129,11 @@ public class PlayerHP : MonoBehaviour {
 		if (s != null){
 			if(!dashing) gotHit();
 			if (s.gameObject.GetComponent<Rock> () == null) {
-				s.gotHit (col.transform.position - transform.position,4, !dashing);
+				if(dashing){
+					if(dash_powered) s.gotHit (col.transform.position - transform.position,1, false);
+					if(!PlayerMove.dash_kill) dash_powered = false;
+				} else
+					s.gotHit (col.transform.position - transform.position,4, true);
 			}
 		}
 

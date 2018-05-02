@@ -25,8 +25,14 @@ public class PlayerMove : MonoBehaviour {
 	private static float heat_per_sec;
 	private static float heat_decay;
 
-	private static float dash_length;
-	private static float dash_width;
+	private static float dash_length = 20;
+	private static float dash_width = 1;
+	private static float dash_cooldown = 8;
+	private static bool  dash_enabled = true;
+	public  static bool  dash_kill = false;
+
+	private bool dash_off_cooldown = false;
+	private float dash_timer;
 
 	private float heat;
 	private bool cooldown;
@@ -65,12 +71,16 @@ public class PlayerMove : MonoBehaviour {
 		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift))) _gear = gear.boost;
 		else _gear = gear.normal;
 		
-		if(GetComponent<PlayerHP>() && Input.GetKeyDown(KeyCode.F)){
-			StartCoroutine(dash(20,3));
+		if(dash_enabled && GetComponent<PlayerHP>() && (Input.GetKeyDown(KeyCode.F) || XCI.GetButton(XboxButton.X,ctlr)) && !PlayerHP.invuln && dash_off_cooldown){
+			StartCoroutine(dash(dash_length,dash_width));
 		}
 
 
 		if(!stunned) move();
+
+		dash_timer = Mathf.Clamp(dash_timer - Time.deltaTime, -1, dash_timer);
+		if(dash_timer < 0)	dash_off_cooldown = true;
+
 		
 	}
 
@@ -86,6 +96,47 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	// 
+
+
+	public static void UpgradeDashWidth(int total) {
+		if(total == 0) {
+			PlayerMove.dash_width = 1;
+		} else {
+			PlayerMove.dash_width = 2.3f;
+		}
+
+	}
+
+
+	public static void UpgradeDashCoolDown(int total){
+		if(total == 0) {
+			dash_cooldown = 8;
+		} else {
+			dash_cooldown = 3;
+		}
+	}
+
+	public static void UpgradeDashEnabled(int total){
+		if(total == 0){
+			dash_enabled = false;
+		} else {
+			dash_enabled = true;
+		}
+
+	}
+
+	public static void UpgradeDashLength(int total){
+		if(total == 0){
+			dash_length = 20;
+		} else {
+			dash_length = 50;
+
+		}
+	}
+
+	public static void UpgradeDashKill(int total){
+		dash_kill = total == 1;
+	}
 
 	void move(){
 		heat -= heat_decay * Time.deltaTime;
@@ -220,6 +271,8 @@ public class PlayerMove : MonoBehaviour {
 
 
 	IEnumerator dash(float dash_length,float dash_width){
+			dash_off_cooldown = false;
+			dash_timer = dash_cooldown;
 			float dur = .1f;
 			float timer = dur;
 			float step_size = dash_length / dur;
@@ -227,12 +280,12 @@ public class PlayerMove : MonoBehaviour {
 			PlayerHP.dashing = true;
 			BoxCollider2D col = GetComponent<BoxCollider2D>();
 			Vector2 old_size = col.size;
-			col.size = new Vector2(dash_width,old_size.y);
+			col.size = new Vector2(old_size.x,dash_width);
 			TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
 			float old_time = trail.time;
 			float old_width = trail.startWidth;
 			trail.time = 1;
-			trail.startWidth = dash_width;
+			trail.widthMultiplier = dash_width * 10;
 			while(timer > 0){
 
 				timer -= Time.deltaTime;
@@ -243,13 +296,21 @@ public class PlayerMove : MonoBehaviour {
 				}
 				yield return null;
 			}
-			trail.time = old_time;
-			trail.startWidth = old_width;
+
 			col.size = old_size;
-			PlayerHP.dashing = false;
 			GetComponentInParent<squeeze>().enabled = false;
+			timer = .5f;
+			while(timer > 0){
+				timer -= Time.deltaTime;
+				trail.time = Mathf.Lerp(trail.time, old_time,1 - 2 * timer);
+				trail.widthMultiplier = Mathf.Lerp(trail.widthMultiplier,old_width,1 - 2 * timer);
+				yield return null;
+			}
+			PlayerHP.dashing = false;
 			yield return null;
 	}
+
+
 
 
 	void uncollide(){

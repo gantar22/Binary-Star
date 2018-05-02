@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿ng System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public enum gunnerEffect {	A_multishot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
 							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_tripleShot,
+
 							sword,			sword_duration,			sword_destroyProj,	sword_range,		sword_spin,
 							Y_slowMo,		Y_starMode				};
 
@@ -172,7 +174,6 @@ public class UpgradesManager : MonoBehaviour {
 	public static void purchaseUpgrades (gunnerEffect ge, pilotEffect pe) {
 		purchaseGunnerUpgrade (ge);
 		purchasePilotUpgrade (pe);
-		print(">");
 	}
 
 	// Call this to purchase/enable a gunner upgrade
@@ -233,15 +234,15 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == pilotEffect.sprint_evasion) {
 			PlayerHP.UpgradeEvasionOdds (total);
 		} else if (toPurchase == pilotEffect.dash) {
-
+			PlayerMove.UpgradeDashEnabled(total);
 		} else if (toPurchase == pilotEffect.dash_cooldown) {
-
+			PlayerMove.UpgradeDashCoolDown(total);
 		} else if (toPurchase == pilotEffect.dash_damage) {
-
+			PlayerMove.UpgradeDashKill(total);
 		} else if (toPurchase == pilotEffect.dash_longer) {
-
+			PlayerMove.UpgradeDashLength(total);
 		} else if (toPurchase == pilotEffect.dash_wider) {
-
+			PlayerMove.UpgradeDashLength(total);
 		} else if (toPurchase == pilotEffect.turtle) {
 
 		} else if (toPurchase == pilotEffect.turtle_decoy) {
