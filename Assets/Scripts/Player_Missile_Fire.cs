@@ -41,11 +41,11 @@ public class Player_Missile_Fire : MonoBehaviour {
 		}
 
 		// Testing:
-		/* UnlockMissiles(1);
+		//UnlockMissiles(1);
 		//EnableTracking (1);
-		EnableTripleShot(1);
-		UpgradeCooldown (1);
-		UpgradeExplosionRadius (1); */
+		//EnableTripleShot(1);
+		//UpgradeCooldown (1);
+		//UpgradeExplosionRadius (1);
 	}
 
 	// Called once per frame

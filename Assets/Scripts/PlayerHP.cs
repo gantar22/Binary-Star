@@ -116,7 +116,7 @@ public class PlayerHP : MonoBehaviour {
 
 	// Check for collisions with enemies, and stay out of asteroids
 	void OnTriggerEnter2D (Collider2D col){
-		if (invuln) {
+		if (invuln || Time.time < 1f) {
 			return;
 		}
 

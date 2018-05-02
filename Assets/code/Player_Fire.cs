@@ -51,7 +51,7 @@ public class Player_Fire : MonoBehaviour {
 		//bullet_range.upgradeRange(5);
 		//UpgradeBulletWidth(10);
 		//UpgradeFireRate(10);
-		UpgradeRicochet(2);
+		//UpgradeRicochet(2);
 	}
 	
 	// Update is called once per frame
