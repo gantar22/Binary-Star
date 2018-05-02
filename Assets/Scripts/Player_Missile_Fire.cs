@@ -76,7 +76,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 		}
 
 		// Shoot the missile(s)
-		float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
+		float a = transform.eulerAngles.z * Mathf.Deg2Rad;
 		Vector3 offset = new Vector3 (Mathf.Cos (a), Mathf.Sin (a), 0) * _offset;
 		spawnMissile (transform.position + offset, 0f);
 

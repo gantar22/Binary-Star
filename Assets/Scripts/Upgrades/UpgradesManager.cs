@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum gunnerEffect {	A_splitShot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
+public enum gunnerEffect {	A_multishot,	A_ricochet,				A_range,			A_wideBullets,		A_fireRate,
 							missile,		missile_explosions,		missile_cooldown,	missile_tracking,	missile_tripleShot,
 							sword,			sword_duration,			sword_destroyProj,	sword_range,		sword_spin,
 							Y_slowMo,		Y_starMode				};
@@ -182,10 +182,10 @@ public class UpgradesManager : MonoBehaviour {
 		if (toPurchase == gunnerEffect.A_fireRate) {
 			
 		} else if (toPurchase == gunnerEffect.A_range) {
-
+			bullet_range.upgradeRange (total);
 		} else if (toPurchase == gunnerEffect.A_ricochet) {
 
-		} else if (toPurchase == gunnerEffect.A_splitShot) {
+		} else if (toPurchase == gunnerEffect.A_multishot) {
 
 		} else if (toPurchase == gunnerEffect.A_wideBullets) {
 
