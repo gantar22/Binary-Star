@@ -193,12 +193,13 @@ public class PlayerHP : MonoBehaviour {
 			CSS.activate(.1f,.1f);
 		}
 
-		// TODO - Death screen as transition
-		if (!SpawnManager.Instance.freeplayMode) {
-			GM.Instance.restartThisSequence ();
-		} else {
-			GM.ResetProgressThenMainMenu ();
-		}
+		GM.Instance.resetEnemies ();
+
+		// Play explosion
+		Explosion newExplosion = Instantiate (PrefabManager.Instance.explosion, transform.position, transform.rotation);
+		newExplosion.transform.localScale = new Vector3 (50f, 50f, 1f);
+
+		GM.Instance.PlayerDied ();
 
 		Destroy (gameObject.transform.parent.gameObject);
 	}

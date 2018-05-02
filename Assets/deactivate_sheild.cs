@@ -14,8 +14,12 @@ public class deactivate_sheild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Vector3.Distance(GM.Instance.player.transform.position,transform.position) < 10) deactivate();
-		if(Vector3.Distance(GM.Instance.player.transform.position,transform.position) > 20) activate();	
+		if (GM.Instance.player) {
+			if (Vector3.Distance (GM.Instance.player.transform.position, transform.position) < 10)
+				deactivate ();
+			if (Vector3.Distance (GM.Instance.player.transform.position, transform.position) > 20)
+				activate ();	
+		}
 	}
 
 

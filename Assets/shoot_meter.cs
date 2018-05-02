@@ -12,6 +12,10 @@ public class shoot_meter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!GM.Instance.player) {
+			return;
+		}
+
 		GetComponent<Slider>().value = GM.Instance.player.GetComponentInChildren<Player_Fire>().GetHeat();
 	}
 }
