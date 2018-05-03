@@ -7,6 +7,7 @@ public class linear_travel : MonoBehaviour {
 
 	[SerializeField]
 	private float _speed = 1;
+	public float getBaseSpeed { get { return _speed; } }
 
 	[SerializeField]
 	private float _exponent = 0;

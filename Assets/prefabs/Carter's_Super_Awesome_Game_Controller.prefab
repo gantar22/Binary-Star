@@ -377,7 +377,8 @@ MonoBehaviour:
     type: 2}
   OffScreenWarningPrefab: {fileID: 114441734673426340, guid: cdf826b22835fb04d92a900bfbe5304c,
     type: 2}
-  aoe_damage: {fileID: 0}
+  aoe_damage: {fileID: 114987534392564970, guid: 72905444c1c18a44d8a455fa32b92f0f,
+    type: 2}
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
