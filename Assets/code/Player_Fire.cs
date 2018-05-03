@@ -80,13 +80,20 @@ public class Player_Fire : MonoBehaviour {
 	}
 
 
+	void shot_sound(){
+		music_manager.play_by_name("shot");
+	}
+
 	void fire(){
 		if (cantFire) {
-			// Play "click" noise here
+			music_manager.play_by_name("error");
 			return;
 		}
 		last_fire = Time.time;
-		music_manager.Instance.shot();
+		for(int i = 0; i < multishotCount;i++){
+			Invoke("shot_sound",.06f * i);
+		}
+		
 		GetComponentInChildren<ParticleSystem>().Play();
 
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
@@ -159,7 +166,7 @@ public class Player_Fire : MonoBehaviour {
 	// ===== UPGRADES =====
 
 	public static void UpgradeMultishot (int total) {
-		multishotCount = total + 1;
+		multishotCount = total * 2 + 1;
 	}
 
 	public static void UpgradeBulletWidth (int total) {

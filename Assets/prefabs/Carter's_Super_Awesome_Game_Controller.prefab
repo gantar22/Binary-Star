@@ -443,43 +443,55 @@ MonoBehaviour:
     variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: cae0a3ecb1cad1145bbea7c13ffa50ba, type: 3}
-    volume: 0.54
+    volume: 0.36
     source: {fileID: 0}
   - name: die
     variation: 0.003
     mid: 1
     clip: {fileID: 8300000, guid: e3039c48e0e386d42950bdb1722548a9, type: 3}
-    volume: 1
+    volume: 0.62
     source: {fileID: 0}
   - name: sine
     variation: 0.1
     mid: 1
     clip: {fileID: 8300000, guid: 4273fb7126a5d2b40a10dacc847c13cb, type: 3}
-    volume: 0.5
+    volume: 1.12
     source: {fileID: 0}
   - name: player_death
     variation: 0
     mid: 1
     clip: {fileID: 8300000, guid: abeda2a634f6d314ea3e5af87ed1dfd9, type: 3}
-    volume: 1
+    volume: 0.72
     source: {fileID: 0}
   - name: missile_fire
     variation: 0.1
     mid: 1
     clip: {fileID: 8300000, guid: 98913668d7d857a46afa44c9727ed7a4, type: 3}
-    volume: 1
+    volume: 1.52
     source: {fileID: 0}
   - name: sleeper_active
     variation: 0.003
     mid: 1
     clip: {fileID: 8300000, guid: 4cfdcc17b3b785443819072c562f7954, type: 3}
-    volume: 1
+    volume: 2.78
     source: {fileID: 0}
   - name: dash
     variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: 55e51df4731a82545ac5977cbe174bfd, type: 3}
-    volume: 1
+    volume: 1.2
+    source: {fileID: 0}
+  - name: error
+    variation: 0.5
+    mid: 1
+    clip: {fileID: 8300000, guid: 66eaefedd2cfe4d4184e0974e57d2425, type: 3}
+    volume: 3
+    source: {fileID: 0}
+  - name: ui
+    variation: 0.001
+    mid: 1.01
+    clip: {fileID: 8300000, guid: 93165653f7becdf458f63a85f70c936c, type: 3}
+    volume: 0.36
     source: {fileID: 0}
   a_s: {fileID: 0}
   source: {fileID: 1811817868241282, guid: b08247d5a2329664483a088aeaeaaf42, type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct sx {
@@ -13,7 +14,7 @@ public struct sx {
 	public float mid;
 	[SerializeField]
 	public AudioClip clip;
-	[Range(0,1)]
+	[Range(0,3)]
 	public float volume;
 	[HideInInspector]
 	public AudioSource source;
@@ -55,6 +56,11 @@ public class music_manager : MonoBehaviour {
 		}
 		a_s = GetComponent<AudioSource>();
 		a_s.clip = danger_music;
+		if(SceneManager.GetActiveScene().buildIndex == 1){
+			a_s.clip = calm_music;
+		} else {
+			a_s.clip = danger_music;
+		}
 		a_s.volume = max_music_volume;
 		a_s.Play();
 
