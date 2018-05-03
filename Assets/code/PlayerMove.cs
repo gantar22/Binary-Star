@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour {
 	private static float dash_length = 20;
 	private static float dash_width = 1;
 	private static float dash_cooldown = 8;
-	private static bool  dash_enabled = true;
+	private static bool  dash_enabled = false;
 	public  static bool  dash_kill = false;
 
 	private bool dash_off_cooldown = false;
@@ -84,6 +84,11 @@ public class PlayerMove : MonoBehaviour {
 		
 	}
 
+	public static float x_cooldown(){
+		if(dash_enabled) return 1 - (GM.Instance.player.GetComponentInChildren<PlayerMove>().dash_timer / dash_cooldown);
+		else return 0;
+	}
+
 	// Upgrade sprint cooldown
 	public static void UpgradeSprintCooldown (int total) {
 		if (total == 0) {
@@ -118,7 +123,7 @@ public class PlayerMove : MonoBehaviour {
 
 	public static void UpgradeDashEnabled(int total){
 		if(total == 0){
-			dash_enabled = false;
+			dash_enabled = true;//false;
 		} else {
 			dash_enabled = true;
 		}
@@ -271,6 +276,7 @@ public class PlayerMove : MonoBehaviour {
 
 
 	IEnumerator dash(float dash_length,float dash_width){
+			music_manager.play_by_name("dash");
 			dash_off_cooldown = false;
 			dash_timer = dash_cooldown;
 			float dur = .1f;

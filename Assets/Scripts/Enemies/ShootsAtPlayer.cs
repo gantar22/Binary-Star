@@ -60,8 +60,14 @@ public class ShootsAtPlayer : MonoBehaviour {
 		float diff = targetAngle - currentAngle;
 
 		// Instantiate the bullet and set to the right direction and speed
+
 		GameObject bul = Instantiate(_bullet, transform.position + shootDirection * _offset, transform.rotation);
-		music_manager.Instance.shot();
+		
+		if(bul.GetComponentInChildren<sin_travel>())
+			music_manager.play_by_name("sine");
+		else
+			music_manager.Instance.shot();
+
 		bul.transform.Rotate (Vector3.forward * diff);
 
 		if (WEP != null) {

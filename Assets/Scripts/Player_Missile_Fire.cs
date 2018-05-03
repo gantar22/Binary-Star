@@ -63,6 +63,11 @@ public class Player_Missile_Fire : MonoBehaviour {
 		}
 	}
 
+	public static float get_cooldown(){
+		if(missilesEnabled) return 1 - (GM.Instance.player.GetComponentInChildren<Player_Missile_Fire>().cooldown / maxCooldown);
+		return -1;
+	}
+
 	// Fire missile(s)
 	private void fire() {
 		// Effects

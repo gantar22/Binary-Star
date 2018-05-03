@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct sx {
 	[SerializeField]
+	public
 	string name;
 	[SerializeField]
 	public float variation;
@@ -12,6 +13,8 @@ public struct sx {
 	public float mid;
 	[SerializeField]
 	public AudioClip clip;
+	[Range(0,1)]
+	public float volume;
 	[HideInInspector]
 	public AudioSource source;
 
@@ -33,6 +36,7 @@ public class music_manager : MonoBehaviour {
 	public GameObject source;
 	public float max_music_volume;
 	public float max_effects_volume;
+	public static float global_pitch = 1;
 
 
 	// Singleton instance setup
@@ -63,8 +67,8 @@ public class music_manager : MonoBehaviour {
 	}
 
 	void Update(){
-
 		a_s.volume = max_music_volume;
+		a_s.pitch  = global_pitch;
 		if(!a_s.isPlaying)	a_s.Play();
 	}
 
@@ -77,9 +81,17 @@ public class music_manager : MonoBehaviour {
 		play_sound(1);
 	}
 
+
+	public static void play_by_name(string name){
+		for(int i = 0; i < _instance.sxs.Length; i++){
+			if (_instance.sxs[i].name == name)
+				_instance.play_sound(i);
+		}
+	}
+
 	public void play_sound(int id){
-		sxs[id].source.pitch = (Random.value - .5f) * sxs[id].variation + sxs[id].mid;
-		sxs[id].source.PlayOneShot(sxs[id].clip,max_effects_volume);
+		sxs[id].source.pitch = ((Random.value - .5f) * sxs[id].variation + sxs[id].mid) * global_pitch;
+		sxs[id].source.PlayOneShot(sxs[id].clip, sxs[id].volume * max_effects_volume);
 	}
 
 		

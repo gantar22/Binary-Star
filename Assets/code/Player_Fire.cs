@@ -91,7 +91,7 @@ public class Player_Fire : MonoBehaviour {
 
 		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 		if(CSS != null){
-			//CSS.activate(.01f,.05f); //this feels bad
+			CSS.activate(.01f,.05f); //this feels bad
 		}
 
 

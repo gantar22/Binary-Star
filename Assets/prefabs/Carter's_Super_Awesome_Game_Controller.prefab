@@ -377,8 +377,7 @@ MonoBehaviour:
     type: 2}
   OffScreenWarningPrefab: {fileID: 114441734673426340, guid: cdf826b22835fb04d92a900bfbe5304c,
     type: 2}
-  aoe_damage: {fileID: 114987534392564970, guid: 72905444c1c18a44d8a455fa32b92f0f,
-    type: 2}
+  aoe_damage: {fileID: 0}
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,14 +440,46 @@ MonoBehaviour:
   danger_music: {fileID: 8300000, guid: 694598f962f97c440a8ecd8653a20cdc, type: 3}
   sxs:
   - name: shot
-    variation: 0.003
+    variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: cae0a3ecb1cad1145bbea7c13ffa50ba, type: 3}
+    volume: 0.54
     source: {fileID: 0}
   - name: die
     variation: 0.003
     mid: 1
     clip: {fileID: 8300000, guid: e3039c48e0e386d42950bdb1722548a9, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: sine
+    variation: 0.1
+    mid: 1
+    clip: {fileID: 8300000, guid: 4273fb7126a5d2b40a10dacc847c13cb, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: player_death
+    variation: 0
+    mid: 1
+    clip: {fileID: 8300000, guid: abeda2a634f6d314ea3e5af87ed1dfd9, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: missile_fire
+    variation: 0.1
+    mid: 1
+    clip: {fileID: 8300000, guid: 98913668d7d857a46afa44c9727ed7a4, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: sleeper_active
+    variation: 0.003
+    mid: 1
+    clip: {fileID: 8300000, guid: 4cfdcc17b3b785443819072c562f7954, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: dash
+    variation: 0.5
+    mid: 1
+    clip: {fileID: 8300000, guid: 55e51df4731a82545ac5977cbe174bfd, type: 3}
+    volume: 1
     source: {fileID: 0}
   a_s: {fileID: 0}
   source: {fileID: 1811817868241282, guid: b08247d5a2329664483a088aeaeaaf42, type: 2}

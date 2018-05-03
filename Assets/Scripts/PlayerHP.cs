@@ -201,6 +201,7 @@ public class PlayerHP : MonoBehaviour {
 		if(CSS != null){
 			CSS.activate(.1f,.1f);
 		}
+		music_manager.play_by_name("player_death");
 
 		// TODO - Death screen as transition
 		if (!SpawnManager.Instance.freeplayMode) {

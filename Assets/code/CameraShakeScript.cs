@@ -4,7 +4,6 @@ using System.Collections;
 public class CameraShakeScript : MonoBehaviour {
 
 	private bool running;
-	private float elapsedTime;
 	private Vector3 vel;
 	[SerializeField]
 	private float maxSpeed = 5;
@@ -16,7 +15,7 @@ public class CameraShakeScript : MonoBehaviour {
 	}
 	
 	IEnumerator shake(float mag, float dur){
-			elapsedTime = 0f;
+			float elapsedTime = 0f;
 			Vector3 originalPos = new Vector3(transform.position.x,transform.position.y,transform.position.z);
 			int steps = 1000;
 			float stepTime = 0;
