@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour {
 		}
 	}
 
+	// Pause the game
 	public void pause() {
 		if (EndStateScreens.stateScreenIsUp) {
 			return;
@@ -65,12 +66,20 @@ public class PauseManager : MonoBehaviour {
 		OptionsMenu.SetActive (false);
 	}
 
-	public void resume() {
+	// Resume the game. If resetTimeScale, Time.timeScale is set back to 1
+	public void resume(bool resetTimeScale = true) {
 		paused = false;
-		Time.timeScale = previousTimeScale;
+		if (resetTimeScale) {
+			SlowMo.resetTimeScale ();
+			previousTimeScale = 1;
+		} else {
+			Time.timeScale = previousTimeScale;
+		}
 
 		HUD.SetActive (true);
 		PauseMenu.SetActive (false);
 		OptionsMenu.SetActive (false);
 	}
+
+	// Resume the game, re
 }

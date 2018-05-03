@@ -113,6 +113,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &100348341 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1950419444662794, guid: 3d12102846d32094eaf64bad3a34a118,
+    type: 2}
+  m_PrefabInternal: {fileID: 751483505}
+--- !u!114 &100348342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100348341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1a10d45591dcd4c9d415a3cd4740e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowedTimeScale: 0.5
+  slowedPitchScale: 0.7
+  realtimeDuration: 9
+  fadeTime: 1
+  timeIsSlowed: 0
+  realSlowTimeLeft: 0
+--- !u!114 &100348343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100348341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a01dd48a5fc8e4082560a1791b6aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortCooldown: 30
+  longCooldown: 50
+  _pilot_ctlr: 1
+  _gunner_ctlr: 2
 --- !u!1001 &209821849
 Prefab:
   m_ObjectHideFlags: 0
@@ -821,6 +858,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 525602037}
+    - target: {fileID: 114869119206034450, guid: cd00067ff648e664c9daa12f9df450df,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd00067ff648e664c9daa12f9df450df, type: 2}
   m_IsPrefabParent: 0
