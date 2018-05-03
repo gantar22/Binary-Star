@@ -156,7 +156,7 @@ public class PlayerMove : MonoBehaviour {
 				break;
 			case gear.boost:
 				if(!cooldown){
-					heat += heat_per_sec * Time.deltaTime;
+					heat += heat_per_sec * Time.deltaTime * (velo.magnitude > .1f ? 1 : 0);
 					_eSpeed = _speed * _boostFactor;				
 				}
 
