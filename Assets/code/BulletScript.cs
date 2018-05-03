@@ -94,7 +94,8 @@ public class BulletScript : MonoBehaviour {
 
 		PlayerHP PHP = obj.GetComponent<PlayerHP> ();
 		if (PHP != null && (type != ObjT.obj.player_bullet) && (type != ObjT.obj.player_explosion)) {
-			PHP.gotHit (damage);
+
+			if(!PlayerHP.dashing) PHP.gotHit (damage);
 			return true;
 		}
 

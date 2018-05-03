@@ -15,7 +15,8 @@ public class bomb_det : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if((Input.GetKeyDown(KeyCode.B) || (XCI.GetButton(XboxButton.LeftStick,XboxController.First) && XCI.GetButton(XboxButton.LeftStick,XboxController.Second))) && canfire){
+		if((Input.GetKeyDown(KeyCode.B) || (XCI.GetButton(XboxButton.LeftStick,XboxController.First) && XCI.GetButton(XboxButton.LeftStick,XboxController.Second)))
+		 && canfire && !PauseManager.paused){
 			/*GameObject[] allObjects = Object.FindObjectsOfType<GameObject>() ;
 			foreach(GameObject go in allObjects){
 				if (go.activeInHierarchy && go.GetComponent<EnemyHP>())
