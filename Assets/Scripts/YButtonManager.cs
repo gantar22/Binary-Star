@@ -66,7 +66,6 @@ public class YButtonManager : MonoBehaviour {
 			}
 			return;
 		} else {
-
 			if (XCI.GetButtonDown (_button, _pilot_ctlr) || Input.GetKey (KeyCode.Y)) {
 				if (pilot_rapidFire_unlocked) {
 					activateRapidFire ();
