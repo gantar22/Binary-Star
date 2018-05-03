@@ -15,6 +15,8 @@ public class fill_gunner_x : MonoBehaviour {
 	void Update () {
 		if(Player_Missile_Fire.get_cooldown() != -1)
 			im.fillAmount = Player_Missile_Fire.get_cooldown();
-		else im.fillAmount = 0;
+		else if(sword_script.sword_enabled) {
+			im.fillAmount = GM.Instance.player.GetComponentInChildren<sword_script>().get_cooldown();
+		} else im.fillAmount = 0;
 	}
 }
