@@ -52,7 +52,8 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 
 		if (Mathf.Abs(diff) > Mathf.Abs(angleLeeway)) {
 			float deltaTheta = Mathf.Pow(Mathf.Abs(diff), 0.6f) * Mathf.Sign(diff) * turnRate * Time.deltaTime;
-			transform.Rotate(Vector3.forward * deltaTheta);
+			if(acceleration.magnitude > .1f)
+				transform.Rotate(Vector3.forward * deltaTheta);
 		}
 
 		// If clampPerp is enabled, keep the angle within the min/max degrees

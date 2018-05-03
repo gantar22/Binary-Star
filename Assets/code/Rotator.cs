@@ -10,6 +10,7 @@ public class Rotator : MonoBehaviour {
 	XboxController ctlr;
 	[SerializeField]
 	GameObject target;
+	public bool follow_player;
 
 	private float targetTheta;
 	private float deltaTheta;
@@ -18,6 +19,7 @@ public class Rotator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(follow_player) target = GM.Instance.player;
 		
 		keyboard();
 

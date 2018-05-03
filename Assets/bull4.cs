@@ -37,7 +37,7 @@ public class bull4 : MonoBehaviour {
 		// Normalize the velocity and set to desired speed
 		if(direction.magnitude > 10 && !am.GetBool("charging") )
 			WEP.acceleration = direction.normalized * accelMag;
-		else WEP.acceleration =  WEP.acceleration.normalized * accelMag;
+		else WEP.acceleration = direction.normalized;
 
 
 	}
@@ -56,20 +56,17 @@ public class bull4 : MonoBehaviour {
 		transform.GetChild(1).gameObject.SetActive(false);
 		am.SetBool("charging",true);
 		float oldturnrate = WEP.turnRate;
-		float oldAccel = accelMag;
-		accelMag = 0;
 		WEP.maxSpeed = 0;
 		WEP.turnRate = 20;
 		yield return new WaitForSeconds(1);
 		yield return new WaitUntil(() => !am.GetCurrentAnimatorStateInfo(0).IsTag("wait"));
-		WEP.turnRate = 1;
-		accelMag = 20;
-		WEP.maxSpeed = 20;
-		yield return new WaitForSeconds(2);
+		WEP.turnRate = 0;
+		WEP.velocity = transform.right * 40;
+		WEP.maxSpeed = 100;
+		yield return new WaitForSeconds(1);
 		am.SetBool("charging",false);
 		WEP.maxSpeed = maxSpeed;
 		WEP.turnRate = oldturnrate;
-		accelMag = oldAccel;
 		transform.GetChild(1).gameObject.SetActive(true);
 		yield return null;
 	}
