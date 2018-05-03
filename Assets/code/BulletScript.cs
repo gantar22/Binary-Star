@@ -7,7 +7,7 @@ using System.Linq;
 public class BulletScript : MonoBehaviour {
 	public int _damage;
 
-	public enum bulletType {basic, sin, missile}
+	public enum bulletType {basic, sin, missile,firework}
 
 	public bulletType _type;
 
@@ -130,6 +130,7 @@ public class BulletScript : MonoBehaviour {
 			ParticleSystem ps = transform.GetComponentInChildren<ParticleSystem>();
 			ps.transform.parent = null;
 			ps.Play();
+			music_manager.play_by_name("player_hit");
 			break;
 
 		case bulletType.missile:

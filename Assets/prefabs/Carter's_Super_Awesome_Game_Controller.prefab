@@ -384,7 +384,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900107681847814}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d01abdccbfdbafa41b47c1fee9aaf36f, type: 3}
   m_Name: 
@@ -492,6 +492,12 @@ MonoBehaviour:
     mid: 1.01
     clip: {fileID: 8300000, guid: 93165653f7becdf458f63a85f70c936c, type: 3}
     volume: 0.36
+    source: {fileID: 0}
+  - name: player_hit
+    variation: 0.001
+    mid: 1
+    clip: {fileID: 8300000, guid: 6a71a4a3d89771849aee0b30278873f3, type: 3}
+    volume: 0.68
     source: {fileID: 0}
   a_s: {fileID: 0}
   source: {fileID: 1811817868241282, guid: b08247d5a2329664483a088aeaeaaf42, type: 2}
