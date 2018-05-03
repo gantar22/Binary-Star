@@ -36,6 +36,10 @@ public class ui_fade : MonoBehaviour {
 				if(image = t.GetComponent<Image>())
 					image.color = Color.Lerp(image.color,Color.white * .5f,Time.deltaTime * 10);
 			}
+			Image im;
+			if(im = GetComponent<Image>())
+				im.color = Color.Lerp(im.color,Color.white * .5f,Time.deltaTime * 10);
+
 		} else {
 			foreach(Transform t in transform){
 				Text tex;
@@ -45,6 +49,9 @@ public class ui_fade : MonoBehaviour {
 				if(image = t.GetComponent<Image>())
 					image.color += Color.white * Time.deltaTime;
 			}
+			Image im;
+			if(im = GetComponent<Image>())
+				im.color += Color.white * Time.deltaTime;
 		}
 	}
 
