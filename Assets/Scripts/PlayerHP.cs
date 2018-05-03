@@ -166,6 +166,10 @@ public class PlayerHP : MonoBehaviour {
 		}
 	}
 
+	public void refillHP() {
+		HP = currentMaxHP;
+	}
+
 	public bool gainBombCharge(int charge){
 		bomb_det bd = GetComponent<bomb_det>();
 		if(bd){
@@ -214,9 +218,9 @@ public class PlayerHP : MonoBehaviour {
 		Explosion newExplosion = Instantiate (PrefabManager.Instance.explosion, transform.position, transform.rotation);
 		newExplosion.transform.localScale = new Vector3 (50f, 50f, 1f);
 
+		transform.root.gameObject.SetActive (false);
 		GM.Instance.PlayerDied ();
-
-		Destroy (gameObject.transform.parent.gameObject);
+		//Destroy (transform.root.gameObject);
 	}
 
 	// Scale the colors of both body and pilot sprites
@@ -225,5 +229,25 @@ public class PlayerHP : MonoBehaviour {
 
 		thisSR.color = newColor;
 		PlayerTurretSR.color = newColor;
+	}
+
+	// Resets the player's HP and all cooldowns
+	public static void resetHPAndCooldowns() {
+		GameObject player = GM.Instance.player;
+
+		player.GetComponentInChildren<Player_Fire> ().cantFire = false;
+
+		player.GetComponentInChildren<PlayerHP> ().refillHP();
+		player.GetComponentInChildren<bomb_det> ().refreshCharge();
+
+		PlayerMove move = player.GetComponentInChildren<PlayerMove> ();
+		move.resetDashCooldown ();
+		move.unstun ();
+
+		player.GetComponentInChildren<Player_Missile_Fire> ().refreshCooldown ();
+		// Sword
+		// Turtle
+
+		player.GetComponentInChildren<YButtonManager> ().refreshCooldown ();
 	}
 }

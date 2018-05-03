@@ -59,11 +59,24 @@ public class Player_Fire : MonoBehaviour {
 		heat -= getHeat_decay() * Time.deltaTime;
 		if(cool_down) heat -= getHeat_decay() * Time.deltaTime * 2;
 		if(heat < 0) reload();
-		if((XCI.GetButtonDown(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down && !PauseManager.paused){
+
+		if (cool_down || PauseManager.paused) {
+			return;
+		}
+
+		if(XCI.GetButtonDown(_button,_ctlr)
+			#if UNITY_EDITOR
+			|| Input.GetKeyDown(KeyCode.Space)
+			#endif
+		){
 			basicFire();
 		}	
 
-		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down && !PauseManager.paused){
+		if(XCI.GetButton(_button,_ctlr)
+			#if UNITY_EDITOR
+			|| Input.GetKey(KeyCode.Space)
+			#endif
+		){
 			if(Time.time - last_fire > fastestFireInterval() * 0.5f) basicFire();
 		}
 	}

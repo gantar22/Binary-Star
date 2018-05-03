@@ -81,13 +81,21 @@ public class YButtonManager : MonoBehaviour {
 				return;
 			}
 
-			if (XCI.GetButtonDown (_button, _pilot_ctlr) || Input.GetKey (KeyCode.Y)) {
+			if (XCI.GetButtonDown (_button, _pilot_ctlr)
+				#if UNITY_EDITOR
+				|| Input.GetKey (KeyCode.Y)
+				#endif
+			) {
 				if (pilot_rapidFire_unlocked) {
 					activateRapidFire ();
 				} else if (pilot_turretMode_unlocked) {
 					activateTurretMode ();
 				}
-			} else if (XCI.GetButtonDown (_button, _gunner_ctlr) || Input.GetKey (KeyCode.U)) {
+			} else if (XCI.GetButtonDown (_button, _gunner_ctlr) 
+				#if UNITY_EDITOR
+				|| Input.GetKey (KeyCode.U)
+				#endif
+			) {
 				if (gunner_slowMo_unlocked) {
 					activateSlowMo ();
 				} else if (gunner_starMode_unlocked) {

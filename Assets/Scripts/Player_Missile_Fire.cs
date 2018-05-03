@@ -64,9 +64,12 @@ public class Player_Missile_Fire : MonoBehaviour {
 		} else if (!player_fire.cantFire) {
 			if (XCI.GetButtonDown (_button, _ctlr)) {
 				fire ();
-			} else if (Input.GetKey (KeyCode.X)) { // KEYBOARD TESTING --- REMOVE
+			}
+			#if UNITY_EDITOR
+			else if (Input.GetKey (KeyCode.X)) { // KEYBOARD TESTING --- REMOVE
 				fire ();
 			}
+			#endif
 		}
 	}
 
@@ -137,6 +140,10 @@ public class Player_Missile_Fire : MonoBehaviour {
 		// Set its explosion settings
 		BulletScript BS = missile.GetComponentInChildren<BulletScript>();
 		BS.setExploSettings(exploRadiusMult, _explosionDamage);
+	}
+
+	public void refreshCooldown() {
+		cooldown = 0;
 	}
 
 
