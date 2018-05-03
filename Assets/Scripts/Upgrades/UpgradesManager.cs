@@ -212,9 +212,9 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == gunnerEffect.sword_spin) {
 
 		} else if (toPurchase == gunnerEffect.Y_slowMo) {
-
+			YButtonManager.UnlockSlowMo (total);
 		} else if (toPurchase == gunnerEffect.Y_starMode) {
-
+			YButtonManager.UnlockStarMode (total);
 		}
 	}
 
@@ -254,9 +254,9 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == pilotEffect.turtle_reflect) {
 
 		} else if (toPurchase == pilotEffect.Y_rapidFire) {
-
+			YButtonManager.UnlockRapidFire (total);
 		} else if (toPurchase == pilotEffect.Y_turretMode) {
-
+			YButtonManager.UnlockTurretMode (total);
 		}
 	}
 }

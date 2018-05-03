@@ -82,6 +82,8 @@ GameObject:
   - component: {fileID: 114806314586014802}
   - component: {fileID: 114786761842660406}
   - component: {fileID: 114288621705951920}
+  - component: {fileID: 114899159973355270}
+  - component: {fileID: 114396537515236352}
   m_Layer: 0
   m_Name: PlayerTurret
   m_TagString: Untagged
@@ -405,6 +407,21 @@ MonoBehaviour:
   turnRadius: 10
   ctlr: 1
   target: {fileID: 0}
+--- !u!114 &114396537515236352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950419444662794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a01dd48a5fc8e4082560a1791b6aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortCooldown: 30
+  longCooldown: 50
+  _pilot_ctlr: 1
+  _gunner_ctlr: 2
 --- !u!114 &114590025824090784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,6 +505,23 @@ MonoBehaviour:
   heat_per_shoot: 1
   heat_decay: 1.5
   cantFire: 0
+--- !u!114 &114899159973355270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950419444662794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1a10d45591dcd4c9d415a3cd4740e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowedTimeScale: 0.5
+  slowedPitchScale: 0.7
+  realtimeDuration: 9
+  fadeTime: 1
+  timeIsSlowed: 0
+  realSlowTimeLeft: 0
 --- !u!198 &198741458801259972
 ParticleSystem:
   m_ObjectHideFlags: 1
