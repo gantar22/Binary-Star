@@ -42,12 +42,6 @@ public class GM : MonoBehaviour {
 		} else {
 			inGameScene = false;
 		}
-
-		//testing purposes - should manage this better:
-
-		/* if (inGameScene) {
-			handleWaveOver ();
-		} */
 	}
 
 
@@ -76,11 +70,30 @@ public class GM : MonoBehaviour {
 
 
     public Vector2 player_screen_loc(){
-        return Camera.main.WorldToViewportPoint(player.transform.position);
+		if (player) {
+			return Camera.main.WorldToViewportPoint (player.transform.position);
+		} else {
+			return new Vector2 (0.5f, 0.5f);
+		}
     }
+		
+
+	// Called when the player dies
+	public void PlayerDied() {
+		if (!SpawnManager.Instance.freeplayMode) {
+			EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.You_Died);
+		} else {
+			EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.Game_Over);
+		}
+	}
+
+
+	// ======= MANAGING ENEMIES, SEQUENCES, AND SCENES =======
 
 	// Destroy all enemies and make sure the enemy count is set back to 0
 	public void resetEnemies() {
+		SpawnManager.Instance.reset ();
+
 		while (enemies.Count != 0) {
 			enemies [0].GetComponent<EnemyHP> ().die ();
 		}
@@ -88,21 +101,21 @@ public class GM : MonoBehaviour {
 		enemies.Clear ();
 	}
 
-	// Restart at the current sequence
-	public void restartThisSequence() {
-		restartFromSequence (SpawnManager.Instance.sequenceIndex);
-	}
-
 	// Restart a specific sequence
-	public void restartFromSequence (int seqIndex) {
+	public void resetToSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
 		GM.Instance.resetEnemies ();
 	}
 
+	// Restart at the current sequence
+	public void resetToSameSequence() {
+		resetToSequence (SpawnManager.Instance.sequenceIndex);
+	}
+
 	// Set the sequence index to 0 and reset all upgrades
-	public static void restartGame() {
+	public static void resetGame() {
 		if (GM.Instance) {
-			GM.Instance.restartFromSequence (0);
+			GM.Instance.resetToSequence (0);
 		}
 		UpgradesManager.resetUpgrades ();
 	}
@@ -110,7 +123,7 @@ public class GM : MonoBehaviour {
 	// Reset all progress and go straight into game
 	public static void ResetProgressThenPlay() {
 		Destroy (GM.Instance.gameObject);
-		restartGame ();
+		resetGame ();
 		sceneAfterStart = 2;
 		SceneManager.LoadScene ("start");
 	}
@@ -118,7 +131,7 @@ public class GM : MonoBehaviour {
 	// Reset all progress then return to main menu
 	public static void ResetProgressThenMainMenu() {
 		Destroy (GM.Instance.gameObject);
-		restartGame ();
+		resetGame ();
 		sceneAfterStart = 1;
 		SceneManager.LoadScene ("start");
 	}

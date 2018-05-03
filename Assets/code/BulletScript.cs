@@ -23,14 +23,13 @@ public class BulletScript : MonoBehaviour {
 	// Ricochet counter
 	[HideInInspector]
 	public int ricochetsLeft = 0;
-	private List<Collider2D> lastHit;
+	private GameObject lastHit;
 
 
 	void Awake () {
 		objT = GetComponent<ObjT> ();
 		objsToHit = new List<GameObject> ();
 		//hitInvulnerable = false;
-		lastHit = new List<Collider2D> ();
 	}
 
 	// Called once per frame, after all physics & collision checks
@@ -50,6 +49,7 @@ public class BulletScript : MonoBehaviour {
 			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ, transform.right)) {
 				if (ricochetsLeft > 0) {
 					ricochet (nextObj);
+					lastHit = nextObj;
 				} else {
 					die ();
 				}
@@ -63,17 +63,12 @@ public class BulletScript : MonoBehaviour {
 
 		if (!damagedSomething && invulnToHit != null) {
 			invulnToHit.gotHit ();
-			if (ricochetsLeft > 0) {
-				ricochet (invulnToHit.gameObject);
-				lastHit = invulnToHit.transform.root.GetComponentsInChildren<Collider2D>().ToList();
-			} else {
-				die ();
-			}
+			die ();
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		if (lastHit.IndexOf (col) < 0) {
+		if (col.gameObject != lastHit) {
 			objsToHit.Add (col.gameObject);
 		}
 

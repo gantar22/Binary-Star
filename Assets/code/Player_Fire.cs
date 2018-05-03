@@ -66,7 +66,7 @@ public class Player_Fire : MonoBehaviour {
 		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down && !PauseManager.paused){
 			//float fastestShotInterval = getHeat_decay () * max_heat * .1f;
 			float sustainableShotInterval = getHeat_per_shoot() / getHeat_decay();
-			if(Time.time - last_fire > sustainableShotInterval * 0.97f) fire();
+			if(Time.time - last_fire > sustainableShotInterval * 0.5f) fire();
 		}
 	}
 

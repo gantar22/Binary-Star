@@ -12,6 +12,10 @@ public class sprint_meter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!GM.Instance.player) {
+			return;
+		}
+
 		GetComponent<Slider>().value = GM.Instance.player.GetComponentInChildren<PlayerMove>().GetHeat();
 	}
 }

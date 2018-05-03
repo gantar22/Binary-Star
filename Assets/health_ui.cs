@@ -19,6 +19,10 @@ public class health_ui : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!GM.Instance.player) {
+			return;
+		}
+
 		int hp = GM.Instance.player.GetComponentInChildren<PlayerHP>().getHP();
 		box.position = init_pos + Vector3.right * (hp - 1) * 9;
 		box.sizeDelta = new Vector2(100 + 50 * (hp - 1),100);

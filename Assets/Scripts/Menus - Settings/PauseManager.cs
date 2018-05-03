@@ -52,6 +52,10 @@ public class PauseManager : MonoBehaviour {
 	}
 
 	public void pause() {
+		if (EndStateScreens.stateScreenIsUp) {
+			return;
+		}
+
 		paused = true;
 		previousTimeScale = Time.timeScale;
 		Time.timeScale = 0f;
