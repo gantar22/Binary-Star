@@ -9,7 +9,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 	//[SerializeField]
 	//private float drag = 0.4f;
 	[SerializeField]
-	private float turnRate = 15f;
+	public float turnRate = 15f;
 	[SerializeField]
 	private float angleLeeway = 3f;
 	private float bounceScale = 0.7f;
