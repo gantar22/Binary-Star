@@ -40,21 +40,23 @@ public class YButtonManager : MonoBehaviour {
 
 		// Testing:
 		//UnlockSlowMo(1);
+		//UnlockRapidFire(1);
 	}
 
 
 	// Returns the cooldown left, or the remaining duration of the active ability
 	public float getYBarValue() {
+		float returnVal = 0;
 		if (!abilityIsActive ()) {
-			return cooldown / (shorterCooldown ? shortCooldown : longCooldown);
+			returnVal = cooldown / (shorterCooldown ? shortCooldown : longCooldown);
 		} else if (slowMo_active) {
-			return slowMo.realSlowTimeLeft / slowMo.realtimeDuration;
+			returnVal = 1 - slowMo.realSlowTimeLeft / slowMo.realtimeDuration;
 		} else if (rapidFire_active) {
-			return rapidFire.timeLeft / rapidFire.duration;
+			returnVal = 1 - rapidFire.timeLeft / rapidFire.duration;
 		}
 		// ADD OTHER ABILITY DURATIONS HERE
 
-		return 1;
+		return Mathf.Clamp(returnVal, 0, 1);
 	}
 
 
@@ -120,6 +122,11 @@ public class YButtonManager : MonoBehaviour {
 		starMode_active = false;
 
 		cooldown = shorterCooldown ? shortCooldown : longCooldown;
+	}
+
+	// Refresh the YButton cooldown
+	public void refreshCooldown() {
+		cooldown = 0;
 	}
 
 

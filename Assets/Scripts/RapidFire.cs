@@ -5,7 +5,7 @@ using UnityEngine;
 public class RapidFire : MonoBehaviour {
 
 	// Settings
-	public float fireRateMultiplier = 10;
+	public float fireRateMultiplier;
 	public float duration;
 
 	// Global variables
