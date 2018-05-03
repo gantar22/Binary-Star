@@ -122,16 +122,16 @@ public class GM : MonoBehaviour {
 
 	// Reset all progress and go straight into game
 	public static void ResetProgressThenPlay() {
-		Destroy (GM.Instance.gameObject);
 		resetGame ();
+		Destroy (GM.Instance.gameObject);
 		sceneAfterStart = 2;
 		SceneManager.LoadScene ("start");
 	}
 
 	// Reset all progress then return to main menu
 	public static void ResetProgressThenMainMenu() {
-		Destroy (GM.Instance.gameObject);
 		resetGame ();
+		Destroy (GM.Instance.gameObject);
 		sceneAfterStart = 1;
 		SceneManager.LoadScene ("start");
 	}

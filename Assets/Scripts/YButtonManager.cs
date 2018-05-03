@@ -29,28 +29,34 @@ public class YButtonManager : MonoBehaviour {
 
 	// Ability script references here
 	private SlowMo slowMo;
+	private RapidFire rapidFire;
 
 
 	// Initialization
 	void Start() {
 		slowMo = transform.root.GetComponentInChildren<SlowMo> ();
+		rapidFire = transform.root.GetComponentInChildren<RapidFire> ();
 		// Assign other ability references here
 
 		// Testing:
-		UnlockSlowMo(1);
+		//UnlockSlowMo(1);
+		//UnlockRapidFire(1);
 	}
 
 
 	// Returns the cooldown left, or the remaining duration of the active ability
 	public float getYBarValue() {
+		float returnVal = 0;
 		if (!abilityIsActive ()) {
-			return cooldown / (shorterCooldown ? shortCooldown : longCooldown);
+			returnVal = cooldown / (shorterCooldown ? shortCooldown : longCooldown);
 		} else if (slowMo_active) {
-			return slowMo.realSlowTimeLeft / slowMo.realtimeDuration;
+			returnVal = 1 - slowMo.realSlowTimeLeft / slowMo.realtimeDuration;
+		} else if (rapidFire_active) {
+			returnVal = 1 - rapidFire.timeLeft / rapidFire.duration;
 		}
 		// ADD OTHER ABILITY DURATIONS HERE
 
-		return 1;
+		return Mathf.Clamp(returnVal, 0, 1);
 	}
 
 
@@ -66,6 +72,10 @@ public class YButtonManager : MonoBehaviour {
 			}
 			return;
 		} else {
+			if (PlayerHP.invuln) {
+				return;
+			}
+
 			if (XCI.GetButtonDown (_button, _pilot_ctlr) || Input.GetKey (KeyCode.Y)) {
 				if (pilot_rapidFire_unlocked) {
 					activateRapidFire ();
@@ -85,7 +95,7 @@ public class YButtonManager : MonoBehaviour {
 	// Functions to activate abilities
 	private void activateRapidFire() {
 		rapidFire_active = true;
-		// TODO - Start rapidFire here
+		rapidFire.startRapidFire ();
 	}
 
 	private void activateTurretMode() {
@@ -112,6 +122,11 @@ public class YButtonManager : MonoBehaviour {
 		starMode_active = false;
 
 		cooldown = shorterCooldown ? shortCooldown : longCooldown;
+	}
+
+	// Refresh the YButton cooldown
+	public void refreshCooldown() {
+		cooldown = 0;
 	}
 
 

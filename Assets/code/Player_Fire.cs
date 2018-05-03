@@ -60,13 +60,11 @@ public class Player_Fire : MonoBehaviour {
 		if(cool_down) heat -= getHeat_decay() * Time.deltaTime * 2;
 		if(heat < 0) reload();
 		if((XCI.GetButtonDown(_button,_ctlr) || Input.GetKeyDown(KeyCode.Space)) && !cool_down && !PauseManager.paused){
-			fire();
+			basicFire();
 		}	
 
 		if((XCI.GetButton(_button,_ctlr) || Input.GetKey(KeyCode.Space)) && !cool_down && !PauseManager.paused){
-			//float fastestShotInterval = getHeat_decay () * max_heat * .1f;
-			float sustainableShotInterval = getHeat_per_shoot() / getHeat_decay();
-			if(Time.time - last_fire > sustainableShotInterval * 0.5f) fire();
+			if(Time.time - last_fire > fastestFireInterval() * 0.5f) basicFire();
 		}
 	}
 
@@ -84,12 +82,23 @@ public class Player_Fire : MonoBehaviour {
 		music_manager.play_by_name("shot");
 	}
 
-	void fire(){
+	// Fires a bullet according to basic Player_Fire mechanics
+	void basicFire() {
 		if (cantFire) {
 			music_manager.play_by_name("error");
 			return;
 		}
+
 		last_fire = Time.time;
+
+		heat += getHeat_per_shoot();
+		if(heat > max_heat) cool_down = true;
+
+		fire ();
+	}
+
+	// Fires a bullet. Can be called by any means
+	public void fire(){
 		for(int i = 0; i < multishotCount;i++){
 			Invoke("shot_sound",.06f * i);
 		}
@@ -100,16 +109,6 @@ public class Player_Fire : MonoBehaviour {
 		if(CSS != null){
 			CSS.activate(.01f,.05f); //this feels bad
 		}
-
-
-		
-		heat += getHeat_per_shoot();
-		if(heat > max_heat) cool_down = true;
-		
-		/* float a = transform.eulerAngles.z * 2 * Mathf.PI / 360 ;
-		GameObject bul = Instantiate(_bullet,transform.position + new Vector3(Mathf.Cos(a),Mathf.Sin(a),0) * _offset,transform.rotation);
-		bul.GetComponentInChildren<ObjT>().id = bullets_fired++;
-		bul.GetComponentInChildren<linear_travel>().setSpeed(transform.root.gameObject.GetComponentInChildren<PlayerMove>().velo.magnitude); */
 
 		float totalDegrees = 0;
 		float degIncr = 0;
@@ -150,6 +149,11 @@ public class Player_Fire : MonoBehaviour {
 	void reload(){
 		heat = 0;
 		cool_down = false;
+	}
+
+	// Calculate the fastest sustainble fire interval
+	public float fastestFireInterval() {
+		return getHeat_per_shoot () / getHeat_decay ();
 	}
 
 	// Access the real, upgraded heat per shot and heat decay
