@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 114899159973355270}
   - component: {fileID: 114396537515236352}
   - component: {fileID: 114768701667824776}
+  - component: {fileID: 114448864140431098}
   m_Layer: 0
   m_Name: PlayerTurret
   m_TagString: Untagged
@@ -379,7 +380,7 @@ MonoBehaviour:
   _ctlr: 2
   _button: 2
   _missile: {fileID: 1519423591345882, guid: c2ff38bac216f0d45b8097f81d7c3c37, type: 2}
-  _offset: 1.6
+  _offset: 2
   _explosionDamage: 2
 --- !u!114 &114361944893546070
 MonoBehaviour:
@@ -423,6 +424,22 @@ MonoBehaviour:
   longCooldown: 50
   _pilot_ctlr: 1
   _gunner_ctlr: 2
+--- !u!114 &114448864140431098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950419444662794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c7515d21a62ff479551772c4d978cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireInterval: 0.25
+  duration: 3
+  randomAngleRange: 80
+  trackingMissiles: 1
+  timeLeft: 0
 --- !u!114 &114590025824090784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -466,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0227a0d43d6464293a279039681e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRateMultiplier: 10
+  fireRateMultiplier: 6
   duration: 3
   timeLeft: 0
 --- !u!114 &114779874589900858

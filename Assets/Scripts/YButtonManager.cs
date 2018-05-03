@@ -30,17 +30,20 @@ public class YButtonManager : MonoBehaviour {
 	// Ability script references here
 	private SlowMo slowMo;
 	private RapidFire rapidFire;
+	private TurretMode turretMode;
 
 
 	// Initialization
 	void Start() {
 		slowMo = transform.root.GetComponentInChildren<SlowMo> ();
 		rapidFire = transform.root.GetComponentInChildren<RapidFire> ();
+		turretMode = transform.root.GetComponentInChildren<TurretMode> ();
 		// Assign other ability references here
 
 		// Testing:
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
+		//UnlockTurretMode(1);
 	}
 
 
@@ -53,6 +56,8 @@ public class YButtonManager : MonoBehaviour {
 			returnVal = 1 - slowMo.realSlowTimeLeft / slowMo.realtimeDuration;
 		} else if (rapidFire_active) {
 			returnVal = 1 - rapidFire.timeLeft / rapidFire.duration;
+		} else if (turretMode_active) {
+			returnVal = 1 - turretMode.timeLeft / turretMode.duration;
 		}
 		// ADD OTHER ABILITY DURATIONS HERE
 
@@ -100,7 +105,7 @@ public class YButtonManager : MonoBehaviour {
 
 	private void activateTurretMode() {
 		turretMode_active = true;
-		// TODO - Start turretMode here
+		turretMode.startTurretMode ();
 	}
 
 	private void activateSlowMo() {

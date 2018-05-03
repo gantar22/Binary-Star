@@ -88,39 +88,42 @@ public class Player_Missile_Fire : MonoBehaviour {
 		}
 
 		// Shoot the missile(s)
-		float a = transform.eulerAngles.z * Mathf.Deg2Rad;
-		Vector3 offset = new Vector3 (Mathf.Cos (a), Mathf.Sin (a), 0) * _offset;
-		spawnMissile (transform.position + offset, 0f);
+		spawnMissileAtDegreeOffset (0, tracking);
 
 		if (tripleShot) {
-			float angleDiffRad = angleDiffDegrees * Mathf.Deg2Rad;
-			float aLeft = a - angleDiffRad;
-			float aRight = a + angleDiffRad;
-
-			Vector3 leftOffset = new Vector3 (Mathf.Cos (aLeft), Mathf.Sin (aLeft), 0) * _offset;
-			Vector3 rightOffset = new Vector3 (Mathf.Cos (aRight), Mathf.Sin (aRight), 0) * _offset;
-
-			spawnMissile (transform.position + leftOffset, -1f * angleDiffDegrees);
-			spawnMissile (transform.position + rightOffset, angleDiffDegrees);
+			spawnMissileAtDegreeOffset (angleDiffDegrees, tracking);
+			spawnMissileAtDegreeOffset (-1 * angleDiffDegrees, tracking);
 		}
 
 		cooldown = maxCooldown;
 	}
 
-	private void spawnMissile (Vector3 pos, float angleDiffDegrees) {
+	// Spawn a missile with degree offset of angleDiffDegr
+	public void spawnMissileAtDegreeOffset (float angleDiffDegr, bool seekingEnabled) {
+		float angleDiffRad = angleDiffDegr * Mathf.Deg2Rad;
+
+		float a = transform.eulerAngles.z * Mathf.Deg2Rad;
+		a += angleDiffRad;
+
+		Vector3 offset = new Vector3 (Mathf.Cos (a), Mathf.Sin (a), 0) * _offset;
+
+		// Spawn the missile
+		Vector3 pos = transform.position + offset;
+
 		GameObject missile = Instantiate(_missile, pos, transform.rotation);
 		linear_travel linTrav = missile.GetComponentInChildren<linear_travel> ();
 		seeking_missile seeking = missile.GetComponentInChildren<seeking_missile> ();
 
 		//Vector2 playerVelo = transform.root.gameObject.GetComponentInChildren<PlayerMove> ().velo;
 
-		if (tracking) {
+		if (seekingEnabled) {
 			linTrav.enabled = false;
 			seeking.enabled = true;
-		
+
 			//seeking.setVelo (playerVelo);
 			Vector2 direction = pos - transform.position;
-			seeking.setVelo (direction);
+			float speed = linTrav.getBaseSpeed;
+			seeking.setVelo (direction, speed);
 		} else {
 			linTrav.enabled = true;
 			seeking.enabled = false;
@@ -129,7 +132,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 		}
 
 		// Set the correct rotation
-		missile.transform.Rotate(new Vector3(0, 0, angleDiffDegrees));
+		missile.transform.Rotate(new Vector3(0, 0, angleDiffDegr));
 
 		// Set its explosion settings
 		BulletScript BS = missile.GetComponentInChildren<BulletScript>();
