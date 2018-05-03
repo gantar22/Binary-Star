@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour {
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
 
 			//only apply to player
-		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift))) _gear = gear.boost;
+		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift)) && !cooldown) _gear = gear.boost;
 		else _gear = gear.normal;
 		
 		if(dash_enabled && GetComponent<PlayerHP>() && (Input.GetKeyDown(KeyCode.F) || XCI.GetButton(XboxButton.X,ctlr)) && !PlayerHP.invuln && dash_off_cooldown){
