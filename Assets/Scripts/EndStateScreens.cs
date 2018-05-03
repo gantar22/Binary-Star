@@ -8,13 +8,15 @@ public class EndStateScreens : MonoBehaviour {
 
 	// Settings/properties
 	[SerializeField]
-	private float delay = 2;
+	private float delay = 1;
 	[SerializeField]
 	private AnimationClip You_Win;
 	[SerializeField]
 	private AnimationClip You_Died;
 	[SerializeField]
 	private AnimationClip Game_Over;
+	[SerializeField]
+	private GameObject HUD;
 
 	// References
 	private Animator animator;
@@ -50,6 +52,12 @@ public class EndStateScreens : MonoBehaviour {
 		}
 
 		if (Input.GetAxis ("Submit") > 0) {
+			animator.Play ("Deactivated"); // Make this smooth?
+			HUD.SetActive (true);
+
+			stateScreenIsUp = false;
+			readyToContinue = false;
+
 			if (chosenScreen == EndStateScreen.You_Win) {
 				GM.Instance.handleWaveOver();
 				// TODO - Might want to go straight to an upgrade screen or
@@ -60,10 +68,6 @@ public class EndStateScreens : MonoBehaviour {
 			} else if (chosenScreen == EndStateScreen.Game_Over) {
 				GM.ResetProgressThenMainMenu ();
 			}
-
-			animator.Play ("Deactivated");
-			stateScreenIsUp = false;
-			readyToContinue = false;
 		}
 	}
 
@@ -71,8 +75,9 @@ public class EndStateScreens : MonoBehaviour {
 	public void InvokeEndScreen (EndStateScreen screen) {
 		stateScreenIsUp = true;
 		readyToContinue = false;
-
 		chosenScreen = screen;
+
+		HUD.SetActive (false);
 		Invoke ("PlayEndScreen", delay);
 	}
 
