@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732c74c34b77d3841813065acec00a27, type: 3}
+  m_Name: Release4
+  m_EditorClassIdentifier: 
+  waveTuples:
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: 1a9fbb1617730c847a407d2f4c2a53d0, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: b7bf04374c2d39e45b03e4f67bb1fab5, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: 7c013f8524b79f9418d0a7a2eff2c672, type: 2}
+  - condition: 1
+    threshold: 10
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: ea6c9287ec24647419895448953bd008, type: 2}
