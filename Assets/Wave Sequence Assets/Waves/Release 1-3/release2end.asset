@@ -15,23 +15,23 @@ MonoBehaviour:
   - type: 0
     numEnemies: 3
   - type: 4
-    numEnemies: 2
+    numEnemies: 1
   BotSpawner:
   - type: 0
-    numEnemies: 5
-  - type: 4
     numEnemies: 3
+  - type: 4
+    numEnemies: 1
   LeftSpawner:
   - type: 4
-    numEnemies: 3
+    numEnemies: 1
   RightSpawner:
   - type: 4
-    numEnemies: 3
+    numEnemies: 1
   TopFarLeft:
   - type: 0
-    numEnemies: 5
+    numEnemies: 3
   TopMidLeft:
   - type: 0
-    numEnemies: 5
+    numEnemies: 3
   TopMidRight: []
   TopFarRight: []
