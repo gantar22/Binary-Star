@@ -21,6 +21,9 @@ public class Player_Missile_Fire : MonoBehaviour {
 	// Other variables
 	private float cooldown;
 
+	// References
+	private Player_Fire player_fire;
+
 	// Upgrade properties
 	private static float lvl1ExploRadiusMult = 1.8f, lvl2ExploRadiusMult =  3.6f;
 	private static float lvl1Cooldown = 8f, lvl2Cooldown = 3f;
@@ -35,6 +38,8 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	// Initialize the upgrade settings to lvl1 if not already set
 	void Start () {
+		player_fire = GetComponent<Player_Fire> ();
+
 		if (exploRadiusMult == 0f) {
 			exploRadiusMult = lvl1ExploRadiusMult;
 			maxCooldown = lvl1Cooldown;
@@ -56,10 +61,12 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 		if (cooldown > 0) {
 			cooldown -= Time.deltaTime;
-		} else if (XCI.GetButtonDown (_button, _ctlr)) {
-			fire ();
-		} else if (Input.GetKey (KeyCode.X)) { // KEYBOARD TESTING --- REMOVE
-			fire ();
+		} else if (!player_fire.cantFire) {
+			if (XCI.GetButtonDown (_button, _ctlr)) {
+				fire ();
+			} else if (Input.GetKey (KeyCode.X)) { // KEYBOARD TESTING --- REMOVE
+				fire ();
+			}
 		}
 	}
 

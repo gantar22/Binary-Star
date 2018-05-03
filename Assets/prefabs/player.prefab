@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 114288621705951920}
   - component: {fileID: 114899159973355270}
   - component: {fileID: 114396537515236352}
+  - component: {fileID: 114768701667824776}
   m_Layer: 0
   m_Name: PlayerTurret
   m_TagString: Untagged
@@ -448,12 +449,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c57a886cdd848146a9013c89d423d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invulnTime: 3
+  invulnTime: 2
   minFrequency: 1
   maxFrequency: 7
   minAlpha: 0.4
   maxAlpha: 0.9
   PlayerTurret: {fileID: 1950419444662794}
+--- !u!114 &114768701667824776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1950419444662794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0227a0d43d6464293a279039681e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRateMultiplier: 10
+  duration: 3
+  timeLeft: 0
 --- !u!114 &114779874589900858
 MonoBehaviour:
   m_ObjectHideFlags: 1
