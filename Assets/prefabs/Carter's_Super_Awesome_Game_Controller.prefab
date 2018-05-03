@@ -377,6 +377,8 @@ MonoBehaviour:
     type: 2}
   OffScreenWarningPrefab: {fileID: 114441734673426340, guid: cdf826b22835fb04d92a900bfbe5304c,
     type: 2}
+  aoe_damage: {fileID: 114987534392564970, guid: 72905444c1c18a44d8a455fa32b92f0f,
+    type: 2}
 --- !u!114 &114424418870944196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,7 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18df2268e5e33340af8b5a7701589a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description_ui: {fileID: 0}
   upgrade_holder_A_prefab: {fileID: 1018769077845748, guid: b3fb0d2dfb63c0844b43e093b6342d2b,
     type: 2}
   upgrade_holder_X_prefab: {fileID: 1809261260713048, guid: 6a06b18ed40081b4cb549035bee298c8,
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1671106028043440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7792257d4c77ed7429da4394d3dea445, type: 3}
   m_Name: 
@@ -451,6 +452,8 @@ MonoBehaviour:
     source: {fileID: 0}
   a_s: {fileID: 0}
   source: {fileID: 1811817868241282, guid: b08247d5a2329664483a088aeaeaaf42, type: 2}
+  max_music_volume: 0
+  max_effects_volume: 0
 --- !u!114 &114616989972401808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,10 +491,10 @@ MonoBehaviour:
   TypePrefabs:
   - Type: 0
     prefab: {fileID: 1883236937684282, guid: 4f59ba391d0fc66498ad3f04a973ffe9, type: 2}
-    maxDropInterval: 60
+    maxDropInterval: 140
   - Type: 1
     prefab: {fileID: 1423920787262260, guid: 150e81d0c72b06544942015141d18ea8, type: 2}
-    maxDropInterval: 40
+    maxDropInterval: 200
 --- !u!114 &114696690039428444
 MonoBehaviour:
   m_ObjectHideFlags: 1
