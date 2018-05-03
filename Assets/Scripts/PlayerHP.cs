@@ -187,6 +187,11 @@ public class PlayerHP : MonoBehaviour {
 			return;
 		}
 
+		CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
+		if(CSS != null){
+			CSS.activate(.3f,.2f);
+		}
+		music_manager.play_by_name("take_damage");
 		HP -= dmg;
 		if (HP <= 0) {
 			die ();

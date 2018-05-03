@@ -16,6 +16,6 @@ public class sprint_meter : MonoBehaviour {
 			return;
 		}
 
-		GetComponent<Slider>().value = GM.Instance.player.GetComponentInChildren<PlayerMove>().GetHeat();
+		GetComponent<Image>().fillAmount = 1- GM.Instance.player.GetComponentInChildren<PlayerMove>().GetHeat();
 	}
 }

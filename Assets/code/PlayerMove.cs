@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour {
 	float max_heat = 5;
 
 	// Base sprint heat values
-	private static float baseHeat_per_sec = 1;
+	private static float baseHeat_per_sec = 5;
 	private static float baseHeat_decay = 1;
 	// Real, current values
 	private static float heat_per_sec;

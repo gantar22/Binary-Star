@@ -16,6 +16,6 @@ public class shoot_meter : MonoBehaviour {
 			return;
 		}
 
-		GetComponent<Slider>().value = GM.Instance.player.GetComponentInChildren<Player_Fire>().GetHeat();
+		GetComponent<Image>().fillAmount = 1 - GM.Instance.player.GetComponentInChildren<Player_Fire>().GetHeat();
 	}
 }
