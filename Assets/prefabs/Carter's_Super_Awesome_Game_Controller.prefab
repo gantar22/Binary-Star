@@ -413,6 +413,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
     - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
     - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+  - choices:
+    - {fileID: 11400000, guid: a52b706da52d3204c9e31a760282540b, type: 2}
+    - {fileID: 11400000, guid: b200f20170c9aaa40849c006e1b1a895, type: 2}
 --- !u!114 &114512715681625976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,7 +525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequences:
-  - {fileID: 11400000, guid: 88bc379393ea85a4695b970594d8f4c7, type: 2}
+  - {fileID: 11400000, guid: 905388e7522610b4e90435e91000b735, type: 2}
+  - {fileID: 11400000, guid: 720243bacd4280d42b02276825f220d4, type: 2}
+  - {fileID: 11400000, guid: 8bd303e481af13e4aa2f297c3746896d, type: 2}
   freeplayWavesTier1: []
   freeplayWavesTier2: []
   freeplayWavesTier3: []
@@ -609,4 +614,6 @@ MonoBehaviour:
   - Type: 9
     prefab: {fileID: 1311236864071248, guid: 9cc515ddfc16e5e4aaf6c5f9a36aa4b0, type: 2}
   - Type: 10
+    prefab: {fileID: 1858037347836540, guid: e52286e189a5f334f9d21285da3d7a89, type: 2}
+  - Type: 11
     prefab: {fileID: 1947327204046372, guid: 6078a2c0a62c4d744a5ff28f090791b4, type: 2}

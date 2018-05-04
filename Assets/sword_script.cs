@@ -70,6 +70,10 @@ public class sword_script : MonoBehaviour {
 	}
 
 
+	public float get_cooldown(){
+		return 1 - timer / cooldown_time;
+	}
+
 
 	//------------------Upgrades--------------------//
 

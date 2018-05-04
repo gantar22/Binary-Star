@@ -12,6 +12,7 @@ public class keep_in_game : MonoBehaviour {
 			|| GM.Instance.player_screen_loc().y > 2 || GM.Instance.player_screen_loc().y < -1){
 			Invoke("correct",.5f);
 		}
+		transform.position = new Vector3(transform.position.x,transform.position.y,0);
 	}
 
 
