@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
-  m_Name: upgrade_2
+  m_Name: upgrade_4
   m_EditorClassIdentifier: 
-  gunEffect: 1
-  pilEffect: 1
+  gunEffect: 3
+  pilEffect: 3
   prereq: 0
-  description: '- Bullets bounce off of enemies 1 more time
+  description: '- Wider bullets
 
-    - Increase the rate at which bombs drop by 5%'
-  pilot_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
-  gunner_icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+    - Shorter sprint cooldown'
+  pilot_icon: {fileID: 21300000, guid: a33612216fe27744c8ba5b3bd7cf4a9f, type: 3}
+  gunner_icon: {fileID: 21300000, guid: 3deb02932dc359f4986bcb78ec03659d, type: 3}

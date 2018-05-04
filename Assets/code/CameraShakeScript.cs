@@ -56,7 +56,7 @@ public class CameraShakeScript : MonoBehaviour {
 			}
 
 
-			transform.position = originalPos;
+			transform.position = Vector3.forward * -10;
 
 		
 	}
@@ -64,7 +64,6 @@ public class CameraShakeScript : MonoBehaviour {
 
 
 	public void activate(float mag,float dur){
-
 		if (SettingsManager.gameSettings.cameraShake) {
 			StartCoroutine(shake(mag * 20,dur * .6f));
 		}

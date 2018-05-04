@@ -11,4 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732c74c34b77d3841813065acec00a27, type: 3}
   m_Name: empty
   m_EditorClassIdentifier: 
-  waveTuples: []
+  waveTuples:
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: 943e21f0a76d9e84283a6034f28edfe0, type: 2}

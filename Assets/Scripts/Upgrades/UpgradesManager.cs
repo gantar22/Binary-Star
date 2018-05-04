@@ -36,6 +36,7 @@ public class UpgradesManager : MonoBehaviour {
 	public GameObject upgrade_holder_A_prefab;
 	public GameObject upgrade_holder_X_prefab;
 	public Upgrade_Option[] upgrade_sequence;
+	public Upgrade[] free_play;
 	private int upgrade_index = 0;
 
 
@@ -110,7 +111,8 @@ public class UpgradesManager : MonoBehaviour {
 		UpgradesManager.Instance.upgrade_holder_X = Instantiate(UpgradesManager.Instance.upgrade_holder_X_prefab);
 		UpgradesManager.Instance.upgrade_holder_A = Instantiate(UpgradesManager.Instance.upgrade_holder_A_prefab);
 		//assign the upgrades from the sequence
-		if(UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices.Length == 2){
+		bool free = SpawnManager.Instance.freeplayMode;
+		if(!free && UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices.Length == 2){
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_X.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
 				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
@@ -119,7 +121,12 @@ public class UpgradesManager : MonoBehaviour {
 		} else {
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_A.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
-				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
+				if(free){
+					int index = (int)(Random.value * UpgradesManager.Instance.free_play.Length);
+					ubs[i].u = UpgradesManager.Instance.free_play[index];
+				} else {
+					ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
+				}
 			}
 			UpgradesManager.Instance.upgrade_holder_A.SetActive(true);
 		}

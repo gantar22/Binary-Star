@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
-  m_Name: upgrade_2
+  m_Name: X3
   m_EditorClassIdentifier: 
-  gunEffect: 1
-  pilEffect: 1
+  gunEffect: 6
+  pilEffect: 6
   prereq: 0
-  description: '- Bullets bounce off of enemies 1 more time
+  description: '- Missiles explode in wider radius
 
-    - Increase the rate at which bombs drop by 5%'
-  pilot_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
-  gunner_icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+    - Dash damage width increase'
+  pilot_icon: {fileID: 21300000, guid: d5f5d45074b125e4799c2877f17b1fec, type: 3}
+  gunner_icon: {fileID: 21300000, guid: d3bdf089ec1d44d4b8d55f8228196f36, type: 3}

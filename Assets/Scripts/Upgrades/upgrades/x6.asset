@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
-  m_Name: upgrade_2
+  m_Name: x6
   m_EditorClassIdentifier: 
-  gunEffect: 1
-  pilEffect: 1
+  gunEffect: 9
+  pilEffect: 9
   prereq: 0
-  description: '- Bullets bounce off of enemies 1 more time
+  description: '- THREE MISSILES
 
-    - Increase the rate at which bombs drop by 5%'
-  pilot_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
-  gunner_icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+    - Dash kills everything it hits'
+  pilot_icon: {fileID: 21300000, guid: fec10c7d62245ba4bb2c33f8c49ad954, type: 3}
+  gunner_icon: {fileID: 21300000, guid: 245c6bca7a039844b9dd9bb7b4c01b6d, type: 3}
