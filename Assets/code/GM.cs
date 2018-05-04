@@ -45,7 +45,7 @@ public class GM : MonoBehaviour {
 	}
 
 
-    public void handleWaveOver(){
+    public void handleSequenceOver(){
 		if (inGameScene) {
 			UpgradesManager.Start_Upgrade_Scene();
 		}
@@ -85,6 +85,13 @@ public class GM : MonoBehaviour {
 		} else {
 			EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.Game_Over);
 		}
+	}
+
+	// Respawn the player
+	public void RespawnPlayer() {
+		player.SetActive (true);
+		PlayerHP.resetHPAndCooldowns();
+		player.transform.position = new Vector3 (0, 0, 0);
 	}
 
 

@@ -66,15 +66,25 @@ public class PlayerMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		#if UNITY_EDITOR
 		keyboard();
+		#endif
 
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
 
 			//only apply to player
-		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr) || Input.GetKey(KeyCode.LeftShift)) && !cooldown) _gear = gear.boost;
+		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr)
+			#if UNITY_EDITOR
+			|| Input.GetKey(KeyCode.LeftShift)
+			#endif
+		) && !cooldown) _gear = gear.boost;
 		else _gear = gear.normal;
 		
-		if(dash_enabled && GetComponent<PlayerHP>() && (Input.GetKeyDown(KeyCode.F) || XCI.GetButton(XboxButton.X,ctlr)) && !PlayerHP.invuln && dash_off_cooldown){
+		if(dash_enabled && GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.X,ctlr)
+			#if UNITY_EDITOR
+			|| Input.GetKeyDown(KeyCode.F)
+			#endif
+		) && !PlayerHP.invuln && dash_off_cooldown){
 			StartCoroutine(dash(dash_length,dash_width));
 		}
 
@@ -90,6 +100,10 @@ public class PlayerMove : MonoBehaviour {
 	public static float x_cooldown(){
 		if(dash_enabled) return 1 - (GM.Instance.player.GetComponentInChildren<PlayerMove>().dash_timer / dash_cooldown);
 		else return 0;
+	}
+
+	public void resetDashCooldown() {
+		dash_timer = 0;
 	}
 
 	// Upgrade sprint cooldown
@@ -126,7 +140,7 @@ public class PlayerMove : MonoBehaviour {
 
 	public static void UpgradeDashEnabled(int total){
 		if(total == 0){
-			dash_enabled = true;//false;
+			dash_enabled = false;
 		} else {
 			dash_enabled = true;
 		}
@@ -239,12 +253,12 @@ public class PlayerMove : MonoBehaviour {
 		return x < -0 || x > 1;
 	}
 
-	void stun(float t){
+	public void stun(float t){
 		stunned = true;
 		Invoke("unstun",t);
 	}
 
-	void unstun(){
+	public void unstun(){
 		stunned = false;
 	}
 

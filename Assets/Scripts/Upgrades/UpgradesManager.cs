@@ -130,7 +130,7 @@ public class UpgradesManager : MonoBehaviour {
 
 		UpgradesManager.Instance.upgrade_index++;
 
-		PlayerHP.HP = PlayerHP.currentMaxHP;
+		PlayerHP.resetHPAndCooldowns();
 	}
 
 	public static void End_Upgrade_Scene(){
@@ -148,6 +148,9 @@ public class UpgradesManager : MonoBehaviour {
 			t.GetChild(i).gameObject.GetComponent<Animator>().SetTrigger("shut_down");
 		}
 		description_ui.transform.parent.gameObject.SetActive(false);
+
+		PlayerHP.resetHPAndCooldowns();
+
 		SpawnManager.Instance.nextSequence();
 	}
 

@@ -15,7 +15,11 @@ public class bomb_det : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if((Input.GetKeyDown(KeyCode.B) || (XCI.GetButton(XboxButton.LeftStick,XboxController.First) && XCI.GetButton(XboxButton.LeftStick,XboxController.Second)))
+		if(((XCI.GetButton(XboxButton.LeftStick,XboxController.First) && XCI.GetButton(XboxButton.LeftStick,XboxController.Second))
+			#if UNITY_EDITOR
+			|| Input.GetKeyDown(KeyCode.B)
+			#endif
+		)
 		 && canfire && !PauseManager.paused){
 			/*GameObject[] allObjects = Object.FindObjectsOfType<GameObject>() ;
 			foreach(GameObject go in allObjects){
@@ -41,7 +45,12 @@ public class bomb_det : MonoBehaviour {
 	public bool addCharge(int c){
 		bool r = timer > 0;
 		timer -= 10 * c;
+		timer = Mathf.Max (timer, 0);
 		return r;
+	}
+
+	public void refreshCharge() {
+		timer = 0;
 	}
 
 	void act(){

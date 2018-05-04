@@ -22,12 +22,16 @@ public class TurretMode : MonoBehaviour {
 	private Player_Missile_Fire player_missile_fire;
 	private YButtonManager yButtManager;
 
+	private PlayerMove move;
+
 
 	// Initialization
 	void Start () {
 		player_fire = GetComponent<Player_Fire> ();
 		player_missile_fire = GetComponent<Player_Missile_Fire> ();
 		yButtManager = GetComponent<YButtonManager> ();
+
+		move = transform.root.GetComponentInChildren<PlayerMove> ();
 
 		last_fire = Time.time;
 	}
@@ -55,11 +59,13 @@ public class TurretMode : MonoBehaviour {
 		turretModeOn = true;
 		player_fire.cantFire = true;
 		timeLeft = duration;
+		move.stun (duration);
 	}
 
 	private void finishTurretMode() {
 		turretModeOn = false;
 		player_fire.cantFire = false;
 		yButtManager.finishedAbility ();
+		move.unstun ();
 	}
 }
