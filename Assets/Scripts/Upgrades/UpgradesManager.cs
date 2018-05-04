@@ -202,15 +202,15 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == gunnerEffect.missile_tracking) {
 			Player_Missile_Fire.EnableTracking (total);
 		} else if (toPurchase == gunnerEffect.sword) {
-
+			sword_script.upgrade_enabled(total);
 		} else if (toPurchase == gunnerEffect.sword_destroyProj) {
-
+			sword_script.upgrade_projectiles(total);
 		} else if (toPurchase == gunnerEffect.sword_duration) {
-
+			sword_script.upgrade_dur(total);
 		} else if (toPurchase == gunnerEffect.sword_range) {
-
+			sword_script.upgrade_range(total);
 		} else if (toPurchase == gunnerEffect.sword_spin) {
-
+			sword_script.upgrade_spins(total);
 		} else if (toPurchase == gunnerEffect.Y_slowMo) {
 			YButtonManager.UnlockSlowMo (total);
 		} else if (toPurchase == gunnerEffect.Y_starMode) {

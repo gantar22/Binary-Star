@@ -31,6 +31,9 @@ public class PlayerMove : MonoBehaviour {
 	private static bool  dash_enabled = false;
 	public  static bool  dash_kill = false;
 
+
+
+
 	private bool dash_off_cooldown = false;
 	private float dash_timer;
 
@@ -314,6 +317,35 @@ public class PlayerMove : MonoBehaviour {
 			}
 			PlayerHP.dashing = false;
 			yield return null;
+	}
+
+
+	public void activate_pika(){
+		StartCoroutine(pika());
+	}
+
+	IEnumerator pika(){
+
+		GetComponentInParent<squeeze>().enabled = false;
+		TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
+		float old_time = trail.time;
+		trail.time = 1;
+		float old_width = trail.widthMultiplier;
+		trail.widthMultiplier = 10;
+		PlayerHP.dashing = true;
+		BoxCollider2D col = GetComponent<BoxCollider2D>();
+		Vector2 old_size = col.size;
+		col.size = new Vector2(col.size.x * 3, col.size.y * 3);
+
+
+		yield return new WaitForSeconds(6);
+
+		PlayerHP.dashing = false;
+		col.size = old_size;
+		trail.time = old_time;
+		trail.widthMultiplier = old_width;
+
+		yield return  null;
 	}
 
 

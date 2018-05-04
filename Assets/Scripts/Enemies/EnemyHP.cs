@@ -17,6 +17,8 @@ public class EnemyHP : MonoBehaviour {
 	// Other variables
 	private int HP;
 
+	private float swordDMG = 0;
+
 
 	// Initialize
 	void Start () {
@@ -142,4 +144,20 @@ public class EnemyHP : MonoBehaviour {
 
 		return true;
 	}
+
+	void OnTriggerStay2D(Collider2D other){
+		if(other.gameObject.tag == "spike"){
+			if(diesToBomb){
+				die();
+			} else {
+				swordDMG += Time.deltaTime;
+				if(swordDMG > 1){
+					swordDMG = 0;
+					gotHit(Vector3.zero);
+				}
+			}
+		}
+	}
+
+
 }

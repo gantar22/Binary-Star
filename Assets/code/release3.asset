@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 732c74c34b77d3841813065acec00a27, type: 3}
-  m_Name: small_test
+  m_Name: release3
   m_EditorClassIdentifier: 
   waveTuples:
   - condition: 0
@@ -17,10 +17,16 @@ MonoBehaviour:
     cameraSizeChange: 0
     scrollDirection: 0
     scrollSpeed: 0
-    wave: {fileID: 0}
+    wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
   - condition: 0
     threshold: 0
     cameraSizeChange: 0
     scrollDirection: 0
     scrollSpeed: 0
-    wave: {fileID: 11400000, guid: 399498a8b86953349beafc53da8c32a5, type: 2}
+    wave: {fileID: 11400000, guid: 9fdfbf5baddf7bf4dafd4dbb78040c1d, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 0
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 11400000, guid: 390f26daea597ad4d96bccb44fe27476, type: 2}

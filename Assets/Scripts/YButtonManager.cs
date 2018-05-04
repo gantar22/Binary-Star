@@ -9,6 +9,10 @@ public class YButtonManager : MonoBehaviour {
 	public float shortCooldown = 30;
 	public float longCooldown = 50;
 
+
+	private float star_mode_time_left = 0;
+	private float star_mode_time_total = 6;
+
 	[SerializeField]
 	XboxController _pilot_ctlr;
 	[SerializeField]
@@ -44,6 +48,7 @@ public class YButtonManager : MonoBehaviour {
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
 		//UnlockTurretMode(1);
+		//UnlockStarMode(1);
 	}
 
 
@@ -58,6 +63,8 @@ public class YButtonManager : MonoBehaviour {
 			returnVal = 1 - rapidFire.timeLeft / rapidFire.duration;
 		} else if (turretMode_active) {
 			returnVal = 1 - turretMode.timeLeft / turretMode.duration;
+		} else if (starMode_active) {
+			returnVal = 1 - star_mode_time_left / star_mode_time_total;
 		}
 		// ADD OTHER ABILITY DURATIONS HERE
 
@@ -69,6 +76,11 @@ public class YButtonManager : MonoBehaviour {
 	void Update () {
 		if (!abilityIsUnlocked()) {
 			return;
+		}
+
+
+		if(starMode_active){
+			star_mode_time_left -= Time.deltaTime;
 		}
 
 		if (cooldown >= 0) {
@@ -115,7 +127,12 @@ public class YButtonManager : MonoBehaviour {
 
 	private void activateStarMode() {
 		starMode_active = true;
-		// TODO - Start starMode here
+		GM.Instance.player.GetComponentInChildren<PlayerMove>().activate_pika();
+		Invoke("unstar",star_mode_time_total);
+	}
+
+	void unstar(){
+		starMode_active = false;
 	}
 
 

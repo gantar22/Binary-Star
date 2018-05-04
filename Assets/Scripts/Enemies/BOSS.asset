@@ -9,6 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 732c74c34b77d3841813065acec00a27, type: 3}
-  m_Name: New Sequence
+  m_Name: BOSS
   m_EditorClassIdentifier: 
-  waveTuples: []
+  waveTuples:
+  - condition: 1
+    threshold: 30
+    cameraSizeChange: 10
+    scrollDirection: 3
+    scrollSpeed: 20
+    wave: {fileID: 11400000, guid: 943e21f0a76d9e84283a6034f28edfe0, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 5
+    scrollDirection: 3
+    scrollSpeed: 15
+    wave: {fileID: 11400000, guid: 93e9c84868aa13448afed442d9b9c0ff, type: 2}

@@ -43,6 +43,8 @@ public class Player_Fire : MonoBehaviour {
 	private static int widthBoost = 0;
 
 
+
+
 	void Start(){
 		last_fire = Time.time;
 
@@ -184,4 +186,8 @@ public class Player_Fire : MonoBehaviour {
 	public static void UpgradeRicochet (int total) {
 		ricochet = total;
 	}
+
+
+
 }
+

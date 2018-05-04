@@ -68,6 +68,10 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
+		if(sword_script.sword_destroys_projectiles && col.gameObject.tag == "spike"){
+			Destroy(gameObject);
+		}
+
 		if (col.gameObject != lastHit) {
 			objsToHit.Add (col.gameObject);
 		}

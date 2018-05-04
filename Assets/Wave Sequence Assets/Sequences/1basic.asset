@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e45393247795a54408971ed69b73c3aa, type: 3}
-  m_Name: BOSS 1
+  m_Name: 1basic
   m_EditorClassIdentifier: 
   TopSpawner:
-  - type: 11
+  - type: 0
     numEnemies: 1
   BotSpawner: []
   LeftSpawner: []
