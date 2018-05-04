@@ -86,6 +86,8 @@ public class EnemyHP : MonoBehaviour {
 			for(int i = 0; i < 10;i++) {
 				DropManager.Instance.SpawnRandDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}
+
+			GM.Instance.YouWin ();
 		} else if (guaranteeDrop) {
 			DropManager.Instance.SpawnRandDrop (transform.position);
 		} else if (!noDrop) {

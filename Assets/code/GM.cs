@@ -108,6 +108,12 @@ public class GM : MonoBehaviour {
 		enemies.Clear ();
 	}
 
+	// Start the YouWin endstatescreen that leads to freeplay
+	public void YouWin() {
+		resetToSequence (SpawnManager.Instance.sequences.Length);
+		EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.You_Win);
+	}
+
 	// Restart a specific sequence
 	public void resetToSequence (int seqIndex) {
 		SpawnManager.Instance.resetToSequence (seqIndex);
