@@ -35,12 +35,9 @@ public class seeking_missile : MonoBehaviour {
 		}
 
 		DifOOB = GetComponent<disableifoob> ();
-	}
-
-
-	// Initialization
-	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+
+		DifOOB.enabled = true;
 	}
 	
 	// Called once per frame
