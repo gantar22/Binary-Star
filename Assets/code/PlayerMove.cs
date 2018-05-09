@@ -65,7 +65,7 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		#if UNITY_EDITOR
 		keyboard();
 		#endif
