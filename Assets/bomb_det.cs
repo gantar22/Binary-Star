@@ -29,7 +29,11 @@ public class bomb_det : MonoBehaviour {
 
 			canfire = false;
 			foreach(GameObject go in GM.Instance.enemies){
-				if(go.GetComponent<EnemyHP>()) go.GetComponent<EnemyHP>().hitByBomb();
+				EnemyHP EHP = go.GetComponent<EnemyHP> ();
+				if (EHP) {
+					print ("Trying to hit with bomb");
+					EHP.hitByBomb ();
+				}
 			}
 			CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 			if(CSS != null){

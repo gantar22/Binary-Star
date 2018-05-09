@@ -12,7 +12,7 @@ public class GM : MonoBehaviour {
     [HideInInspector]
 	public List<GameObject> enemies;
 	[HideInInspector]
-    public int enemyCount = 0;
+    //public int enemyCount = 0;
 
 	public static int sceneAfterStart = 1; // 1 for MainMenu, 2 for game
 
@@ -59,12 +59,12 @@ public class GM : MonoBehaviour {
 
 	// Enemy list and enemyCount management
 	public void Spawn(GameObject enemy){
-        enemyCount++;
+        //enemyCount++;
 		enemies.Add(enemy);
 	}
 
 	public void Died(GameObject enemy) {
-		enemyCount--;
+		//enemyCount--;
 		enemies.Remove (enemy);
 	}
 
@@ -97,14 +97,16 @@ public class GM : MonoBehaviour {
 
 	// ======= MANAGING ENEMIES, SEQUENCES, AND SCENES =======
 
-	// Destroy all enemies and make sure the enemy count is set back to 0
+
+	// Stop all SpawnManager coroutines, and then destroy all enemies
 	public void resetEnemies() {
 		SpawnManager.Instance.reset ();
 
 		while (enemies.Count != 0) {
 			enemies [0].GetComponent<EnemyHP> ().die ();
+			enemies.RemoveAt (0); // Is this necessary?
 		}
-		enemyCount = 0;
+		//enemyCount = 0;
 		enemies.Clear ();
 	}
 

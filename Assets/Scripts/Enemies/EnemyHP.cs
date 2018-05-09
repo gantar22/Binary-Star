@@ -57,12 +57,12 @@ public class EnemyHP : MonoBehaviour {
 	// Called when the player bomb explosion collides
 	public void hitByBomb() {
 		if (diesToBomb) {
-			Invoke("die",Random.value * .5f);
+			Invoke("stupidDie",Random.value * .5f);
 		}
 	}
-
+		
 	// Called when this enemy should die
-	public void die(bool noDrop = false) {
+	public void die (bool noDrop = false) {
 		music_manager.Instance.die();
 		// Make sure reticle is unparented
 		UnParentOnDestroy retScript;
@@ -108,6 +108,11 @@ public class EnemyHP : MonoBehaviour {
 
 		GM.Instance.Died (gameObject);
 		Destroy (gameObject);
+	}
+
+	// die(), but with no paramaters, so it can be invoked
+	private void stupidDie() {
+		die ();
 	}
 
 	// Spawn an explosion animation
