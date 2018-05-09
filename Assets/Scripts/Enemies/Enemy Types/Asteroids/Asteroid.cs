@@ -25,6 +25,7 @@ public class Asteroid : MonoBehaviour {
 	void Awake () {
 		rb = GetComponent<Rigidbody2D> ();
 		rock = GetComponentInChildren<Rock> ();
+		Turrets = new List<Turret> ();
 
 		if (asteroids == null) {
 			asteroids = new List<Asteroid> ();
@@ -52,7 +53,6 @@ public class Asteroid : MonoBehaviour {
 
 	// Add a turret to the Turrets list
 	public void addTurret(Turret newTurret) {
-		Turrets = new List<Turret> ();
 		Turrets.Add (newTurret);
 	}
 

@@ -488,7 +488,7 @@ MonoBehaviour:
     variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: cae0a3ecb1cad1145bbea7c13ffa50ba, type: 3}
-    volume: 0.25
+    volume: 0.13
     source: {fileID: 0}
   - name: die
     variation: 0.003
@@ -542,7 +542,7 @@ MonoBehaviour:
     variation: 0.001
     mid: 1
     clip: {fileID: 8300000, guid: 6a71a4a3d89771849aee0b30278873f3, type: 3}
-    volume: 0.11
+    volume: 0.68
     source: {fileID: 0}
   - name: take_damage
     variation: 0.001
@@ -625,10 +625,10 @@ MonoBehaviour:
   TypePrefabs:
   - Type: 0
     prefab: {fileID: 1883236937684282, guid: 4f59ba391d0fc66498ad3f04a973ffe9, type: 2}
-    maxDropInterval: 140
+    maxDropInterval: 240
   - Type: 1
     prefab: {fileID: 1423920787262260, guid: 150e81d0c72b06544942015141d18ea8, type: 2}
-    maxDropInterval: 200
+    maxDropInterval: 300
 --- !u!114 &114696690039428444
 MonoBehaviour:
   m_ObjectHideFlags: 1
