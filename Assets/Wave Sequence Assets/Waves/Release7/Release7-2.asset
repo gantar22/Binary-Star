@@ -17,9 +17,17 @@ MonoBehaviour:
   BotSpawner:
   - type: 5
     numEnemies: 1
-  LeftSpawner: []
-  RightSpawner: []
-  TopFarLeft: []
+  LeftSpawner:
+  - type: 1
+    numEnemies: 1
+  RightSpawner:
+  - type: 4
+    numEnemies: 1
+  TopFarLeft:
+  - type: 0
+    numEnemies: 0
   TopMidLeft: []
   TopMidRight: []
-  TopFarRight: []
+  TopFarRight:
+  - type: 0
+    numEnemies: 1

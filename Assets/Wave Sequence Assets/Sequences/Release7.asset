@@ -14,12 +14,24 @@ MonoBehaviour:
   waveTuples:
   - condition: 0
     threshold: 0
+    cameraSizeChange: -5
+    scrollDirection: 3
+    scrollSpeed: 5
+    wave: {fileID: 0}
+  - condition: 1
+    threshold: 3
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
     wave: {fileID: 11400000, guid: e4759adf9b87ae64da53fc443b393f46, type: 2}
   - condition: 0
     threshold: 0
+    cameraSizeChange: 5
+    scrollDirection: 3
+    scrollSpeed: 5
+    wave: {fileID: 0}
+  - condition: 1
+    threshold: 3
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
@@ -31,7 +43,7 @@ MonoBehaviour:
     scrollSpeed: 5
     wave: {fileID: 11400000, guid: 67bfcaa79987e2f428c4713438e280d6, type: 2}
   - condition: 1
-    threshold: 5
+    threshold: 2
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
@@ -43,8 +55,14 @@ MonoBehaviour:
     scrollSpeed: 5
     wave: {fileID: 11400000, guid: ea6c9287ec24647419895448953bd008, type: 2}
   - condition: 1
-    threshold: 0
+    threshold: 2
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
     wave: {fileID: 11400000, guid: 93ed0abcd575dd045a385660cb337fda, type: 2}
+  - condition: 1
+    threshold: 2
+    cameraSizeChange: 0
+    scrollDirection: 3
+    scrollSpeed: 5
+    wave: {fileID: 11400000, guid: 0d7d44b0b8b492a4cbd50b683b1914fe, type: 2}

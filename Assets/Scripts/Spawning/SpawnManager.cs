@@ -180,14 +180,18 @@ public class SpawnManager : MonoBehaviour {
 
 	// Spawn all the enemies in a given wave
 	private void spawnWave(WaveTuple tuple) {
-		Wave w = tuple.wave;
-
 		// Adjust the camera size and scroll speed
 		if (!freeplayMode) {
 			Camera.main.GetComponent<CameraSmoothZoom> ().addToCameraSize (tuple.cameraSizeChange);
 			ScrollManager.setScrollVelo (tuple.scrollDirection, tuple.scrollSpeed);
 		} else {
 			ScrollManager.setScrollVelo (direction.down, 5);
+		}
+
+		Wave w = tuple.wave;
+
+		if (w == null) {
+			return;
 		}
 
 		// Re-initialize the spawners array and then spawn the wave
