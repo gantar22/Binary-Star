@@ -32,6 +32,9 @@ public class GM : MonoBehaviour {
             _instance = this;
         }
         DontDestroyOnLoad(this);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
