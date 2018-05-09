@@ -15,7 +15,7 @@ public class bomb_det : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(((XCI.GetButton(XboxButton.LeftStick,XboxController.First) && XCI.GetButton(XboxButton.LeftStick,XboxController.Second))
+		if(((XCI.GetButton(XboxButton.B,XboxController.First) && XCI.GetButton(XboxButton.B,XboxController.Second))
 			#if UNITY_EDITOR
 			|| Input.GetKeyDown(KeyCode.B)
 			#endif

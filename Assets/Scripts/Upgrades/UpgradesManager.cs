@@ -104,6 +104,7 @@ public class UpgradesManager : MonoBehaviour {
 	// Starts the upgrade scene
 	public static void Start_Upgrade_Scene(){
 		Text description_ui	 = hudManager.Instance.description;
+		description_ui.text = "Fire at an upgrade to see it's description.";
 		hudManager.Instance.health.SetActive(false);
 		hudManager.Instance.bomb.SetActive(false);
 		if(UpgradesManager.Instance.upgrade_holder_A) Destroy(UpgradesManager.Instance.upgrade_holder_A);

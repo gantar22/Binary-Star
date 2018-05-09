@@ -392,7 +392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemies: []
-  enemyCount: 0
 --- !u!114 &114478230756672936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -489,19 +488,19 @@ MonoBehaviour:
     variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: cae0a3ecb1cad1145bbea7c13ffa50ba, type: 3}
-    volume: 0.36
+    volume: 0.25
     source: {fileID: 0}
   - name: die
     variation: 0.003
     mid: 1
     clip: {fileID: 8300000, guid: e3039c48e0e386d42950bdb1722548a9, type: 3}
-    volume: 0.62
+    volume: 0.42
     source: {fileID: 0}
   - name: sine
     variation: 0.1
     mid: 1
     clip: {fileID: 8300000, guid: 4273fb7126a5d2b40a10dacc847c13cb, type: 3}
-    volume: 1.12
+    volume: 0.72
     source: {fileID: 0}
   - name: player_death
     variation: 0
@@ -513,7 +512,7 @@ MonoBehaviour:
     variation: 0.1
     mid: 1
     clip: {fileID: 8300000, guid: 98913668d7d857a46afa44c9727ed7a4, type: 3}
-    volume: 1.52
+    volume: 0.92
     source: {fileID: 0}
   - name: sleeper_active
     variation: 0.003
@@ -531,7 +530,7 @@ MonoBehaviour:
     variation: 0.5
     mid: 1
     clip: {fileID: 8300000, guid: 66eaefedd2cfe4d4184e0974e57d2425, type: 3}
-    volume: 3
+    volume: 0.95
     source: {fileID: 0}
   - name: ui
     variation: 0.001
@@ -543,7 +542,7 @@ MonoBehaviour:
     variation: 0.001
     mid: 1
     clip: {fileID: 8300000, guid: 6a71a4a3d89771849aee0b30278873f3, type: 3}
-    volume: 2.22
+    volume: 0.11
     source: {fileID: 0}
   - name: take_damage
     variation: 0.001
