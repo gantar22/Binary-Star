@@ -533,16 +533,16 @@ MonoBehaviour:
     volume: 0.95
     source: {fileID: 0}
   - name: ui
-    variation: 0.001
+    variation: 0
     mid: 1.01
     clip: {fileID: 8300000, guid: 93165653f7becdf458f63a85f70c936c, type: 3}
-    volume: 0.36
+    volume: 0.3
     source: {fileID: 0}
   - name: player_hit
-    variation: 0.001
+    variation: 0.1
     mid: 1
     clip: {fileID: 8300000, guid: 6a71a4a3d89771849aee0b30278873f3, type: 3}
-    volume: 0.68
+    volume: 0.2
     source: {fileID: 0}
   - name: take_damage
     variation: 0.001
