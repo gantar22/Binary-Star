@@ -76,7 +76,6 @@ public class SpawnManager : MonoBehaviour {
 		if (freeplayMode) {
 			freeplaySeq = newFreeplaySeq ();
 		} else if (sequenceIndex >= sequences.Length) {
-			// All sequences have finished - TODO?
 			freeplayMode = true;
 			nextSequence ();
 			return;
@@ -108,7 +107,7 @@ public class SpawnManager : MonoBehaviour {
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitForEndOfFrame ();
-				yield return new WaitUntil (() => GM.Instance.enemyCount <= tuple.threshold);
+				yield return new WaitUntil (() => GM.Instance.enemies.Count <= tuple.threshold);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
@@ -117,7 +116,7 @@ public class SpawnManager : MonoBehaviour {
 		}
 
 		print("finish them");
-		yield return new WaitUntil (() => GM.Instance.enemyCount <= 0);
+		yield return new WaitUntil (() => GM.Instance.enemies.Count <= 0);
 
 		if (!freeplayMode) {
 			sequenceIndex++;
