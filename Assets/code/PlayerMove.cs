@@ -66,6 +66,7 @@ public class PlayerMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		joy = new Vector2(0,0);
 		#if UNITY_EDITOR
 		keyboard();
 		#endif
@@ -202,12 +203,15 @@ public class PlayerMove : MonoBehaviour {
 		if(velo.magnitude < .2f) velo = Vector2.zero;
 
 		transform.root.Translate(velo * Time.deltaTime,Space.World);
+
+
 		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).x)){
 			transform.root.Translate(Vector2.right * velo.x * Time.deltaTime * -1,Space.World);
 		}
 		if(_lockedInCamera && not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.Translate(Vector2.up * velo.y * Time.deltaTime * -1,Space.World);
 		}
+
 		/* Causing the player body separation bug:
 		if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
 			transform.root.position = Vector3.zero;
