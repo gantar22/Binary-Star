@@ -14,20 +14,26 @@ MonoBehaviour:
   waveTuples:
   - condition: 0
     threshold: 0
+    cameraSizeChange: -5
+    scrollDirection: 0
+    scrollSpeed: 0
+    wave: {fileID: 0}
+  - condition: 1
+    threshold: 3
     cameraSizeChange: 0
-    scrollDirection: 3
-    scrollSpeed: 1
+    scrollDirection: 0
+    scrollSpeed: 0
     wave: {fileID: 11400000, guid: 91d7c7d159e295243bed4a1bead1fb01, type: 2}
   - condition: 0
     threshold: 0
-    cameraSizeChange: 5
-    scrollDirection: 1
+    cameraSizeChange: 10
+    scrollDirection: 0
     scrollSpeed: 0
-    wave: {fileID: 11400000, guid: 943e21f0a76d9e84283a6034f28edfe0, type: 2}
+    wave: {fileID: 0}
   - condition: 1
-    threshold: 4
+    threshold: 3
     cameraSizeChange: 0
-    scrollDirection: 1
+    scrollDirection: 0
     scrollSpeed: 0
     wave: {fileID: 11400000, guid: 7c0f70e3ac7ff0b49bc7c78e8b26be98, type: 2}
   - condition: 0

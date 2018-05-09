@@ -14,12 +14,24 @@ MonoBehaviour:
   waveTuples:
   - condition: 0
     threshold: 0
+    cameraSizeChange: -5
+    scrollDirection: 3
+    scrollSpeed: 5
+    wave: {fileID: 0}
+  - condition: 1
+    threshold: 3
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
     wave: {fileID: 11400000, guid: 5c43459c289ad274bad5594decbf4cc7, type: 2}
+  - condition: 0
+    threshold: 0
+    cameraSizeChange: 5
+    scrollDirection: 3
+    scrollSpeed: 5
+    wave: {fileID: 0}
   - condition: 1
-    threshold: 8
+    threshold: 3
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
