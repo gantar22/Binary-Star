@@ -41,8 +41,9 @@ public class bomb_det : MonoBehaviour {
 			//Invoke("act",cooldown);
 			timer = cooldown;
 		}
-		timer -= Time.deltaTime;
-		if(timer < 0) act();
+		//timer -= Time.deltaTime;
+		//no recharging over time
+		if(timer <= 0) act();
 	}
 
 	public bool addCharge(int c){
