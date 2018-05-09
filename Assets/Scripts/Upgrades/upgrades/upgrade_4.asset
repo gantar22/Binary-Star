@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
   m_Name: upgrade_4
   m_EditorClassIdentifier: 
-  gunEffect: 3
+  gunEffect: 2
   pilEffect: 3
   prereq: 0
-  description: '- Wider bullets
+  description: '- Bullet travel farther
 
     - Shorter sprint cooldown'
   pilot_icon: {fileID: 21300000, guid: a33612216fe27744c8ba5b3bd7cf4a9f, type: 3}

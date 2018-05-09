@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
   m_Name: upgrade_1
   m_EditorClassIdentifier: 
-  gunEffect: 0
+  gunEffect: 3
   pilEffect: 0
   prereq: 0
-  description: '- Fire 2 more bullets per shot.
+  description: '- Bullets are wider
 
-    - Increase max health by 1.'
+    - Increase max health by 1'
   pilot_icon: {fileID: 21300000, guid: abcb258619777224a9b6b31f176633bd, type: 3}
   gunner_icon: {fileID: 21300000, guid: 6891b09471a2f1549a0ae5c4796f89c9, type: 3}

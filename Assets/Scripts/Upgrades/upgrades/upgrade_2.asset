@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
   m_Name: upgrade_2
   m_EditorClassIdentifier: 
-  gunEffect: 1
+  gunEffect: 0
   pilEffect: 1
   prereq: 0
-  description: '- Bullets bounce off of enemies 1 more time
+  description: '- Fire 2 more bullets per shot
 
     - Increase the rate at which bombs drop by 5%'
   pilot_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}

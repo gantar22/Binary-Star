@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
   m_Name: upgrade_3
   m_EditorClassIdentifier: 
-  gunEffect: 2
+  gunEffect: 1
   pilEffect: 2
   prereq: 0
-  description: '- Bullets travel one unit further.
+  description: '- Bullets bounce off of enemies one more time
 
     - Increase the rate at which health drop by 5%'
   pilot_icon: {fileID: 21300000, guid: c6e0e95b22948104d876d8e2977538d4, type: 3}
