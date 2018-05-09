@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 61020884383479586}
   - component: {fileID: 114673298421587070}
   - component: {fileID: 114273791189000352}
-  - component: {fileID: 114361944893546070}
   m_Layer: 0
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -516,19 +515,6 @@ MonoBehaviour:
   _missile: {fileID: 1519423591345882, guid: c2ff38bac216f0d45b8097f81d7c3c37, type: 2}
   _offset: 2
   _explosionDamage: 2
---- !u!114 &114361944893546070
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1187632629434982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f3119600daed94598d364a57c0c66f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 60
-  timer: 0
 --- !u!114 &114386296118775354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,7 +642,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950419444662794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9360d191a571fde40bba1097b08355b2, type: 3}
   m_Name: 
