@@ -319,7 +319,7 @@ public class PlayerMove : MonoBehaviour {
 				transform.root.position	+= transform.root.right * step_size * Time.deltaTime;
 				if(not_percent(Camera.main.WorldToViewportPoint(transform.root.position).x)
 					|| not_percent(Camera.main.WorldToViewportPoint(transform.root.position).y)){
-					transform.root.position	+= transform.root.right * step_size * -Time.deltaTime * 1.5f;
+					transform.root.position	+= transform.root.right * step_size * -Time.deltaTime * 1.15f;
 				}
 				yield return null;
 			}
