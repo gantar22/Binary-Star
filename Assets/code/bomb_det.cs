@@ -43,7 +43,7 @@ public class bomb_det : MonoBehaviour {
 		}
 		//timer -= Time.deltaTime;
 		//no recharging over time
-		if(timer < 0) act();
+		if(timer <= 0) act();
 	}
 
 	public bool addCharge(int c){
