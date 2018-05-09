@@ -50,6 +50,7 @@ public class PlayerMove : MonoBehaviour {
 	private float _boostFactor = 2.5f;
 
 	private Rigidbody2D rb;
+	private PlayerHP PHP;
 
 	private Bounds colliding_bounds = new Bounds(Vector3.zero,Vector3.zero);
 
@@ -62,6 +63,7 @@ public class PlayerMove : MonoBehaviour {
 			heat_decay = baseHeat_decay;
 		}
 		rb = GetComponent<Rigidbody2D>();
+		PHP = GetComponent<PlayerHP> ();
 	}
 
 	// Update is called once per frame
@@ -73,14 +75,14 @@ public class PlayerMove : MonoBehaviour {
 		joy += new Vector2(XCI.GetAxisRaw(XboxAxis.LeftStickX,ctlr),XCI.GetAxisRaw(XboxAxis.LeftStickY,ctlr));
 
 			//only apply to player
-		if(GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.A,ctlr)
+		if(PHP && (XCI.GetButton(XboxButton.A,ctlr)
 			#if UNITY_EDITOR
 			|| Input.GetKey(KeyCode.LeftShift)
 			#endif
 		) && !cooldown) _gear = gear.boost;
 		else _gear = gear.normal;
 		
-		if(dash_enabled && GetComponent<PlayerHP>() && (XCI.GetButton(XboxButton.X,ctlr)
+		if(dash_enabled && PHP && (XCI.GetButton(XboxButton.X,ctlr)
 			#if UNITY_EDITOR
 			|| Input.GetKeyDown(KeyCode.F)
 			#endif
@@ -230,7 +232,8 @@ public class PlayerMove : MonoBehaviour {
 		/*******************************************/
 		
 		// Make sure the player doesn't go on top of asteroids
-		if (Asteroid.asteroids != null) {
+
+		if (Asteroid.asteroids != null && PHP) {
 			foreach (Asteroid ast in Asteroid.asteroids) {
 				Vector2 rockPos = ast.rock.transform.position;
 				Vector2 playerPos = transform.root.position;
@@ -240,7 +243,7 @@ public class PlayerMove : MonoBehaviour {
 					
 				Vector2 diff = playerPos - rockPos;
 				if (diff.magnitude < rockRadius + playerRadius) {
-					GetComponent<PlayerHP> ().gotHit ();
+					PHP.gotHit ();
 						
 					Vector2 newPos = diff.normalized * (rockRadius + playerRadius) + rockPos;
 					transform.root.Translate ((Vector3)newPos - transform.root.position, Space.World); // Test this

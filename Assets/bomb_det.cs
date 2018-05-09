@@ -31,7 +31,6 @@ public class bomb_det : MonoBehaviour {
 			foreach(GameObject go in GM.Instance.enemies){
 				EnemyHP EHP = go.GetComponent<EnemyHP> ();
 				if (EHP) {
-					print ("Trying to hit with bomb");
 					EHP.hitByBomb ();
 				}
 			}
