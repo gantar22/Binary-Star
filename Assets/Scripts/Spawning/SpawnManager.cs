@@ -206,7 +206,7 @@ public class SpawnManager : MonoBehaviour {
 		for (int i = 0; i < 8; i++) {
 			foreach (TypeNumPair pair in waveSpawns[i]) {
 				GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-				for (int j = 0; j < pair.numEnemies; j++) {
+				for (int j = 0; j < pair.numEnemies; j++) { //move to coroutine
 					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
 					randomizePosition (newEnemy);
 				}
