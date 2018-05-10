@@ -119,7 +119,7 @@ public class MenuManager : MonoBehaviour {
 	// Functions for buttons to call
 
 	public void ContinueGame() {
-		SceneManager.LoadScene (2); 
+		SceneManager.LoadScene (2);
 	}
 
 	public void NewGame() {
@@ -127,6 +127,7 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void LoadMainMenu() {
+		SpawnManager.Instance.reset ();
 		SceneManager.LoadScene ("MainMenu");
 	}
 

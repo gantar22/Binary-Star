@@ -34,13 +34,10 @@ public class PlayerHP : MonoBehaviour {
 
 
 	void Awake(){
+		print ((GM.Instance == null).ToString () + (SpawnManager.Instance == null).ToString ());
 		if(GM.Instance && SpawnManager.Instance){
 			GM.Instance.player = transform.parent.gameObject;
-			SpawnManager.Instance.sequenceIndex = 0;
-			if(SpawnManager.Instance.idle){
-				SpawnManager.Instance.idle = true;
-				SpawnManager.Instance.nextSequence();
-			}
+			GM.onLoadGame ();
 		}
 
 	}

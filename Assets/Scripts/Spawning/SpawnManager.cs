@@ -42,6 +42,7 @@ public class SpawnManager : MonoBehaviour {
 		// Static instance setup
 		if (_instance != null && _instance != this) {
 			Destroy(this.gameObject);
+			return;
 		} else {
 			_instance = this;
 		}
@@ -49,7 +50,7 @@ public class SpawnManager : MonoBehaviour {
 		if (transform.parent == null) {
 			DontDestroyOnLoad (this);
 		}
-			
+
 		// Initialize variables
 		resetToSequence(0);
 	}
