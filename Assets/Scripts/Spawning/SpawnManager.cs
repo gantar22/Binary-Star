@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour {
 	private Vector2[] Spawners;
 
 	[HideInInspector]
-	public bool idle, freeplayMode = false;
+	public bool idle, freeplayMode = false, currently_spawning = false;
 	[HideInInspector]
 	public int sequenceIndex, freeplayMult = 1, freeplayCounter = 0;
 
@@ -106,8 +106,8 @@ public class SpawnManager : MonoBehaviour {
 
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
-				yield return new WaitForEndOfFrame ();
-				yield return new WaitUntil (() => GM.Instance.enemies.Count <= tuple.threshold);
+				yield return new WaitForEndOfFrame (); 
+				yield return new WaitUntil (() => GM.Instance.enemies.Count <= tuple.threshold && !currently_spawning);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
@@ -116,7 +116,7 @@ public class SpawnManager : MonoBehaviour {
 		}
 
 		print("finish them");
-		yield return new WaitUntil (() => GM.Instance.enemies.Count <= 0);
+		yield return new WaitUntil (() => GM.Instance.enemies.Count <= 0 && !currently_spawning);
 
 		if (!freeplayMode) {
 			sequenceIndex++;
@@ -207,15 +207,22 @@ public class SpawnManager : MonoBehaviour {
 			w.TopFarRight
 		};
 
+		StartCoroutine(spawnLoop(waveSpawns));
+	}
+
+	IEnumerator spawnLoop(List<TypeNumPair>[] waveSpawns){
+		currently_spawning = true;
 		for (int i = 0; i < 8; i++) {
 			foreach (TypeNumPair pair in waveSpawns[i]) {
 				GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);
-				for (int j = 0; j < pair.numEnemies; j++) { //move to coroutine
+				for (int j = 0; j < pair.numEnemies; j++) { 
+					yield return new WaitForSeconds(Random.value * .25f);
 					GameObject newEnemy = Instantiate (prefab, Spawners[i], Quaternion.identity);
 					randomizePosition (newEnemy);
 				}
 			}
 		}
+		currently_spawning = false;
 	}
 
 	// Initialize the array of spawner locations

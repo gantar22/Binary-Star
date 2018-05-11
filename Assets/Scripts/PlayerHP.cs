@@ -238,7 +238,9 @@ public class PlayerHP : MonoBehaviour {
 		player.GetComponentInChildren<Player_Fire> ().cantFire = false;
 
 		player.GetComponentInChildren<PlayerHP> ().refillHP();
-		player.GetComponentInChildren<bomb_det> ().refreshCharge();
+		
+		//no more bomb passive refill
+		//player.GetComponentInChildren<bomb_det> ().refreshCharge();
 
 		PlayerMove move = player.GetComponentInChildren<PlayerMove> ();
 		move.resetDashCooldown ();
