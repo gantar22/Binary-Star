@@ -49,7 +49,6 @@ public class seeking_missile : MonoBehaviour {
 		Vector2 pos = transform.position;
 
 		if (targetObj != null) {
-			print ("Seeking velo: " + velocity);
 			DifOOB.enabled = false;
 
 			// Calculate acceleration (i.e. NewBasicEnemy Update)
@@ -92,7 +91,6 @@ public class seeking_missile : MonoBehaviour {
 			velocity += acceleration * Time.deltaTime;
 			velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
 		} else {
-			print ("Null seeking velo: " + velocity);
 			DifOOB.enabled = true;
 		}
 

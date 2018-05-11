@@ -23,6 +23,12 @@ MonoBehaviour:
     cameraSizeChange: 0
     scrollDirection: 3
     scrollSpeed: 5
+    wave: {fileID: 11400000, guid: 6af57b51b61de5b4bb86db36e98a91da, type: 2}
+  - condition: 1
+    threshold: 4
+    cameraSizeChange: 0
+    scrollDirection: 3
+    scrollSpeed: 5
     wave: {fileID: 11400000, guid: 22f01fc61e398a04f9242eed71d5cabb, type: 2}
   - condition: 0
     threshold: 0

@@ -11,8 +11,6 @@ public class GM : MonoBehaviour {
 
     [HideInInspector]
 	public List<GameObject> enemies;
-	[HideInInspector]
-    //public int enemyCount = 0;
 
 	public static int sceneAfterStart = 1; // 1 for MainMenu, 2 for game
 
@@ -55,22 +53,13 @@ public class GM : MonoBehaviour {
 	}
 
 	// What to do if you just loaded the game scene
-	public void onLoadGame() {
+	public static void onLoadGame() {
 		inGameScene = true; // redundant
 		// More TODO here?
+		GM.Instance.resetEnemies ();
+		SpawnManager.Instance.idle = true;
+		SpawnManager.Instance.nextSequence();
 	}
-
-	// Enemy list and enemyCount management
-	public void Spawn(GameObject enemy){
-        //enemyCount++;
-		enemies.Add(enemy);
-	}
-
-	public void Died(GameObject enemy) {
-		//enemyCount--;
-		enemies.Remove (enemy);
-	}
-
 
     public Vector2 player_screen_loc(){
 		if (player) {
@@ -100,16 +89,26 @@ public class GM : MonoBehaviour {
 
 	// ======= MANAGING ENEMIES, SEQUENCES, AND SCENES =======
 
+	// Enemy list management
+	public void Spawn(GameObject enemy){
+		enemies.Add(enemy);
+	}
+
+	public void Died(GameObject enemy) {
+		enemies.Remove (enemy);
+	}
 
 	// Stop all SpawnManager coroutines, and then destroy all enemies
 	public void resetEnemies() {
 		SpawnManager.Instance.reset ();
 
 		while (enemies.Count != 0) {
-			enemies [0].GetComponent<EnemyHP> ().die ();
-			enemies.RemoveAt (0); // Is this necessary?
+			EnemyHP EHP;
+			if (enemies[0] != null && (EHP = enemies [0].GetComponent<EnemyHP> ())) {
+				EHP.die ();
+			}
+			enemies.RemoveAt (0);
 		}
-		//enemyCount = 0;
 		enemies.Clear ();
 	}
 

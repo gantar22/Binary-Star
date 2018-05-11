@@ -41,6 +41,10 @@ public class BulletScript : MonoBehaviour {
 
 		while (objsToHit.Count > 0) {
 			GameObject nextObj = objsToHit [0];
+			if (nextObj == null) {
+				objsToHit.RemoveAt (0);
+				continue;
+			}
 
 			Invulnerable I = nextObj.GetComponent<Invulnerable> ();
 			if (I != null && I.enabled) {

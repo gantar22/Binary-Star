@@ -49,6 +49,7 @@ public class UpgradesManager : MonoBehaviour {
 		// Static instance setup
 		if (_instance != null && _instance != this) {
 			Destroy(this.gameObject);
+			return;
 		} else {
 			_instance = this;
 		}
