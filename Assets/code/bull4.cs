@@ -43,12 +43,20 @@ public class bull4 : MonoBehaviour {
 	}
 
 	IEnumerator checkCharge(){
-		yield return new WaitForSeconds(0);
+		/* yield return new WaitForSeconds(0);
 		while(true){
 			yield return new WaitForSeconds(3);
 			if(!am.GetBool("charging") && Random.value > .66f){
 				StartCoroutine(charge());
 			}
+		} */
+
+		while (true) {
+			yield return new WaitUntil (() => !am.GetBool ("charging"));
+
+			float waitTime = Random.Range (5, 10);
+			yield return new WaitForSeconds (waitTime);
+			StartCoroutine (charge ());
 		}
 	}
 

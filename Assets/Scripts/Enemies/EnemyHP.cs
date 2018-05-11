@@ -82,7 +82,7 @@ public class EnemyHP : MonoBehaviour {
 		playExplosion ();
 
 		// Spawn drops
-		if(GetComponent<bull2>()){
+		if(GetComponent<bull4>()){
 			for(int i = 0; i < 10;i++) {
 				DropManager.Instance.SpawnRandDrop((Vector3)(Random.insideUnitCircle) * transform.localScale.x + transform.position);
 			}
@@ -134,14 +134,6 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	private bool special(){ //special script checks for taking damage
-		bull2 b;
-		if((b = GetComponent<bull2>())){
-			if(b._state != bull2.state.stunned) return false;
-			if(transform.childCount > 0 && transform.GetChild(0).GetComponent<Animator>()) transform.GetChild(0).GetComponent<Animator>().SetTrigger("hit");
-			if(b.ring) b.ring.speed += 7;
-			return (--b.hp == 0);
-		}
-
 		// If sleeper enemy is hit, make him angry
 		SleeperEnemy SE = GetComponent<SleeperEnemy>();
 		if (SE != null) {

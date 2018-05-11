@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _type: 0
+  _type: 3
+  ricochetsLeft: 0
 --- !u!114 &114892447755125290
 MonoBehaviour:
   m_ObjectHideFlags: 1

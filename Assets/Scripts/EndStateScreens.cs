@@ -59,7 +59,7 @@ public class EndStateScreens : MonoBehaviour {
 			readyToContinue = false;
 
 			if (chosenScreen == EndStateScreen.You_Win) {
-				SpawnManager.Instance.nextSequence();
+				GM.Instance.handleSequenceOver ();
 				// TODO - Might want to go straight to an upgrade screen or
 				//		  do something else as freeplay begins
 			} else if (chosenScreen == EndStateScreen.You_Died) {

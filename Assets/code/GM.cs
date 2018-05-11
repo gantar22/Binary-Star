@@ -72,6 +72,8 @@ public class GM : MonoBehaviour {
 
 	// Called when the player dies
 	public void PlayerDied() {
+		GM.Instance.resetEnemies ();
+
 		if (!SpawnManager.Instance.freeplayMode) {
 			EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.You_Died);
 		} else {
@@ -104,16 +106,19 @@ public class GM : MonoBehaviour {
 
 		while (enemies.Count != 0) {
 			EnemyHP EHP;
-			if (enemies[0] != null && (EHP = enemies [0].GetComponent<EnemyHP> ())) {
+			if (enemies [0] != null && (EHP = enemies [0].GetComponent<EnemyHP> ())) {
+				enemies.RemoveAt (0);
 				EHP.die ();
+			} else {
+				enemies.RemoveAt (0);
 			}
-			enemies.RemoveAt (0);
 		}
 		enemies.Clear ();
 	}
 
 	// Start the YouWin endstatescreen that leads to freeplay
 	public void YouWin() {
+		resetEnemies ();
 		resetToSequence (SpawnManager.Instance.sequences.Length);
 		EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.You_Win);
 	}
