@@ -60,8 +60,6 @@ public class EndStateScreens : MonoBehaviour {
 
 			if (chosenScreen == EndStateScreen.You_Win) {
 				GM.Instance.handleSequenceOver ();
-				// TODO - Might want to go straight to an upgrade screen or
-				//		  do something else as freeplay begins
 			} else if (chosenScreen == EndStateScreen.You_Died) {
 				GM.Instance.resetToSameSequence();
 				GM.Instance.RespawnPlayer ();

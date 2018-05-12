@@ -20,6 +20,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	// Other variables
 	private float cooldown;
+	private List<GameObject> activeMissiles;
 
 	// References
 	private Player_Fire player_fire;
@@ -45,6 +46,8 @@ public class Player_Missile_Fire : MonoBehaviour {
 			maxCooldown = lvl1Cooldown;
 		}
 
+		activeMissiles = new List<GameObject> ();
+
 		// Testing:
 		//UnlockMissiles(1);
 		//EnableTracking (1);
@@ -62,11 +65,11 @@ public class Player_Missile_Fire : MonoBehaviour {
 		if (cooldown > 0) {
 			cooldown -= Time.deltaTime;
 		} else if (!player_fire.cantFire) {
-			if (XCI.GetButtonDown (_button, _ctlr)) {
+			if (XCI.GetButtonDown (_button, _ctlr) && noActiveMissiles()) {
 				fire ();
 			}
 			#if UNITY_EDITOR
-			else if (Input.GetKey (KeyCode.X)) { // KEYBOARD TESTING --- REMOVE
+			else if (Input.GetKey (KeyCode.X) && noActiveMissiles()) { // KEYBOARD TESTING --- REMOVE
 				fire ();
 			}
 			#endif
@@ -114,6 +117,8 @@ public class Player_Missile_Fire : MonoBehaviour {
 		Vector3 pos = transform.position + offset;
 
 		GameObject missile = Instantiate(_missile, pos, transform.rotation);
+		activeMissiles.Add (missile);
+
 		linear_travel linTrav = missile.GetComponentInChildren<linear_travel> ();
 		seeking_missile seeking = missile.GetComponentInChildren<seeking_missile> ();
 
@@ -126,7 +131,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 			//seeking.setVelo (playerVelo);
 			Vector2 direction = pos - transform.position;
 			float speed = linTrav.getBaseSpeed;
-			seeking.setVelo (direction, speed);
+			seeking.setVelo (direction, speed * 10);
 		} else {
 			linTrav.enabled = true;
 			seeking.enabled = false;
@@ -144,6 +149,19 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	public void refreshCooldown() {
 		cooldown = 0;
+	}
+
+	private bool noActiveMissiles() {
+		while (activeMissiles.Count > 0) {
+			GameObject missile = activeMissiles [0];
+			if (missile != null) {
+				return false;
+			} else {
+				activeMissiles.RemoveAt (0);
+			}
+		}
+
+		return true;
 	}
 
 
