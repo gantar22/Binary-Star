@@ -67,6 +67,7 @@ public class music_manager : MonoBehaviour {
 
 		for(int i = 0; i < sxs.Length;i++) {
 			GameObject g = Instantiate(source, transform);
+			g.name = sxs[i].name;
 			sxs[i].source = g.GetComponent<AudioSource>();
 		}
 

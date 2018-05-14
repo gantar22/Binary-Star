@@ -39,7 +39,7 @@ public class SyncCircleEnemy : MonoBehaviour {
 
 		// Get player position
 		if (GM.Instance.player == null) return;
-		Vector2 targetPos = GM.Instance.player.transform.position;
+		Vector2 targetPos = GM.Instance.player_pos;
 
 		// Decide what direction to move in
 		direction = targetPos - pos;

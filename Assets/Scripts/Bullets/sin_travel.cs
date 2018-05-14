@@ -22,6 +22,10 @@ public class sin_travel : MonoBehaviour {
 		timeOffset = period / 2f;
 	}
 
+	public void redirect(){
+		direction = transform.right;
+	}
+
 	// Called once per frame
 	void Update () {
 		// Decide what direction to move in

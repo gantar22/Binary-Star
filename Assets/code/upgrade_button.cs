@@ -16,8 +16,8 @@ public class upgrade_button : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(!u) return;
-		pilot_icon.sprite = u.pilot_icon;
-		gunner_icon.sprite = u.gunner_icon;
+		pilot_icon.sprite = u.gunner_icon;
+		gunner_icon.sprite = u.pilot_icon; //it looks better this way
 	}
 	
 	// Update is called once per frame

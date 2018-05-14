@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 
 
-		if(!stunned) move();
+		if(!stunned && (!turtle_script.currently_active || turtle_script.move)) move();
 
 		dash_timer = Mathf.Clamp(dash_timer - Time.deltaTime, -1, dash_timer);
 		if(dash_timer < 0)	dash_off_cooldown = true;
@@ -102,6 +102,7 @@ public class PlayerMove : MonoBehaviour {
 
 	public static float x_cooldown(){
 		if(dash_enabled) return 1 - (GM.Instance.player.GetComponentInChildren<PlayerMove>().dash_timer / dash_cooldown);
+		if(turtle_script.unlocked) return turtle_script.meter();
 		else return 0;
 	}
 

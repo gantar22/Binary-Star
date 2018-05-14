@@ -17,5 +17,5 @@ MonoBehaviour:
   description: '- Missiles explode in wider radius
 
     - Dash damage width increase'
-  pilot_icon: {fileID: 21300000, guid: d5f5d45074b125e4799c2877f17b1fec, type: 3}
-  gunner_icon: {fileID: 21300000, guid: d3bdf089ec1d44d4b8d55f8228196f36, type: 3}
+  pilot_icon: {fileID: 21300000, guid: d3bdf089ec1d44d4b8d55f8228196f36, type: 3}
+  gunner_icon: {fileID: 21300000, guid: d5f5d45074b125e4799c2877f17b1fec, type: 3}

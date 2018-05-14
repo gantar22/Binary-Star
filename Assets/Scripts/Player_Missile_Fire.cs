@@ -29,7 +29,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 	private static float lvl1Cooldown = 8f, lvl2Cooldown = 3f;
 	private static float angleDiffDegrees = 35;
 
-	private static bool missilesEnabled;
+	public static bool missilesEnabled;
 	private static float exploRadiusMult;
 	private static float maxCooldown;
 	private static bool tracking;

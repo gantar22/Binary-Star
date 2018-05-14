@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 689698499d7f40e44b7a99f8389e887c, type: 3}
-  m_Name: upgrade_3
+  m_Name: y 1
   m_EditorClassIdentifier: 
-  gunEffect: 1
-  pilEffect: 2
+  gunEffect: 16
+  pilEffect: 16
   prereq: 0
-  description: '- Bullets bounce off of enemies one more time
+  description: '- Press Y to become a ball of energy
 
-    - Increase the rate at which health drop by 5%'
-  pilot_icon: {fileID: 21300000, guid: c6e0e95b22948104d876d8e2977538d4, type: 3}
-  gunner_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
+    - Press Y to become a turret'
+  pilot_icon: {fileID: 21300000, guid: 7aec898a8d9256242acf3fe3c03e0b6e, type: 3}
+  gunner_icon: {fileID: 21300000, guid: 57d768bbe24a4d44eb5750802939e94b, type: 3}

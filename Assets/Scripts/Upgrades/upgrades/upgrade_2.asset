@@ -17,5 +17,5 @@ MonoBehaviour:
   description: '- Fire 2 more bullets per shot
 
     - Increase the rate at which bombs drop by 5%'
-  pilot_icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
-  gunner_icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+  pilot_icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+  gunner_icon: {fileID: 21300000, guid: abcb258619777224a9b6b31f176633bd, type: 3}

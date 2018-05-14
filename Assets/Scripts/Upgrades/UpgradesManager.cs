@@ -23,6 +23,13 @@ public enum X_Ability {		None, 			Dash_Missile,			Turtle_Sword, 		};
 [System.Serializable]
 public struct Upgrade_Option{
 	public Upgrade[] choices;
+	public Upgrade[] alternatives;
+}
+
+[System.Serializable]
+public struct Upgrade_piece{
+	public Sprite icon;
+	public string desc;
 }
 
 public class UpgradesManager : MonoBehaviour {
@@ -36,7 +43,8 @@ public class UpgradesManager : MonoBehaviour {
 	public GameObject upgrade_holder_A_prefab;
 	public GameObject upgrade_holder_X_prefab;
 	public Upgrade_Option[] upgrade_sequence;
-	public Upgrade[] free_play;
+	public Upgrade_piece[] free_play_gunner = new Upgrade_piece[5];
+	public Upgrade_piece[] free_play_pilot  = new Upgrade_piece[5];
 	private int upgrade_index = 0;
 
 
@@ -115,17 +123,31 @@ public class UpgradesManager : MonoBehaviour {
 		//assign the upgrades from the sequence
 		bool free = SpawnManager.Instance.freeplayMode;
 		if(!free && UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices.Length == 2){
+
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_X.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
-				ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
+				if(Player_Missile_Fire.missilesEnabled){
+					ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
+				} else {
+					ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].alternatives[i];
+				}
+				
 			}
 			UpgradesManager.Instance.upgrade_holder_X.SetActive(true);
 		} else {
 			upgrade_button[] ubs = UpgradesManager.Instance.upgrade_holder_A.GetComponentsInChildren<upgrade_button>();
 			for(int i = 0; i < ubs.Length;i++){
 				if(free){
-					int index = (int)(Random.value * UpgradesManager.Instance.free_play.Length);
-					ubs[i].u = UpgradesManager.Instance.free_play[index];
+					Upgrade rando = new Upgrade();
+					int index_gunner = (int)(Random.value * 5);
+					int index_pilot  = (int)(Random.value * 5);
+					rando.gunEffect = (gunnerEffect)index_gunner;
+					rando.pilEffect = (pilotEffect)index_pilot;
+					rando.description = Instance.free_play_gunner[index_gunner].desc + "\n";
+					rando.description += Instance.free_play_pilot[index_pilot].desc;
+					rando.gunner_icon = Instance.free_play_gunner[index_gunner].icon;
+					rando.pilot_icon = Instance.free_play_pilot[index_pilot].icon;
+					ubs[i].u = rando;
 				} else {
 					ubs[i].u =  UpgradesManager.Instance.upgrade_sequence[UpgradesManager.Instance.upgrade_index].choices[i];
 				}
@@ -256,15 +278,15 @@ public class UpgradesManager : MonoBehaviour {
 		} else if (toPurchase == pilotEffect.dash_wider) {
 			PlayerMove.UpgradeDashLength(total);
 		} else if (toPurchase == pilotEffect.turtle) {
-
+			turtle_script.upgrade_turtle(total);
 		} else if (toPurchase == pilotEffect.turtle_decoy) {
-
+			turtle_script.upgrade_decoy(total);
 		} else if (toPurchase == pilotEffect.turtle_duration) {
-
+			turtle_script.upgrade_dur(total);
 		} else if (toPurchase == pilotEffect.turtle_move) {
-
+			turtle_script.upgrade_move(total);
 		} else if (toPurchase == pilotEffect.turtle_reflect) {
-
+			turtle_script.upgrade_reflect(total);
 		} else if (toPurchase == pilotEffect.Y_rapidFire) {
 			YButtonManager.UnlockRapidFire (total);
 		} else if (toPurchase == pilotEffect.Y_turretMode) {

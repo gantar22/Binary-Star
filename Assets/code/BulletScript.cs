@@ -75,6 +75,19 @@ public class BulletScript : MonoBehaviour {
 		if(sword_script.sword_destroys_projectiles && col.gameObject.tag == "spike"){
 			Destroy(gameObject);
 		}
+		if(col.gameObject.GetComponent<turtle_shield>()){
+			if(turtle_script.refl){
+				transform.right = (transform.position - col.gameObject.transform.position).normalized;
+				sin_travel sin;
+				if(sin = GetComponentInChildren<sin_travel>())
+				{
+					sin.redirect();
+				}
+			} else {
+				Destroy(transform.root.gameObject);
+			}
+		
+		}
 
 		if (col.gameObject != lastHit) {
 			objsToHit.Add (col.gameObject);
@@ -188,6 +201,7 @@ public class BulletScript : MonoBehaviour {
 		}
 
 		ricochetsLeft--;
+		music_manager.play_by_name("player_hit");
 	}
 
 	// Set the explosion settings for this bullet (ie. missile)

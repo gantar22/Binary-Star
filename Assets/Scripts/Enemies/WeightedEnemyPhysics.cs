@@ -104,6 +104,14 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 				velocity -= projection * (1f + bounceScale);
 			}
 		}
+
+		if(col.GetComponent<turtle_shield>())
+		{
+			print("found it");
+			Vector2 dir = transform.position - col.gameObject.transform.position;
+			dir = dir.normalized * 2;
+			StartCoroutine(knock_force(dir));
+		}
 	}
 
 	// Normalize the degrees to the range (-180, 180)

@@ -122,7 +122,7 @@ public class PlayerHP : MonoBehaviour {
 		}
 
 		EnemyHP s = col.gameObject.GetComponent<EnemyHP>(); 
-		if (s != null){
+		if (s != null && !turtle_script.currently_active){
 			if(!dashing) gotHit();
 			if (s.gameObject.GetComponent<Rock> () == null) {
 				if(dashing){

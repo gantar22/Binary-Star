@@ -10,6 +10,11 @@ public class GM : MonoBehaviour {
     public GameObject player;
 
     [HideInInspector]
+    public Vector2 player_pos {get {return decoy != null ? decoy.transform.position : player.transform.position;}}
+    [HideInInspector]
+    public GameObject decoy;
+
+    [HideInInspector]
 	public List<GameObject> enemies;
 
 	public static int sceneAfterStart = 1; // 1 for MainMenu, 2 for game

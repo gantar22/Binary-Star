@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  decoy: {fileID: 0}
   enemies: []
 --- !u!114 &114478230756672936
 MonoBehaviour:
@@ -412,51 +413,86 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
     - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
     - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+    alternatives: []
   - choices:
+    - {fileID: 11400000, guid: a52b706da52d3204c9e31a760282540b, type: 2}
     - {fileID: 11400000, guid: b200f20170c9aaa40849c006e1b1a895, type: 2}
-    - {fileID: 11400000, guid: b200f20170c9aaa40849c006e1b1a895, type: 2}
+    alternatives: []
   - choices:
     - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
     - {fileID: 11400000, guid: 914b0ca002ee932479f05fecdc5835ff, type: 2}
     - {fileID: 11400000, guid: bda95a6ebfbc23a40bf497f3366e66d2, type: 2}
+    alternatives: []
   - choices:
     - {fileID: 11400000, guid: bf91f55cfa2fb7e4b9d4cc68be57f48e, type: 2}
-    - {fileID: 11400000, guid: bf91f55cfa2fb7e4b9d4cc68be57f48e, type: 2}
+    - {fileID: 11400000, guid: 3a173fe917a8f01479cade739613213e, type: 2}
+    alternatives:
+    - {fileID: 11400000, guid: 13d9c463740aece45b731efc46ce0354, type: 2}
+    - {fileID: 11400000, guid: 373528a4d80030c4fa12c70db54535ab, type: 2}
   - choices:
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
     - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
     - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+    alternatives: []
   - choices:
     - {fileID: 11400000, guid: 3a173fe917a8f01479cade739613213e, type: 2}
-    - {fileID: 11400000, guid: 3a173fe917a8f01479cade739613213e, type: 2}
+    - {fileID: 11400000, guid: 146c6020b6d8f864a8d24509d23efa8a, type: 2}
+    alternatives:
+    - {fileID: 11400000, guid: 0b27d8acb66ce5046ae11fa809a896d3, type: 2}
+    - {fileID: 11400000, guid: 373f46a5e92328c4c85468fef7442c4a, type: 2}
   - choices:
     - {fileID: 11400000, guid: bda95a6ebfbc23a40bf497f3366e66d2, type: 2}
     - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
+    alternatives: []
   - choices:
-    - {fileID: 11400000, guid: 146c6020b6d8f864a8d24509d23efa8a, type: 2}
-    - {fileID: 11400000, guid: 146c6020b6d8f864a8d24509d23efa8a, type: 2}
-  - choices:
+    - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+    - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
     - {fileID: 11400000, guid: 914b0ca002ee932479f05fecdc5835ff, type: 2}
-    - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
-    - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
-  - choices:
-    - {fileID: 11400000, guid: 71a416f2eb3d36b41854f0d68cfafd6b, type: 2}
-    - {fileID: 11400000, guid: 71a416f2eb3d36b41854f0d68cfafd6b, type: 2}
-  - choices:
-    - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
-    - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
-    - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+    alternatives: []
   - choices:
     - {fileID: 11400000, guid: 914b0ca002ee932479f05fecdc5835ff, type: 2}
     - {fileID: 11400000, guid: bda95a6ebfbc23a40bf497f3366e66d2, type: 2}
     - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
-  free_play:
-  - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
-  - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
-  - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
-  - {fileID: 11400000, guid: 914b0ca002ee932479f05fecdc5835ff, type: 2}
-  - {fileID: 11400000, guid: bda95a6ebfbc23a40bf497f3366e66d2, type: 2}
+    alternatives: []
+  - choices:
+    - {fileID: 11400000, guid: 3fb7cd847ee18a04fb96a4170b10e994, type: 2}
+    - {fileID: 11400000, guid: 5df187795b57a9a418dc4c007e32de47, type: 2}
+    alternatives:
+    - {fileID: 11400000, guid: 3fb7cd847ee18a04fb96a4170b10e994, type: 2}
+    - {fileID: 11400000, guid: 5df187795b57a9a418dc4c007e32de47, type: 2}
+  - choices:
+    - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
+    - {fileID: 11400000, guid: b857c7136e176f1429be67a213d7a331, type: 2}
+    - {fileID: 11400000, guid: 7f89ebc9c3f4a7048be7b6c4a960f32f, type: 2}
+    alternatives: []
+  - choices:
+    - {fileID: 11400000, guid: 914b0ca002ee932479f05fecdc5835ff, type: 2}
+    - {fileID: 11400000, guid: bda95a6ebfbc23a40bf497f3366e66d2, type: 2}
+    - {fileID: 11400000, guid: c72007cb9721ed34097100825cdb4ac5, type: 2}
+    alternatives: []
+  free_play_gunner:
+  - icon: {fileID: 21300000, guid: abcb258619777224a9b6b31f176633bd, type: 3}
+    desc: Shoot two more bullets
+  - icon: {fileID: 21300000, guid: 0440e0e2e4f454141b43d57e2d391259, type: 3}
+    desc: Bullets bounce one more time
+  - icon: {fileID: 21300000, guid: 64e823920bbfa9c4ab2753946990499b, type: 3}
+    desc: Shoot farther
+  - icon: {fileID: 21300000, guid: a33612216fe27744c8ba5b3bd7cf4a9f, type: 3}
+    desc: Bullets are wider
+  - icon: {fileID: 21300000, guid: 64bf1f7576e7ad34e8401084b00caf81, type: 3}
+    desc: Lower bullet cooldown
+  free_play_pilot:
+  - icon: {fileID: 21300000, guid: 6891b09471a2f1549a0ae5c4796f89c9, type: 3}
+    desc: Increase max HP by one
+  - icon: {fileID: 21300000, guid: b642d5c4bc81a2e42971acbc2981548b, type: 3}
+    desc: Increase bomb droprate by 5%
+  - icon: {fileID: 21300000, guid: c6e0e95b22948104d876d8e2977538d4, type: 3}
+    desc: Increase HP droprate by 5%
+  - icon: {fileID: 21300000, guid: 3deb02932dc359f4986bcb78ec03659d, type: 3}
+    desc: Decrease sprint cooldown
+  - icon: {fileID: 21300000, guid: b384728c4667c9347a49005d588f89f6, type: 3}
+    desc: Have a 5% more chance to dodge when sprinting
 --- !u!114 &114512715681625976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -578,7 +614,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f329b53afa03fb46acdf966a82e551f, type: 2}
   - {fileID: 11400000, guid: bd03c0f7dca925847ba8f727f12b52d3, type: 2}
   - {fileID: 11400000, guid: d210db6289d9a684b81c64d662ed55a5, type: 2}
-  - {fileID: 11400000, guid: 1c9adc40c2923344b8ae964aaee05d26, type: 2}
   freeplayWavesTier1:
   - {fileID: 11400000, guid: b6d294f66e60c9b48ab9a479386caf33, type: 2}
   - {fileID: 11400000, guid: 014b1f18b7fe4d243a3f21b15ce79e9a, type: 2}
@@ -608,6 +643,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ff0e31238c6bba4daf85fdf20a9e1c6, type: 2}
   idle: 0
   freeplayMode: 0
+  currently_spawning: 0
   sequenceIndex: 0
   freeplayMult: 1
   freeplayCounter: 0
