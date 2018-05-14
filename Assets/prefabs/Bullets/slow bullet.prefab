@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _type: 0
+  ricochetsLeft: 0
 --- !u!212 &212375635390678912
 SpriteRenderer:
   m_ObjectHideFlags: 1

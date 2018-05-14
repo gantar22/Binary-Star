@@ -52,22 +52,25 @@ public class EndStateScreens : MonoBehaviour {
 		}
 
 		if (Input.GetAxis ("Submit") > 0) {
-			animator.Play ("Deactivated"); // Make this smooth?
 			HUD.SetActive (true);
 
 			stateScreenIsUp = false;
 			readyToContinue = false;
 
 			if (chosenScreen == EndStateScreen.You_Win) {
-				SpawnManager.Instance.nextSequence();
-				// TODO - Might want to go straight to an upgrade screen or
-				//		  do something else as freeplay begins
+				animator.Play ("Fade_You_Win");
+				GM.Instance.handleSequenceOver ();
+
 			} else if (chosenScreen == EndStateScreen.You_Died) {
+				animator.Play ("Fade_You_Died");
 				GM.Instance.resetToSameSequence();
 				GM.Instance.RespawnPlayer ();
 				SpawnManager.Instance.nextSequence();
+
 			} else if (chosenScreen == EndStateScreen.Game_Over) {
+				animator.Play ("Deactivated");
 				GM.ResetProgressThenMainMenu ();
+
 			}
 		}
 	}

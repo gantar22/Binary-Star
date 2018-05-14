@@ -114,11 +114,6 @@ public class BulletScript : MonoBehaviour {
 			return false;
 		}
 
-		bull2 b = obj.GetComponent<bull2>();
-		if(b){
-			b.hit(pos);
-		}
-
 		EnemyHP s = obj.GetComponent<EnemyHP>(); 
 		if (s != null){
 			s.gotHit(bullet,damage);

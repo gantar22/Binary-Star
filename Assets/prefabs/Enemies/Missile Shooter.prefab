@@ -180,7 +180,7 @@ MonoBehaviour:
   _bullet: {fileID: 1754065566595806, guid: 492af4e49265bff4eb951e729a3e9aa3, type: 2}
   _offset: 2
   _kick: 1
-  _fire_rate: 0.4
+  _fire_rate: 0.2
   shootingEnabled: 1
 --- !u!114 &114716556069694750
 MonoBehaviour:

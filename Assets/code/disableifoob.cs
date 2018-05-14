@@ -21,7 +21,12 @@ public class disableifoob : MonoBehaviour {
 		_location = Camera.main.WorldToViewportPoint(transform.position);
 		if(not_percent(_location.x) || not_percent(_location.y)) {
 			GetComponent<BoxCollider2D>().enabled = false;
-			Destroy(transform.root.gameObject,3); //Scary Bugs!
+
+			if (GetComponent<seeking_missile> ()) {
+				Destroy (transform.root.gameObject, 0.15f);
+			} else {
+				Destroy(transform.root.gameObject,3); //Scary Bugs!
+			}
 		}
 	}
 }

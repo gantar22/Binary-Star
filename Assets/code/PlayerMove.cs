@@ -97,7 +97,7 @@ public class PlayerMove : MonoBehaviour {
 		dash_timer = Mathf.Clamp(dash_timer - Time.deltaTime, -1, dash_timer);
 		if(dash_timer < 0)	dash_off_cooldown = true;
 
-		
+		CameraUtil.keepInCamBounds (transform.root);
 	}
 
 	public static float x_cooldown(){
@@ -121,8 +121,8 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	// 
 
+	// Upgrades
 
 	public static void UpgradeDashWidth(int total) {
 		if(total == 0) {
@@ -132,7 +132,6 @@ public class PlayerMove : MonoBehaviour {
 		}
 
 	}
-
 
 	public static void UpgradeDashCoolDown(int total){
 		if(total == 0) {
