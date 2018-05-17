@@ -21,9 +21,13 @@ public class seeking_missile : MonoBehaviour {
 	private Rigidbody2D rb;
 	private disableifoob DifOOB;
 
+	// Static variables
+	private static List<seeking_missile> active_missiles;
 
-	// Check which missile type (player vs enemy)
+
+	// Initialization
 	void Awake () {
+		// Identify missile type (player vs enemy) and targeting
 		if (GetComponent<ObjT> ().typ == ObjT.obj.enemy_bullet) {
 			seekEnemies = false;
 			targetObj = GM.Instance.player;
@@ -34,6 +38,13 @@ public class seeking_missile : MonoBehaviour {
 			Debug.LogError ("seeking missile ObjT identifier has wrong type assigned");
 		}
 
+		// active_missiles static list management
+		if (active_missiles == null) {
+			active_missiles = new List<seeking_missile> ();
+		}
+		active_missiles.Add (this);
+
+		// Componenet references
 		DifOOB = GetComponent<disableifoob> ();
 		rb = GetComponent<Rigidbody2D> ();
 
@@ -117,5 +128,21 @@ public class seeking_missile : MonoBehaviour {
 	public void setVelo (Vector2 direction, float speed) {
 		velocity = direction.normalized * speed * Time.deltaTime;
 		Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
+	}
+
+	// Destroy all missiles from active_missiles static list
+	public static void destroyAllMissiles() {
+		if (active_missiles == null) {
+			return;
+		}
+
+		while (active_missiles.Count > 0) {
+			seeking_missile missile = active_missiles [0];
+			BulletScript BS;
+			if (missile && (BS = missile.GetComponent<BulletScript>())) {
+				BS.destroyBullet ();
+			}
+			active_missiles.RemoveAt (0);
+		}
 	}
 }
