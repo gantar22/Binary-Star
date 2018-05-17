@@ -48,7 +48,7 @@ public class YButtonManager : MonoBehaviour {
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
 		//UnlockTurretMode(1);
-		UnlockStarMode(1);
+		//UnlockStarMode(1);
 	}
 
 

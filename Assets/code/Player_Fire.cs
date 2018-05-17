@@ -189,7 +189,7 @@ public class Player_Fire : MonoBehaviour {
 	}
 
 	public static void UpgradeBulletWidth (int total) {
-		widthBoost = 4 * total;
+		widthBoost = 2 * total;
 	}
 
 	public static void UpgradeFireRate (int total) {
@@ -197,7 +197,7 @@ public class Player_Fire : MonoBehaviour {
 	}
 
 	public static void UpgradeRicochet (int total) {
-		ricochet = total;
+		ricochet = total * 2;
 	}
 
 

@@ -26,6 +26,9 @@ public class sword_script : MonoBehaviour {
 	void Start () {
 		box = GetComponent<BoxCollider2D>();
 		box.enabled = false;
+		upgrade_enabled(1);
+		upgrade_range(1);
+		//upgrade_spins(1);
 	}
 	
 	// Update is called once per frame
@@ -42,7 +45,7 @@ public class sword_script : MonoBehaviour {
 			box.size = new Vector2(sword_range,.5f);
 			box.offset = new Vector2(sword_range / 2, 0);
 			if(sword_spins) StartCoroutine(spin());
-			Invoke("shut_down",sword_dur);
+			Invoke("shut_down",sword_dur - .65f);
 		}
 		if(!box.enabled){
 			timer -= Time.deltaTime;
@@ -55,7 +58,7 @@ public class sword_script : MonoBehaviour {
 	IEnumerator spin(){
 		float timer = sword_dur;
 		while(sword_dur > 0){
-			transform.Rotate(Vector3.forward * Time.deltaTime * 10);
+			transform.Rotate(Vector3.forward * Time.deltaTime * 360);
 			yield return null;	
 		}
 		transform.eulerAngles = Vector3.zero;
@@ -64,11 +67,30 @@ public class sword_script : MonoBehaviour {
 	}
 
 	void shut_down(){
-		box.enabled = false;
-		ps_short.Stop();
-		ps_long.Stop();
+		StartCoroutine(slow_stop());
 	}
 
+	IEnumerator	slow_stop(){
+		ParticleSystem	ps;
+		if(sword_range == 2)
+				ps = ps_short;
+		else
+				ps = ps_long;
+
+
+		float lifetime = ps.startLifetime;
+		float dur = 1f;
+		while(dur > 0)
+		{
+			dur -= Time.deltaTime;
+			ps.startLifetime -= lifetime * Time.deltaTime;
+			yield return null;
+		}
+		ps.Stop();
+		yield return new WaitForSeconds(.15f);
+		box.enabled	= false;
+		ps.startLifetime  = lifetime;
+	}
 
 	public float get_cooldown(){
 		return 1 - timer / cooldown_time;
@@ -81,7 +103,7 @@ public class sword_script : MonoBehaviour {
 		if(i == 0){
 			sword_range = 2;
 		} else {
-			sword_range = 4;
+			sword_range = 4.5f;
 		}
 	}
 	public static void upgrade_enabled(int i){
