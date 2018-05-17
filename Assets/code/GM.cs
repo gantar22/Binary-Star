@@ -108,6 +108,7 @@ public class GM : MonoBehaviour {
 	// Stop all SpawnManager coroutines, and then destroy all enemies
 	public void resetEnemies() {
 		SpawnManager.Instance.reset ();
+		seeking_missile.destroyAllMissiles ();
 
 		while (enemies.Count != 0) {
 			EnemyHP EHP;
@@ -124,6 +125,7 @@ public class GM : MonoBehaviour {
 	// Start the YouWin endstatescreen that leads to freeplay
 	public void YouWin() {
 		resetEnemies ();
+
 		resetToSequence (SpawnManager.Instance.sequences.Length);
 		EndStateScreens.Instance.InvokeEndScreen (EndStateScreen.You_Win);
 	}

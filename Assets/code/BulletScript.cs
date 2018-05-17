@@ -204,4 +204,9 @@ public class BulletScript : MonoBehaviour {
 		exploDamage = damage;
 		exploRadiusMult = radiusMult;
 	}
+
+	// Public function to destroy this bullet
+	public void destroyBullet() {
+		die ();
+	}
 }
