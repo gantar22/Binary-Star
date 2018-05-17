@@ -12,14 +12,22 @@ public class squeeze : MonoBehaviour {
 	private float speed;
 	public float extra = .1f;
 	public float delta_delta;
+	private bool show = false;
 
 	void Awake(){
 		scale = transform.localScale;
 	}
+	void OnEnable(){
+		Invoke("begin",.5f);
+	}
+	void Ondisable()
+	{
+		show = false;
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(PauseManager.paused || Time.deltaTime == 0) return;
+		if(PauseManager.paused || Time.deltaTime == 0 || !show) return;
 		float delta = Mathf.Pow((prev_position - transform.position).magnitude,1.5f);
 		speed = delta / Time.deltaTime;
 		//if(Mathf.Abs(prev_delta - delta) > .01f) overshoot = extra;
@@ -28,5 +36,10 @@ public class squeeze : MonoBehaviour {
 		prev_position = transform.position;
 		prev_delta = delta;
 
-		}
+	}
+
+	void begin()
+	{
+		show = true;
+	}
 }

@@ -337,34 +337,37 @@ public class PlayerMove : MonoBehaviour {
 				yield return null;
 			}
 			PlayerHP.dashing = false;
+
+			transform.root.GetComponent<squeeze>().enabled = true;
 			yield return null;
 	}
 
 
 	public void activate_pika(){
+		if(transform.root.GetComponentInChildren<YButtonManager>().abilityIsActive()) return;
 		StartCoroutine(pika());
 	}
 
 	IEnumerator pika(){
 
 		GetComponentInParent<squeeze>().enabled = false;
-		TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
-		float old_time = trail.time;
-		trail.time = 1;
-		float old_width = trail.widthMultiplier;
-		trail.widthMultiplier = 10;
+		
 		PlayerHP.dashing = true;
 		BoxCollider2D col = GetComponent<BoxCollider2D>();
+		ParticleSystem	ps = GetComponentInChildren<ParticleSystem>();
+		ps.Play();
 		Vector2 old_size = col.size;
 		col.size = new Vector2(col.size.x * 3, col.size.y * 3);
-
+		dash_kill = true;
 
 		yield return new WaitForSeconds(6);
-
+		transform.root.GetComponent<squeeze>().enabled = true;
+		ps.Stop();
+		yield return new WaitForSeconds(.5f);
 		PlayerHP.dashing = false;
 		col.size = old_size;
-		trail.time = old_time;
-		trail.widthMultiplier = old_width;
+		dash_kill = false;
+		transform.root.GetComponentInChildren<YButtonManager>().finishedAbility();
 
 		yield return  null;
 	}

@@ -138,7 +138,7 @@ public class PlayerHP : MonoBehaviour {
 
 	// When invulnerability is over, check once for anything currently in the collider
 	void OnTriggerStay2D (Collider2D col) {
-		if (checkColliders) {
+		if (checkColliders || dashing) {
 			OnTriggerEnter2D (col);
 		}
 	}

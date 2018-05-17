@@ -11,7 +11,7 @@ public class YButtonManager : MonoBehaviour {
 
 
 	private float star_mode_time_left = 0;
-	private float star_mode_time_total = 6;
+	private float star_mode_time_total = 6.5f;
 
 	[SerializeField]
 	XboxController _pilot_ctlr;
@@ -48,12 +48,13 @@ public class YButtonManager : MonoBehaviour {
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
 		//UnlockTurretMode(1);
-		//UnlockStarMode(1);
+		UnlockStarMode(1);
 	}
 
 
 	// Returns the cooldown left, or the remaining duration of the active ability
 	public float getYBarValue() {
+		print(cooldown);
 		float returnVal = 0;
 		if (!abilityIsActive ()) {
 			returnVal = cooldown / (shorterCooldown ? shortCooldown : longCooldown);
@@ -134,12 +135,14 @@ public class YButtonManager : MonoBehaviour {
 	}
 
 	private void activateStarMode() {
-		starMode_active = true;
 		GM.Instance.player.GetComponentInChildren<PlayerMove>().activate_pika();
+		starMode_active = true;
+		star_mode_time_left = star_mode_time_total;
 		Invoke("unstar",star_mode_time_total);
 	}
 
 	void unstar(){
+		CancelInvoke("unstar");
 		starMode_active = false;
 	}
 
