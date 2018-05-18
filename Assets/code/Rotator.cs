@@ -29,27 +29,31 @@ public class Rotator : MonoBehaviour {
 			joy = target.transform.position - transform.position;
 		}
 
-		if (joy.x == 0 && joy.y == 0) return;
-		if(joy.y == 0) targetTheta = 180 * joy.x * -1;
-		targetTheta = joy.x == 0 ? 90 * joy.y : (360 / (2 * Mathf.PI)) * Mathf.Atan(joy.y / joy.x);
+		if (joy.x != 0 || joy.y != 0) {
+					if(joy.y == 0) targetTheta = 180 * joy.x * -1;
+					targetTheta = joy.x == 0 ? 90 * joy.y : (360 / (2 * Mathf.PI)) * Mathf.Atan(joy.y / joy.x);
 
-		if(joy.x < 0) targetTheta += 180;
-		if(targetTheta < 0) targetTheta += 360;
+					if(joy.x < 0) targetTheta += 180;
+					if(targetTheta < 0) targetTheta += 360;
 
-		if(joy.x > 0) {
-			if((transform.eulerAngles.z > 270 || transform.eulerAngles.z == 0)&& joy.y > 0){
-				targetTheta += 360; 
-			} else if(transform.eulerAngles.z < 180 && joy.y < 0){
-				targetTheta -= 360;
-			} 
+					if(joy.x > 0) {
+						if((transform.eulerAngles.z > 270 || transform.eulerAngles.z == 0)&& joy.y > 0){
+							targetTheta += 360; 
+						} else if(transform.eulerAngles.z < 180 && joy.y < 0){
+							targetTheta -= 360;
+						} 
+					}
+
+
+					//deltaTheta = (targetTheta - transform.eulerAngles.z) % 360;
+
+
+
+					deltaTheta = Mathf.LerpAngle(transform.eulerAngles.z,targetTheta,Time.deltaTime * turnRadius);
+
 		}
-
-		//deltaTheta = (targetTheta - transform.eulerAngles.z) % 360;
-
-		deltaTheta = Mathf.LerpAngle(transform.eulerAngles.z,targetTheta,Time.deltaTime * turnRadius);
-
 		transform.Rotate(Vector3.forward * deltaTheta - transform.eulerAngles);//Mathf.Clamp(deltaTheta,-1 * turnRadius,turnRadius));
-		
+
 
 
 		//prevTargetTheta = targetTheta;

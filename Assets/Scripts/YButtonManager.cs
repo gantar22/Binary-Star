@@ -48,13 +48,12 @@ public class YButtonManager : MonoBehaviour {
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
 		//UnlockTurretMode(1);
-		UnlockStarMode(1);
+		//UnlockStarMode(1);
 	}
 
 
 	// Returns the cooldown left, or the remaining duration of the active ability
 	public float getYBarValue() {
-		print(cooldown);
 		float returnVal = 0;
 		if (!abilityIsActive ()) {
 			returnVal = cooldown / (shorterCooldown ? shortCooldown : longCooldown);
