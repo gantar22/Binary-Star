@@ -6,8 +6,8 @@ using XboxCtrlrInput;
 public class YButtonManager : MonoBehaviour {
 
 	// Settings
-	public float shortCooldown = 30;
-	public float longCooldown = 50;
+	public float shortCooldown = 20;
+	public float longCooldown = 40;
 
 
 	private float star_mode_time_left = 0;
@@ -48,7 +48,7 @@ public class YButtonManager : MonoBehaviour {
 		//UnlockSlowMo(1);
 		//UnlockRapidFire(1);
 		//UnlockTurretMode(1);
-		//UnlockStarMode(1);
+		UnlockStarMode(1);
 	}
 
 

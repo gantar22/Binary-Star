@@ -21,12 +21,12 @@ MonoBehaviour:
     numEnemies: 1
   LeftSpawner:
   - type: 10
-    numEnemies: 1
+    numEnemies: 3
   - type: 4
     numEnemies: 1
   RightSpawner:
   - type: 3
-    numEnemies: 1
+    numEnemies: 2
   - type: 0
     numEnemies: 3
   TopFarLeft: []

@@ -51,6 +51,7 @@ public class BulletScript : MonoBehaviour {
 				invulnToHit = I;
 				objsToHit.Remove (nextObj);
 			} else if (dealDamage (nextObj, _damage, transform.position, objT.typ, transform.right)) {
+				//(GetComponent<seeking_missile>() && GetComponent<ObjT>() && GetComponent<ObjT>().typ == ObjT.obj.enemy_bullet)
 				if (ricochetsLeft > 0) {
 					ricochet (nextObj);
 					lastHit = nextObj;
@@ -136,7 +137,7 @@ public class BulletScript : MonoBehaviour {
 			ub.put_description();
 			return true; // I beleive this will destroy the bullet
 		}
-
+		
 		return false;
 	}
 
@@ -144,8 +145,9 @@ public class BulletScript : MonoBehaviour {
 		switch(_type){
 		case bulletType.basic:
 			ParticleSystem ps = transform.GetComponentInChildren<ParticleSystem>();
+			if(ps){
 			ps.transform.parent = null;
-			ps.Play();
+			ps.Play();}
 			music_manager.play_by_name("player_hit");
 			break;
 

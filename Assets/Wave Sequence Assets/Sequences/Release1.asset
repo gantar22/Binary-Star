@@ -21,9 +21,9 @@ MonoBehaviour:
   - condition: 1
     threshold: 3
     cameraSizeChange: 0
-    scrollDirection: 0
-    scrollSpeed: 0
-    wave: {fileID: 11400000, guid: 640b5eb8d4e94dc40a28b4423444649c, type: 2}
+    scrollDirection: 3
+    scrollSpeed: 1
+    wave: {fileID: 11400000, guid: ad9e957481e61f9418737442856cf9c8, type: 2}
   - condition: 0
     threshold: 0
     cameraSizeChange: 5

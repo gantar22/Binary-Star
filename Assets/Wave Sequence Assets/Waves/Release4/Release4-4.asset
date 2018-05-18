@@ -20,6 +20,14 @@ MonoBehaviour:
   - type: 1
     numEnemies: 1
   TopFarLeft: []
-  TopMidLeft: []
-  TopMidRight: []
+  TopMidLeft:
+  - type: 4
+    numEnemies: 1
+  - type: 10
+    numEnemies: 2
+  TopMidRight:
+  - type: 4
+    numEnemies: 1
+  - type: 10
+    numEnemies: 2
   TopFarRight: []

@@ -135,9 +135,9 @@ public class PlayerMove : MonoBehaviour {
 
 	public static void UpgradeDashCoolDown(int total){
 		if(total == 0) {
-			dash_cooldown = 8;
+			dash_cooldown = 5;
 		} else {
-			dash_cooldown = 3;
+			dash_cooldown = 1.7f;
 		}
 	}
 
@@ -310,7 +310,7 @@ public class PlayerMove : MonoBehaviour {
 			PlayerHP.dashing = true;
 			BoxCollider2D col = GetComponent<BoxCollider2D>();
 			Vector2 old_size = col.size;
-			col.size = new Vector2(old_size.x,dash_width);
+			col.size = new Vector2(old_size.x * 2,dash_width);
 			TrailRenderer trail = GetComponentInChildren<TrailRenderer>();
 			float old_time = trail.time;
 			float old_width = trail.startWidth;
@@ -357,12 +357,21 @@ public class PlayerMove : MonoBehaviour {
 		ParticleSystem	ps = GetComponentInChildren<ParticleSystem>();
 		ps.Play();
 		Vector2 old_size = col.size;
-		col.size = new Vector2(col.size.x * 3, col.size.y * 3);
+		col.size = new Vector2(col.size.x * 5, col.size.y * 5);
 		dash_kill = true;
 
 		yield return new WaitForSeconds(6);
 		transform.root.GetComponent<squeeze>().enabled = true;
+		float dur = 2f;
+		float lifetime = ps.startLifetime;
+		while(dur >= 0)
+		{
+			dur -= Time.deltaTime;
+			ps.startLifetime -= Time.deltaTime * lifetime * .5f;
+			yield return null;
+		}
 		ps.Stop();
+		ps.startLifetime = lifetime;
 		yield return new WaitForSeconds(.5f);
 		PlayerHP.dashing = false;
 		col.size = old_size;

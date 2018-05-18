@@ -34,6 +34,10 @@ public class bomb_det : MonoBehaviour {
 					EHP.hitByBomb ();
 				}
 			}
+			foreach(BulletScript bs in FindObjectsOfType<BulletScript>())
+			{
+				Destroy(bs.gameObject);
+			}
 			CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();
 			if(CSS != null){
 				CSS.activate(.5f,.5f); 

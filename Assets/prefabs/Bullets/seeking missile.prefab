@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 82651750229216374}
   - component: {fileID: 114183013094273310}
   - component: {fileID: 114846667047669424}
+  - component: {fileID: 114562423313589638}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -75,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754065566595806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -154.26024, y: 24.914642, z: 0}
+  m_LocalPosition: {x: -20.665123, y: -5.059872, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4988071462319320}
@@ -260,6 +261,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variation: 0.003
   mid: 1
+--- !u!114 &114562423313589638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312720825732354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101d6cf058181de499d0cf6cd2ae31f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 2
+  guaranteeDrop: 0
+  diesToBomb: 1
+  explosionType: 0
 --- !u!114 &114684599557140026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,9 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ae72028336db94ea5799c517265d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 18
-  accelMag: 0.2
-  turnRate: 18
+  maxSpeed: 30
+  accelMag: 0.4
+  turnRate: 15
 --- !u!114 &114789955895219080
 MonoBehaviour:
   m_ObjectHideFlags: 1

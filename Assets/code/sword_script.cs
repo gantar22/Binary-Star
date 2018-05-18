@@ -26,8 +26,8 @@ public class sword_script : MonoBehaviour {
 	void Start () {
 		box = GetComponent<BoxCollider2D>();
 		box.enabled = false;
-		upgrade_enabled(1);
-		upgrade_range(1);
+		//upgrade_enabled(1);
+		//upgrade_range(1);
 		//upgrade_spins(1);
 	}
 	

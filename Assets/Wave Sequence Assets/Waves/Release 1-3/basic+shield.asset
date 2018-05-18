@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: basic+shield
   m_EditorClassIdentifier: 
   TopSpawner:
-  - type: 4
-    numEnemies: 1
+  - type: 0
+    numEnemies: 3
   BotSpawner: []
   LeftSpawner:
   - type: 0
-    numEnemies: 3
+    numEnemies: 2
   RightSpawner:
   - type: 0
-    numEnemies: 3
+    numEnemies: 2
   TopFarLeft:
   - type: 4
     numEnemies: 1

@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492135429117690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.03, y: 8.03, z: -0.2421875}
+  m_LocalPosition: {x: -2.313137, y: 0.39299715, z: -0.2421875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4655257638381876}
@@ -262,7 +262,7 @@ MonoBehaviour:
   _bullet: {fileID: 1594480154817238, guid: 3cbe86813f3711344a9da93e76ab8adf, type: 2}
   _offset: 3
   _kick: 0
-  _fire_rate: 0.3
+  _fire_rate: 3
   shootingEnabled: 0
 --- !u!114 &114426186705270574
 MonoBehaviour:

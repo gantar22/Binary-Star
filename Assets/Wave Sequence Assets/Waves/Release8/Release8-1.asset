@@ -14,10 +14,12 @@ MonoBehaviour:
   TopSpawner: []
   BotSpawner: []
   LeftSpawner:
-  - type: 0
+  - type: 4
+    numEnemies: 1
+  - type: 1
     numEnemies: 1
   RightSpawner:
-  - type: 0
+  - type: 3
     numEnemies: 1
   TopFarLeft: []
   TopMidLeft:

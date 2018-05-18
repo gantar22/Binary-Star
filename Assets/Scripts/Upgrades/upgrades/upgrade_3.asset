@@ -14,7 +14,7 @@ MonoBehaviour:
   gunEffect: 1
   pilEffect: 2
   prereq: 0
-  description: '- Bullets bounce off of enemies one more time
+  description: '- Bullets bounce off of enemies two more times
 
     - Increase the rate at which health drop by 5%'
   pilot_icon: {fileID: 21300000, guid: c6e0e95b22948104d876d8e2977538d4, type: 3}

@@ -11,10 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45393247795a54408971ed69b73c3aa, type: 3}
   m_Name: Release7-3
   m_EditorClassIdentifier: 
-  TopSpawner: []
-  BotSpawner: []
-  LeftSpawner: []
-  RightSpawner: []
+  TopSpawner:
+  - type: 10
+    numEnemies: 5
+  BotSpawner:
+  - type: 0
+    numEnemies: 5
+  LeftSpawner:
+  - type: 4
+    numEnemies: 3
+  RightSpawner:
+  - type: 3
+    numEnemies: 2
   TopFarLeft:
   - type: 5
     numEnemies: 1

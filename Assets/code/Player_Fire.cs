@@ -51,7 +51,7 @@ public class Player_Fire : MonoBehaviour {
 		// Testing
 		//UpgradeMultishot(7);
 		//bullet_range.upgradeRange(5);
-		//UpgradeBulletWidth(10);
+		//UpgradeBulletWidth(1);
 		//UpgradeFireRate(10);
 		//UpgradeRicochet(2);
 	}
@@ -159,6 +159,8 @@ public class Player_Fire : MonoBehaviour {
 			expandedScale += Vector3.up * (1.5f + expandedScale.y) * 0.2f;
 		}
 		bul.transform.localScale = expandedScale;
+		if(bul.GetComponentInChildren<TrailRenderer>())
+				bul.GetComponentInChildren<TrailRenderer>().startWidth = expandedScale.y * .5f;
 	}
 
 	void reload(){

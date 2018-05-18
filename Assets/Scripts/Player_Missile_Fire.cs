@@ -27,7 +27,7 @@ public class Player_Missile_Fire : MonoBehaviour {
 
 	// Upgrade properties
 	private static float lvl1ExploRadiusMult = 1.8f, lvl2ExploRadiusMult =  3.6f;
-	private static float lvl1Cooldown = 8f, lvl2Cooldown = 3f;
+	private static float lvl1Cooldown = 10f, lvl2Cooldown = 4f;
 	private static float angleDiffDegrees = 35;
 
 	public static bool missilesEnabled;

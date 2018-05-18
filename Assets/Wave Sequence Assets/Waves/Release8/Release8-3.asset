@@ -13,8 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopSpawner: []
   BotSpawner: []
-  LeftSpawner: []
-  RightSpawner: []
+  LeftSpawner:
+  - type: 4
+    numEnemies: 1
+  - type: 10
+    numEnemies: 3
+  RightSpawner:
+  - type: 5
+    numEnemies: 1
+  - type: 1
+    numEnemies: 2
   TopFarLeft:
   - type: 7
     numEnemies: 1

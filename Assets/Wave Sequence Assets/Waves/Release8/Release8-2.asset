@@ -21,7 +21,7 @@ MonoBehaviour:
     numEnemies: 1
   LeftSpawner:
   - type: 10
-    numEnemies: 1
+    numEnemies: 2
   RightSpawner:
   - type: 4
     numEnemies: 1
