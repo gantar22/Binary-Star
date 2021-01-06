@@ -61,17 +61,18 @@ public class music_manager : MonoBehaviour {
 		} else {
 			a_s.clip = danger_music;
 		}
+	}
+
+	private void Start() {
 		a_s.volume = max_music_volume;
 		a_s.enabled = true;
 		a_s.Play();
 
-
-		for(int i = 0; i < sxs.Length;i++) {
+		for (int i = 0; i < sxs.Length; i++) {
 			GameObject g = Instantiate(source, transform);
 			g.name = sxs[i].name;
 			sxs[i].source = g.GetComponent<AudioSource>();
 		}
-
 	}
 
 	void Update(){

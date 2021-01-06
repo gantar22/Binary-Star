@@ -51,6 +51,9 @@ public class SettingsManager : MonoBehaviour {
 		if (music_manager.Instance) {
 			music_manager.Instance.max_music_volume = gameSettings.musicVolume;
 			music_manager.Instance.max_effects_volume = gameSettings.SFXVolume;
+			if (music_manager.Instance.a_s) {
+				music_manager.Instance.a_s.volume = gameSettings.musicVolume;
+			}
 		}
 	}
 
