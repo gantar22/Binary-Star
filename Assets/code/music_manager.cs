@@ -62,6 +62,7 @@ public class music_manager : MonoBehaviour {
 			a_s.clip = danger_music;
 		}
 		a_s.volume = max_music_volume;
+		a_s.enabled = true;
 		a_s.Play();
 
 

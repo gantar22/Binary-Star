@@ -58,6 +58,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 
 		// If clampPerp is enabled, keep the angle within the min/max degrees
 		if (clampPerp) {
+			Debug.Log("clampPerp: " + clampPerp);
 			Vector3 lEA = transform.localEulerAngles;
 			float newZ = angleClamp(lEA.z, minDegree, maxDegree);
 			transform.localEulerAngles = new Vector3 (lEA.x, lEA.y, newZ); 
@@ -66,6 +67,7 @@ public class WeightedEnemyPhysics : MonoBehaviour {
 		// Calculate new velocity
 		velocity += acceleration * Time.deltaTime;
 		velocity = Vector2.ClampMagnitude (velocity, maxSpeed * Time.deltaTime);
+		Debug.Log("Velocity: " + velocity);
 
 		rb.MovePosition (pos + velocity); 
 	}

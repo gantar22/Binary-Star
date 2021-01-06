@@ -28,7 +28,6 @@ public class EnemyHP : MonoBehaviour {
 
 	// Called when damage is taken
 	public void gotHit(Vector3 knock_back, int dmg = 1, bool noDrop = false) {
-		UnParentOnDestroy retScript;
 		if(special()) HP -= dmg;
 		if (HP <= 0) {
 			die (noDrop);

@@ -32,7 +32,7 @@ public class health_ui : MonoBehaviour {
 			for(int i = 0; i < hp_objs.Length;i++){
 				Destroy(hp_objs[i]);
 			}
-			print (hp);
+			//print (hp);
 			hp_objs = new GameObject[hp];
 			for(int i = 0; i < hp; i++){
 				hp_objs[i] = Instantiate(hp_prefab,transform);

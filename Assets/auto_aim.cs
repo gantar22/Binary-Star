@@ -23,7 +23,6 @@ public class auto_aim : MonoBehaviour {
 		Vector2 dir;
 
 		float degToRad = (2 * Mathf.PI) / 360;
-		bool hit = false;
 
 	
 		for(float i = 0; Mathf.Abs(i) < window_angle && !r; i += (h * hand))
@@ -33,7 +32,6 @@ public class auto_aim : MonoBehaviour {
 			r = Physics2D.Raycast(transform.position,dir,dis,1 << 8);
 
 			if (r){
-				hit = true;
 				transform.GetChild(0).eulerAngles = new Vector3(0,0,z + i);
 				return;
 			} else{
@@ -44,16 +42,14 @@ public class auto_aim : MonoBehaviour {
 			dir = new Vector2(Mathf.Cos((z + i) * degToRad),Mathf.Sin((z + i) * degToRad));
 
 			r = Physics2D.Raycast(transform.position,dir,dis,1 << 8);	
-			if (r){
+			if (r) {
 				transform.GetChild(0).eulerAngles = new Vector3(0,0,z + i);
 				return;
-				hit = true;
 			} else{
 				r = new RaycastHit2D();
 			}
 			i = -i;
 		}
-		if(!hit) transform.GetChild(0).localEulerAngles = Vector3.zero;
-
+		transform.GetChild(0).localEulerAngles = Vector3.zero;
 	}
 }
