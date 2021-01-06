@@ -74,7 +74,7 @@ public class BulletScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(sword_script.sword_destroys_projectiles && col.gameObject.tag == "spike"){
-			Destroy(gameObject);
+			Destroy(transform.root.gameObject);
 		}
 		if(col.gameObject.GetComponent<turtle_shield>()){
 			if(turtle_script.refl){
@@ -167,8 +167,11 @@ public class BulletScript : MonoBehaviour {
 				aoe_damage.scaleExplosion (exploRadiusMult);
 				aoe_damage._damage = exploDamage;
 			}
+			EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
+			foreach (EnemyHP EHP in EHPs) {
+				EHP.die();
+			}
 			break;
-
 		default:
 			break;
 		}

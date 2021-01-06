@@ -18,7 +18,8 @@ public class bullet_range : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Vector3.Distance(startPos,transform.position) > (range + extraRange)){
-			transform.parent.gameObject.SetActive(false);
+			//transform.parent.gameObject.SetActive(false);
+			Destroy(transform.parent.gameObject);
 		}
 		
 	}

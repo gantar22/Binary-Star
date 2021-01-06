@@ -21,8 +21,10 @@ public class killIfOOB : MonoBehaviour {
 	void Update () {
 		_location = Camera.main.WorldToViewportPoint(transform.position);
 		if(not_percent(_location.x) || not_percent(_location.y)) {
-			Debug.Log("Destroying:");
-			Debug.Log(transform.root.gameObject);
+			EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
+			foreach (EnemyHP EHP in EHPs) {
+				EHP.die();
+			}
 			Destroy(transform.root.gameObject); //Scary Bugs!
 		}
 	}

@@ -107,7 +107,7 @@ public class SpawnManager : MonoBehaviour {
 
 			// Wait until condition is met
 			if (tuple.condition == Trigger.RemainingEnemies) {
-				yield return new WaitForEndOfFrame (); 
+				yield return new WaitForEndOfFrame ();
 				yield return new WaitUntil (() => GM.Instance.enemies.Count <= tuple.threshold && !currently_spawning);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
@@ -208,11 +208,13 @@ public class SpawnManager : MonoBehaviour {
 			w.TopFarRight
 		};
 
+		currently_spawning = true;
 		StartCoroutine(spawnLoop(waveSpawns));
 	}
 
-	IEnumerator spawnLoop(List<TypeNumPair>[] waveSpawns){
-		currently_spawning = true;
+	// SET currently_spawning TO TRUE BEFORE STARTING THIS COROUTINE
+	IEnumerator spawnLoop(List<TypeNumPair>[] waveSpawns) {
+		Debug.Assert(currently_spawning);
 		for (int i = 0; i < 8; i++) {
 			foreach (TypeNumPair pair in waveSpawns[i]) {
 				GameObject prefab = EnemyIdentifier.GetEnemyPrefab (pair.type);

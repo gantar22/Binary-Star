@@ -106,7 +106,12 @@ public class EnemyHP : MonoBehaviour {
 		}
 
 		GM.Instance.Died (gameObject);
-		Destroy (gameObject);
+		// If this is a seeking missile, kill its root gameObject
+		if (GetComponent<seeking_missile>()) {
+			Destroy(transform.root.gameObject);
+		} else {
+			Destroy(gameObject);
+		}
 	}
 
 	// die(), but with no paramaters, so it can be invoked
