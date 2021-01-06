@@ -38,7 +38,8 @@ public class GM : MonoBehaviour {
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
+		Application.targetFrameRate = 60;
+	}
 
 
 	// Called once per frame
