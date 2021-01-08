@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour {
 	private float randomizedSpawnRadius = 0.8f;
 	private float extraScreenSize = 7f;
 	private float delayBeforeSeq = 3f;
+	private float delayAfterSeq = 1.1f;
 	private int baseFreeplayWaveNum = 10;
 	private int tierInterval = 5;
 
@@ -118,6 +119,7 @@ public class SpawnManager : MonoBehaviour {
 
 		print("finish them");
 		yield return new WaitUntil (() => GM.Instance.enemies.Count <= 0 && !currently_spawning);
+		yield return new WaitForSeconds(delayAfterSeq);
 
 		if (!freeplayMode) {
 			sequenceIndex++;
