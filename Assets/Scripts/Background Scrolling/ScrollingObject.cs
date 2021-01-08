@@ -39,8 +39,6 @@ public class ScrollingObject : MonoBehaviour {
 		foreach (EnemyHP EHP in EHPs) {
 			EHP.die ();
 		}
-		if (EHPs.Length == 0) {
-			Destroy (gameObject);
-		}
+		Destroy(gameObject);
 	}
 }

@@ -16,7 +16,7 @@ public class turtle_script : MonoBehaviour {
 
 	public static bool unlocked, decoy, incr_dur, move, refl;
 
-	public static float old_dur = 1, new_dur = 2;
+	public static float old_dur = 1.5f, new_dur = 3.0f;
 
 	public static float dur = old_dur;
 
@@ -68,7 +68,7 @@ public class turtle_script : MonoBehaviour {
 		if(decoy)
 		{
 			GameObject g = Instantiate(ghost,transform.position,transform.root.rotation);
-			g.GetComponentInChildren<self_destruct>().dur = dur + .1f;
+			g.GetComponentInChildren<self_destruct>().dur = dur + 0.5f;
 			GM.Instance.decoy = g;
 		}
 		currently_active = true;

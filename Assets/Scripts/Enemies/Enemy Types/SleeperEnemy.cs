@@ -87,7 +87,9 @@ public class SleeperEnemy : MonoBehaviour {
 
 	// Sleeper got shot. Now he's angry
 	public void makeAngry() {
-		music_manager.play_by_name("sleeper_active");
+		if (!angry) {
+			music_manager.play_by_name("sleeper_active");
+		}
 		angry = true;
 		chasing = true;
 		SO.enabled = false;

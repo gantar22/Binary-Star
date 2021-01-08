@@ -72,6 +72,10 @@ public class Asteroid : MonoBehaviour {
 		}
 
 		asteroids.Remove (this);
+		EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
+		foreach (EnemyHP EHP in EHPs) {
+			EHP.die();
+		}
 		Destroy (gameObject);
 	}
 }
