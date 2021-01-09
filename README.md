@@ -1,4 +1,4 @@
-![Title Art](Assets/Art/title_3DLight.png)
+![Title Art](Assets/Art/Binary_Star_Title_Art.jpg)
 
 Binary Star is a cooperative couch party game that brings new meaning to the "twin stick shooter" genre.
 Work with your partner to control a space ship together and fight off waves of alien enemies: One player pilots the ship while the other controls the cannons.
