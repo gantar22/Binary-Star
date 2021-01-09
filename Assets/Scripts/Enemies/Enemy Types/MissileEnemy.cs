@@ -11,7 +11,7 @@ public class MissileEnemy : MonoBehaviour {
 	//private float diveSpeedMult = 1f;
 
 	[SerializeField]
-	private float circleTime = 4f, diveTime = 0.4f;
+	private float circleTime = 3f, diveTime = 1.4f;
 
 	// Other variables
 	private bool clockwise;

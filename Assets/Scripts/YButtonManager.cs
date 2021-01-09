@@ -78,15 +78,14 @@ public class YButtonManager : MonoBehaviour {
 			return;
 		}
 
-
 		if(starMode_active){
 			star_mode_time_left -= Time.deltaTime;
 		}
 
-		if (cooldown >= 0) {
-			if (!abilityIsActive()) {
-				cooldown -= Time.deltaTime;
-			}
+		if (abilityIsActive()) return;
+
+		if (cooldown > 0) {
+			cooldown -= Time.deltaTime;
 			return;
 		} else {
 			if (PlayerHP.invuln) {

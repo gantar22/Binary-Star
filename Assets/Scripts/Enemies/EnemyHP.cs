@@ -162,5 +162,8 @@ public class EnemyHP : MonoBehaviour {
 		}
 	}
 
-
+	// Ensure that this gameObject gets removed from the list of enemies
+	private void OnDestroy() {
+		GM.Instance.Died(gameObject);
+	}
 }

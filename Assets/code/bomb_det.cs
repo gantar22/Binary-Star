@@ -36,6 +36,10 @@ public class bomb_det : MonoBehaviour {
 			}
 			foreach(BulletScript bs in FindObjectsOfType<BulletScript>())
 			{
+				EnemyHP[] EHPs = bs.gameObject.GetComponentsInChildren<EnemyHP>();
+				foreach (EnemyHP EHP in EHPs) {
+					EHP.die();
+				}
 				Destroy(bs.gameObject);
 			}
 			CameraShakeScript CSS = Camera.main.GetComponent<CameraShakeScript> ();

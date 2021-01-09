@@ -74,9 +74,11 @@ public class BulletScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(sword_script.sword_destroys_projectiles && col.gameObject.tag == "spike"){
-			Destroy(transform.root.gameObject);
+			die();
+			//destroyAttachedEnemyHP();
+			//Destroy(transform.root.gameObject);
 		}
-		if(col.gameObject.GetComponent<turtle_shield>()){
+		if (col.gameObject.GetComponent<turtle_shield>()){
 			if(turtle_script.refl){
 				transform.right = (transform.position - col.gameObject.transform.position).normalized;
 				sin_travel sin;
@@ -85,9 +87,11 @@ public class BulletScript : MonoBehaviour {
 					sin.redirect();
 				}
 			} else {
-				Destroy(transform.root.gameObject);
+				die();
+				//destroyAttachedEnemyHP();
+				//Destroy(transform.root.gameObject);
 			}
-		
+
 		}
 
 		if (col.gameObject != lastHit) {
@@ -167,10 +171,7 @@ public class BulletScript : MonoBehaviour {
 				aoe_damage.scaleExplosion (exploRadiusMult);
 				aoe_damage._damage = exploDamage;
 			}
-			EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
-			foreach (EnemyHP EHP in EHPs) {
-				EHP.die();
-			}
+			destroyAttachedEnemyHP();
 			break;
 		default:
 			break;
@@ -213,5 +214,16 @@ public class BulletScript : MonoBehaviour {
 	// Public function to destroy this bullet
 	public void destroyBullet() {
 		die ();
+	}
+
+	// Checks for any attached EnemyHP components (if this is a missile) and kills them if they exist
+	private void destroyAttachedEnemyHP() {
+		if (_type != bulletType.missile) {
+			return;
+		}
+		EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
+		foreach (EnemyHP EHP in EHPs) {
+			EHP.die();
+		}
 	}
 }

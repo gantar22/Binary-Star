@@ -239,6 +239,7 @@ public class PlayerMove : MonoBehaviour {
 
 		if (Asteroid.asteroids != null && PHP) {
 			foreach (Asteroid ast in Asteroid.asteroids) {
+				if (ast.rock == null) continue;
 				Vector2 rockPos = ast.rock.transform.position;
 				Vector2 playerPos = transform.root.position;
 				float rockRadius = ast.rock.circCollider.radius * ast.rock.transform.lossyScale.x;
