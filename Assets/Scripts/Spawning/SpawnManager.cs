@@ -5,12 +5,13 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour {
 
 	// Settings/properties
-	private float randomizedSpawnRadius = 0.8f;
-	private float extraScreenSize = 7f;
-	private float delayBeforeSeq = 3f;
-	private float delayAfterSeq = 1.1f;
-	private int baseFreeplayWaveNum = 10;
-	private int tierInterval = 5;
+	private const float randomizedSpawnRadius = 0.8f;
+	private const float extraScreenSize = 7f;
+	private const float delayBeforeSeq = 3f;
+	private const float delayBetweenSeq = 0.4f;
+	private const float delayAfterSeq = 1.1f;
+	private const int baseFreeplayWaveNum = 10;
+	private const int tierInterval = 5;
 
 	public Sequence[] sequences;
 	public Wave[] freeplayWavesTier1;
@@ -110,6 +111,7 @@ public class SpawnManager : MonoBehaviour {
 			if (tuple.condition == Trigger.RemainingEnemies) {
 				yield return new WaitForEndOfFrame ();
 				yield return new WaitUntil (() => GM.Instance.enemies.Count <= tuple.threshold && !currently_spawning);
+				yield return new WaitForSeconds(delayBetweenSeq);
 			} else if (tuple.condition == Trigger.Time) {
 				yield return new WaitForSeconds (tuple.threshold);
 			}
@@ -117,7 +119,7 @@ public class SpawnManager : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 
-		print("finish them");
+		//print("finish them");
 		yield return new WaitUntil (() => GM.Instance.enemies.Count <= 0 && !currently_spawning);
 		yield return new WaitForSeconds(delayAfterSeq);
 
