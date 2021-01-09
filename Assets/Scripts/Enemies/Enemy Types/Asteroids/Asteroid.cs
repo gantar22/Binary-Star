@@ -16,7 +16,7 @@ public class Asteroid : MonoBehaviour {
 	private Rigidbody2D rb;
 	[HideInInspector]
 	public Rock rock;
-	private List<Turret> Turrets;
+	private List<Turret> Turrets = null;
 
 	public static List<Asteroid> asteroids;
 
@@ -25,7 +25,9 @@ public class Asteroid : MonoBehaviour {
 	void Awake () {
 		rb = GetComponent<Rigidbody2D> ();
 		rock = GetComponentInChildren<Rock> ();
-		Turrets = new List<Turret> ();
+		if (Turrets == null) {
+			Turrets = new List<Turret>();
+		}
 
 		if (asteroids == null) {
 			asteroids = new List<Asteroid> ();
@@ -53,6 +55,9 @@ public class Asteroid : MonoBehaviour {
 
 	// Add a turret to the Turrets list
 	public void addTurret(Turret newTurret) {
+		if (Turrets == null) {
+			Turrets = new List<Turret>();
+		}
 		Turrets.Add (newTurret);
 	}
 
@@ -72,10 +77,6 @@ public class Asteroid : MonoBehaviour {
 		}
 
 		asteroids.Remove (this);
-		EnemyHP[] EHPs = transform.root.gameObject.GetComponentsInChildren<EnemyHP>();
-		foreach (EnemyHP EHP in EHPs) {
-			EHP.die();
-		}
 		Destroy (gameObject);
 	}
 }
